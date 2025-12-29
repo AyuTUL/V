@@ -1,0 +1,11 @@
+clear all;
+close all;
+clc;
+A = imread("F:/AyushTuladharCSITV/IP/Photos/1son.png");
+subplot(1,2,1);
+imshow(A);
+title("Original Color Image");
+B=rgb2gray(A);
+subplot(1,2,2);
+imshow(B);
+title("Grayscale Image");
