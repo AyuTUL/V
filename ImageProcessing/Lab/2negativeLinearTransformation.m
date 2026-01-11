@@ -19,4 +19,4 @@ subplot(1,3,3);
 imshow(negativeImg);
 title("Negative Image");
 
-imwrite(uint8(negativeImg),"Output/1negativeImage.jpeg");
+imwrite(uint8(negativeImg),"Output/2negativeImage.jpeg");
