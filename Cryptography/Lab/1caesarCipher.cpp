@@ -14,43 +14,52 @@ char shift(char ch, int k)
     x = (x + k) % 26;
     return char('A' + x);
 }
-string encryptionCaesar(string p, int k)
+string caesar(string text, int key,bool enc)
 {
-    p = normalizeAZ(p);
-    k %= 26;
-    string c;
-    for (char ch : p)
-        c.push_back(shift(ch, k));
-    return c;
+    text = normalizeAZ(text);
+    key %= 26;
+    string out;
+    if(enc)
+    	for (char ch : text)
+        	out.push_back(shift(ch, key));
+    else
+    	for (char ch : text)
+        	out.push_back(tolower(shift(ch, (26 - key) % 26)));
+    return out;
 }
-string decryptionCaesar(string c, int k)
-{
-    c = normalizeAZ(c);
-    k %= 26;
-    string p;
-    for (char ch : c)
-        p.push_back(tolower(shift(ch, (26 - k) % 26)));
-    return p;
-}
+
 int main()
 {
-    string plain;
-    int key;
-    cout << "Enter plain text : ";
-    getline(cin, plain);
-    cout << "Enter key (0-25) : ";
+    string text;
+    int choice, key;
+
+	cout << "---Caesar Cipher---\n1. Encrypt\n2. Decrypt\nEnter your choice : ";
+    cin >> choice;
+    
+    if(choice !=1 && choice !=2)
+    {
+    	cout << endl << "Invalid choice. Please try again.";
+		exit(0);
+	}
+	
+    cout << endl << "Enter key (0-25) : ";
     cin >> key;
-    if (key < 0 || key > 25)
+    cin.ignore();
+	
+	if (key < 0 || key > 25)
     {
         cout << endl
              << "Invalid key. Please try again.";
         exit(0);
     }
-    string cipher = encryptionCaesar(plain, key);
-    string decrypted = decryptionCaesar(cipher, key);
-    cout << endl
-         << "---Caesar Cipher---" << endl
-         << "Encrypted Cipher Text = " << cipher << endl
-         << "Decrypted Plain Text = " << decrypted;
-    return 0;
+
+    cout << "Enter text : ";
+    getline(cin, text);
+
+    if (choice == 1)
+        cout << endl << "Ciphertext : " << caesar(text, key, true);
+    else if (choice == 2)
+        cout << endl << "Plaintext : " << caesar(text, key, false);
+	
+	return 0;
 }
