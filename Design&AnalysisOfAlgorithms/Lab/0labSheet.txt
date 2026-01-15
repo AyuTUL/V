@@ -1,0 +1,42 @@
+DAA LAB Questions 2026.
+Lab 1:Write an algorithm and program to compute factorial of a number using:
+1.	Iterative method
+2.	Recursive method
+Analyze time and space complexity using the RAM model.
+Lab 2: Implement Euclid’s algorithm to find GCD of two numbers.
+Analyze its time and space complexity.
+Lab 3:Write programs to generate Fibonacci numbers using:
+1.	Iteration
+2.	Recursion
+Compare their time and space complexity.
+Lab 4: Implement Sequential (Linear) Search.
+Count number of comparisons and analyze:
+•	Best case, Worst case, Average case
+Lab 5: Implement the following sorting algorithms and analyze their complexity:
+1.	Bubble Sort
+2.	Selection Sort
+3.	Insertion Sort (Use same input sets for comparison.)
+Lab 6: Implement Binary Search (iterative and recursive).
+Analyze its time complexity using recurrence relation.
+Lab 7:  Implement Min-Max algorithm using Divide and Conquer.
+Count the number of comparisons and verify 3n/2 − 2 comparisons.
+Lab 8: Implement Merge Sort and Quick Sort.
+Analyze:
+•	Best case, Worst case, Average case
+
+Lab 9 Implement Heap Sort including:
+1.	Heapify
+2.	Build Heap
+3.	Heap Sort    (*Analyze the time complexity of each step).
+Lab 10 Implement the following greedy algorithms and analyze them:
+1.	Fractional Knapsack
+2.	Job Sequencing with Deadlines (*Compare greedy choices made in each algorithm).
+Lab 11 Implement Minimum Spanning Tree algorithms:
+1.	Kruskal’s Algorithm
+2.	Prim’s Algorithm
+Analyze their time complexity and compare them.
+Lab 12 Implement 0-1 Knapsack Problem using:
+1.	Greedy approach
+2.	Dynamic Programming
+3.	Backtracking
+Compare results, time complexity, and space usage.
