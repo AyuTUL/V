@@ -26,6 +26,6 @@ subplot(2,2,4);
 imshow(log200Img);
 title("Log = 200 Image");
 
-imwrite(log1Img,  "Output/3Logarithmic1Image.jpg");
-imwrite(log10Img, "Output/3Logarithmic10Image.jpg");
-imwrite(log200Img,"Output/3Logarithmic200Image.jpg");
+imwrite(log1Img,  "Output/3logarithmicTransformation/Log1Image.jpg");
+imwrite(log10Img, "Output/3logarithmicTransformation/Log10Image.jpg");
+imwrite(log200Img,"Output/3logarithmicTransformation/Log200Image.jpg");
