@@ -70,7 +70,7 @@ void bubble(int *a, int n)
         cout << endl
              << "After Pass " << i + 1 << " :";
         printArray(a, n);
-        cout << endl;
+        cout << "----------------------------------" << endl;
     }
 
     cout << endl
