@@ -6,58 +6,80 @@
 </head>
 
 <body>
+    <b>
 
-    <h2 align="center">XYZ College of IT</h2>
-    <form action="submit.php" method="post" enctype="multipart/form-data">
-        
-        <label for="name">Name : </label>
-        <input type="text" id="name" name="user_name" required><br><br>
-        
-        <label for="address">Address : </label>
-        <input type="text" id="address" name="user_address" required><br><br>
-        
-        <label>Sex : </label>
-        <input type="radio" id="male" name="user_sex" value="male" required>
-        <label for="male">Male</label>
-        <input type="radio" id="female" name="user_sex" value="female">
-        <label for="female">Female</label><br><br>
+        <h2 align="center">XYZ College of IT</h2>
+        <center>Student Detail Form</center>
 
-        <label for="color">Select your favourite color : </label>
-        <input type="color" id="color" name="user_color" required><br><br>
+        <hr color="blue">
 
-        <label for="dob">Date of Birth : </label>
-        <input type="date" id="dob" name="user_dob" required><br><br>
+        <form action="submit.php" method="post" enctype="multipart/form-data">
 
-        <label for="citizenship">Upload Citizenship photo : </label>
-        <input type="file" id="citizenship" name="user_citizenship" required><br><br>
+            <fieldset>
+                <legend>Personal Information</legend><br>
 
-        <label for="number">Mobile number : </label>
-        <input type="tel" id="number" name="user_number" required><br><br>
+                <label for="name">Name : </label>
+                <input type="text" id="name" name="user_name" size="50" required><br><br>
 
-        <label for="time">Appointment time : </label>
-        <input type="time" id="time" name="user_time" required><br><br>
+                <label for="address">Address : </label>
+                <input type="text" id="address" name="user_address" required><br><br>
 
-        <label for="hobbies">Hobbies : </label>
-        <input type="checkbox" id="movies" name="user_hobbies[]" required>
-        <label for="movies">Movies</label>
-        <input type="checkbox" id="football" name="user_hobbies[]">
-        <label for="football">Playing Football</label>
-        <input type="checkbox" id="novel" name="user_hobbies[]">
-        <label for="novel">Reading Novel</label>
-        <input type="checkbox" id="others" name="user_hobbies[]">
-        <label for="others">Others</label><br><br>
-        
-        <label for="education">Education : </label>
-        <select id="education" name="user_education" required>
-            <option value="phd">Phd</option>
-            <option value="masters">Masters</option>
-            <option value="bachelors">Bachelors</option>
-            <option value="+2">+2</option>
-            <option value="SEE">SEE</option>
-        </select>
-        
-    </form>
+                <label>Sex : </label>
+                <input type="radio" id="male" name="user_sex" value="male" required>
+                <label for="male">Male</label>
+                <input type="radio" id="female" name="user_sex" value="female">
+                <label for="female">Female</label><br><br>
 
+                <label for="color">Select your favourite color : </label>
+                <input type="color" id="color" name="user_color" required><br><br>
+
+                <label for="dob">Date of Birth : </label>
+                <input type="date" id="dob" name="user_dob" required><br><br>
+
+                <label for="citizenship">Upload Citizenship photo : </label>
+                <input type="file" id="citizenship" name="user_citizenship" required><br><br>
+
+                <label for="number">Mobile number : </label>
+                <input type="tel" id="number" name="user_number" required><br><br>
+
+                <label for="time">Appointment time : </label>
+                <input type="time" id="time" name="user_time" required><br><br>
+            </fieldset>
+            <br>
+            <fieldset>
+                <legend align="right">Hobby and Education</legend>
+
+                <br>
+                <label for="hobbies">Hobbies : </label>
+                <input type="checkbox" id="movies" name="user_hobbies[]" required>
+                <label for="movies">Movies</label>
+                <input type="checkbox" id="football" name="user_hobbies[]">
+                <label for="football">Playing Football</label>
+                <input type="checkbox" id="novel" name="user_hobbies[]">
+                <label for="novel">Reading Novel</label>
+                <input type="checkbox" id="others" name="user_hobbies[]">
+                <label for="others">Others</label><br><br>
+
+                <label for="education">Education : </label>
+                <select id="education" name="user_education" required>
+                    <option value="phd">Phd</option>
+                    <option value="masters">Masters</option>
+                    <option value="bachelors">Bachelors</option>
+                    <option value="+2">+2</option>
+                    <option value="SEE">SEE</option>
+                </select><br><br>
+            </fieldset>
+
+            <hr color="black">
+
+            <label for="remarks">Few Words :</label><br>
+            <textarea id="remarks" name="user_remarks" rows="7" cols="50"></textarea><br><br>
+
+            <input type="submit" value="Send">
+            <input type="reset" value="Clear"><br>
+
+        </form>
+    </b>
 
 </body>
 
