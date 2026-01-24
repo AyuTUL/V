@@ -1,27 +1,110 @@
-// Lab 1.2: WAP to compute factorial of a number using iterative method.
+// Lab 1.2: WAP to compute factorial of a number using recursive method.
 #include <iostream>
 #include <stdlib.h>
+#include <iomanip>
 using namespace std;
+
+int callDepth = 0;
+int borderWidth = 0; // Store original input for consistent table width
+
+void printBorder()
+{
+    cout << "+----------+---------+";
+    for (int i = 0; i < (borderWidth * 2) + 15; i++)
+        cout << "-";
+    cout << "+";
+    for (int i = 0; i < (borderWidth * 2) + 10; i++)
+        cout << "-";
+    cout << "+" << endl;
+}
+
+void printTableHeader()
+{
+    cout << endl;
+    printBorder();
+    cout << "|  Action  |  Depth  |  " << setw((borderWidth * 2) + 13) << left << "Stack Trace" << "|  " << setw((borderWidth * 2) + 8) << left << "Result" << "|" << endl;
+    printBorder();
+}
+
+void printTableRow(string action, int depth, string trace, string result)
+{
+    cout << "|  " << setw(8) << left << action
+         << "|    " << setw(5) << left << depth
+         << "|  " << setw((borderWidth * 2) + 13) << left << trace
+         << "|  " << setw((borderWidth * 2) + 8) << left << result << "|" << endl;
+}
+
+void printTableFooter()
+{
+    printBorder();
+}
+
+void printStack(int n, bool isCall, int multiplier = 0, int subResult = 0)
+{
+    string indent = "";
+    for (int i = 1; i < callDepth; i++)
+        indent += "  ";
+
+    if (isCall)
+    {
+        string trace = indent + "--> fact(" + to_string(n) + ")";
+        printTableRow("CALL", callDepth, trace, "-");
+    }
+    else
+    {
+        string trace = indent + "<-- ";
+        string result;
+        if (multiplier > 0)
+            result = to_string(multiplier) + " x " + to_string(subResult) + " = " + to_string(n);
+        else
+            result = to_string(n);
+        printTableRow("RETURN", callDepth, trace, result);
+    }
+}
+
 int fact(int n)
 {
+    callDepth++;
+    printStack(n, true);
+
+    int result;
     if (n <= 1)
-        return 1;
+    {
+        result = 1;
+        printStack(result, false);
+    }
     else
-        return n * fact(n - 1);
+    {
+        int subResult = fact(n - 1);
+        result = n * subResult;
+        printStack(result, false, n, subResult);
+    }
+
+    callDepth--;
+    return result;
 }
 int main()
 {
     int n;
-    cout << "---Fibonacci Sequence using Recursive Method---" << endl;
+
     cout << "Enter number : ";
     cin >> n;
+    cout << endl
+         << "---Factorial using Recursive Method---" << endl;
     if (n < 0)
     {
         cout << endl
              << "Factorial of negative number doesn't exist.";
         exit(0);
     }
+
+    borderWidth = n;
+    printTableHeader();
+
+    int result = fact(n);
+
+    printTableFooter();
     cout << endl
-         << n << "! = " << fact(n);
+         << "Final Result : " << n << "! = " << result << endl;
     return 0;
 }
