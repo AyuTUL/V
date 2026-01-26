@@ -3,6 +3,16 @@
 #include <iomanip>
 using namespace std;
 
+int borderWidth = 0;
+
+void printBorder()
+{
+    cout << "+-----+-----------------+--------+";
+    for (int i = 0; i < borderWidth; i++)
+        cout << "-";
+    cout << "+" << endl;
+}
+
 void printArray(int *a, int n)
 {
     cout << "  ";
@@ -12,13 +22,10 @@ void printArray(int *a, int n)
 
 void printTableHeader(int n)
 {
-    cout << "+-----+-----------------+--------+";
-    for (int i = 0; i < (n * 5) + 2; i++)
-        cout << "-";
-    cout << "+" << endl
-         << "|  j  |  A[j] > A[j+1]  |  Swap  |" << setw((n * 5) + 2) << left << "  Array" << "|" << endl
+    printBorder();
+    cout << "|  j  |  A[j] > A[j+1]  |  Swap  |" << setw(borderWidth) << left << "  Array" << "|" << endl
          << "+-----+-----------------+--------+";
-    for (int i = 0; i < (n * 5) + 2; i++)
+    for (int i = 0; i < borderWidth; i++)
         cout << "-";
     cout << "+" << endl;
 }
@@ -32,10 +39,7 @@ void printTableRow(int j, int val1, int val2, bool swapped, int *a, int n)
 
 void printTableFooter(int n)
 {
-    cout << "+-----+-----------------+--------+";
-    for (int i = 0; i < (n * 5) + 2; i++)
-        cout << "-";
-    cout << "+" << endl;
+    printBorder();
 }
 
 void bubble(int *a, int n)
@@ -70,7 +74,8 @@ void bubble(int *a, int n)
         cout << endl
              << "After Pass " << i + 1 << " :";
         printArray(a, n);
-        cout << "----------------------------------" << endl;
+        cout << endl
+             << "--------------------------------------------" << endl;
     }
 
     cout << endl
@@ -93,6 +98,7 @@ int main()
 
     cout << endl
          << "---Bubble Sort Algorithm---" << endl;
+    borderWidth = n * 5 + 2;
     bubble(a, n);
 
     delete[] a;

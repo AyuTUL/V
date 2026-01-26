@@ -1,6 +1,5 @@
 // Lab 1.2: WAP to compute factorial of a number using recursive method.
 #include <iostream>
-#include <stdlib.h>
 #include <iomanip>
 using namespace std;
 
@@ -10,10 +9,10 @@ int borderWidth = 0; // Store original input for consistent table width
 void printBorder()
 {
     cout << "+----------+---------+";
-    for (int i = 0; i < (borderWidth * 2) + 15; i++)
+    for (int i = 0; i < (borderWidth + 7); i++)
         cout << "-";
     cout << "+";
-    for (int i = 0; i < (borderWidth * 2) + 10; i++)
+    for (int i = 0; i < (borderWidth + 2); i++)
         cout << "-";
     cout << "+" << endl;
 }
@@ -22,7 +21,7 @@ void printTableHeader()
 {
     cout << endl;
     printBorder();
-    cout << "|  Action  |  Depth  |  " << setw((borderWidth * 2) + 13) << left << "Stack Trace" << "|  " << setw((borderWidth * 2) + 8) << left << "Result" << "|" << endl;
+    cout << "|  Action  |  Depth  |  " << setw(borderWidth + 5) << left << "Stack Trace" << "|  " << setw(borderWidth) << left << "Result" << "|" << endl;
     printBorder();
 }
 
@@ -30,8 +29,8 @@ void printTableRow(string action, int depth, string trace, string result)
 {
     cout << "|  " << setw(8) << left << action
          << "|    " << setw(5) << left << depth
-         << "|  " << setw((borderWidth * 2) + 13) << left << trace
-         << "|  " << setw((borderWidth * 2) + 8) << left << result << "|" << endl;
+         << "|  " << setw(borderWidth + 5) << left << trace
+         << "|  " << setw(borderWidth) << left << result << "|" << endl;
 }
 
 void printTableFooter()
@@ -95,16 +94,16 @@ int main()
     {
         cout << endl
              << "Factorial of negative number doesn't exist.";
-        exit(0);
+        return 0;
     }
 
-    borderWidth = n;
+    borderWidth = n * 2 + 8;
     printTableHeader();
 
     int result = fact(n);
 
     printTableFooter();
     cout << endl
-         << "Final Result : " << n << "! = " << result << endl;
+         << "Final Result : " << n << "! = " << result;
     return 0;
 }

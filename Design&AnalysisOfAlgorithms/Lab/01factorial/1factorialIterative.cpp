@@ -4,12 +4,12 @@
 #include <stdlib.h>
 using namespace std;
 
-int borderWidth = 0; // Store original input for consistent table width
+int borderWidth = 0;
 
 void printBorder()
 {
     cout << "+-------------+-----+";
-    for (int i = 0; i < (borderWidth * 2) + 13; i++)
+    for (int i = 0; i < (borderWidth + 2); i++)
         cout << "-";
     cout << "+" << endl;
 }
@@ -17,13 +17,13 @@ void printBorder()
 void printTableHeader()
 {
     printBorder();
-    cout << "|  Iteration  |  i  |  " << setw((borderWidth * 2) + 11) << left << "Factorial" << "|" << endl;
+    cout << "|  Iteration  |  i  |  " << setw(borderWidth) << left << "Factorial" << "|" << endl;
     printBorder();
 }
 
 void printTableRow(int iteration, int i, string factStr)
 {
-    cout << "|      " << setw(7) << left << iteration << "|  " << left << setw(3) << i << "|  " << setw((borderWidth * 2) + 11) << left << factStr << "|" << endl;
+    cout << "|      " << setw(7) << left << iteration << "|  " << left << setw(3) << i << "|  " << setw(borderWidth) << left << factStr << "|" << endl;
 }
 
 void printTableFooter()
@@ -31,9 +31,10 @@ void printTableFooter()
     printBorder();
 }
 
-int factorial(int n)
+unsigned long long factorial(int n)
 {
-    int fact = 1, iteration = 1;
+    unsigned long long fact = 1;
+    int iteration = 1;
     string operation = "";
 
     cout << endl;
@@ -45,8 +46,6 @@ int factorial(int n)
         for (int i = n; i >= 1; i--)
         {
             fact *= i;
-
-            // Build operation string
             if (operation.empty())
             {
                 operation = to_string(i);
@@ -54,7 +53,7 @@ int factorial(int n)
             }
             else
             {
-                operation = operation + "x" + to_string(i);
+                operation = operation + " x " + to_string(i);
                 string factStr = operation + " = " + to_string(fact);
                 printTableRow(iteration, i, factStr);
             }
@@ -80,8 +79,8 @@ int main()
         exit(0);
     }
 
-    borderWidth = n;
-    int result = factorial(n);
+    borderWidth = n * 5 + 11;
+    unsigned long long result = factorial(n);
 
     cout << endl
          << "Final Result : " << n << "! = " << result;

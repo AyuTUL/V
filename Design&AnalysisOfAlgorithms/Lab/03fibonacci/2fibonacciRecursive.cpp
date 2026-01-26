@@ -1,5 +1,6 @@
-// Lab 2.2: Fibonacci using Recursion with ASCII Trace Table
+// Lab 3.2: Fibonacci using Recursion with ASCII Trace Table
 #include <iostream>
+#include <iomanip>
 using namespace std;
 
 int call = 0;
