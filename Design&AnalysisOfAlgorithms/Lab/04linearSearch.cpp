@@ -1,7 +1,6 @@
 // Lab 4: WAP to implement sequential(linear) search.
 #include <iostream>
 #include <iomanip>
-#include <stdlib.h>
 using namespace std;
 
 void printBorder()
