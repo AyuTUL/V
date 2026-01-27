@@ -1,3 +1,4 @@
+//check output plaintext small cipher capital
 #include <bits/stdc++.h>
 using namespace std;
 
