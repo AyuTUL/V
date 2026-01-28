@@ -1,11 +1,18 @@
-// check output plaintext small cipher capital
+// Lab 3: WAP to encrypt & decrypt user input message using Hill cipher.
 #include <bits/stdc++.h>
 using namespace std;
 
-#define MAX 10 // max matrix size
+#define MAX 10
 int N;
 
-/* ---------- Utility ---------- */
+string normalizeAZ(string s)
+{
+    string t;
+    for (char c : s)
+        if (isalpha(c))
+            t += toupper(c);
+    return t;
+}
 
 int fix(int x)
 {
@@ -29,95 +36,74 @@ int invMod26(int a)
     return -1;
 }
 
-string normalizeAZ(string s)
+bool inverseMatrixGauss(int key[MAX][MAX], int inv[MAX][MAX])
 {
-    string t;
-    for (char c : s)
-        if (isalpha(c))
-            t += toupper(c);
-    return t;
-}
-
-/* ---------- Matrix Operations ---------- */
-
-void getCofactor(int mat[MAX][MAX], int temp[MAX][MAX],
-                 int p, int q, int n)
-{
-    int i = 0, j = 0;
-    for (int r = 0; r < n; r++)
-        for (int c = 0; c < n; c++)
-            if (r != p && c != q)
-            {
-                temp[i][j++] = mat[r][c];
-                if (j == n - 1)
-                {
-                    j = 0;
-                    i++;
-                }
-            }
-}
-
-int determinant(int mat[MAX][MAX], int n)
-{
-    if (n == 1)
-        return mat[0][0];
-
-    int temp[MAX][MAX];
-    int det = 0, sign = 1;
-
-    for (int f = 0; f < n; f++)
-    {
-        getCofactor(mat, temp, 0, f, n);
-        det += sign * mat[0][f] * determinant(temp, n - 1);
-        sign = -sign;
-    }
-    return det;
-}
-
-bool inverseMatrix(int key[MAX][MAX], int inv[MAX][MAX])
-{
-    int det = fix(determinant(key, N));
-    if (gcd(det, 26) != 1)
-        return false;
-
-    int detInv = invMod26(det);
-    int adj[MAX][MAX];
-    int temp[MAX][MAX];
+    int aug[MAX][2 * MAX];
 
     for (int i = 0; i < N; i++)
+        for (int j = 0; j < 2 * N; j++)
+            aug[i][j] = (j < N) ? fix(key[i][j]) : (j - N == i);
+
+    for (int col = 0; col < N; col++)
     {
-        for (int j = 0; j < N; j++)
+        int pivot = -1;
+
+        for (int row = col; row < N; row++)
+            if (gcd(aug[row][col], 26) == 1)
+            {
+                pivot = row;
+                break;
+            }
+
+        if (pivot == -1)
+            return false;
+
+        if (pivot != col)
+            for (int j = 0; j < 2 * N; j++)
+                swap(aug[pivot][j], aug[col][j]);
+
+        int invPivot = invMod26(aug[col][col]);
+        for (int j = 0; j < 2 * N; j++)
+            aug[col][j] = fix(aug[col][j] * invPivot);
+
+        for (int r = 0; r < N; r++)
         {
-            getCofactor(key, temp, i, j, N);
-            int sign = ((i + j) % 2 == 0) ? 1 : -1;
-            adj[j][i] = sign * determinant(temp, N - 1); // transpose
+            if (r == col)
+                continue;
+            int factor = aug[r][col];
+            for (int j = 0; j < 2 * N; j++)
+                aug[r][j] = fix(aug[r][j] - factor * aug[col][j]);
         }
     }
 
     for (int i = 0; i < N; i++)
         for (int j = 0; j < N; j++)
-            inv[i][j] = fix(adj[i][j] * detInv);
+            inv[i][j] = aug[i][j + N];
 
     return true;
 }
 
-/* ---------- Hill Cipher ---------- */
+bool isKeyValid(int key[MAX][MAX])
+{
+    int inv[MAX][MAX];
+    return inverseMatrixGauss(key, inv);
+}
 
-string hillCipher(string text,
-                  int key[MAX][MAX],
-                  bool encrypt)
+string hillCipher(string text, int key[MAX][MAX], bool encrypt)
 {
     text = normalizeAZ(text);
+
     while (text.size() % N != 0)
         text += 'X';
 
     int invKey[MAX][MAX];
-    if (!encrypt && !inverseMatrix(key, invKey))
-        return "INVALID KEY";
+    if (!encrypt)
+        inverseMatrixGauss(key, invKey);
 
     string result;
 
     for (int i = 0; i < text.size(); i += N)
+    {
         for (int r = 0; r < N; r++)
         {
             int sum = 0;
@@ -128,10 +114,11 @@ string hillCipher(string text,
             }
             result += char('A' + fix(sum));
         }
+    }
+    if (!encrypt)
+        transform(result.begin(), result.end(), result.begin(), ::tolower);
     return result;
 }
-
-/* ---------- Main ---------- */
 
 int main()
 {
@@ -150,13 +137,20 @@ int main()
     }
 
     cout << endl
-         << "Enter order N : ";
+         << "Enter order of matrix : ";
     cin >> N;
 
     cout << "Enter key matrix :" << endl;
     for (int i = 0; i < N; i++)
         for (int j = 0; j < N; j++)
             cin >> key[i][j];
+
+    if (choice == 2 && !isKeyValid(key))
+    {
+        cout << endl
+             << "Invalid key. Please try again.";
+        exit(0);
+    }
 
     cin.ignore();
 

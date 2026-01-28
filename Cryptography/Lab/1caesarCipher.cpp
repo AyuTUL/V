@@ -1,4 +1,4 @@
-//check output plaintext small cipher capital
+// Lab 1: WAP to encrypt & decrypt user input message using Caesar cipher.
 #include <bits/stdc++.h>
 using namespace std;
 string normalizeAZ(const string &s)
@@ -15,17 +15,17 @@ char shift(char ch, int k)
     x = (x + k) % 26;
     return char('A' + x);
 }
-string caesar(string text, int key,bool enc)
+string caesar(string text, int key, bool enc)
 {
     text = normalizeAZ(text);
     key %= 26;
     string out;
-    if(enc)
-    	for (char ch : text)
-        	out.push_back(shift(ch, key));
+    if (enc)
+        for (char ch : text)
+            out.push_back(shift(ch, key));
     else
-    	for (char ch : text)
-        	out.push_back(tolower(shift(ch, (26 - key) % 26)));
+        for (char ch : text)
+            out.push_back(tolower(shift(ch, (26 - key) % 26)));
     return out;
 }
 
@@ -34,20 +34,22 @@ int main()
     string text;
     int choice, key;
 
-	cout << "---Caesar Cipher---\n1. Encrypt\n2. Decrypt\nEnter your choice : ";
+    cout << "---Caesar Cipher---\n1. Encrypt\n2. Decrypt\nEnter your choice : ";
     cin >> choice;
-    
-    if(choice !=1 && choice !=2)
+
+    if (choice != 1 && choice != 2)
     {
-    	cout << endl << "Invalid choice. Please try again.";
-		exit(0);
-	}
-	
-    cout << endl << "Enter key (0-25) : ";
+        cout << endl
+             << "Invalid choice. Please try again.";
+        exit(0);
+    }
+
+    cout << endl
+         << "Enter key (0-25) : ";
     cin >> key;
     cin.ignore();
-	
-	if (key < 0 || key > 25)
+
+    if (key < 0 || key > 25)
     {
         cout << endl
              << "Invalid key. Please try again.";
@@ -58,9 +60,11 @@ int main()
     getline(cin, text);
 
     if (choice == 1)
-        cout << endl << "Ciphertext : " << caesar(text, key, true);
+        cout << endl
+             << "Ciphertext : " << caesar(text, key, true);
     else if (choice == 2)
-        cout << endl << "Plaintext : " << caesar(text, key, false);
-	
-	return 0;
+        cout << endl
+             << "Plaintext : " << caesar(text, key, false);
+
+    return 0;
 }

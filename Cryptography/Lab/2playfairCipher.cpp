@@ -1,4 +1,4 @@
-//check output plaintext small cipher capital
+// Lab 2: WAP to encrypt & decrypt user input message using Playfair cipher.
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -31,7 +31,6 @@ void buildMatrix(string key, char m[5][5])
             used[ch - 'A'] = 1;
             k += ch;
         }
-            
 
     for (char ch = 'A'; ch <= 'Z'; ch++)
         if (!used[ch - 'A'])
@@ -44,6 +43,16 @@ void buildMatrix(string key, char m[5][5])
     for (int i = 0; i < 5; i++)
         for (int j = 0; j < 5; j++)
             m[i][j] = k[p++];
+}
+
+void displayMatrix(char m[5][5])
+{
+    for (int i = 0; i < 5; i++)
+    {
+        for (int j = 0; j < 5; j++)
+            cout << m[i][j] << " ";
+        cout << endl;
+    }
 }
 
 void findPosition(char m[5][5], char ch, int &r, int &c)
@@ -118,6 +127,8 @@ string playfair(string text, string key, bool enc)
             out += m[r2][c1];
         }
     }
+    if (!enc)
+        transform(out.begin(), out.end(), out.begin(), ::tolower);
     return out;
 }
 
@@ -126,34 +137,46 @@ int main()
     string key, text;
     int choice;
 
-	cout << "---Playfair Cipher---\n1. Encrypt\n2. Decrypt\nEnter your choice : ";
+    cout << "---Playfair Cipher---\n1. Encrypt\n2. Decrypt\nEnter your choice : ";
     cin >> choice;
     cin.ignore();
-    
-    if(choice !=1 && choice !=2)
-    {
-    	cout<< endl << "Invalid choice. Please try again.";
-		exit(0);
-	}
 
-	cout << endl << "Enter key : ";
+    if (choice != 1 && choice != 2)
+    {
+        cout << endl
+             << "Invalid choice. Please try again.";
+        exit(0);
+    }
+
+    cout << endl
+         << "Enter key : ";
     getline(cin, key);
-	
-	for (char ch : key)
+
+    for (char ch : key)
         if (!isalpha((unsigned char)ch))
         {
-        	cout << endl
-             	<< "Invalid key. Please try again.";
-        	exit(0);	
-		}
-    
-    cout << "Enter text : ";
+            cout << endl
+                 << "Invalid key. Please try again.";
+            exit(0);
+        }
+
+    char keyMatrix[5][5];
+    buildMatrix(key, keyMatrix);
+
+    cout << endl
+         << "Key matrix :" << endl;
+    displayMatrix(keyMatrix);
+
+    cout << endl
+         << "Enter text : ";
     getline(cin, text);
-	
-	if (choice == 1)
-        cout << endl << "Ciphertext : " << playfair(text, key, true);
-    else if(choice == 2)
-        cout << endl << "Plaintext : " << playfair(text, key, false);
-			
+
+    if (choice == 1)
+        cout << endl
+             << "Ciphertext : " << playfair(text, key, true);
+    else if (choice == 2)
+        cout << endl
+             << "Plaintext : " << playfair(text, key, false);
+
     return 0;
 }
