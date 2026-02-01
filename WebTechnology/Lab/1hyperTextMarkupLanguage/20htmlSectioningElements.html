@@ -1,0 +1,88 @@
+<!-- Lab 20: Design a webpage using HTML Sectioning elements. Try to make like this:-->
+<html>
+
+<head>
+    <title>HTML Sectioning Elements</title>
+    <style>
+        header {
+            background-color: #333333;
+            text-align: center;
+            color: white;
+            padding: 10px;
+        }
+
+        nav {
+            background-color: #ffc0cb;
+            padding: 10px;
+        }
+
+        .content {
+            display: flex;
+            align-items: center;
+        }
+
+        section {
+            display: flex;
+        }
+
+        .product-img {
+            width: 300px;
+            height: 300px;
+        }
+
+        aside {
+            margin-left: auto;
+            margin-bottom: auto;
+            background-color: #e0e0e0;
+            padding: 15px;
+            max-width: 300px;
+        }
+
+        footer {
+            background-color: red;
+            text-align: center;
+            color: white;
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+
+        This is my Website
+        <br>
+        <button>Login</button>
+
+    </header>
+
+    <nav>
+        <a style="color:white;" href="home.html">Home</a>
+        <a style="color:black;" href="contact.html">Contact</a>
+        <a href="Product.html">Product</a>
+    </nav>
+
+    <div class="content">
+        <section>
+            <img src="Resource/20boot1.avif" class="product-img">
+            <img src="Resource/20boot2.avif" class="product-img">
+        </section>
+
+        <aside>
+            Whether you’re starting out or just playing for fun, Club shoes get you on the field without compromising on
+            quality. The Vapor 16 is made with speed in mind. Mix that velocity with touch and comfort? It’s goal time.
+        </aside>
+    </div>
+
+    <article>
+        <img src="Resource/20daraz.png">
+    </article>
+
+    <footer>
+        2026
+    </footer>
+
+</body>
+
+</html>
