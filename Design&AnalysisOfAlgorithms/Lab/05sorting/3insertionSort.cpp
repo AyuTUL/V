@@ -1,5 +1,4 @@
 // Lab 5.3 : Implement insertion sort algorithm.
-//wrong
 #include <iostream>
 #include <iomanip>
 using namespace std;
@@ -31,6 +30,13 @@ void printTableRow(int j, int aj, int key)
          << "|    A[" << j + 1 << "] = "
          << setw(3) << left << aj << "   |" << endl;
 }
+void printNoRow(int j, int aj, int key)
+{
+    cout << "|  " << setw(3) << left << j
+         << "|   " << setw(3) << right << aj << " > "
+         << setw(5) << left << key
+         << "|        No       |" << endl;
+}
 
 void printMinusOneRow()
 {
@@ -53,19 +59,27 @@ void insertionSort(int a[], int n)
              << "Pass " << i
              << " : [ i = " << i
              << ", key = A[" << i << "] = " << key
-             << ", j = " << j << " to 0 ]" << endl << endl;
+             << ", j = " << j << " to 0 ]" << endl
+             << endl;
 
         printTableHeader();
+
+        bool moved = false;
 
         while (j >= 0 && a[j] > key)
         {
             printTableRow(j, a[j], key);
             a[j + 1] = a[j];
             j--;
+            moved = true;
         }
 
-        printMinusOneRow();
-        if(j<0)
+        if (!moved)
+            printNoRow(j, a[j], key);
+
+        if (j < 0)
+            printMinusOneRow();
+
         printTableFooter();
 
         cout << endl
@@ -75,7 +89,7 @@ void insertionSort(int a[], int n)
         a[j + 1] = key;
 
         cout << endl
-             << "After Pass " << i  << " :";
+             << "After Pass " << i << " :";
         printArray(a, n);
         cout << endl
              << "--------------------------------------------" << endl;
