@@ -1,82 +1,111 @@
-<!-- Lab 24: Design a webpage using <div> tag using class and id attribute.-->
-<!-- wip -->
-<html>
+<!-- Lab 24: Design a webpage using <div> tag using class and id attribute. -->
+<!--wip-->
+    <html>
 
 <head>
     <title>Div Tag & Class, Id Attributes</title>
     <style>
-        div{
-            border: 3px solid black;
-            margin: 1px;
-            padding: 15px 15px 10px 10px;
-        }
-        
-        .div1{
-            color:blue;
-            background-color: green;
+        .container {
+            display: flex;
+            gap: 10px;
+            font-family: 'Playfair Display', Georgia, 'Times New Roman', Times, serif;
         }
 
-        .div2{
-            color:black;
-            background-color: gray;
+        #header {
+            text-align: center;
         }
 
-        .div3{
-            color:lightyellow;
-            background-color: green;
+        div {
+            border: 5px solid black;
+            margin: 5px;
+            padding: 15px;
+            flex: 1;
         }
 
+        .div1 {
+            text-align: left;
+        }
+
+        .div2 {
+            text-align: center;
+        }
+
+        .div3 {
+            text-align: left;
+        }
 
         p {
-            font-size: 14px;
+            font-size: 15px;
         }
     </style>
 </head>
 
 <body>
-    <div class="div1">
-        <h2>First Division</h2>
-        <p>
-            Jakakokalareta marshalli asistencia marshalli meska paramueta para messi messi messi messi messi messi messi
-            messi i
-            menci messi ankara messi ankara messi ANKARA MESSI ANKARA MESSI ANKARA MESSI ANKARA MESSI UENA MESSI ANKARA
-            MESSI
-            ANKARA MESSI ANKARA MESSI ANKARA MESSI
-            A N K A R A M E S S I
-            GOLGOL GOLGOL GOL !!! GOLGOL GOLGOL GOLGOL GOLGOL GOLGOL GOLGOL GOLGOL G O L !!!!! GOLGOL GOLGOL GOLGOL
-            GOLGOL
-            GOLGOL GOLGOL GOLGOL GOLGOL GOLGOL GOLGOL GOLGOL GOLGOL GOLGOL GOLGOL G O L ! ! !
-        </p>
+    <div id="header">
+        <h1>Quiz</h1>
     </div>
-    <br>
-    <div class="div2">
-        <h2>Second Division</h2>
-        <p>
-            Jakakokalareta marshalli asistencia marshalli meska paramueta para messi messi messi messi messi messi messi
-            messi i
-            menci messi ankara messi ankara messi ANKARA MESSI ANKARA MESSI ANKARA MESSI ANKARA MESSI UENA MESSI ANKARA
-            MESSI
-            ANKARA MESSI ANKARA MESSI ANKARA MESSI
-            A N K A R A M E S S I
-            GOLGOL GOLGOL GOL !!! GOLGOL GOLGOL GOLGOL GOLGOL GOLGOL GOLGOL GOLGOL G O L !!!!! GOLGOL GOLGOL GOLGOL
-            GOLGOL
-            GOLGOL GOLGOL GOLGOL GOLGOL GOLGOL GOLGOL GOLGOL GOLGOL GOLGOL GOLGOL G O L ! ! !
-        </p>
-    </div>
-    <br>
-    <div class="div3">
-        <h2>Third Division</h2>
-        <p>
-            Jakakokalareta marshalli asistencia marshalli meska paramueta para messi messi messi messi messi messi messi
-            messi i
-            menci messi ankara messi ankara messi ANKARA MESSI ANKARA MESSI ANKARA MESSI ANKARA MESSI UENA MESSI ANKARA
-            MESSI
-            ANKARA MESSI ANKARA MESSI ANKARA MESSI
-            A N K A R A M E S S I
-            GOLGOL GOLGOL GOL !!! GOLGOL GOLGOL GOLGOL GOLGOL GOLGOL GOLGOL GOLGOL G O L !!!!! GOLGOL GOLGOL GOLGOL
-            GOLGOL
-            GOLGOL GOLGOL GOLGOL GOLGOL GOLGOL GOLGOL GOLGOL GOLGOL GOLGOL GOLGOL G O L ! ! !
-        </p>
+
+    <div class="container">
+
+        <!-- Personal Details Div -->
+        <div class="div1" id="details">
+            <h2>1: Personal Details</h2>
+            <p>
+                <label for="name">Name :</label>
+                <input type="text" id="name" placeholder="Enter your name">
+                <br>
+                <label for="age">Age :</label>
+                <input type="text" id="age" placeholder="Enter your age">
+                <br>
+                <label for="address">Address :</label>
+                <input type="text" id="address" placeholder="Enter your address">
+            </p>
+            <!-- Button Added -->
+            <button type="button">Save Details</button>
+        </div>
+
+        <!-- Select Quiz Div -->
+        <div class="div2" id="quiz-select">
+            <h2>2: Quiz (Select Answer)</h2>
+            <p>
+                <label for="quiz1">
+                    Which algorithm uses Divide and Conquer?
+                </label><br><br>
+
+                <select id="quiz1">
+                    <option value="">-- Select Answer --</option>
+                    <option>Bubble Sort</option>
+                    <option>Insertion Sort</option>
+                    <option>Merge Sort</option>
+                    <option>Selection Sort</option>
+                </select>
+            </p>
+            <!-- Button Added -->
+            <button type="button">Submit Answer</button>
+        </div>
+
+        <!-- Radio Quiz Div -->
+        <div class="div3" id="quiz">
+            <h2>3: Quiz Question</h2>
+            <p>
+                <strong>Which data structure follows FIFO principle?</strong><br><br>
+
+                <input type="radio" id="stack" name="ds">
+                <label for="stack">Stack</label><br>
+
+                <input type="radio" id="queue" name="ds">
+                <label for="queue">Queue</label><br>
+
+                <input type="radio" id="array" name="ds">
+                <label for="array">Array</label><br>
+
+                <input type="radio" id="linkedlist" name="ds">
+                <label for="linkedlist">Linked List</label>
+            </p>
+            <!-- Button Added -->
+            <button type="button">Submit Answer</button>
+        </div>
+
     </div>
 </body>
 
