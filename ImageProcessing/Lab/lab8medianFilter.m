@@ -1,4 +1,3 @@
-%fix blur
 clear all;
 close all;
 clc;
@@ -25,12 +24,12 @@ subplot(3,2,4);
 imshow(medianFilter3x3);
 title("3x3 Median Filter Image");
 
-medianFilter10x10=medfilt2(noisyImg,[10,10]);
+medianFilter9x9=medfilt2(noisyImg,[9,9]);
 subplot(3,2,5);
-imshow(medianFilter10x10);
-title("10x10 Median Filter Image");
+imshow(medianFilter9x9);
+title("9x9 Median Filter Image");
 
 imwrite(grayscaleImg,"Output/8medianFilter/1grayscaleImg.png");
 imwrite(noisyImg,"Output/8medianFilter/2salt&PepperImage.png");
 imwrite(medianFilter3x3,"Output/8medianFilter/3medianFilter3x3.png");
-imwrite(medianFilter10x10,"Output/8medianFilter/4medianFilter10x10.png");
+imwrite(medianFilter9x9,"Output/8medianFilter/4medianFilter9x9.png");
