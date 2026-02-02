@@ -1,92 +1,87 @@
-<!-- Lab 23: Design a webpage using <div> tag using id attribute.-->
+<!-- Lab 23: Design a webpage using <div> tag using id attribute -->
 <html>
-
 <head>
     <title>Div Tag & Id Attribute</title>
+
     <style>
         div {
             border: 2px solid black;
             margin: 10px;
             padding: 15px;
-        }
-
-        #header {
-            border: none;
-            text-align: center;
-            font-family: playfair display, georgia, 'times new roman', times, serif;
-        }
-
-        #details {
-            background-color: lightgreen;
-            color: darkgreen;
-        }
-
-        #hobbies {
-            background-color: lightyellow;
-            color: darkorange;
-        }
-
-        #footer {
-            background-color: lightgray;
-            color: black;
-            text-align: center;
-        }
-
-        input,
-        select {
-            margin: 5px;
-            padding: 5px;
+            font-family: Arial, sans-serif;
         }
 
         label {
             display: inline-block;
-            width: 100px;
+            min-width: 100px;
+            margin: 5px;
+        }
+
+        #header {
+            text-align: center;
+            background-color: lightblue;
+        }
+
+        #details {
+            background-color: lightgreen;
+        }
+
+        #hobbies {
+            background-color: lightyellow;
+        }
+
+        #footer {
+            text-align: center;
+            background-color: lightgray;
         }
     </style>
 </head>
 
 <body>
+
     <div id="header">
         <h1>Who Are You?</h1>
     </div>
 
     <div id="details">
-        <h2>Personal Details</h2>
-        <p>
-            <label for="name">Name :</label>
-            <input type="text" id="name" placeholder="Enter your name">
-            <br>
-            <label for="age">Age :</label>
-            <input type="text" id="age" placeholder="Enter your age">
-            <br>
-            <label for="address">Address :</label>
-            <input type="text" id="address" placeholder="Enter your address">
-        </p>
+        <h2>1: Personal Details</h2>
+
+        <label>Name :</label>
+        <input type="text"><br>
+
+        <label>Age :</label>
+        <input type="text"><br>
+
+        <label>Address :</label>
+        <input type="text"><br><br>
+
+        <button>Save Details</button>
     </div>
 
     <div id="hobbies">
-        <h2>Hobbies</h2>
-        <p>
-            <label for="hobby">Select Hobby:</label>
-            <select id="hobby">
-                <option>Reading</option>
-                <option>Traveling</option>
-                <option>Cooking</option>
-                <option>Sports</option>
-                <option>Music</option>
-            </select>
-            <br>
-            <input type="radio" id="indoor" name="activityType">
-            <label for="indoor">Indoor</label>
-            <input type="radio" id="outdoor" name="activityType">
-            <label for="outdoor">Outdoor</label>
-        </p>
+        <h2>2: Hobbies</h2>
+
+        <label>Select Hobby:</label>
+        <select>
+            <option>Reading</option>
+            <option>Traveling</option>
+            <option>Cooking</option>
+            <option>Sports</option>
+            <option>Music</option>
+        </select>
+        <br><br>
+
+        <input type="radio" name="activityType"> Indoor
+        <input type="radio" name="activityType"> Outdoor
+        <br><br>
+
+        <button>Submit Answer</button>
     </div>
 
     <div id="footer">
         <h2>Contact Information</h2>
         <p>Email : havoctuladhar7@gmail.com | Phone: +977 9767488322</p>
     </div>
-</body>
 
+</body>
 </html>
