@@ -3,7 +3,7 @@ close all;
 clc;
 pkg load image;
 
-img = imread("Input/5squidward.jpg");
+img = imread("Input/05squidward.jpg");
 
 bit0 = double(bitget(img,1));
 bit1 = double(bitget(img,2));
@@ -50,11 +50,11 @@ subplot(3,3,9);
 imshow(bit7);
 title('Bit Plane 7');
 
-imwrite(bit0,"Output/5bitPlaneSlicing/Plane0Image.png");
-imwrite(bit1,"Output/5bitPlaneSlicing/Plane1Image.png");
-imwrite(bit2,"Output/5bitPlaneSlicing/Plane2Image.png");
-imwrite(bit3,"Output/5bitPlaneSlicing/Plane3Image.png");
-imwrite(bit4,"Output/5bitPlaneSlicing/Plane4Image.png");
-imwrite(bit5,"Output/5bitPlaneSlicing/Plane5Image.png");
-imwrite(bit6,"Output/5bitPlaneSlicing/Plane6Image.png");
-imwrite(bit7,"Output/5bitPlaneSlicing/Plane7Image.png");
+imwrite(bit0,"Output/05bitPlaneSlicing/0PlaneImage.png");
+imwrite(bit1,"Output/05bitPlaneSlicing/1PlaneImage.png");
+imwrite(bit2,"Output/05bitPlaneSlicing/2PlaneImage.png");
+imwrite(bit3,"Output/05bitPlaneSlicing/3PlaneImage.png");
+imwrite(bit4,"Output/05bitPlaneSlicing/4PlaneImage.png");
+imwrite(bit5,"Output/05bitPlaneSlicing/5PlaneImage.png");
+imwrite(bit6,"Output/05bitPlaneSlicing/6PlaneImage.png");
+imwrite(bit7,"Output/05bitPlaneSlicing/7PlaneImage.png");

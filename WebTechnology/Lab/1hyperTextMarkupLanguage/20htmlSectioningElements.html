@@ -8,12 +8,20 @@
             background-color: #333333;
             text-align: center;
             color: white;
-            padding: 10px;
+            padding: 20px;
         }
 
         nav {
             background-color: #ffc0cb;
             padding: 10px;
+        }
+
+        nav a.home {
+            color: white;
+        }
+
+        nav a.contact {
+            color: black;
         }
 
         .content {
@@ -36,6 +44,7 @@
             background-color: #e0e0e0;
             padding: 15px;
             max-width: 300px;
+            font-style: italic;
         }
 
         footer {
@@ -58,15 +67,15 @@
     </header>
 
     <nav>
-        <a style="color:white;" href="home.html">Home</a>
-        <a style="color:black;" href="contact.html">Contact</a>
-        <a href="Product.html">Product</a>
+        <a class="home" href="home.html">Home</a>
+        <a class="contact" href="contact.html">Contact</a>
+        <a href="product.html">Product</a>
     </nav>
 
     <div class="content">
         <section>
-            <img src="Resource/20boot1.avif" class="product-img">
-            <img src="Resource/20boot2.avif" class="product-img">
+            <img src="Resource/20boot1.avif" class="product-img" alt="Football boot 1">
+            <img src="Resource/20boot2.avif" class="product-img" alt="Football boot 2">
         </section>
 
         <aside>
@@ -76,7 +85,7 @@
     </div>
 
     <article>
-        <img src="Resource/20daraz.png">
+        <img src="Resource/20daraz.png" alt="Daraz advertisement">
     </article>
 
     <footer>

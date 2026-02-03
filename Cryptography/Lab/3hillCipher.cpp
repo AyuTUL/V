@@ -89,7 +89,7 @@ bool isKeyValid(int key[MAX][MAX])
     return inverseMatrixGauss(key, inv);
 }
 
-string hillCipher(string text, int key[MAX][MAX], bool encrypt)
+string hillCipher(string text, int key[MAX][MAX], bool enc)
 {
     text = normalizeAZ(text);
 
@@ -97,25 +97,23 @@ string hillCipher(string text, int key[MAX][MAX], bool encrypt)
         text += 'X';
 
     int invKey[MAX][MAX];
-    if (!encrypt)
+    if (!enc)
         inverseMatrixGauss(key, invKey);
 
     string result;
 
     for (int i = 0; i < text.size(); i += N)
-    {
         for (int r = 0; r < N; r++)
         {
             int sum = 0;
             for (int c = 0; c < N; c++)
             {
                 int val = text[i + c] - 'A';
-                sum += (encrypt ? key[r][c] : invKey[r][c]) * val;
+                sum += (enc ? key[r][c] : invKey[r][c]) * val;
             }
             result += char('A' + fix(sum));
         }
-    }
-    if (!encrypt)
+    if (!enc)
         transform(result.begin(), result.end(), result.begin(), ::tolower);
     return result;
 }

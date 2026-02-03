@@ -6,10 +6,8 @@ string normalizeAZ(string s)
 {
     string t = "";
     for (char ch : s)
-    {
         if (isalpha((unsigned char)ch))
             t += toupper((unsigned char)ch);
-    }
     return t;
 }
 

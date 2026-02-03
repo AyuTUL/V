@@ -3,7 +3,7 @@ close all;
 clc;
 pkg load image;
 
-img = imread("Input/6golisopod.jpg");
+img = imread("Input/06golisopod.jpg");
 
 subplot(4,2,1);
 imshow(img);
@@ -37,9 +37,9 @@ subplot(4,2,8);
 imhist(histogramEqualizedGrayscaleImg);
 title("Histogram of Equalized Image");
 
-imwrite(enhance1Img,"Output/6histogramEqualization/1enchancedImage.png");
-imwrite(enhance2Img,"Output/6histogramEqualization/2enchancedImage.png");
-imwrite(histogramEqualizedGrayscaleImg,"Output/6histogramEqualization/equalizedImage.png");
+imwrite(enhance1Img,"Output/06histogramEqualization/1enchancedImage.png");
+imwrite(enhance2Img,"Output/06histogramEqualization/2enchancedImage.png");
+imwrite(histogramEqualizedGrayscaleImg,"Output/06histogramEqualization/3equalizedImage.png");
 
-print("Output/6histogramEqualization/histogramGrayscaleImage.png","-dpng");
-print("Output/6histogramEqualization/histogramEqualizedImage.png","-dpng");
+print("Output/06histogramEqualization/4histogramGrayscaleImage.png","-dpng");
+print("Output/06histogramEqualization/5histogramEqualizedImage.png","-dpng");

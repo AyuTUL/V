@@ -1,4 +1,5 @@
 <!-- Lab 17: Design a webpage using <form> tag like below:-->
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -6,61 +7,67 @@
 </head>
 
 <body>
-    <b>
 
-        <h2 align="center">XYZ College of IT</h2>
-        <center>Student Detail Form</center>
+    <h2 align="center"><b>XYZ College of IT</b></h2>
+    <center><b>Student Detail Form</b></center>
 
-        <hr color="blue">
+    <hr color="blue">
 
-        <form action="submit.php" method="post" enctype="multipart/form-data">
+    <form action="submit.php" method="post" enctype="multipart/form-data">
 
-            <fieldset>
-                <legend>Personal Information</legend><br>
+        <fieldset>
+            <legend><b>Personal Information</b></legend>
 
-                <label for="name">Name : </label>
+            <b>
+                <label for="name">Name :</label>
                 <input type="text" id="name" name="user_name" size="50" required><br><br>
 
-                <label for="address">Address : </label>
+                <label for="address">Address :</label>
                 <input type="text" id="address" name="user_address" required><br><br>
 
-                <label>Sex : </label>
+                <label>Sex :</label>
                 <input type="radio" id="male" name="user_sex" value="male" required>
                 <label for="male">Male</label>
                 <input type="radio" id="female" name="user_sex" value="female">
                 <label for="female">Female</label><br><br>
 
-                <label for="color">Select your favourite color : </label>
+                <label for="color">Select your favourite color :</label>
                 <input type="color" id="color" name="user_color" required><br><br>
 
-                <label for="dob">Date of Birth : </label>
+                <label for="dob">Date of Birth :</label>
                 <input type="date" id="dob" name="user_dob" required><br><br>
 
-                <label for="citizenship">Upload Citizenship photo : </label>
+                <label for="citizenship">Upload Citizenship photo :</label>
                 <input type="file" id="citizenship" name="user_citizenship" required><br><br>
 
-                <label for="number">Mobile number : </label>
+                <label for="number">Mobile number :</label>
                 <input type="tel" id="number" name="user_number" required><br><br>
 
-                <label for="time">Appointment time : </label>
+                <label for="time">Appointment time :</label>
                 <input type="time" id="time" name="user_time" required><br><br>
-            </fieldset>
-            <br>
-            <fieldset>
-                <legend align="right">Hobby and Education</legend>
+            </b>
+        </fieldset>
 
-                <br>
-                <label for="hobbies">Hobbies : </label>
-                <input type="checkbox" id="movies" name="user_hobbies[]" required>
+        <br>
+
+        <fieldset>
+            <legend align="right"><b>Hobby and Education</b></legend>
+
+            <b>
+                <label>Hobbies :</label>
+                <input type="checkbox" id="movies" name="user_hobbies[]" value="movies" required>
                 <label for="movies">Movies</label>
-                <input type="checkbox" id="football" name="user_hobbies[]">
+
+                <input type="checkbox" id="football" name="user_hobbies[]" value="football">
                 <label for="football">Playing Football</label>
-                <input type="checkbox" id="novel" name="user_hobbies[]">
+
+                <input type="checkbox" id="novel" name="user_hobbies[]" value="novel">
                 <label for="novel">Reading Novel</label>
-                <input type="checkbox" id="others" name="user_hobbies[]">
+
+                <input type="checkbox" id="others" name="user_hobbies[]" value="others">
                 <label for="others">Others</label><br><br>
 
-                <label for="education">Education : </label>
+                <label for="education">Education :</label>
                 <select id="education" name="user_education" required>
                     <option value="phd">Phd</option>
                     <option value="masters">Masters</option>
@@ -68,18 +75,20 @@
                     <option value="+2">+2</option>
                     <option value="SEE">SEE</option>
                 </select><br><br>
-            </fieldset>
+            </b>
+        </fieldset>
 
-            <hr color="black">
+        <hr color="black">
 
+        <b>
             <label for="remarks">Few Words :</label><br>
             <textarea id="remarks" name="user_remarks" rows="7" cols="50"></textarea><br><br>
 
             <input type="submit" value="Send">
-            <input type="reset" value="Clear"><br>
+            <input type="reset" value="Clear">
+        </b>
 
-        </form>
-    </b>
+    </form>
 
 </body>
 
