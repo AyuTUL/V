@@ -1,0 +1,59 @@
+Lab sheet 2
+CSS
+Part 1:
+1.	Give an example of inline CSS of your choice. (use at least 5 html elements)
+2.	Give an example of internal CSS. (use at least 5 html elements)
+3.	Give an example of external CSS. (use at least 5 html elements)
+4.	Give an example of simple selector and grouping selector. (use at least 5 html elements).
+5.	Design a webpage using <p> tag and <h1> tag and make font color red, background color yellow and font family “time new roman” for all element using universal selector.
+6.	Design a webpage using attribute selector. Give proper example using:
+a.	CSS [attribute] Selector
+b.	CSS [attribute="value"] Selector
+c.	CSS [attribute~="value"] Selector
+d.	CSS [attribute|="value"] Selector
+e.	CSS [attribute^="value"] Selector
+f.	CSS [attribute$="value"] Selector3
+g.	CSS [attribute*="value"] Selector
+7.	Design a webpage using pseudo class selector.
+8.	Design a webpage using pseudo element selector.
+9.	Design a webpage using combinator selector. Give proper example using:
+a.	Descendant selector
+b.	Child selector
+c.	Adjacent sibling selector
+d.	General sibling selector 
+10.	Design a webpage using background image with additional CSS properties like background-repeat, background-position, background-size.
+11.	Design a webpage using border-style, border-color and border-width like below:
+ 
+12.	Design a webpage using individual border style like below:
+ 
+13.	Design a webpage using border-radius property like below:
+ 
+14.	Design a webpage using CSS margin property and also explore single value, two values, three values, four values, auto and inherit.
+ 
+15.	Design a webpage using CSS individual padding property:
+ 
+
+ 
+Part 2
+16.	Give an example using text styling. (Use color, letter-spacing, word-spacing, text-align, text decoration, text-transform and text-shadow property).
+17.	Design a webpage like below using css property:
+ 
+18.	Design a webpage like below using css property:
+ 
+19.	Give an example using list-style-type, list-style-position and list-style-image.
+20.	Design a webpage using <form> tag and CSS property.
+ 
+ 
+21.	Display a horizontal list of link using CSS display property.
+ 
+22.	Design a webpage using CSS Max-width property and find the difference between width and max-width.
+23.	Design a webpage using CSS Overflow property. Make sure to explore values of overflow property which are hidden, visible, scroll and auto.
+24.	Make small boxes using HTML elements and CSS. And use CSS float property with the value left or right.
+ 
+25.	Add icon to your HTML page with an icon library such as Font Awesome.
+ 
+26.	Give an example using CSS Box-sizing property and see the difference between content box(default) and border box.
+27.	Give an example using CSS Position property with static, fixed, sticky, relative and absolute value.
+28.	Make 3 boxes and add position with z-index property and overlap the element.
+29.	Give an example using media queries.
+
