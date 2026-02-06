@@ -96,7 +96,7 @@ int main()
 
     borderWidth = n * 3 + 5;
     printTableHeader();
-    int result = fibonacciRecursive(n);
+    int result = fibonacciRecursive(n - 1);
     printTableFooter();
 
     cout << endl

@@ -1,4 +1,4 @@
-// Lab 1: WAP to encrypt & decrypt user input message using Caesar cipher.
+// Lab 1: Implement the Caesar cipher encryption and decryption program.
 #include <bits/stdc++.h>
 using namespace std;
 string normalizeAZ(const string &s)

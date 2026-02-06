@@ -1,4 +1,4 @@
-// Lab 4: WAP to encrypt & decrypt user input message using Vigenere cipher.
+// Lab 3: Implement the Vigenere cipher encryption and decryption program.
 #include <bits/stdc++.h>
 using namespace std;
 

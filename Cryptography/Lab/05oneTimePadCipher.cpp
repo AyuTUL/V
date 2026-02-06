@@ -1,4 +1,4 @@
-// Lab 5: WAP to encrypt & decrypt user input message using One-Time Pad (OTP) cipher.
+// Lab 5: Implement the One-Time Pad (OTP) encryption and decryption program with a truly random key of equal length.
 #include <bits/stdc++.h>
 using namespace std;
 
