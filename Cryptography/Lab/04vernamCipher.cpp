@@ -2,6 +2,15 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+string normalizeAZ(const string &s)
+{
+    string t;
+    for (char ch : s)
+        if (isalpha((unsigned char)ch))
+            t.push_back(toupper(ch));
+    return t;
+}
+
 string toBinary(unsigned char x)
 {
     string s;
@@ -56,8 +65,10 @@ int main()
         cout << endl
              << "Enter text : ";
         getline(cin, text);
+        text = normalizeAZ(text);
         cout << "Enter key (length " << text.size() << ") : ";
         getline(cin, key);
+        key = normalizeAZ(key);
 
         if (text.empty() || key.size() != text.size())
             return cout << endl
@@ -83,6 +94,7 @@ int main()
 
         cout << "Enter key (length " << nums.size() << ") : ";
         getline(cin, key);
+        key = normalizeAZ(key);
 
         if (nums.empty() || key.size() != nums.size())
             return cout << endl
@@ -91,6 +103,9 @@ int main()
 
         text.clear();
         vernam(nums, text, key, false);
+
+        for (char &ch : text)
+            ch = tolower(ch);
 
         cout << endl
              << "Plaintext : " << text;

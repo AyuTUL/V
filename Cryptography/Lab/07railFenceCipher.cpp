@@ -2,6 +2,15 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+string normalizeAZ(const string &s)
+{
+    string t;
+    for (char ch : s)
+        if (isalpha((unsigned char)ch))
+            t.push_back(toupper(ch));
+    return t;
+}
+
 void printRailFence(const vector<vector<char>> &rail)
 {
     int r = rail.size(), c = rail[0].size();
@@ -80,11 +89,12 @@ int main()
          << "Enter text : ";
     getline(cin, text);
 
-    if (choice == 1)
-        text.erase(remove_if(text.begin(), text.end(),
-                             [](char c)
-                             { return isspace((unsigned char)c); }),
-                   text.end());
+    text = normalizeAZ(text);
+
+    if (text.empty())
+        return cout << endl
+                    << "Invalid text." << endl,
+               0;
 
     cout << "Enter number of rails : ";
     cin >> rails;

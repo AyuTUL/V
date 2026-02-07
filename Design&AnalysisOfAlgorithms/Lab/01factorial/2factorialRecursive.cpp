@@ -4,7 +4,7 @@
 using namespace std;
 
 int callDepth = 0;
-int borderWidth = 0; // Store original input for consistent table width
+int borderWidth = 0;
 
 void printBorder()
 {
