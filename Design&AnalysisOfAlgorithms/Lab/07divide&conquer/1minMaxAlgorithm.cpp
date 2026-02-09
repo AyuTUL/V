@@ -1,72 +1,114 @@
-// Lab 7.1: WAP to implement Min-Max algorithm using divide & conquer.
-//table baki
 #include <iostream>
+#include <iomanip>
+#include <vector>
 using namespace std;
 
 struct MinMax
 {
-    int min;
-    int max;
+    int min, max;
+};
+struct Info
+{
+    int l, h, min, max;
 };
 
-MinMax findMinMax(int a[], int low, int high)
+vector<vector<Info>> lvls, conq;
+
+void printLevel(int a[], int lvl)
 {
-    MinMax result, left, right;
-
-    // Case 1: Only one element
-    if (low == high)
+    if (lvl >= lvls.size())
+        return;
+    cout << "Level " << lvl << " :" << endl;
+    for (int pass = 0; pass < 3; pass++)
     {
-        result.min = a[low];
-        result.max = a[low];
-        return result;
+        for (int i = 0; i < lvls[lvl].size(); i++)
+        {
+            auto &x = lvls[lvl][i];
+            if (pass == 1)
+            {
+                cout << "|";
+                for (int j = x.l; j <= x.h; j++)
+                    cout << setw(3) << a[j] << " |";
+            }
+            else
+            {
+                cout << "+";
+                for (int j = x.l; j <= x.h; j++)
+                    cout << "----+";
+            }
+            if (i < lvls[lvl].size() - 1)
+                cout << "    ";
+        }
+        cout << endl;
+    }
+    cout << endl;
+}
+
+void printConquerLevel(int lvl)
+{
+    if (lvl >= conq.size())
+        return;
+    cout << "Level " << lvl << " :" << endl;
+    for (int i = 0; i < conq[lvl].size(); i++)
+    {
+        auto &x = conq[lvl][i];
+        cout << "Min=" << x.min << " Max=" << x.max;
+        if (i < conq[lvl].size() - 1)
+            cout << "     ";
+    }
+    cout << endl
+         << endl;
+}
+
+MinMax findMinMax(int a[], int l, int h, int lvl = 0)
+{
+    if (lvl >= lvls.size())
+        lvls.resize(lvl + 1);
+    lvls[lvl].push_back({l, h, 0, 0});
+
+    MinMax r;
+    if (l == h)
+        r = {a[l], a[l]};
+    else if (h == l + 1)
+        r = {min(a[l], a[h]), max(a[l], a[h])};
+    else
+    {
+        int m = (l + h) / 2;
+        auto L = findMinMax(a, l, m, lvl + 1);
+        auto R = findMinMax(a, m + 1, h, lvl + 1);
+        r = {min(L.min, R.min), max(L.max, R.max)};
     }
 
-    // Case 2: Two elements
-    if (high == low + 1)
-    {
-        if (a[low] < a[high])
-        {
-            result.min = a[low];
-            result.max = a[high];
-        }
-        else
-        {
-            result.min = a[high];
-            result.max = a[low];
-        }
-        return result;
-    }
-
-    // Case 3: More than two elements
-    int mid = (low + high) / 2;
-
-    left = findMinMax(a, low, mid);
-    right = findMinMax(a, mid + 1, high);
-
-    result.min = (left.min < right.min) ? left.min : right.min;
-    result.max = (left.max > right.max) ? left.max : right.max;
-
-    return result;
+    if (lvl >= conq.size())
+        conq.resize(lvl + 1);
+    conq[lvl].push_back({l, h, r.min, r.max});
+    return r;
 }
 
 int main()
 {
     int n;
-    cout << "--- Min-Max Algorithm using Divide and Conquer ---" << endl;
-
     cout << "Enter array size : ";
     cin >> n;
 
     int *a = new int[n];
-
     cout << "Enter " << n << " elements : ";
     for (int i = 0; i < n; i++)
         cin >> a[i];
 
+    cout << endl
+         << "--- Min-Max Algorithm using Divide & Conquer---" << endl
+         << endl;
     MinMax ans = findMinMax(a, 0, n - 1);
 
-    cout << "\nMinimum element : " << ans.min;
-    cout << "\nMaximum element : " << ans.max;
+    for (int i = 0; i < lvls.size(); i++)
+        printLevel(a, i);
+    for (int i = conq.size() - 1; i >= 0; i--)
+        printConquerLevel(i);
+
+    cout << "Final Result :" << endl
+         << "Minimum element = " << ans.min << endl
+         << "Maximum element = " << ans.max;
 
     delete[] a;
     return 0;
