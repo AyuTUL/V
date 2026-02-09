@@ -1,0 +1,78 @@
+<!-- Lab 17: Design a webpage like below using css property: -->
+<html>
+
+<head>
+    <title>Time Table</title>
+
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            border: 1px solid gray;
+            padding: 5px 60px;
+            text-align: center;
+        }
+
+        th {
+            background-color: lightgray;
+        }
+    </style>
+</head>
+
+<body>
+    <table>
+        <tr>
+            <th colspan="6">Time Table</th>
+        </tr>
+        <tr>
+            <th rowspan="7">Hours</th>
+            <th>Mon</th>
+            <th>Tue</th>
+            <th>Wed</th>
+            <th>Thu</th>
+            <th>Fri</th>
+        </tr>
+        <tr>
+            <td>Computer</td>
+            <td>Computer</td>
+            <td>Computer</td>
+            <td>Computer</td>
+            <td>Computer</td>
+        </tr>
+        <tr>
+            <td>Maths</td>
+            <td>Maths</td>
+            <td>Maths</td>
+            <td>Maths</td>
+            <td>Maths</td>
+        </tr>
+        <tr>
+            <td colspan="5">Lunch</td>
+        </tr>
+        <tr>
+            <td>Science</td>
+            <td>Science</td>
+            <td>Science</td>
+            <td>Science</td>
+            <td>Science</td>
+        </tr>
+        <tr>
+            <td>Business</td>
+            <td>Business</td>
+            <td>Business</td>
+            <td>Business</td>
+            <td rowspan="2">Project</td>
+        </tr>
+        <tr>
+            <td>Arts</td>
+            <td>Arts</td>
+            <td>Arts</td>
+            <td>Arts</td>
+        </tr>
+    </table>
+</body>
+
+</html>

@@ -2,59 +2,89 @@
 <html>
 
 <head>
-    <title>Border CSS</title>
+    <title>Border Property</title>
 
     <style>
-        body {
-            margin: 0;
+        #dotted {
+            border-style: dotted;
+            border-color: violet;
+            border-width: 1px;
         }
 
-        h2 {
-            text-align: center;
-            margin: 20px;
+        #dashed {
+            border-style: dashed;
+            border-color: indigo;
+            border-width: 2px;
         }
 
-        .container {
-            display: flex;
-            justify-content: center;
-            align-items: stretch;
-            gap: 20px;
-            margin: 30px auto;
+        #solid {
+            border-style: solid;
+            border-color: blue;
+            border-width: 3px;
         }
 
-        video {
-            width: 400px;
-            height: auto;
+        #double {
+            border-style: double;
+            border-color: green;
+            border-width: 3px;
         }
 
-        p {
-            max-width: 300px;
-            display: flex;
-            align-items: center;
-            text-align: center;
+        #groove {
+            border-style: groove;
+            border-color: yellow;
+            border-width: 2px;
+        }
 
+        #ridge {
+            border-style: ridge;
+            border-color: orange;
+            border-width: 1px;
+        }
+
+        #inset {
+            border-style: inset;
+            border-color: red;
+            border-width: 3px;
+        }
+
+        #outset {
+            border-style: outset;
+            border-color: turquoise;
+            border-width: 3px;
+        }
+
+        #no {
+            border-style: none;
+        }
+
+        #hidden {
+            border-style: hidden;
+            border-color: cyan;
+            border-width: 2px;
+        }
+
+        #mixed {
+            border-style: dotted dashed solid double;
+            border-color: hotpink;
+            border-width: 3px;
         }
     </style>
 </head>
 
 <body>
-    <h2>House Party - VVUP</h2>
-
-    <div class="container">
-        <p>VVUP (Korean: 비비업; RR: bibieop) is a South Korean girl group formed by EgoENT in 2024. The group consists of
-            four members: Kim, Paan, Suyeon, and Jiyoon. Former member Hyunny departed from the group in August 2024 due
-            to health issues.
-
-        </p>
-
-        <video controls>
-            <source src="Resource/2housePartyVVUP.mp4">
-        </video>
-
-        <p>VVUP (Korean: 비비업; RR: bibieop) is a South Korean girl group formed by EgoENT in 2024. The group consists of
-            four members: Kim, Paan, Suyeon, and Jiyoon. Former member Hyunny departed from the group in August 2024 due
-            to health issues.</p>
-    </div>
+    <h1>The border-style Property</h1>
+    This property specifies what kind of border to display:
+    <p id="dotted">A dotted border.</p>
+    <p id="dashed">A dashed border.</p>
+    <p id="solid">A solid border.</p>
+    <p id="double">A double border.</p>
+    <p id="groove">A groove border.</p>
+    <p id="ridge">A ridge border.</p>
+    <p id="inset">An inset border.</p>
+    <p id="outset">An outset border.</p>
+    <p id="no">No border.</p>
+    <p id="hidden">A hidden border.</p>
+    <p id="mixed">A mixed border.</p>
 </body>
 
 </html>
