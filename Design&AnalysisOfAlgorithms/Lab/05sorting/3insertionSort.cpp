@@ -113,7 +113,7 @@ int main()
         cin >> a[i];
 
     cout << endl
-         << "--- Insertion Sort Algorithm ---" << endl;
+         << "---Insertion Sort Algorithm---" << endl;
 
     insertionSort(a, n);
 

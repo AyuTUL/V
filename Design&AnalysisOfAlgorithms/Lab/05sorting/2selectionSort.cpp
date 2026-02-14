@@ -108,7 +108,7 @@ int main()
         cin >> a[i];
 
     cout << endl
-         << "--- Selection Sort Algorithm ---" << endl;
+         << "---Selection Sort Algorithm---" << endl;
     selectionSort(a, n);
 
     delete[] a;

@@ -113,7 +113,7 @@ int main()
     for (int i = 0; i < n; i++)
         cin >> a[i], o[i] = a[i];
     cout << endl
-         << "--- Merge Sort using Divide & Conquer ---" << endl
+         << "---Merge Sort using Divide & Conquer---" << endl
          << endl;
 
     build(a, n);

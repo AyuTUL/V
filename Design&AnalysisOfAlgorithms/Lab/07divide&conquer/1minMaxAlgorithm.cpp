@@ -104,7 +104,7 @@ int main()
     for (int i = 0; i < n; i++)
         cin >> a[i];
     cout << endl
-         << "--- Min-Max Algorithm using Divide & Conquer---" << endl
+         << "---Min-Max Algorithm using Divide & Conquer---" << endl
          << endl;
     build(a, n);
     for (int i = 0; i < lvls.size(); i++)

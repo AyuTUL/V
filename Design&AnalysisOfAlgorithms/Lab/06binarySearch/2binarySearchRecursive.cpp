@@ -98,7 +98,8 @@ int main()
     sortArray(a, n);
     printArray(a, n);
     cout << endl
-         << "--- Binary Search using Recursive Method ---" << endl << endl;
+         << "---Binary Search using Recursive Method---" << endl
+         << endl;
     printTableHeader(key);
 
     int call = 1;
@@ -115,5 +116,4 @@ int main()
 
     delete[] a;
     return 0;
-
 }
