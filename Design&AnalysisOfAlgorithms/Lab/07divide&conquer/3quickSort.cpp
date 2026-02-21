@@ -29,13 +29,12 @@ void printArray(int a[], int n, int L = -1, int R = -1, bool showPivot = 0, int 
             cout << (i == dL && i == R ? "  L,R " : i == dL ? "   L  "
                                                 : i == R    ? "   R  "
                                                             : "      ");
-        cout << endl;
     }
+    cout << endl;
     if (showPivot && pivot != -1)
         cout << endl
              << "Pivot = " << pivot << ". L and R are pointing at beginning and end of array";
-    cout << endl
-         << endl;
+    cout << endl;
 }
 
 int partition(int a[], int low, int high, int n)
@@ -54,7 +53,6 @@ int partition(int a[], int low, int high, int n)
             L++;
         while (R > low && a[R] > pivot)
             R--;
-
         printArray(a, n, L, R);
         if (L < R)
         {
@@ -103,7 +101,7 @@ int main()
     for (int i = 0; i < n; i++)
         cin >> a[i];
     cout << endl
-         << "--- Quick Sort using Divide & Conquer ---" << endl
+         << "---Quick Sort using Divide & Conquer---" << endl
          << endl;
     quickSort(a, 0, n - 1, n);
     cout << "Final Sorted Array :" << endl;
