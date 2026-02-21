@@ -1,0 +1,92 @@
+waterfall model:
+-tradtional approach of SDLC
+-sequential desgin process in which progress is seen flowing downwards steadily like waterfall
+-process of software development is divided into separate phases
+-outcome of one phase acts as input for next phase sequentially
+
+FIG 6
+Requirement Analysis
+	System Design
+		Implementation
+			Testing
+				Deployment
+					Maintenance
+
+adv:
+-simple and easy to understand and use
+-easy to manage due to rigidity of model
+-phases are processed and compelted one at a time
+-suitable for smaller projects where requiemernts are well defined
+-easy to arrange tasks
+
+disadv:
+-working sofwatre is produced only at later stage of life cycle
+-high anmount oif risk and uncertainty as it cannot accomodate chaning requitens
+-not suitable for complex and oop projects
+-since integration is done at once at the end, any technological/business challenges cant be
+identified early
+-difficult to measure prgoress within stages
+
+prototype model:
+-working model of sofwatre is built which displays limited functionality of product udner
+developmeent which may not hold exact logic of original sofwatre
+-helps to understad customer requiremstn at early stsge of developent
+
+FIG 1 4 4
+		Requirement gathering
+		Quick design
+	Refine requirements
+	incorporating customer		Build prototype
+	suggestions
+		Customer evaluation
+		of prototype
+		Design
+			Coding
+				Testing
+					Maintenance
+
+adv:
+-reduces risk of incorrect user requiement 
+-users are actively involved i ndevelopment
+-suitable where requiemetns are chaning
+-erros/missing fucntioanloyu can be detected early
+-helps user and developer understand system better
+
+disadv:
+-costly
+-poor documentation due to continuously chanign customer requirements
+-too much variuation in requiemetns, increaing complexity
+-customer may not be interested in product after seeing intial prototype
+-customer may demand actual prodcut to be delivered early after seeing protype
+
+spiral model:
+-combo of waterfall and prototype with support for risk handling
+-each phase states with design goal and ends with clint progress review
+-project repeatedly passes through 4 phases:plaaning,risk analysis,development and eval in itera
+called spiral
+
+FIG
+
+Planning:
+-gathering business requikents in basline spiral
+-as product matures in subsequent spirals, identification of system,subsystem and unit requiektne
+-undesratnding system requiemetn by cointinuos communication between customer and system anlsyt
+-product is deployed in markter at end of spiral
+
+Design:
+-conceptual design in baseline spiral
+-in subsequent sprals, involes architectual
+
+adv:
+-risk analsysi and handling at each pahse
+-suitable for large and compelx projects
+-change in requiemetns at alter phase can be incorporated
+-customer can see development of product at early phase, with customer feedback
+-cost eastimation is eas as protype bulding is done in small fragments
+
+disadv:
+-complex
+-not suitable for small rpojects as is expensive
+-very dpendent on risk analysis
+-no. of phases is unknown at start of proejct, so time estimation is difcult
+-risk of not metting time schedule/budget
