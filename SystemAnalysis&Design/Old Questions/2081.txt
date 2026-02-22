@@ -173,3 +173,20 @@ id age		id subject
 
 id name accountno bankno bank
 id name accountno bankno		bankno bank
+
+9.
+new tech can either be sustaining or disruptive
+sutaining tech depens on incrementala improvements in already existing technology
+disrupting tech is compelety new that affects normal operation of market by displacing well
+establisdehed product/tech and creating new one
+
+10.
+process modeling is graphical repressentation of process that captures, maniputales,stores
+and distributres data bertween system ,environment and ocmponenets withing system
+
+logic modeling is graphical representaiton that presnts shraed relationship among program's
+resourfes, activites, outputs, outcomes and impact
+needs-problems to be addressed
+ionputs-resources to be invested
+activites-things done with resoruces
+outcomes-measure of success

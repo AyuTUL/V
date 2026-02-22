@@ -1,0 +1,89 @@
+1. 
+sdlc is systematic conceptual model that explicitly breaks dfown work into phases requiered to
+develop/ alter IS
+
+FIG 5 PADIM
+
+planning:
+-define problam and scope of exisitng system
+-overview new system and determine objectives
+-confirm project feasibiltiy,threats,contraints,integration,security and produce project schedule
+-create feasiblity report
+
+analysis:
+-gather,analyze,validate info
+-define requiremetns and protypes for new system
+-examine needs of end user and enhance goal
+-sofware requiremtn specification SRS document is prepared (sofware,hardawre,functoinal,network
+requirement)
+
+design:
+-edsign of application,network,database,UI,system interface
+-transform srs into logical structure containg details implemented into progamming lang
+-create backup,traning,amintenace and review propsed design
+
+implmentation:
+-impklements design into source code through coding
+-combines all modeul stogether in traning enivorinemn to detect error
+-test report contasing errosr is prepared through test plan including test case,generawtion,
+testing criterai,resoucrce allocation
+-integrate IS into environemnt and install new system
+
+maintenace:
+-phone,physical on site support for users after system is isntalled
+-impelenmt chagnes sofware may undergo over aperiod of time
+-handles residual errir after testing phase
+
+
+waterfall model:
+-tradtional approach of SDLC
+-sequential desgin process in which progress is seen flowing downwards steadily like waterfall
+-process of software development is divided into separate phases
+-outcome of one phase acts as input for next phase sequentially
+
+FIG 6 ADITDM
+Requirement Analysis
+	System Design
+		Implementation
+			Testing
+				Deployment
+					Maintenance
+
+adv:
+-simple and easy to understand and use
+-easy to manage due to rigidity of model
+-phases are processed and compelted one at a time
+-suitable for smaller projects where requiemernts are well defined
+-easy to arrange tasks
+
+disadv:
+-working sofwatre is produced only at later stage of life cycle
+-high anmount oif risk and uncertainty as it cannot accomodate chaning requitens
+-not suitable for complex and oop projects
+-since integration is done at once at the end, any technological/business challenges cant be
+identified early
+-difficult to measure prgoress within stages
+
+
+agile model:
+-combo of iterative nad incremetanal process model focusing process adaptability and customer
+satisfaction by rapid delivery of working sofwatre
+-breaks product into small increamtnal build provided in iterations
+-each iteration lasts from 2-3 months invlovling cross functoinal teams working simultaiton
+on various areas
+
+FIG PADCT
+
+adv:
+-promotes teamwork and cross training
+-min resource requiremnt
+-suitable for fixzed/chaing requiremtns
+-delivers early partial working solution
+-less planning required
+
+disadv:
+-depends heavily on customer interaction
+-min docuemtninao generated,difficult to transfter tech to new team mmbers
+-nt suitable for compelx dependices
+-wont work without agile leader and plan
+-risk of sustainablity,maintenance,extensibiilty
