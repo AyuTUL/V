@@ -1,0 +1,192 @@
+1.
+prototype model:
+-working model of sofwatre is built which displays limited functionality of product udner
+developmeent which may not hold exact logic of original sofwatre
+-helps to understad customer requiremstn at early stsge of developent
+
+FIG 1 4 4
+		Requirement gathering
+		Quick design
+	Refine requirements
+	incorporating customer		Build prototype
+	suggestions
+		Customer evaluation
+		of prototype
+		Design
+			Coding
+				Testing
+					Maintenance
+
+adv:
+-reduces risk of incorrect user requiement 
+-users are actively involved i ndevelopment
+-suitable where requiemetns are chaning
+-erros/missing fucntioanloyu can be detected early
+-helps user and developer understand system better
+
+disadv:
+-costly
+-poor documentation due to continuously chanign customer requirements
+-too much variuation in requiemetns, increaing complexity
+-customer may not be interested in product after seeing intial prototype
+-customer may demand actual prodcut to be delivered early after seeing protype
+
+2.
+-logic model is graphical representaiton that presnts shraed relationship among program's
+resourfes, activites, outputs, outcomes and impact
+needs-problems to be addressed
+ionputs-resources to be invested
+activites-things done with resoruces
+outcomes-measure of success
+
+-decision table is concise visual represnation for specifying which actions to perform depending
+on given condition
+-conditions rae expressed as T F
+-each column corresponds to a rule in logic that describes uniqieu combo of input that result in
+action
+
+4.
+project management is controlled process of initiating, planning, executing, monitoring and
+controlling and closing down a project
+
+-project initiation phase:
+	project manager is selected who will meet with project sponsor and key stakeholders to	
+	determine objectives,historical info, who is needed in project
+	
+	output: project charter, preliminary scope statement, identification of all stakeholders,
+	divide proejct into phases
+
+project planning phase:
+	project manager determines team's roles,responsibilites and solidifes scope statement
+	project plan is derived to address requirements like scope,budget,timeline
+	project schedule is developed
+	resources are allocated to project based on budget and schedule
+
+	output: work breakdown structure WBS, WBS dictionary, communication, risk, test plan
+
+project execution phase:
+	longest, complex phase
+	carrying out edtails of project charter, contructs delivarables and presents to
+	stakeholders
+	track project's progress and ensure milestones and delivarables stick to schedule
+	project manger has to manage people,process,comms
+
+monitoring and control phase:
+	monitoring is process of routinely gathering info on all aspects of project
+	checking actual and likely progress against planned progress
+	giving feedback about progess of project to donors,implements,beneficiaries
+	
+	controling is data gathering, managemnt and analytical process to predit and understand
+	influcen the time and cost outcomes of poject
+	making changes to plan if neccesary
+	altering schedule
+	escalating proobliesm if necessary
+	taking action to avoid future problems
+
+proejct control phase:
+	process that performs controleld shiut down at end of project
+	documentaion to be archived, capturing lessons to be poassed for future projects,
+	ensuring contracts are properly shut down and updating organizstional process assests
+
+5.
+computer aided software engineering
+automated sofwatre tools used by system analyst to develop information system for incresing
+productrivity and improving oveall quality of system
+enforce engirneering type approach to development of sofwater systems
+range from simpel diagrammatic tools to sophisticated programs to documetn and automate stages
+of SDLC
+
+adv:
+-improve quality of systems devloped
+-incersase productivity of system anaklust
+-improve cimmcutaion within dev team and users
+-encourage integrated approach to SDLC
+-hgelps for management and maintenance
+
+upperCASE tools:
+-create and modfity system sesign
+-info about priject is stored in CASe repository
+-analyssi reports shjow error,incompleteness in system desing 
+
+lowerCASe tools:
+-generate source code which reduce need for system programming
+-reduces time for maintentace as test and edbug are eliminated
+
+7.
+interface is method by which users interact with IS
+colelct initial requiremtns from requirement sdetermiantion and understand intended user and
+task objectsuves and refine into initial prototype
+
+method:
+-command language interaction:
+	user enters explicit statemstn into system to perform operatiosn withing system
+	difficult to interact with as it requires remebering commands,anems,sysntax
+
+-menu iteraction:
+	lsit of options is provide dand spicifc command is perfomed
+	singel, heirachical
+	placement methods: pop up,drop down
+
+-form interaction:
+	data fields are formateted similar to paper based forms
+
+-object based interation:
+	symbols are used to repesnt functions
+	
+natural language interaction:
+	ipnuts and ouputs are in conventional spoken language like english
+
+guidelines:
+-designing inerface layout:
+-structuring data entry fields:
+-controlling data input
+-prodviidng feedback
+-providing help
+
+8.
+normalization is database deisng process in which complex database tables are borken down
+into simple spearte tables
+
+adv:
+-intifies dependency between data fields
+-minimzies data redundancy
+-faster sorting and indexing
+-improves perofrmance of database system
+-simplifies structure of tables
+-avoid loss of information
+
+1NF:
+-domain of each attribute contains only atomic avlues
+-value of each attribute contains only single value from domain
+
+roll name dob marks
+roll name year month day marks
+
+2NF:
+-no partial dependecy, all non key attributes must depends on entire primary key, not just partly
+
+id subject age
+id age		id subject
+
+3NF:
+-no transitive dependency, all non ke attrbutes must not depend on other non key attributes
+
+id name accountno bankno bank
+id name accountno bankno		bankno bank
+
+9.
+new tech can either be sustaining or disruptive
+sutaining tech depens on incrementala improvements in already existing technology
+disrupting tech is compelety new that affects normal operation of market by displacing well
+establisdehed product/tech and creating new one
+
+10.
+process modeling is graphical repressentation of process that captures, maniputales,stores
+and distributres data bertween system ,environment and ocmponenets withing system
+
+logic modeling is graphical representaiton that presnts shraed relationship among program's
+resourfes, activites, outputs, outcomes and impact
+needs-problems to be addressed
+ionputs-resources to be invested
+activites-things done with resoruces
+outcomes-measure of success
