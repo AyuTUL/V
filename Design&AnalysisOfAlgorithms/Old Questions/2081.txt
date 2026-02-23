@@ -45,3 +45,46 @@ n items,each with value Vi and weight Wi and knapsack capacity W
 -while knapsack isnt full and item list isnt empty:
 	-if W>=Wi, put whole item in knapsack
 	-else put fraction of item that best fits remaining capacity of knapsack
+
+5.
+T(n)=a(n/b)+f(n)
+I:n^logb(a) > f(n) => T(n)=theta(n^logb(a))
+I:n^logb(a) = f(n) => T(n)=theta(n^logb(a)*log2(n))
+I:n^logb(a) < f(n) => T(n)=theta(f(n))
+
+6.
+algorithm:
+-set f1=0, f2=1
+-input nth term of fibonacci sequence as n
+-set i=3
+-while(i<=n)
+	-fn=f1+f2
+	-f1=f2
+	-f2=fn
+	-i++
+-print fn as nth term of sequence
+
+time complexity=O(n), loop executes at most n-2 times
+space complexity=O(1), 5 var
+
+12. a.
+asymptotic nmtation is standard notaiton used to analyze complexity of algorithm in terms of
+time/space
+
+big Oh:
+-given 2 non ngeative valued functions f and g, the function f(n) is said to be big oh of function
+g(n) written as f(n)=O(g(n)) if there exists some positive constant c and n0 such that f(n)<=
+c.g(n) for all n>=n0.
+-provides asymptotic upper bound on f(n)
+
+big omega:
+-given 2 non ngeative valued functions f and g, the function f(n) is said to be big omega of 
+function g(n) written as f(n)=Omega(g(n)) if there exists some positive constant c and n0 such
+that f(n)>=c.g(n) for all n>=n0.
+-provides asymptotic lower bound on f(n)
+
+big theta:
+-given 2 non ngeative valued functions f and g, the function f(n) is said to be big theta of 
+function g(n) written as f(n)=Theta(g(n)) if there exists some positive constant c1 c2 n0 such
+that c1.g(n)<=f(n)<=c2.g(n) for all n>=n0.
+-provides asymptotic tight (both lower and upper) bound on f(n)
