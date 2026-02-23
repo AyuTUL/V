@@ -1,0 +1,47 @@
+2.
+-in quick sort, array is partionened about an elemtn called pivot
+-partiointing step rearranges th earray so that pivot elemnt is placed in its coorect position
+-all elemt sto left of pivot are smaller and to the right are greater
+-time complexity is O(n^2) which occurs when partioining process is highly unbalanced ie
+input is nearly/already sorted
+-randomized quick sort handles this by choosing a pivot randomly from array isntead of 1sdt/last
+element which makes worst case scenario highly unlikely ensuring average case time complexity
+of O(nlogn)
+
+
+algorithm:
+-take 1st element as pivot
+-set L at start of array and R at end of array
+-while L<R:
+	-increment L till element at index position <= pivot
+	-decrement R till element at index position > pivot
+	-if L<R:
+		-swap a[L] and A[R]
+-swap pivot and a[R]
+-repeat 1 to 4 in left are right sub arrays until entire array is sorted
+
+3.
+-optimization problem is problem of finding best solution(min/max) rfom all fesible soluition
+-greedy algorithm obtains solution for optimzastion problem
+-makes choice that seems best at that moment
+-works if algorithm has 2 properties:
+	greedy choice:globally optimal soln can be reached by creating locally optimal soln
+	optimal substructure: optimal sol cointains optimal sub soln
+-no, greddy algorithm desotn always guartantee optimal soln for evey problem although it is
+designed to find bset solution among fesible options in optimziation problems
+
+knapsack problem:
+-set of itesm, wach with eight and value
+-determine subset of itesm to include in collection so that toal weight <=limit and total
+value is as large aspossible
+-if either whole item is taken or left behind, 0-1 knapsack
+-if fraction of item is taken, fractional knapsack
+-O(n) + O(nlogn) + O(n) = O(nlogn)
+
+algorithm:
+n items,each with value Vi and weight Wi and knapsack capacity W
+-calc per unit value of each item Vi/Wi
+-sort items based on Vi/Wi in desc order
+-while knapsack isnt full and item list isnt empty:
+	-if W>=Wi, put whole item in knapsack
+	-else put fraction of item that best fits remaining capacity of knapsack
