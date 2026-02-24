@@ -28,6 +28,84 @@ insertionSort(A,n)	{
 time complexity=O(n^2)
 space complexity=O(1)
 
+5.
+binary serach repeatedly divides sorted lisdt in half
+searching starts from central element, if not found, if key is smaller, it starts searching
+from 1st half, if greater, it starts searchign from 2nd half
+FIG
+
+algorithm:
+binarySearch(A,low,high,key)	{
+	if(low==high)
+		if(key==A[low])
+			return low;
+		else
+			return -1;
+	else	{
+		mid=(low+high)/2;
+		if(key==A[mid])
+			return mid;
+		else if(key<A[mid])
+			return binarySearch(A,low,mid-1,key);
+		else
+			return binarySearch(A,mid+1,high,key);
+	}
+}
+
+time complexity=O(log2(n))
+space complexity=O(log2(n)) or O(1)
+
+6.
+asymptotic nmtation is standard notaiton used to analyze complexity of algorithm in terms of
+time/space
+
+big Oh:
+-given 2 non ngeative valued functions f and g, the function f(n) is said to be big oh of function
+g(n) written as f(n)=O(g(n)) if there exists some positive constant c and n0 such that f(n)<=
+c.g(n) for all n>=n0.
+-provides asymptotic upper bound on f(n)
+
+big omega:
+-given 2 non ngeative valued functions f and g, the function f(n) is said to be big omega of 
+function g(n) written as f(n)=Omega(g(n)) if there exists some positive constant c and n0 such
+that f(n)>=c.g(n) for all n>=n0.
+-provides asymptotic lower bound on f(n)
+
+big theta:
+-given 2 non ngeative valued functions f and g, the function f(n) is said to be big theta of 
+function g(n) written as f(n)=Theta(g(n)) if there exists some positive constant c1 c2 n0 such
+that c1.g(n)<=f(n)<=c2.g(n) for all n>=n0.
+-provides asymptotic tight (both lower and upper) bound on f(n)
+
+7.
+euclidean algorithm is used to find gcd of 2 numbers
+for any integers a,b with a>=b>=0, gcd(a,b)=gcd(b,a mod b)
+
+algorithm:
+-if b=0,print a as gcd
+-if a=0,print b as gcd
+-r=a%b
+-if r=0, print b as gcd
+-else a=b,b=r and repeat
+
+pseudocode:
+GCD(a,b)	{
+	if(a==0)
+		return b;
+	if(b==0)
+		return a;
+	while(b!=0)	{
+		r=a%b;
+		a=b;
+		b=r;
+	}
+	return b;
+}
+
+time complexity=O(n)
+space complexity=O(1)
+	
+
 12. a.
 asymptotic nmtation is standard notaiton used to analyze complexity of algorithm in terms of
 time/space

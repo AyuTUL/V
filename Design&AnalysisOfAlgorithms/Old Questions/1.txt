@@ -1,0 +1,54 @@
+algorithm:
+-finite set of instructions executed to solve a problem by giving some values as input and
+producing some values as output
+-not machine dependent
+
+properties: FICED
+-finiteness: must terminate after finite time/steps
+-input/output: must accept 0/more inputs to produce 1/more output
+-correctness: correct ouput must be produced from input
+-effectiveness: each iunstruction must be basci and feasible to excute
+-definiteness: each step must be clewar and unambiguous
+
+RAM model: random acces machine
+-base model for study of DAA in machine independent scenario
+-assumes all algorithms must be implemented in a single processor machine
+-measure run time of algorithm by summing no. of steps needed to excute it on set of data
+
+principles:
+-basci operations +-*= are considered to simple that take one time step
+-loops and subroutiens are complex operations composed of mulitipel time steps
+-all memory access take exactly one time step
+
+computational complexity:
+-meausres efficieny of algorithm while amount of data to be processed grows
+
+time complexity:
+-amount of time required by algorithm to excute to compeltion
+
+space complexity:
+-amoint of memory scapce need by algorithm in its ife cycle
+
+asymptotic nmtation is standard notaiton used to analyze complexity of algorithm in terms of
+time/space
+
+big Oh:
+-given 2 non ngeative valued functions f and g, the function f(n) is said to be big oh of function
+g(n) written as f(n)=O(g(n)) if there exists some positive constant c and n0 such that f(n)<=
+c.g(n) for all n>=n0.
+-provides asymptotic upper bound on f(n)
+
+big omega:
+-given 2 non ngeative valued functions f and g, the function f(n) is said to be big omega of 
+function g(n) written as f(n)=Omega(g(n)) if there exists some positive constant c and n0 such
+that f(n)>=c.g(n) for all n>=n0.
+-provides asymptotic lower bound on f(n)
+
+big theta:
+-given 2 non ngeative valued functions f and g, the function f(n) is said to be big theta of 
+function g(n) written as f(n)=Theta(g(n)) if there exists some positive constant c1 c2 n0 such
+that c1.g(n)<=f(n)<=c2.g(n) for all n>=n0.
+-provides asymptotic tight (both lower and upper) bound on f(n)
+
+recursive algorithm:
+-solves a proble mby reducing it into sub problem of same nature
