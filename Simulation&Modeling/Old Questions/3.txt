@@ -1,0 +1,11 @@
+queing system:
+-waiting lines where customers wait for service arriving at constat/vraible rate
+
+charctiresitscs: QCASSS
+-calling population: group of potential customers,finite/infite
+-system capcity: limit on no. of custoierm allowed in waiitng line
+		if system is full,arriving customers are rejected,balking
+-arrival pricess: how customers enter in system(smooth,batch,random)
+-service process: rules for how service is provided(one at a time,prioirty)
+-serice time: duration reuiqred to compelte serviu, sontast,random
+-quieung discipline: rule used to select next customer from queue FIFO LIFO

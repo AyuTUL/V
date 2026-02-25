@@ -1,0 +1,18 @@
+markov chain:
+-discrete time stochastic process where future behaviour of system depends only on curernt state
+and not sequnce of previous states
+-system undergoes transitions between finite no. of states
+-movement between state is governed by transition probablities which remian constant
+-trnsion peoblait is probility of moving from one sate to next in one step
+-TPM, rows are inital state and columns are next state
+
+markov property:
+-process has no memory of past states, only present state
+-transiotni probabliites depend on oly present state,not preivous staes
+
+features: cdefm
+-finite no. of states: system has limited indetifiable set of possible states
+-discrete outcomes: otcome of each time step must be one of set of disrete states
+-exclusisvity: only one state is possible at any given time
+-markove property: outcome next trial despnds on present state and is independent of all preivosu
+-constant transisiton probab: prob of moving from one state to another is same from step to step
