@@ -1,0 +1,88 @@
+CSS:
+css is stylesheet language used to describe the presentation and formatting of a docuemtn
+written in HTML or XML
+allows developers to control layot,design and overall visual appearance of web page by
+seleecting elemnts and applying specific styles such as color,font and positioning
+
+syntax:
+selector { property-name:value;}
+
+inline css:
+-applying styles directly to individual HTML elemenets
+
+internal css:
+-defining styles within <style> tag in <head> section of HTML document
+
+external css:
+-definind styles in a separate CSS file and linking it to an HTML documnet using <link> tag
+<link rel="stylesheet" href="style.css">
+
+selector:
+-allows targeyting and styling specifc elements in HTML document
+
+1. simple selector:
+-element selector: selects elemetns based on thier HTML tag name
+	p {};
+-class selector: selects elemnts based on value of class attribute
+	.box {};
+-ID selector: selects single elemnet based on its unique ID attribute
+	#header {};
+
+2. universal selector:
+-matches any element in HTML docukment
+-applies rule to every element on the page
+	*{};
+
+3. grouping selector:
+-groups mulitple selector and apply same styles at once
+-reduces code repetition and apply consistent styles to related elemetns
+	h1, h2, h3 {};
+
+4. attribute selector:
+-target selemetn sbased on presence/value of attribute
+
+-CSS [attribute] selector: select elements with specified attrobute
+	p[align] {};
+
+-CSS [attribute="value"] selector: select elements with specified attribute and value
+	p[align="left"] {};
+
+-CSS [attribute~="value"] selector: select elemtws with attribute value containing specific word
+	p[class~="top"] {}; selects top, top right but not top-right
+
+-CSS [attribute|="value"] selector: select elemtws with attribute value containing specific word
+	or specific word followed by hyphen
+	p[class~="top"] {}; selects top, top right, top-right
+
+-CSS [attribute^="value"] selector: select elemtws with attribute value staring with specified val
+	p[class^="top"] {}; selects elements with class starting with top
+
+-CSS [attribute$="value"] selector: select elemtws with attribute value ending with specified val
+	p[class$="top"] {}; selects elements with class ending with top
+
+-CSS [attribute*="value"] selector: select elemtws with attribute value containing specified val
+	p[class*="top"] {}; selects elements with class containg top
+
+5. pseudo-class selector:
+-defines sepcial state of element like during mouse over,focuesd
+	selector: pseudo-class { property:value; }
+-link,visited,hover,active,focues
+
+6. pseudo-element selector:
+-stytle sepeciifc part of elemetn like first line,letter
+	selector:: pseudo-element { property:value;}
+-after,before,first-letter,first-line
+
+7. combinators selector:
+
+-descendent selector: selects all alements that are decsenet of specified element
+	div p {};
+
+-child selector: selects all elemtns that are child of specified elemetn
+	div > p {};
+
+-adjacent selector: selecte elemnt that is directly asfter another specified element
+	div + p {};
+
+-general sibling selector: selects all element sthat are nexts sibling of specifed elemnt
+	div ~ p {};
