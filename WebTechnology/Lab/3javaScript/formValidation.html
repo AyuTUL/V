@@ -1,0 +1,46 @@
+<!-- form validation -->
+<html>
+
+<head>
+    <title>Form Validation</title>
+    <script>
+        function validate() {
+            var username = document.login.username.value;
+            var password = document.login.password.value;
+            const userConfirm = /^[a-zA-Z0-9]{5,20}$/;
+            const passwordConfirm = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).{8,}$/;
+            if (username == null || username == "") {
+                alert("Username cannot be empty");
+                return false;
+            } else if (password == null || password == "") {
+                alert("Password cannot be empty");
+                return false;
+            }
+            else if (!userConfirm.test(username)) {
+                alert("Username is not valid");
+                return false;
+            }
+            else if (!passwordConfirm.test(password)) {
+                alert("Password is not valid");
+                return false;
+            }
+            else {
+                alert("Login successful");
+                return true;
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <h1>Login Form</h1>
+    <form name="login" method="post" onsubmit="return validate()">
+        Enter username : <input type="text" name="username"><br>
+        Enter password : <input type="password" name="password"><br>
+        <input type="submit" value="Validate">
+    </form>
+</body>
+
+
+
+</html>

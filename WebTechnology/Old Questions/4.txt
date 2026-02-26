@@ -1,0 +1,44 @@
+JS:
+-lightrweight scripting language embedded directly into HTML pages to add interactivity
+
+function functionName (paramtetr....) {
+	code
+	optional reutrn value
+}
+
+object literal:
+let object = {
+	property: value,
+	funntionName:function() {}
+	}
+objectName.propertyName;
+
+let person = {
+	first: "cris",
+	last: "ron",
+	getname: function() {
+		alert(person.first+' '+person.last);
+	}
+}
+person.getname();
+
+function constructor:
+function Student(name,address) {
+	this.name=name;
+	this.address=address;
+}
+let student1=Student('Bale','Wales');
+document.write(student1.name);
+
+class:
+class Car {
+	constructor(name,year) {
+		this.name=name;
+		this.year=year;
+	}
+	age () {
+		const date = new Date();
+		return date.getFullYear()-this.year;
+	}
+}
+const myCar = new Car("Ford",2014);

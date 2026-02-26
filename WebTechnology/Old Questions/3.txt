@@ -86,3 +86,50 @@ selector:
 
 -general sibling selector: selects all element sthat are nexts sibling of specifed elemnt
 	div ~ p {};
+
+background-color:
+-named colors,hex,rgb,hsl
+
+background image:
+	.selector { background-image: url(image_url): }
+-background-repeat,-position,-size
+
+bordr:
+	selector { border: width style color; }
+	border-top-style: grrove;
+
+text:
+-color,diorection,letter-spacing,word-spacing,-align,-decoration,-transform,-shadow
+
+font:
+- font-atyle font-variant font-wright font-size font-family;
+
+css box model:
+-decribes layout and spacing of elements on a webpage
+-content,padding,border,margin
+
+overflow:
+-control how content that exceeds size of element is handled
+-scrollbar, clip content,expand element
+-visible,hidden,scroll,auto
+
+display:
+-control how element is rendered on web page
+-specifies type of box used for HTML element and determinse how it interacts with other elements
+-block,inline
+
+float:
+-position elentnt along left/right side of containg elemtn, allowing other to flow arouind it
+-when lement is floated, it is taken out of normal flow of document
+-applied to block elevel elements
+
+postion:
+-specifies type of positioning method for element then postiioned using trbl
+static: defualt,normal document flow
+fixed: position element relative to viewport, regardless of scrolling
+sticky: relative within parent container, fixed when threshold is reached by scorlling
+relative: positioned relative to normal position, layered usin z-index
+absolute: positioned relative to nearest positioned ancestor
+
+box shadow:
+	box-shadow: xoffset yoffset blur radius color inset;
