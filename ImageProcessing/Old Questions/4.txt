@@ -1,0 +1,34 @@
+image restoration:
+-retrival of uncorrupted,origial image from blurred,noisy image due to motion blur,noise casued
+by environmental effects or camera misfocus
+
+FIG g(x,y) = f(x,y) * h(x,y) + n(x,y)
+
+restoration in presence of noise only (spatial filtering):
+-mean filter: 
+	-reduce noise by replacing pizel value with value comupted from neighbourhood
+	-sued to smooth images and reduce random noise
+
+-arithmetic mean fileter:
+	-replaces center pizel by average of all pixels in mask
+	-smooths image, blurs edges
+	-used for gaussian,uniform noise
+	-formula: sum all pixels then divide by mxn
+
+-geometric mean filter:
+	-multiples all pixel values and takes nth root
+	-less blurring that arithmetic mean
+	-preserves details etter
+	-used for multiplicative noise
+	-formula: multiply all pixels then power 1/mn
+
+-harmonic mean filter:
+	-uses reciprocal of pixel values
+	-used for sal nmoise, fails for peper noise
+	-formula: mn / sum of 1/pixels
+
+-contra harmonic mean filter:
+	-extension of harmonic mean filter with parameter Q for controlling noise removal
+	-used for salt and pepper, one at a timme
+	-sensitive to zeroes
+	-formula: sum all pixel power Q+1 / summ power Q

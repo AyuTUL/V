@@ -1,0 +1,35 @@
+morphological IP:
+-set of image processing techniques based on shape and structure of objects in image
+
+erosion:
+-removes pixels from boundaries of objectse so tahta object bcomes smaller/thinner using
+small shape called strutruing element
+-if all 1's of SE fit inside object pixels, output=1
+-if one mistacht,output=0
+-like AND condition               
+
+dliation:
+-adds pixels to boundaries of pbjects so thjast object becomes bigger/thicker using small
+shape called SE
+-if at least one pixel of SE overlaps a 1 of object, output=1
+-if not match, outpout =0
+-like OR condition
+
+applications:
+-noise removal: erosion to remove small noise points,dilation to restore size of objects
+-gap filling: dilatrion to fill small gaps in objects
+-object separation: erosion to separte conencted objects
+-boundary detection: subtract eroded imag efrom original image to detect boundary
+
+opening:
+-erosion is fololwed by dilation
+	AoB = (A-B)+B     
+-identify gaps in image
+-edges become sharp/smooth
+-islotae objects which are touching one another
+
+
+closing:
+-dilation is followed by erosion
+	A.B=(A+B)-B
+-fuse narrow breaks and elminate small holes
