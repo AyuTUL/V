@@ -1,0 +1,6 @@
+fourier transfrom:
+-decomposes image into sinsusodial compent  of diferent ferqunices
+-lowerfrequnices,smooth region
+-high freuquince,edge
+-magnitude spectrum shows strngth of freuqnceies
+-phase spectru contrina structirel info of image

@@ -32,3 +32,76 @@ restoration in presence of noise only (spatial filtering):
 	-used for salt and pepper, one at a timme
 	-sensitive to zeroes
 	-formula: sum all pixel power Q+1 / summ power Q
+
+
+-order stastistics filter:
+	-sort pixel values inside a negihbourhood and select/compte value from ordered list
+	-non linear and good for impuklse noise
+
+-median filter:
+	-replaces center pixel with median value of sorted nieghbourhood
+	-excellent for sal and pepper
+	-presreves edges better than mean filter
+
+-min max filter:
+	-replaces pixel with min/max value in nieghbourrhood
+	-removes salt / pepper noise
+	-darkens/brightens image
+
+-midpoint filter:
+	-average of min and max valkues in neoghbouhood
+	-used for gausiian,uniform noise
+
+-alpha trimmed mean filter:
+	-removes d/2 lowest and d/2 ihghset pixel values and calc mean of remiang pixel
+	-combines mean and mdeian filter properties
+	-used for mixed gaussian + impulse noise
+
+frequency domain filters:
+-filtesr work on fourier spectrum of image
+-selectivlty remove/retian frequencies based on distance from origin
+
+-band reeject filter: FIG
+	-removes specific range of frequnices and allows frequince below and above that band
+	-elimintae preiodc noise,power line noise
+	-fomula
+
+-band pass filter: FIG
+	-allows only specifc range of frequncy to pass and blocks all others
+	-texture anaysis,edge enchance,emt,feature extraction
+	
+BPF=1-BRF
+
+image compresion:
+-reducing data size so that it takes up less torage soace or faster trnasmnission over netwerok
+-removes dedunacny/uncncesary info in data
+-compressed adta can be eirther restore dto original form or apporximated
+
+lossless compression:
+-original data can be percfectly restored after decompression,no info is lost
+-finding repeated patterns, encoding,statistical methods
+-eg: zip,png,flac
+-used when exact orignal daat is needed like text documetns,souce coe,mdeical iamges
+
+lossy comrepssion:
+-some info is permanently lsot resuliting in approximate reconstruction of original data
+-removes details that are less noticaable to humans
+-eg: jpeg,mp3,mp4
+-used when some loss of quality is acceptable for significant size reduvtion like streaming,musioc
+
+huffman coding:
+-lossless data compression technique to reduce data size by assingn varable length binary codes
+to symbols
+-more freuqnt symbols get shorter codes,less get longer
+
+steps:
+-count frequency of each symbo
+-create leaf node for aech symbol
+-build binary tree:
+	-pick 2nodes with lowest frequencies
+	-sum them into new node
+-repeat till only root remains
+-assign binary codes:
+	-left edge:0
+	-right edge:1
+-codes obtained from root to leaf give huffman code
