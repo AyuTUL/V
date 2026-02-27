@@ -1,0 +1,33 @@
+1.a
+-feistal cipher is general stryuctuer used in block cipher in which data is divided into 2
+-equal halves which are prceoss through mulitple rounds of substituion and permutation
+-data block is split into left half L0 and right half R0
+-in each round i, right half is pocessed by fiestal function F using round sub key Ki and 
+Xord with left halg
+	L=Ri-1
+	R-i=Li-1 XOR F(Ri-1,Ki)
+-decryption uses same structure as encrption, but with round keys in reverser order
+-F doesnt need to be invertible since XOR is already invertible
+
+1. b
+DES data encryption standard
+-block cipher 64 bits with effective key 56 bits
+
+steps:
+-apply initla permuation IP to plaintext block M:
+	fixewd bit reordring of 64 bit input
+
+-split into L0 and R0 32 bits each
+
+-apply 16 Feistal rounds:
+	each round uses 48 bit round key
+	round function F includes bit expansion,XOR with key,substotuio via 8 Sbox and final perm
+
+-swap halves after round 16
+-apply final permuation FP=IP^-1
+
+key generation:
+-64 bit key passes through permuted choice 1 which drops every 8th parity bit to give 56 bit
+-56 bits aer split into 2 28 bit halves
+-in each round, each half is circulary left shielf 1 or 2 positions  and permuted by PC2 to
+give round key Ki 48 bit
