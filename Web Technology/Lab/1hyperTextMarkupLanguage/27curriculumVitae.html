@@ -1,0 +1,118 @@
+<!-- Lab 27: Design a website using <div> tag, <table> tag and using internal css. -->
+<html>
+
+<head>
+
+    <title>Curriculum Vitae</title>
+    <style>
+        body {
+            background-color: #fae2dd;
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            background-color: #6e6c6c;
+            text-align: center;
+            color: white;
+            border: 2px solid black;
+            padding: 20px;
+            margin: 10px;
+        }
+
+        table {
+            margin: 10px;
+            border: 2px solid black;
+            width: calc(100% - 20px);
+        }
+
+        th {
+            background-color: #333333;
+            color: white;
+            border: 1px solid black;
+            text-align: left;
+            padding: 10px;
+        }
+
+        td {
+            border: 1px solid black;
+        }
+
+        div {
+            background-color: #cdc6c5;
+            border: 2px solid black;
+            margin: 10px;
+            padding: 10px;
+        }
+
+        h3,
+        p,
+        ul {
+            color: #494545;
+        }
+
+        p {
+            line-height: 2;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>My Curriculum Vitae</h1>
+
+    <table>
+        <tr>
+            <th colspan="2">Personal Information</th>
+        </tr>
+        <tr>
+            <td>Name</td>
+            <td>John Curriculum</td>
+        </tr>
+        <tr>
+            <td>Email</td>
+            <td>john.vitae@hotmail.com</td>
+        </tr>
+        <tr>
+            <td>Phone</td>
+            <td>+977 9767488322</td>
+        </tr>
+        <tr>
+            <td>Address</td>
+            <td>127 Crime Alley, Gotham, USA</td>
+        </tr>
+    </table>
+    <div>
+        <h3>Education</h3>
+        <p>Bachelor of Science in Computer Science<br>
+            University of DC, 2026</p>
+    </div>
+    <div>
+        <h3>Experience</h3>
+        <p>Software Developer<br>
+            JL Company, 2021-Present<br>
+            Responsibilities:
+
+        </p>
+        <ul>
+            <li>Developing and maintaining web applications</li>
+            <li>Collaborating with cross-functional teams</li>
+            <li>Testing and debugging code</li>
+        </ul>
+    </div>
+    <div>
+        <h3>Skills</h3>
+        <ul>
+            <li>HTML5</li>
+            <li>CSS3</li>
+            <li>JavaScript</li>
+            <li>Python</li>
+            <li>Database Management</li>
+        </ul>
+    </div>
+    <div>
+        <h3>References</h3>
+        <p>Available upon request</p>
+    </div>
+</body>
+
+</html>
