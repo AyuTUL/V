@@ -1,6 +1,60 @@
 // Lab 8: WAP to implement heap sort.
 #include <iostream>
+#include <cmath>
 using namespace std;
+
+void printTree(int a[], int n)
+{
+    int height = floor(log2(n)) + 1;
+    int maxWidth = pow(2, height);
+
+    int index = 0;
+
+    for (int level = 0; level < height; level++)
+    {
+        int nodes = pow(2, level);
+        int gap = maxWidth / nodes;
+
+        // print nodes
+        for (int i = 0; i < nodes && index < n; i++)
+        {
+            cout << string(gap / 2, ' ');
+            cout << a[index++];
+            cout << string(gap / 2, ' ');
+        }
+        cout << endl;
+
+        // print edges
+        if (level < height - 1)
+        {
+            index -= nodes;
+
+            for (int i = 0; i < nodes && index < n; i++)
+            {
+                cout << string(gap / 2 - 1, ' ');
+
+                if (2 * index + 1 < n)
+                    cout << "/";
+                else
+                    cout << " ";
+
+                cout << " ";
+
+                if (2 * index + 2 < n)
+                    cout << "\\";
+                else
+                    cout << " ";
+
+                cout << string(gap / 2 - 1, ' ');
+
+                index++;
+            }
+            cout << endl;
+        }
+    }
+
+    cout << endl;
+}
 
 void heapify(int a[], int n, int i)
 {
@@ -16,54 +70,62 @@ void heapify(int a[], int n, int i)
 
     if (largest != i)
     {
-        int temp = a[i];
-        a[i] = a[largest];
-        a[largest] = temp;
-
+        cout << "Swap node " << a[i] << " with " << a[largest] << endl;
+        swap(a[i], a[largest]);
         heapify(a, n, largest);
     }
 }
 
-void buildHeap(int a[], int n)
-{
-    for (int i = n / 2 - 1; i >= 0; i--)
-        heapify(a, n, i);
-}
-
 void heapSort(int a[], int n)
 {
-    buildHeap(a, n);
+    cout << "Building Max Heap\n";
+
+    for (int i = n / 2 - 1; i >= 0; i--)
+        heapify(a, n, i);
+
+    cout << "\nMax Heap Tree:\n";
+    printTree(a, n);
 
     for (int i = n - 1; i > 0; i--)
     {
-        int temp = a[0];
-        a[0] = a[i];
-        a[i] = temp;
+        cout << "--------------------------------\n";
+        cout << "Swap root " << a[0] << " with last node " << a[i] << endl;
+
+        swap(a[0], a[i]);
+
+        cout << "Node removed (sorted): " << a[i] << endl;
+
+        cout << "\nTree before heapify:\n";
+        printTree(a, i);
 
         heapify(a, i, 0);
+
+        cout << "Tree after heapify:\n";
+        printTree(a, i);
     }
 }
 
 int main()
 {
     int n;
-    cout << "--- Heap Sort Algorithm ---" << endl;
 
-    cout << "Enter array size : ";
+    cout << "Enter number of elements: ";
     cin >> n;
 
-    int *a = new int[n];
+    int a[n];
 
-    cout << "Enter " << n << " elements : ";
+    cout << "Enter elements: ";
     for (int i = 0; i < n; i++)
         cin >> a[i];
 
+    cout << "\nOriginal Tree:\n";
+    printTree(a, n);
+
     heapSort(a, n);
 
-    cout << "\nSorted array : ";
+    cout << "\nFinal Sorted Array:\n";
     for (int i = 0; i < n; i++)
         cout << a[i] << " ";
 
-    delete[] a;
     return 0;
 }
