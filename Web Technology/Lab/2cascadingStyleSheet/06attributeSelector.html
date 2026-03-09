@@ -12,56 +12,49 @@
     <title>Attribute Selector</title>
 
     <style>
-        body {
-            margin: 0;
+        p[class] {
+            text-decoration: underline;
         }
 
-        h2 {
-            text-align: center;
-            margin: 20px;
+        p[class="exact"] {
+            text-decoration: overline;
         }
 
-        .container {
-            display: flex;
-            justify-content: center;
-            align-items: stretch;
-            gap: 20px;
-            margin: 30px auto;
+        p[class~="word"] {
+            text-decoration: line-through;
         }
 
-        video {
-            width: 400px;
-            height: auto;
+        p[lang|="en"] {
+            text-decoration: underline overline;
         }
 
-        p {
-            max-width: 300px;
-            display: flex;
-            align-items: center;
-            text-align: center;
+        p[class^="start"] {
+            text-decoration: underline;
+        }
 
+        p[class$="end"] {
+            text-decoration: overline;
+        }
+
+        p[class*="mid"] {
+            text-decoration: line-through;
         }
     </style>
+
 </head>
 
 <body>
-    <h2>House Party - VVUP</h2>
 
-    <div class="container">
-        <p>VVUP (Korean: 비비업; RR: bibieop) is a South Korean girl group formed by EgoENT in 2024. The group consists of
-            four members: Kim, Paan, Suyeon, and Jiyoon. Former member Hyunny departed from the group in August 2024 due
-            to health issues.
+    <h1>Attribute Selector Example</h1>
 
-        </p>
+    <p class="test">CSS [attribute] Selector</p>
+    <p class="exact">CSS [attribute="value"] Selector</p>
+    <p class="my word class">CSS [attribute~="value"] Selector</p>
+    <p lang="en-US">CSS [attribute|="value"] Selector</p>
+    <p class="startClass">CSS [attribute^="value"] Selector</p>
+    <p class="classend">CSS [attribute$="value"] Selector</p>
+    <p class="amidclass">CSS [attribute*="value"] Selector</p>
 
-        <video controls>
-            <source src="Resource/2housePartyVVUP.mp4">
-        </video>
-
-        <p>VVUP (Korean: 비비업; RR: bibieop) is a South Korean girl group formed by EgoENT in 2024. The group consists of
-            four members: Kim, Paan, Suyeon, and Jiyoon. Former member Hyunny departed from the group in August 2024 due
-            to health issues.</p>
-    </div>
 </body>
 
 </html>

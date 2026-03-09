@@ -5,56 +5,43 @@
     <title>Pseudo Element Selector</title>
 
     <style>
-        body {
-            margin: 0;
+        h1::before {
+            content: "★ ";
         }
 
-        h2 {
-            text-align: center;
-            margin: 20px;
+        h1::after {
+            content: " ★";
         }
 
-        .container {
-            display: flex;
-            justify-content: center;
-            align-items: stretch;
-            gap: 20px;
-            margin: 30px auto;
+        p::first-letter {
+            font-size: 30px;
+            color: red;
         }
 
-        video {
-            width: 400px;
-            height: auto;
+        li::marker {
+            color: blue;
         }
 
-        p {
-            max-width: 300px;
-            display: flex;
-            align-items: center;
-            text-align: center;
-
+        ::selection {
+            background: yellow;
+            color: red;
         }
     </style>
+
 </head>
 
 <body>
-    <h2>House Party - VVUP</h2>
 
-    <div class="container">
-        <p>VVUP (Korean: 비비업; RR: bibieop) is a South Korean girl group formed by EgoENT in 2024. The group consists of
-            four members: Kim, Paan, Suyeon, and Jiyoon. Former member Hyunny departed from the group in August 2024 due
-            to health issues.
+    <h1>Pseudo Element Example</h1>
 
-        </p>
+    <p>This paragraph shows first letter styling.</p>
 
-        <video controls>
-            <source src="Resource/2housePartyVVUP.mp4">
-        </video>
+    <ul>
+        <li>Item One</li>
+        <li>Item Two</li>
+        <li>Item Three</li>
+    </ul>
 
-        <p>VVUP (Korean: 비비업; RR: bibieop) is a South Korean girl group formed by EgoENT in 2024. The group consists of
-            four members: Kim, Paan, Suyeon, and Jiyoon. Former member Hyunny departed from the group in August 2024 due
-            to health issues.</p>
-    </div>
 </body>
 
 </html>

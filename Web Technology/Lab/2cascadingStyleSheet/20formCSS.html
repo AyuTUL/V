@@ -2,78 +2,63 @@
 <html>
 
 <head>
-    <title>Marksheet</title>
-
+    <title>Form with CSS</title>
     <style>
-        table {
-            border-collapse: collapse;
+        form {
+            background: rgb(235, 235, 235);
+            padding: 20px;
+            width: 350px;
+            border-radius: 5px;
         }
 
-        th,
-        td {
-            border: 1px solid gray;
+        h2 {
             text-align: center;
-            padding: 5px 0;
         }
 
-        th {
-            background-color: #dfdfdf;
+        label {
+            font-weight: bold;
         }
 
-        .even {
-            background-color: silver;
+        input,
+        textarea {
+            margin: 0 0 20px;
+            padding: 5px;
+            width: 100%;
+            border: 1px solid #ccc;
+            border-radius: 3px;
         }
 
-        .subjectPercentage {
-            padding: 5px 100px;
-        }
-
-        #marks {
-            padding: 5px 200px;
+        input[type="submit"] {
+            background: green;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            width: 25%;
+            padding: 10px;
+            margin-bottom: 0;
         }
     </style>
 </head>
 
 <body>
-    <table>
-        <tr>
-            <th rowspan="2" class="subjectPercentage">Subject</th>
-            <th colspan="2" id="marks">Marks</th>
-            <th rowspan="2" class="subjectPercentage">Percentage</th>
-        </tr>
-        <tr>
-            <th>Obtained</th>
-            <th>Total</th>
-        </tr>
-        <tr>
-            <td>Mathematics</td>
-            <td>90</td>
-            <td>100</td>
-            <td>90%</td>
-        </tr>
-        <tr class="even">
-            <td>Science</td>
-            <td>85</td>
-            <td>100</td>
-            <td>85%</td>
-        </tr>
-        <tr>
-            <td>Computer</td>
-            <td>85</td>
-            <td>100</td>
-            <td>85%</td>
-        </tr>
-        <tr class="even">
-            <td>Sociology</td>
-            <td>85</td>
-            <td>100</td>
-            <td>85%</td>
-        </tr>
-        <tr>
-            <td colspan="3">Total</td>
-            <td>87.5%</td>
-        </tr>
-    </table>
+
+
+
+    <form action="#" method="post">
+        <h2>Contact Us</h2>
+
+        <label for="name">Name:</label>
+        <input type="text" placeholder="Enter your name">
+
+        <label for="name">Email:</label>
+        <input type="email" placeholder="Enter your email">
+
+        <label for="name">Message:</label>
+        <textarea placeholder="Enter your message"></textarea>
+
+        <input type="submit" value="Submit">
+    </form>
+
 </body>
 
 </html>
