@@ -1,72 +1,90 @@
 // Lab 8: WAP to implement heap sort.
 #include <iostream>
+#include <iomanip>
 #include <cmath>
 using namespace std;
 
 void printTree(int a[], int n)
 {
-    int height = floor(log2(n)) + 1;
-    int maxWidth = pow(2, height);
+    if (n <= 0)
+        return;
 
-    int index = 0;
+    int h = log2(n) + 1, node_len = 1;
 
-    for (int level = 0; level < height; level++)
+    for (int i = 0; i < n; i++)
+        node_len = max(node_len, (int)to_string(a[i]).length());
+
+    int space_len = node_len % 2 ? 3 : 4;
+    int node_shift = node_len / 2;
+    int space_shift = space_len / 2;
+
+    for (int lv = 0; lv < h; lv++)
     {
-        int nodes = pow(2, level);
-        int gap = maxWidth / nodes;
+        int nodes = 1 << lv;
+        int leaf_nodes = 1 << (h - lv - 1);
 
-        // print nodes
-        for (int i = 0; i < nodes && index < n; i++)
+        int w = node_len * leaf_nodes + space_len * (leaf_nodes - 1);
+        int indent = w / 2 - node_shift;
+        int spacing = w - 2 * (node_shift - space_shift);
+
+        cout << string(indent, ' ');
+
+        for (int i = 0; i < nodes; i++)
         {
-            cout << string(gap / 2, ' ');
-            cout << a[index++];
-            cout << string(gap / 2, ' ');
+            int idx = nodes - 1 + i;
+
+            if (idx < n)
+                cout << setw(node_len) << a[idx];
+            else
+                cout << string(node_len, ' ');
+
+            if (i < nodes - 1)
+                cout << string(spacing, ' ');
         }
         cout << endl;
 
-        // print edges
-        if (level < height - 1)
+        if (lv == h - 1)
+            continue;
+
+        int branch_rows = (w + 1) / 4;
+
+        for (int r = 0; r < branch_rows; r++)
         {
-            index -= nodes;
+            cout << string(w / 2 - 1 - r, ' ');
 
-            for (int i = 0; i < nodes && index < n; i++)
+            for (int i = 0; i < nodes; i++)
             {
-                cout << string(gap / 2 - 1, ' ');
+                int idx = nodes - 1 + i;
 
-                if (2 * index + 1 < n)
-                    cout << "/";
+                if (idx < n)
+                {
+                    int L = (1 << (lv + 1)) - 1 + 2 * i;
+                    int R = L + 1;
+
+                    cout << (L < n ? '/' : ' ');
+                    cout << string((node_len % 2) + 2 * r, ' ');
+                    cout << (R < n ? '\\' : ' ');
+                }
                 else
-                    cout << " ";
+                    cout << string((node_len % 2) + 2 * r + 2, ' ');
 
-                cout << " ";
-
-                if (2 * index + 2 < n)
-                    cout << "\\";
-                else
-                    cout << " ";
-
-                cout << string(gap / 2 - 1, ' ');
-
-                index++;
+                if (i < nodes - 1)
+                    cout << string(spacing + 2 * (node_shift - 1 - r), ' ');
             }
             cout << endl;
         }
     }
-
     cout << endl;
 }
 
 void heapify(int a[], int n, int i)
 {
-    int largest = i;
-    int left = 2 * i + 1;
-    int right = 2 * i + 2;
+    int l = 2 * i + 1, r = 2 * i + 2, largest = i;
 
-    if (left < n && a[left] > a[largest])
-        largest = left;
-
-    if (right < n && a[right] > a[largest])
-        largest = right;
+    if (l < n && a[l] > a[largest])
+        largest = l;
+    if (r < n && a[r] > a[largest])
+        largest = r;
 
     if (largest != i)
     {
@@ -78,29 +96,30 @@ void heapify(int a[], int n, int i)
 
 void heapSort(int a[], int n)
 {
-    cout << "Building Max Heap\n";
+    cout << "Building Max Heap" << endl;
 
     for (int i = n / 2 - 1; i >= 0; i--)
         heapify(a, n, i);
 
-    cout << "\nMax Heap Tree:\n";
+    cout << endl
+         << "Max Heap Tree :" << endl;
     printTree(a, n);
 
     for (int i = n - 1; i > 0; i--)
     {
-        cout << "--------------------------------\n";
-        cout << "Swap root " << a[0] << " with last node " << a[i] << endl;
+        cout << "--------------------------------" << endl
+             << " Swap root " << a[0] << " with last node " << a[i] << endl;
 
         swap(a[0], a[i]);
 
-        cout << "Node removed (sorted): " << a[i] << endl;
-
-        cout << "\nTree before heapify:\n";
+        cout << "Node removed (sorted) : " << a[i] << endl
+             << endl
+             << "Tree before heapify :" << endl;
         printTree(a, i);
 
         heapify(a, i, 0);
 
-        cout << "Tree after heapify:\n";
+        cout << "Tree after heapify :" << endl;
         printTree(a, i);
     }
 }
@@ -108,24 +127,28 @@ void heapSort(int a[], int n)
 int main()
 {
     int n;
-
-    cout << "Enter number of elements: ";
+    cout << "Enter number of elements : ";
     cin >> n;
 
-    int a[n];
+    int *a = new int[n];
 
-    cout << "Enter elements: ";
+    cout << "Enter elements : ";
     for (int i = 0; i < n; i++)
         cin >> a[i];
 
-    cout << "\nOriginal Tree:\n";
+    cout << endl
+         << "---Heap Sort Algorithm---" << endl;
+
+    cout << endl
+         << "Original Tree :" << endl;
     printTree(a, n);
 
     heapSort(a, n);
 
-    cout << "\nFinal Sorted Array:\n";
+    cout << endl
+         << "Final Sorted Array :";
     for (int i = 0; i < n; i++)
-        cout << a[i] << " ";
+        cout << " " << a[i];
 
-    return 0;
+    delete[] a;
 }
