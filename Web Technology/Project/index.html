@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>FIFA-Style Penalty</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="hud">
+        <div>Score: <span id="score">0</span></div>
+        <div>Round: <span id="round">1</span>/5</div>
+    </div>
+
+    <div class="game">
+
+        <div id="goal">
+            <img id="keeper" src="img/keeper.png">
+            <div id="aim"></div>
+        </div>
+
+        <img id="ball" src="img/ball.png">
+
+        <div id="powerContainer">
+            <div id="powerBar"></div>
+        </div>
+
+    </div>
+
+    <div id="message">Use arrow keys to move aim. Hold SPACE to shoot!</div>
+
+    <script src="game.js"></script>
+</body>
+
+</html>
