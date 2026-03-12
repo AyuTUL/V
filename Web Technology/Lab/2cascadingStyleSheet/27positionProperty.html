@@ -2,78 +2,78 @@
 <html>
 
 <head>
-    <title>Position Property</title>
+    <title>CSS Position</title>
 
     <style>
-        table {
-            border-collapse: collapse;
+        .box {
+            width: 100px;
+            height: 50px;
+            border: 1px solid;
+            margin: 10px;
+            padding: 5px;
+            background: lightblue;
         }
 
-        th,
-        td {
+        .static {
+            position: static;
+        }
+
+        .relative {
+            position: relative;
+            top: 10px;
+            left: 10px;
+            background: teal;
+        }
+
+        .absolute {
+            position: absolute;
+            top: 50px;
+            left: 200px;
+            background: silver;
+        }
+
+        .fixed {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: rebeccapurple;
+        }
+
+        .sticky {
+            position: sticky;
+            top: 0;
+            background: palegoldenrod;
+        }
+
+        .container {
+            height: 200px;
             border: 1px solid gray;
-            text-align: center;
-            padding: 5px 0;
-        }
-
-        th {
-            background-color: #dfdfdf;
-        }
-
-        .even {
-            background-color: silver;
-        }
-
-        .subjectPercentage {
-            padding: 5px 100px;
-        }
-
-        #marks {
-            padding: 5px 200px;
+            overflow: auto;
+            margin: 10px;
         }
     </style>
 </head>
 
 <body>
-    <table>
-        <tr>
-            <th rowspan="2" class="subjectPercentage">Subject</th>
-            <th colspan="2" id="marks">Marks</th>
-            <th rowspan="2" class="subjectPercentage">Percentage</th>
-        </tr>
-        <tr>
-            <th>Obtained</th>
-            <th>Total</th>
-        </tr>
-        <tr>
-            <td>Mathematics</td>
-            <td>90</td>
-            <td>100</td>
-            <td>90%</td>
-        </tr>
-        <tr class="even">
-            <td>Science</td>
-            <td>85</td>
-            <td>100</td>
-            <td>85%</td>
-        </tr>
-        <tr>
-            <td>Computer</td>
-            <td>85</td>
-            <td>100</td>
-            <td>85%</td>
-        </tr>
-        <tr class="even">
-            <td>Sociology</td>
-            <td>85</td>
-            <td>100</td>
-            <td>85%</td>
-        </tr>
-        <tr>
-            <td colspan="3">Total</td>
-            <td>87.5%</td>
-        </tr>
-    </table>
+
+    <div class="box static">position: static</div>
+    <div class="box relative">position: relative (moved 10px)</div>
+
+    <div class="container">
+        <div class="box sticky">position: sticky (sticks on scroll)</div>
+        <p>Scroll down inside this container to see sticky behavior.</p>
+        <p>DeLisi began his professional Overwatch career in 2016 with -bird noises- and then later joined Hammer
+            Esports in 2017—which was acquired by LGE that year. In late 2017, he signed with the San Francisco Shock in
+            preparation for the inaugural OWL season in 2018. Initially being underage, DeLisi made his professional
+            debut in April 2018. Throughout his tenure with the Shock, DeLisi achieved numerous accolades, including
+            being a two-time OWL All-Star, an OWL Role Star, an OWL MVP finalist, and a winner of three midseason
+            tournament titles. He also secured two OWL championships in 2019 and 2020, as well as won the 2019 Overwatch
+            World Cup as part of Team USA. DeLisi announced his retirement on March 27, 2022.</p>
+    </div>
+
+    <div class="box absolute">position: absolute</div>
+    <div class="box fixed">position: fixed (top right)</div>
+
 </body>
 
 </html>

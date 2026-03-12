@@ -2,78 +2,67 @@
 <html>
 
 <head>
-    <title>Overflow Property</title>
-
+    <title>CSS Overflow</title>
     <style>
-        table {
-            border-collapse: collapse;
+        .box {
+            width: 200px;
+            height: 60px;
+            border: 2px solid black;
+            margin: 30px;
+            padding: 10px;
         }
 
-        th,
-        td {
-            border: 1px solid gray;
-            text-align: center;
-            padding: 5px 0;
+        .visible {
+            overflow: visible;
+            background-color: cyan;
         }
 
-        th {
-            background-color: #dfdfdf;
+        .hidden {
+            overflow: hidden;
+            background-color: hotpink;
         }
 
-        .even {
-            background-color: silver;
+        .scroll {
+            overflow: scroll;
+            background-color: lime;
         }
 
-        .subjectPercentage {
-            padding: 5px 100px;
-        }
-
-        #marks {
-            padding: 5px 200px;
+        .auto {
+            overflow: auto;
+            background-color: orange;
         }
     </style>
 </head>
 
 <body>
-    <table>
-        <tr>
-            <th rowspan="2" class="subjectPercentage">Subject</th>
-            <th colspan="2" id="marks">Marks</th>
-            <th rowspan="2" class="subjectPercentage">Percentage</th>
-        </tr>
-        <tr>
-            <th>Obtained</th>
-            <th>Total</th>
-        </tr>
-        <tr>
-            <td>Mathematics</td>
-            <td>90</td>
-            <td>100</td>
-            <td>90%</td>
-        </tr>
-        <tr class="even">
-            <td>Science</td>
-            <td>85</td>
-            <td>100</td>
-            <td>85%</td>
-        </tr>
-        <tr>
-            <td>Computer</td>
-            <td>85</td>
-            <td>100</td>
-            <td>85%</td>
-        </tr>
-        <tr class="even">
-            <td>Sociology</td>
-            <td>85</td>
-            <td>100</td>
-            <td>85%</td>
-        </tr>
-        <tr>
-            <td colspan="3">Total</td>
-            <td>87.5%</td>
-        </tr>
-    </table>
+
+    <h2>Overflow Property</h2>
+
+    <div class="box visible">
+        <b>overflow: visible</b><br>
+        This text is very long and will overflow outside the box because the overflow property is set to visible.
+    </div>
+
+    <div class="box hidden">
+        <b>overflow: hidden</b><br>
+        This text is very long and the extra content will be clipped and not visible outside the box.
+    </div>
+
+    <div class="box scroll">
+        <b>overflow: scroll</b><br>
+        This text is very long and scrollbars will appear even if they are not necessary.
+    </div>
+
+    <div class="box auto">
+        <b>overflow: auto</b><br>
+        This text is very long and scrollbars will appear only if the content overflows.
+    </div>
+
+    <div class="box auto">
+        <b>overflow: auto</b><br>
+        This text is to short for scrollbar to appear.
+    </div>
+
 </body>
 
 </html>
