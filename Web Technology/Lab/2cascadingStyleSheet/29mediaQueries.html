@@ -1,5 +1,4 @@
 <!-- Lab 29: Give an example using media queries. -->
-<!DOCTYPE html>
 <html>
 
 <head>
@@ -7,19 +6,21 @@
 
     <style>
         body {
-            background-color: hotpink;
+            background: url(Resource/29vince.png);
+            background-repeat: no-repeat;
+            background-size: contain;
             text-align: center;
         }
 
         @media (max-width: 900px) {
             body {
-                background-color: cyan;
+                background: url(Resource/29vincer.png);
             }
         }
 
         @media (max-width: 600px) {
             body {
-                background-color: orange;
+                background: url(Resource/29vincest.png);
             }
         }
     </style>
@@ -28,7 +29,7 @@
 <body>
 
     <h1>Media Query</h1>
-    <p>Background color changes with screen size.</p>
+    <p>Background image changes with screen size.</p>
 
 </body>
 
