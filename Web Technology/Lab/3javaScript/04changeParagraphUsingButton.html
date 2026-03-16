@@ -1,0 +1,26 @@
+<!-- Lab 4: Create one paragraph and add some text on it. After this create one button, if button is clicked then the content of paragraph should be changed. -->
+<html>
+
+<head>
+    <title>Paragraph Change Using Button</title>
+
+    <script>
+        function changeText() {
+            document.getElementById("text").innerHTML = "BOO!";
+        }
+    </script>
+
+</head>
+
+<body>
+
+    <p id="text">
+        Goku Black (Gokū Burakku) is an alternate incarnation of Zamasu and one of the main antagonists
+        of the Future Trunks Saga in Dragon Ball Super.
+    </p>
+
+    <button onclick="changeText()">Change Paragraph</button>
+
+</body>
+
+</html>
