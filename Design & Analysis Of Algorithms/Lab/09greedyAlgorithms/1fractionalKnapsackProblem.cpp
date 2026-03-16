@@ -1,4 +1,4 @@
-// Lab 10.1: WAP to implement fractional knapsack problem.
+// Lab 9.1: WAP to implement fractional knapsack problem.
 #include <algorithm>
 #include <iomanip>
 #include <iostream>
@@ -18,28 +18,25 @@ struct Selection
 
 void border(bool wide)
 {
-    cout << (wide
-                 ? "+------+------------+------------+----------+----------------+--------------+----------------+\n"
-                 : "+------+------------+------------+----------+\n");
+    cout << (wide ? "+------+------------+------------+----------+----------------+--------------+----------------+"
+                  : "+------+------------+------------+----------+")
+         << endl;
 }
 
 void printRow(const Item &it)
 {
-    cout << "| " << left << setw(4) << it.id
-         << " | " << setw(10) << fixed << setprecision(2) << it.value
-         << " | " << setw(10) << it.weight
-         << " | " << setw(8) << it.ratio << " |" << endl;
+    cout << left << fixed << setprecision(2)
+         << "| " << setw(4) << it.id << " | " << setw(10) << it.value
+         << " | " << setw(10) << it.weight << " | " << setw(8) << it.ratio << " |" << endl;
     border(false);
 }
 
 void printRow(const Selection &s)
 {
-    cout << "| " << left << setw(4) << s.id
-         << " | " << setw(10) << fixed << setprecision(2) << s.value
-         << " | " << setw(10) << s.weight
-         << " | " << setw(8) << s.ratio
-         << " | " << setw(14) << s.fraction
-         << " | " << setw(12) << s.gained
+    cout << left << fixed << setprecision(2)
+         << "| " << setw(4) << s.id << " | " << setw(10) << s.value
+         << " | " << setw(10) << s.weight << " | " << setw(8) << s.ratio
+         << " | " << setw(14) << s.fraction << " | " << setw(12) << s.gained
          << " | " << setw(14) << s.remaining << " |" << endl;
     border(true);
 }
@@ -51,10 +48,7 @@ int main()
     cout << "Enter number of items : ";
     cin >> n;
     if (n <= 0)
-    {
-        cout << "Number of items must be greater than 0." << endl;
-        return 0;
-    }
+        return cout << "Number of items must be greater than 0." << endl, 0;
 
     vector<Item> items(n);
     cout << "Enter value and weight of each item :" << endl;
@@ -63,10 +57,7 @@ int main()
         cout << "Item " << i + 1 << " : ";
         cin >> items[i].value >> items[i].weight;
         if (items[i].weight <= 0)
-        {
-            cout << "Weight must be greater than 0 for every item." << endl;
-            return 0;
-        }
+            return cout << "Weight must be greater than 0 for every item." << endl, 0;
         items[i].id = i + 1;
         items[i].ratio = items[i].value / items[i].weight;
     }
@@ -74,10 +65,7 @@ int main()
     cout << "Enter knapsack capacity : ";
     cin >> capacity;
     if (capacity < 0)
-    {
-        cout << "Knapsack capacity cannot be negative." << endl;
-        return 0;
-    }
+        return cout << "Knapsack capacity cannot be negative." << endl, 0;
 
     sort(items.begin(), items.end(), [](const Item &a, const Item &b)
          { return a.ratio > b.ratio; });
@@ -87,7 +75,8 @@ int main()
 
     cout << endl
          << "---Fractional Knapsack Problem---" << endl
-         << endl;
+         << endl
+         << "Items Sorted by Value per Unit Weight :" << endl;
     border(false);
     cout << "| Item | Value      | Weight     | V/W      |" << endl;
     border(false);
@@ -96,29 +85,13 @@ int main()
 
     for (int i = 0; i < n; i++)
     {
-        const Item &it = items[i];
-
         if (rem <= 0)
             break;
-
-        double frac;
-        double gained;
-
-        if (it.weight <= rem)
-        {
-            frac = 1.0;
-            gained = it.value;
-            rem -= it.weight;
-        }
-        else
-        {
-            frac = rem / it.weight;
-            gained = it.value * frac;
-            rem = 0;
-        }
-
+        double frac = (items[i].weight <= rem) ? 1.0 : rem / items[i].weight;
+        double gained = items[i].value * frac;
+        rem = (frac == 1.0) ? rem - items[i].weight : 0;
         totalValue += gained;
-        selected.push_back({it.id, it.value, it.weight, it.ratio, frac, gained, rem});
+        selected.push_back({items[i].id, items[i].value, items[i].weight, items[i].ratio, frac, gained, rem});
     }
 
     cout << endl
@@ -130,7 +103,6 @@ int main()
         printRow(selected[i]);
 
     cout << endl
-         << "Maximum Value = " << fixed << setprecision(2) << totalValue << endl;
-
+         << "Maximum Value = " << fixed << setprecision(2) << totalValue;
     return 0;
 }

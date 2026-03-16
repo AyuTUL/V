@@ -1,3 +1,4 @@
+// Lab 7.2: Implement merge sort algorithm using divide & conquer.
 #include <iostream>
 #include <iomanip>
 #include <vector>

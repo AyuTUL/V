@@ -1,4 +1,4 @@
-// Lab 7.3: WAP to implement Quick Sort using divide & conquer.
+// Lab 7.3: Implement quick sort algorithm using divide & conquer.
 #include <iostream>
 #include <iomanip>
 using namespace std;

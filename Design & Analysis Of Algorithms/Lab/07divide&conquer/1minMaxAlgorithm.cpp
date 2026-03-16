@@ -1,3 +1,4 @@
+// Lab 7.1: Implement Min-Max algorithm using divide & conquer.
 #include <iostream>
 #include <iomanip>
 #include <vector>
