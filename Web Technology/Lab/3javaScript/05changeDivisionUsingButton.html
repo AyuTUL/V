@@ -1,1 +1,50 @@
 <!-- Lab 5: Create three divisions in which first division should be red, second should be blue and third should be green. After this create a button with name change. When button is clicked change the background of all division, border of division 1 should be green, border of division two should be yellow, border of 3rd division should be blue, change the radius of border for any two divisions. -->
+<html>
+
+<head>
+    <title>Division Change Using Button</title>
+    <style>
+        div {
+            height: 50px;
+            width: 50px;
+            margin: 5px;
+            display: inline-block;
+        }
+
+        #first {
+            background-color: red;
+        }
+
+        #second {
+            background-color: blue;
+        }
+
+        #third {
+            background-color: green;
+        }
+    </style>
+    <script>
+        function changeStyle() {
+            document.getElementById('first').style.backgroundColor = "hotpink";
+            document.getElementById('second').style.backgroundColor = "cyan";
+            document.getElementById('third').style.backgroundColor = "lime";
+
+            document.getElementById('first').style.border = "1px solid green";
+            document.getElementById('second').style.border = "5px dotted yellow";
+            document.getElementById('third').style.border = "10px groove blue";
+
+            document.getElementById('first').style.borderRadius = "5px";
+            document.getElementById('third').style.borderRadius = "30px";
+        }
+
+    </script>
+</head>
+
+<body>
+    <div id="first"></div>
+    <div id="second"></div>
+    <div id="third"></div><br>
+    <button onclick="changeStyle()">Change</button>
+</body>
+
+</html>
