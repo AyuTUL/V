@@ -1,5 +1,4 @@
 <!-- Lab 7: Write a java script program to demonstrate mouse event. You can use button, division, paragraph etc. -->
-<!DOCTYPE html>
 <html>
 
 <head>
@@ -10,6 +9,9 @@
             height: 200px;
             background-color: hotpink;
             border: 2px solid black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
     </style>
 
@@ -17,16 +19,16 @@
 
 <body>
 
-    <div id="box"></div>
+    <div id="box">Interact to view mouse events</div>
     <p id="log">Event: None</p>
 
     <script>
         const box = document.getElementById("box");
         const log = document.getElementById("log");
 
-        const showEvent = (event) => {
-            log.textContent = "Event: " + event.type;
-        };
+        function showEvent(event) {
+            log.textContent = "Event : " + event.type;
+        }
         box.addEventListener("click", showEvent);
         box.addEventListener("dblclick", showEvent);
         box.addEventListener("mousedown", showEvent);
@@ -36,7 +38,6 @@
         box.addEventListener("mouseout", showEvent);
         box.addEventListener("mouseenter", showEvent);
         box.addEventListener("mouseleave", showEvent);
-        box.addEventListener("contextmenu", showEvent);
     </script>
 
 </body>
