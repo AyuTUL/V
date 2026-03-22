@@ -3,6 +3,7 @@
 #include <iomanip>
 #include <iostream>
 #include <string>
+#include <utility>
 #include <vector>
 using namespace std;
 
@@ -44,34 +45,11 @@ void scheduleRow(const vector<int> &slot, const vector<Job> &jobs, int maxD)
     cout << endl;
 }
 
-int main()
+pair<vector<int>, int> scheduleJobs(const vector<Job> &jobs, int maxD)
 {
-    int n;
-    cout << "Enter number of jobs : ";
-    cin >> n;
-    if (n <= 0)
-        return cout << "Number of jobs must be greater than 0." << endl, 0;
-
-    vector<Job> jobs(n);
-    cout << "Enter deadline and profit for each job :" << endl;
-    for (int i = 0; i < n; i++)
-    {
-        jobs[i].id = i + 1;
-        cout << "Job " << jobs[i].id << ": ";
-        cin >> jobs[i].deadline >> jobs[i].profit;
-        if (jobs[i].deadline <= 0)
-            return cout << "Deadline must be greater than 0." << endl, 0;
-    }
-
-    sort(jobs.begin(), jobs.end(), [](const Job &a, const Job &b)
-         { return a.profit > b.profit; });
-
-    int maxD = 0, totalProfit = 0;
-    for (int i = 0; i < n; i++)
-        maxD = max(maxD, jobs[i].deadline);
-
     vector<int> slot(maxD + 1, -1);
-    for (int i = 0; i < n; i++)
+    int totalProfit = 0;
+    for (int i = 0; i < static_cast<int>(jobs.size()); i++)
         for (int t = min(maxD, jobs[i].deadline); t >= 1; t--)
             if (slot[t] == -1)
             {
@@ -79,7 +57,30 @@ int main()
                 totalProfit += jobs[i].profit;
                 break;
             }
+    return {slot, totalProfit};
+}
 
+int main()
+{
+    int n;
+    cout << "Enter number of jobs : ";
+    cin >> n;
+    vector<Job> jobs(n);
+    cout << "Enter deadline and profit for each job :" << endl;
+    for (int i = 0; i < n; i++)
+    {
+        jobs[i].id = i + 1;
+        cout << "Job " << jobs[i].id << ": ";
+        cin >> jobs[i].deadline >> jobs[i].profit;
+    }
+    sort(jobs.begin(), jobs.end(), [](const Job &a, const Job &b)
+         { return a.profit > b.profit; });
+    int maxD = 0;
+    for (int i = 0; i < n; i++)
+        maxD = max(maxD, jobs[i].deadline);
+    pair<vector<int>, int> scheduleResult = scheduleJobs(jobs, maxD);
+    vector<int> slot = scheduleResult.first;
+    int totalProfit = scheduleResult.second;
     cout << endl
          << "---Job Sequencing with Deadlines---" << endl
          << endl
@@ -89,13 +90,11 @@ int main()
     border(false);
     for (int i = 0; i < n; i++)
         printRow(jobs[i]);
-
     cout << endl
          << "Job Schedule :" << endl;
     scheduleBorder(maxD);
     scheduleRow(slot, jobs, maxD);
     scheduleBorder(maxD);
-
     for (int t = 0; t <= maxD; t++)
         cout << left << setw(CW + 1) << t;
     cout << endl

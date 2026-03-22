@@ -13,17 +13,18 @@ vector<vector<int>> states;
 
 void printLevel(int a[], int lvl)
 {
-    if (lvl >= lvls.size())
+    if (lvl >= static_cast<int>(lvls.size()))
         return;
     cout << "Level " << lvl << " :" << endl;
     for (int p = 0; p < 3; p++)
     {
-        for (int i = 0; i < lvls[lvl].size(); i++)
+        for (int i = 0; i < static_cast<int>(lvls[lvl].size()); i++)
         {
+            const Info &segment = lvls[lvl][i];
             cout << (p == 1 ? "|" : "+");
-            for (int j = lvls[lvl][i].l; j <= lvls[lvl][i].h; j++)
+            for (int j = segment.l; j <= segment.h; j++)
                 p == 1 ? cout << setw(3) << a[j] << " |" : cout << "----+";
-            if (i < lvls[lvl].size() - 1)
+            if (i < static_cast<int>(lvls[lvl].size()) - 1)
                 cout << "    ";
         }
         cout << endl;
@@ -33,18 +34,19 @@ void printLevel(int a[], int lvl)
 
 void printMergeLevel(int lvl)
 {
-    if (lvl >= states.size())
+    if (lvl >= static_cast<int>(states.size()))
         return;
     cout << "Level " << states.size() - lvl - 1 << " :" << endl;
+    int levelIndex = static_cast<int>(lvls.size()) - 1 - lvl;
     for (int p = 0; p < 3; p++)
     {
-        for (int i = 0; i < lvls[lvls.size() - 1 - lvl].size(); i++)
+        for (int i = 0; i < static_cast<int>(lvls[levelIndex].size()); i++)
         {
-            auto &x = lvls[lvls.size() - 1 - lvl][i];
+            const Info &segment = lvls[levelIndex][i];
             cout << (p == 1 ? "|" : "+");
-            for (int j = x.l; j <= x.h; j++)
+            for (int j = segment.l; j <= segment.h; j++)
                 p == 1 ? cout << setw(3) << states[lvl][j] << " |" : cout << "----+";
-            if (i < lvls[lvls.size() - 1 - lvl].size() - 1)
+            if (i < static_cast<int>(lvls[levelIndex].size()) - 1)
                 cout << "    ";
         }
         cout << endl;
@@ -54,7 +56,9 @@ void printMergeLevel(int lvl)
 
 void merge(int a[], int l, int m, int h)
 {
-    int n1 = m - l + 1, n2 = h - m, *L = new int[n1], *R = new int[n2];
+    int n1 = m - l + 1;
+    int n2 = h - m;
+    int *L = new int[n1], *R = new int[n2];
     for (int i = 0; i < n1; i++)
         L[i] = a[l + i];
     for (int i = 0; i < n2; i++)
@@ -78,14 +82,14 @@ void build(int a[], int n)
     {
         vector<Info> next;
         bool split = false;
-        for (auto &r : lvls[lvl])
-            if (r.l >= r.h)
-                next.push_back({r.l, r.h});
+        for (const auto &range : lvls[lvl])
+            if (range.l >= range.h)
+                next.push_back({range.l, range.h});
             else
             {
-                int m = (r.l + r.h) / 2;
-                next.push_back({r.l, m});
-                next.push_back({m + 1, r.h});
+                int mid = (range.l + range.h) / 2;
+                next.push_back({range.l, mid});
+                next.push_back({mid + 1, range.h});
                 split = true;
             }
         if (!split)
@@ -94,13 +98,16 @@ void build(int a[], int n)
     }
     states.clear();
     vector<int> st(a, a + n);
-    for (int lvl = lvls.size() - 1; lvl >= 0; lvl--)
+    for (int lvl = static_cast<int>(lvls.size()) - 1; lvl >= 0; lvl--)
     {
         states.push_back(st);
         if (lvl > 0)
-            for (auto &p : lvls[lvl - 1])
-                if (p.l < p.h)
-                    merge(&st[0], p.l, (p.l + p.h) / 2, p.h);
+            for (const auto &parent : lvls[lvl - 1])
+                if (parent.l < parent.h)
+                {
+                    int mid = (parent.l + parent.h) / 2;
+                    merge(&st[0], parent.l, mid, parent.h);
+                }
     }
 }
 
@@ -112,22 +119,22 @@ int main()
     int *a = new int[n], *o = new int[n];
     cout << "Enter " << n << " elements : ";
     for (int i = 0; i < n; i++)
-        cin >> a[i], o[i] = a[i];
+    {
+        cin >> a[i];
+        o[i] = a[i];
+    }
     cout << endl
          << "---Merge Sort using Divide & Conquer---" << endl
          << endl;
-
     build(a, n);
-
-    for (int i = 0; i < lvls.size(); i++)
+    for (int i = 0; i < static_cast<int>(lvls.size()); i++)
         printLevel(o, i);
-
-    for (int i = 1; i < states.size(); i++)
+    for (int i = 1; i < static_cast<int>(states.size()); i++)
         printMergeLevel(i);
-
     cout << "Final Sorted Array :" << endl;
     for (int i = 0; i < n; i++)
         cout << states.back()[i] << " ";
     delete[] a;
     delete[] o;
+    return 0;
 }

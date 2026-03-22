@@ -43,57 +43,59 @@ void printRow(char u, char v, int w)
     cout << "|   " << left << setw(2) << u << "   |   " << setw(2) << v << "   |   " << setw(5) << w << "|" << endl;
 }
 
+struct KruskalResult
+{
+    vector<Edge> mst;
+    int totalCost;
+    int status;
+};
+
+KruskalResult kruskal(vector<Edge> edges, int n)
+{
+    sort(edges.begin(), edges.end(), [](const Edge &a, const Edge &b)
+         { return a.w < b.w; });
+    DSU dsu;
+    vector<Edge> mst;
+    int totalCost = 0;
+    for (const auto &e : edges)
+    {
+        int u = toupper((unsigned char)e.u) - 'A';
+        int v = toupper((unsigned char)e.v) - 'A';
+        if (dsu.unite(u, v))
+        {
+            mst.push_back(e);
+            totalCost += e.w;
+        }
+    }
+    if (static_cast<int>(mst.size()) != n - 1)
+        return {mst, totalCost, -2};
+    return {mst, totalCost, 0};
+}
+
 int main()
 {
     int n, m;
-    cout << "Enter vertices and edges: ";
+    cout << "Enter vertices & edges : ";
     cin >> n >> m;
-    if (n <= 0 || n > 26 || m < 0)
-        return cout << "Invalid input. Use 1-26 vertices and non-negative edges." << endl,
-               0;
-
     vector<Edge> edges(m);
     cout << "Enter edges (u v w) :" << endl;
     for (int i = 0; i < m; i++)
         cin >> edges[i].u >> edges[i].v >> edges[i].w;
-
-    sort(edges.begin(), edges.end(), [](const Edge &a, const Edge &b)
-         { return a.w < b.w; });
-
-    DSU dsu;
-    int totalCost = 0, edgeCount = 0;
-
+    KruskalResult result = kruskal(edges, n);
     cout << endl
          << "---Kruskal's Algorithm for Minimum Spanning Tree---" << endl
          << endl;
     border();
     cout << "| Edge 1 | Edge 2 | Weight |" << endl;
     border();
-
-    for (auto &e : edges)
-    {
-        int u = toupper((unsigned char)e.u) - 'A';
-        int v = toupper((unsigned char)e.v) - 'A';
-        if (u < 0 || u >= 26 || v < 0 || v >= 26)
-        {
-            cout << endl
-                 << "Invalid vertex label found. Use letters A-Z." << endl;
-            return 0;
-        }
-        if (dsu.unite(u, v))
-        {
-            printRow(e.u, e.v, e.w);
-            totalCost += e.w;
-            edgeCount++;
-        }
-    }
-
+    for (const auto &e : result.mst)
+        printRow(e.u, e.v, e.w);
     border();
-    if (edgeCount != n - 1)
+    if (result.status == -2)
         return cout << endl
                     << "Graph is not connected; MST doesn't exist." << endl,
                0;
     cout << endl
-         << "Minimum Cost = " << totalCost;
+         << "Minimum Cost = " << result.totalCost;
     return 0;
 }

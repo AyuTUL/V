@@ -41,15 +41,54 @@ void printRow(const Selection &s)
     border(true);
 }
 
+void printSortedItems(const vector<Item> &items)
+{
+    cout << endl
+         << "---Fractional Knapsack Problem---" << endl
+         << endl
+         << "Items Sorted by Value per Unit Weight :" << endl;
+    border(false);
+    cout << "| Item | Value      | Weight     | V/W      |" << endl;
+    border(false);
+    for (const auto &item : items)
+        printRow(item);
+}
+
+vector<Selection> selectItems(const vector<Item> &items, double capacity, double &totalValue)
+{
+    vector<Selection> selected;
+    double remainingCapacity = capacity;
+    totalValue = 0;
+    for (const auto &item : items)
+    {
+        if (remainingCapacity <= 0)
+            break;
+        double fractionTaken = (item.weight <= remainingCapacity) ? 1.0 : remainingCapacity / item.weight;
+        double valueGained = item.value * fractionTaken;
+        remainingCapacity = (fractionTaken == 1.0) ? remainingCapacity - item.weight : 0;
+        totalValue += valueGained;
+        selected.push_back({item.id, item.value, item.weight, item.ratio, fractionTaken, valueGained, remainingCapacity});
+    }
+    return selected;
+}
+
+void printSelectedItems(const vector<Selection> &selected)
+{
+    cout << endl
+         << "Selected Items :" << endl;
+    border(true);
+    cout << "| Item | Value      | Weight     | V/W      | Fraction Taken | Value Gained | Remaining Cap. |" << endl;
+    border(true);
+    for (const auto &entry : selected)
+        printRow(entry);
+}
+
 int main()
 {
     int n;
     double capacity;
     cout << "Enter number of items : ";
     cin >> n;
-    if (n <= 0)
-        return cout << "Number of items must be greater than 0." << endl, 0;
-
     vector<Item> items(n);
     cout << "Enter value and weight of each item :" << endl;
     for (int i = 0; i < n; i++)
@@ -58,50 +97,16 @@ int main()
         cin >> items[i].value >> items[i].weight;
         if (items[i].weight <= 0)
             return cout << "Weight must be greater than 0 for every item." << endl, 0;
-        items[i].id = i + 1;
-        items[i].ratio = items[i].value / items[i].weight;
+        items[i] = {i + 1, items[i].value, items[i].weight, items[i].value / items[i].weight};
     }
-
     cout << "Enter knapsack capacity : ";
     cin >> capacity;
-    if (capacity < 0)
-        return cout << "Knapsack capacity cannot be negative." << endl, 0;
-
     sort(items.begin(), items.end(), [](const Item &a, const Item &b)
          { return a.ratio > b.ratio; });
-
-    double totalValue = 0, rem = capacity;
-    vector<Selection> selected;
-
-    cout << endl
-         << "---Fractional Knapsack Problem---" << endl
-         << endl
-         << "Items Sorted by Value per Unit Weight :" << endl;
-    border(false);
-    cout << "| Item | Value      | Weight     | V/W      |" << endl;
-    border(false);
-    for (int i = 0; i < n; i++)
-        printRow(items[i]);
-
-    for (int i = 0; i < n; i++)
-    {
-        if (rem <= 0)
-            break;
-        double frac = (items[i].weight <= rem) ? 1.0 : rem / items[i].weight;
-        double gained = items[i].value * frac;
-        rem = (frac == 1.0) ? rem - items[i].weight : 0;
-        totalValue += gained;
-        selected.push_back({items[i].id, items[i].value, items[i].weight, items[i].ratio, frac, gained, rem});
-    }
-
-    cout << endl
-         << "Selected Items :" << endl;
-    border(true);
-    cout << "| Item | Value      | Weight     | V/W      | Fraction Taken | Value Gained | Remaining Cap. |" << endl;
-    border(true);
-    for (int i = 0; i < (int)selected.size(); i++)
-        printRow(selected[i]);
-
+    printSortedItems(items);
+    double totalValue;
+    vector<Selection> selected = selectItems(items, capacity, totalValue);
+    printSelectedItems(selected);
     cout << endl
          << "Maximum Value = " << fixed << setprecision(2) << totalValue;
     return 0;

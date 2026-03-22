@@ -3,7 +3,6 @@
 #include <iomanip>
 #include <iostream>
 #include <vector>
-#include <string>
 using namespace std;
 
 struct Selection
@@ -36,12 +35,10 @@ void printDPTable(const vector<vector<int>> &dp, int n, int capacity)
     const int w = 4;
     cout << "Dynamic Programming Table :" << endl;
     printLine(capacity + 2, w + 1);
-
     cout << "| " << setw(w) << left << "i\\W";
     for (int c = 0; c <= capacity; c++)
         cout << "|  " << setw(w - 1) << left << c;
     cout << "|" << endl;
-
     printLine(capacity + 2, w + 1);
     for (int i = 0; i <= n; i++)
     {
@@ -72,14 +69,12 @@ void printSelectedTable(const vector<int> &selected, const vector<int> &profit, 
     border(true);
     cout << "| Item | Profit     | Weight     | Total Weight | Total Profit | Remaining Cap. |" << endl;
     border(true);
-
     if (selected.empty())
     {
         cout << "| " << setw(76) << left << "None" << "|" << endl;
         border(true);
         return;
     }
-
     int totalWeight = 0, totalProfit = 0;
     for (int i = 0; i < (int)selected.size(); i++)
     {
@@ -91,40 +86,21 @@ void printSelectedTable(const vector<int> &selected, const vector<int> &profit, 
     }
 }
 
-int main()
+vector<vector<int>> buildDPTable(const vector<int> &profit, const vector<int> &weight, int n, int capacity)
 {
-    int n, capacity;
-    cout << "Enter number of items : ";
-    cin >> n;
-    if (n <= 0)
-        return cout << "Number of items must be greater than 0." << endl, 0;
-
-    vector<int> profit(n + 1), weight(n + 1);
-    cout << "Enter profit and weight for each item :" << endl;
-    for (int i = 1; i <= n; i++)
-    {
-        cout << "Item " << i << ": ";
-        cin >> profit[i] >> weight[i];
-        if (weight[i] <= 0)
-            return cout << "Weight must be greater than 0." << endl, 0;
-    }
-
-    cout << "Enter knapsack capacity : ";
-    cin >> capacity;
-    if (capacity < 0)
-        return cout << "Capacity cannot be negative." << endl, 0;
-    cout << endl
-         << "---0-1 Knapsack Problem using Dynamic Programming---" << endl
-         << endl;
     vector<vector<int>> dp(n + 1, vector<int>(capacity + 1, 0));
+
     for (int i = 1; i <= n; i++)
         for (int w = 0; w <= capacity; w++)
             dp[i][w] = (weight[i] <= w) ? max(dp[i - 1][w], profit[i] + dp[i - 1][w - weight[i]]) : dp[i - 1][w];
+    return dp;
+}
 
-    printDPTable(dp, n, capacity);
-
+vector<int> getSelectedItems(const vector<vector<int>> &dp, const vector<int> &weight, int n, int capacity)
+{
     vector<int> selected;
     int w = capacity;
+
     for (int i = n; i >= 1; i--)
         if (dp[i][w] != dp[i - 1][w])
         {
@@ -132,10 +108,31 @@ int main()
             w -= weight[i];
         }
     reverse(selected.begin(), selected.end());
+    return selected;
+}
 
+int main()
+{
+    int n, capacity;
+    cout << "Enter number of items : ";
+    cin >> n;
+    vector<int> profit(n + 1), weight(n + 1);
+    cout << "Enter profit and weight for each item :" << endl;
+    for (int i = 1; i <= n; i++)
+    {
+        cout << "Item " << i << ": ";
+        cin >> profit[i] >> weight[i];
+    }
+    cout << "Enter knapsack capacity : ";
+    cin >> capacity;
+    cout << endl
+         << "---0-1 Knapsack Problem using Dynamic Programming---" << endl
+         << endl;
+    vector<vector<int>> dp = buildDPTable(profit, weight, n, capacity);
+    printDPTable(dp, n, capacity);
+    vector<int> selected = getSelectedItems(dp, weight, n, capacity);
     printSelectedTable(selected, profit, weight, capacity);
     cout << endl
          << "Maximum Profit = " << dp[n][capacity];
-
     return 0;
 }

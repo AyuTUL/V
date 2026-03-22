@@ -24,11 +24,16 @@ void printArray(int a[], int n, int L = -1, int R = -1, bool showPivot = 0, int 
     if (L != -1 || R != -1)
     {
         cout << "      ";
-        int dL = L >= n ? n - 1 : L;
+        int displayL = (L >= n) ? n - 1 : L;
         for (int i = 0; i < n; i++)
-            cout << (i == dL && i == R ? "  L,R " : i == dL ? "   L  "
-                                                : i == R    ? "   R  "
-                                                            : "      ");
+            if (i == displayL && i == R)
+                cout << "  L,R ";
+            else if (i == displayL)
+                cout << "   L  ";
+            else if (i == R)
+                cout << "   R  ";
+            else
+                cout << "      ";
     }
     cout << endl;
     if (showPivot && pivot != -1)
@@ -39,12 +44,13 @@ void printArray(int a[], int n, int L = -1, int R = -1, bool showPivot = 0, int 
 
 int partition(int a[], int low, int high, int n)
 {
-    int pivot = a[low], L = low, R = high;
+    int pivot = a[low];
+    int L = low, R = high;
     cout << "Pivot element = " << pivot << " [" << low << "]" << endl
          << endl
          << "Initial state :" << endl;
     printArray(a, n, L, R, 1, pivot);
-    while (1)
+    while (true)
     {
         cout << "L[" << L << "] < R[" << R << "]" << endl
              << "Increment L till a[L] <= pivot " << endl
@@ -107,4 +113,5 @@ int main()
     cout << "Final Sorted Array :" << endl;
     printArray(a, n);
     delete[] a;
+    return 0;
 }
