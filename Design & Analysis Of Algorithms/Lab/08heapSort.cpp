@@ -91,7 +91,7 @@ void heapSort(int a[], int n)
     for (int i = n - 1; i > 0; i--)
     {
         cout << "--------------------------------" << endl
-             << " Swap root " << a[0] << " with last node " << a[i] << endl;
+             << "Swap root " << a[0] << " with last node " << a[i] << endl;
         swap(a[0], a[i]);
         cout << "Node removed (sorted) : " << a[i] << endl
              << endl

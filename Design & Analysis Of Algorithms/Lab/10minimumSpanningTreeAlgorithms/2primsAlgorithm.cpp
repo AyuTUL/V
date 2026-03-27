@@ -65,7 +65,7 @@ int main()
     vector<int> key = result.second;
     int totalCost = 0;
     cout << endl
-         << "----Prim's Algorithm for Minimum Spanning Tree---" << endl
+         << "---Prim's Algorithm for Minimum Spanning Tree---" << endl
          << endl;
     border();
     cout << "| Edge 1 | Edge 2 | Weight |" << endl;

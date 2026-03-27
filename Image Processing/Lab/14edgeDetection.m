@@ -29,4 +29,4 @@ subplot(1,2,2);
 imshow(edge_img, []);
 title("Edge Detection using Sobel Operator");
 
-imwrite(edge_img, "Output/14edgeDetection/1edgeDetectedImage.jpg");
+imwrite(edge_img, "Output/14edgeDetectedImage.jpg");
