@@ -49,7 +49,7 @@ void printConquerLevel(int lvl)
     cout << "Level " << lvl << " :" << endl;
     for (int i = 0; i < static_cast<int>(conq[lvl].size()); i++)
     {
-        cout << "Min =" << conq[lvl][i].mn << " Max =" << conq[lvl][i].mx;
+        cout << "Min = " << conq[lvl][i].mn << ", Max = " << conq[lvl][i].mx;
         if (i < static_cast<int>(conq[lvl].size()) - 1)
             cout << "     ";
     }
