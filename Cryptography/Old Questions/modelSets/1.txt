@@ -1,13 +1,14 @@
 1.a
 -feistal cipher is general stryuctuer used in block cipher in which data is divided into 2
--equal halves which are prceoss through mulitple rounds of substituion and permutation
+-equal halves which are prceoss through mulitple rounds of substituion and permutation to
+achieve confusion and diffusion respectively
 -data block is split into left half L0 and right half R0
 -in each round i, right half is pocessed by fiestal function F using round sub key Ki and 
 Xord with left halg
 	L=Ri-1
 	R-i=Li-1 XOR F(Ri-1,Ki)
 -decryption uses same structure as encrption, but with round keys in reverser order
--F doesnt need to be invertible since XOR is already invertible
+-F doesnt need to be invertible since XOR is already reversible
 
 1. b
 DES data encryption standard

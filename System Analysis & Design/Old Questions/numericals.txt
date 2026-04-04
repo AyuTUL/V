@@ -1,0 +1,3 @@
+2081:
+2. Draw a reduced decision table for the following scenario:
+An applicant has to fill up the form to participate in a music competition. The applicant’s age should be greater than 18 years and nationality has to be Nepalese for being selected for the competition. The applicant will be provided a registration number after paying Rs. 5000 as an entry fee. The applicant has to play an instrument for three minutes else will be disqualified. The experts will provide points on the basis of some criteria. The applicant having the highest point will be declared winner and will get a cash prize of Rs. 1,00,000 and all the qualified applicants will get a gift hamper.

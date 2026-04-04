@@ -45,6 +45,35 @@ on given condition
 -each column corresponds to a rule in logic that describes uniqieu combo of input that result in
 action
 
+3.
+black box testing:
+-functionality of app under test is tested without looking at internal code structure,
+implementation details and knowledge of internal paths of sofwater
+-entiryely based on sofwatre requirements and specifications
+-high level testing focusing on behaviour of sofwatre
+-testing from external/ end user perspective
+-can be applied to virtually every level of sofwatre esting: system and aaceptance
+
+whit ebox testing:
+-examines program structure and dervies test data from program code
+-uses programs source code to design test and test cases for QA
+-code structure is known and understood by testeter
+-called glass box testing since test cases are visible teo general uses and they can also
+male test cases
+
+black						white
+-test software without knowing internal		internal structure is know to tester
+structure/code
+-carried out by testers,end users		caried out by sofwarre developers,tester,QA
+-implementation knowledge not required		required
+-programming knowledge not required		required
+-applicable on higher levels of testing like	lower levels like unit testing ,
+system testing, acceptance testing		integration testing
+-focus in functionality of system		focus on program code
+-cheks what functionality system performs	chickes how system performs
+-started based on requirement specficiton doc	based on detail design documents
+-funictional,behaviour,close box testing	strucutreal,logic,path,loop,code coverage
+						open box testing
 4.
 project management is controlled process of initiating, planning, executing, monitoring and
 controlling and closing down a project
