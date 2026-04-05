@@ -74,6 +74,7 @@ system testing, acceptance testing		integration testing
 -started based on requirement specficiton doc	based on detail design documents
 -funictional,behaviour,close box testing	strucutreal,logic,path,loop,code coverage
 						open box testing
+
 4.
 project management is controlled process of initiating, planning, executing, monitoring and
 controlling and closing down a project
@@ -82,7 +83,7 @@ controlling and closing down a project
 	project manager is selected who will meet with project sponsor and key stakeholders to	
 	determine objectives,historical info, who is needed in project
 	
-	output: project charter, preliminary scope statement, identification of all stakeholders,
+	output: project charter, preliminary scope statement, identificati n of all stakeholders,
 	divide proejct into phases
 
 project planning phase:
@@ -103,16 +104,16 @@ project execution phase:
 monitoring and control phase:
 	monitoring is process of routinely gathering info on all aspects of project
 	checking actual and likely progress against planned progress
-	giving feedback about progess of project to donors,implements,beneficiaries
+	giving feedback about progess of project to donors,implementers,beneficiaries
 	
-	controling is data gathering, managemnt and analytical process to predit and understand
+	controling is data gathering, managemnt and analytical process to predit,understand and
 	influcen the time and cost outcomes of poject
 	making changes to plan if neccesary
 	altering schedule
 	escalating proobliesm if necessary
 	taking action to avoid future problems
 
-proejct control phase:
+proejct clossure phase:
 	process that performs controleld shiut down at end of project
 	documentaion to be archived, capturing lessons to be poassed for future projects,
 	ensuring contracts are properly shut down and updating organizstional process assests
@@ -162,7 +163,7 @@ method:
 -object based interation:
 	symbols are used to repesnt functions
 	
-natural language interaction:
+-natural language interaction:
 	ipnuts and ouputs are in conventional spoken language like english
 
 guidelines:
@@ -173,16 +174,16 @@ guidelines:
 -providing help
 
 8.
-normalization is database deisng process in which complex database tables are borken down
-into simple spearte tables
+normalization is database deisng process in which complex database tables are broken down
+into simple separatetables
 
 adv:
--intifies dependency between data fields
--minimzies data redundancy
--faster sorting and indexing
--improves perofrmance of database system
--simplifies structure of tables
--avoid loss of information
+-identifies dependency between data fields
+-minimzies data redundancy by storing data in only one place to save space
+-faster sorting and indexing which improves perofrmance of database system
+-simplifies maintenance due to smaller tables
+-smaller tables without loss of information
+-maintains data integrity by reducing data inconsistenices during updates
 
 1NF:
 -domain of each attribute contains only atomic avlues
@@ -194,8 +195,8 @@ roll name year month day marks
 2NF:
 -no partial dependecy, all non key attributes must depends on entire primary key, not just partly
 
-id subject age
-id age		id subject
+[id subject] age
+[id] age	[id] subject
 
 3NF:
 -no transitive dependency, all non ke attrbutes must not depend on other non key attributes
@@ -207,7 +208,7 @@ id name accountno bankno		bankno bank
 new tech can either be sustaining or disruptive
 sutaining tech depens on incrementala improvements in already existing technology
 disrupting tech is compelety new that affects normal operation of market by displacing well
-establisdehed product/tech and creating new one
+establisdehed product/tech and creating new industries like AI IoT VR
 
 10.
 process modeling is graphical repressentation of process that captures, maniputales,stores
@@ -219,3 +220,6 @@ needs-problems to be addressed
 ionputs-resources to be invested
 activites-things done with resoruces
 outcomes-measure of success
+
+
+data modeling focuses on definiont and structire of data and its relationships using ERD

@@ -19,7 +19,7 @@ requirement)
 
 design:
 -edsign of application,network,database,UI,system interface
--transform srs into logical structure containg details implemented into progamming lang
+-transform srs into logical structure containg details to be implemented into progamming lang
 -create backup,traning,amintenace and review propsed design
 
 implmentation:
@@ -72,7 +72,7 @@ satisfaction by rapid delivery of working sofwatre
 -each iteration lasts from 2-3 months invlovling cross functoinal teams working simultaiton
 on various areas
 
-FIG PADCT
+FIG PADBT
 
 adv:
 -promotes teamwork and cross training
@@ -87,3 +87,104 @@ disadv:
 -nt suitable for compelx dependices
 -wont work without agile leader and plan
 -risk of sustainablity,maintenance,extensibiilty
+
+3.
+logical database design
+-collecting info about business needs not focusing on database design
+-represnseted via abstract diagframs which show domain of information
+-after info is compiled,reports and diagrams are made:
+	ERD: relationship between differenet categories of data for development of database
+	business process diagram: activities of individulas within company; how data moves 
+	within organiation based on which applcation interface can be designed
+
+steps:
+-develop logical data model for each UI using normalization techniques
+-combine normalized data requiemnts from all UI into one logical database model (view integatino
+-translate conceptual ERD for app into normalized data requiements
+-compare consoliated logical database design wuth translated ER model and produce one final
+logicqal datbase model for application
+
+physical database design:
+-designing actual database based on requements gathred during logical modeling
+-info gathered is converted into relational/business models
+-objects are defined at schema level
+-transform entities into tables,instance into rows and attribute into columns
+
+4.
+project manager is indiviudal with diverse set of skills for managing project proceses 
+reponsibilites are initiating, planning, eexcuting, closing down project
+manage people,process and communcation
+skills: leeadership,mgmt,customer relationships,technical prboelm solving,conflit,team,risk mgmt
+
+5.
+corporate strategic planning:
+-ongoing process that defines mission,objectives and strategies of organization
+-prerequisiste for making effective descisions to gain clear idea of where org is,where it wants
+to be in futures and how to make transiton to desired futures state
+
+steps: diagram
+Current Enterprise -> Future Enterprise -> Strategic Plan 
+
+-1st step focus on gaining undestading of curretn enterprise
+-2nd step focus on where it wants enterprise to be in futures
+-3rd step focus on strategic plan taht an be developed to guide transition
+
+6.
+feasibilty study:
+-preliminary investigation helping management to take decision about whether study of system
+is feasible for developement or not
+-identifies possibility of imoproving existing system, developing new system and produce 
+refined estimates for further development system
+-used to obtain scope of problem and decide if appropritate solution exists or not
+-output is formal system proposal acting as decision docuemnt which includes complete nature
+and scope of proposed system
+
+economic:
+-analyze cost and benefit of project
+-estimate economic requiremnts of candidate ystem before invsetments are commited to proposal
+
+NPV: usss discount rate from company's cost of capital to establish present value of project
+ROI: ratio of net cash receipts to cash outlays, for comparing projects
+BEA: amount of time required for cumulative cash flow from a porject to equal its initial 
+and ongoing investmenet
+
+techincal:
+-analyze and determine whether soltun can be supported by existing tech like hard,soft or not
+-whether current tech can be upgradded or added to fulfill new requiements
+-snsures candidate system provides appropriate responses to what extent it can supoprt
+technical enhancement
+
+legal:
+-check if system satisfies legfal/ethical rquiemetns or not
+-analzing barriers of laegal implementation of project, data protection acts, sociao media laws,
+proejct certifiacte, license,copright
+
+operational:
+-system is operatinf effectively once developed and implenet or nto
+-about problems taht may occure during opration of system after develeopment
+-smooth operation of system includinng: accuracy,response time,secutiry and efficiney of system
+
+behavorial:
+-behaviour of users and scoiety towards new system
+-is ystem requied special effor to eucate,retiran,tranfer emplyes's job sttus on new ways of
+conductiong business
+
+schedule:
+-ensure project hsosuld be completed withing given time constraint
+-verifes and validaerts wheter deadlines are reasonable or not
+
+7.
+methods for determinig system requirements:
+traditional:
+	interviewing:
+		-fact fiding techniques where SA coollect info from indiviual through face to
+		face interaction
+		-2 roles: interviewer and interviewee
+		-types:
+			unstructured:genral goal in mid and few if any speicif questions
+			strucuted: set of specific questions
+		-tpyes of quiestions:
+			open ended:probe fopr info to whiuch cant anticipate all possible respon
+			close ended:rangfe of possible answers like T/F,mulitplce chhoice,rating
+	-observing workers:
+	-studying business documents:
