@@ -1,4 +1,4 @@
-1.a
+1.a FIG
 -feistal cipher is general stryuctuer used in block cipher in which data is divided into 2
 -equal halves which are prceoss through mulitple rounds of substituion and permutation to
 achieve confusion and diffusion respectively
@@ -10,25 +10,88 @@ Xord with left halg
 -decryption uses same structure as encrption, but with round keys in reverser order
 -F doesnt need to be invertible since XOR is already reversible
 
-1. b
+1. b  FIG
 DES data encryption standard
--block cipher 64 bits with effective key 56 bits
+-block cipher with block size 64 bits with effective key 56 bits (64,8 bits parity)
+-fiestal cipher with 16 rounds
 
 steps:
 -apply initla permuation IP to plaintext block M:
 	fixewd bit reordring of 64 bit input
 
--split into L0 and R0 32 bits each
-
 -apply 16 Feistal rounds:
+	split into L0 and R0 32 bits each
 	each round uses 48 bit round key
 	round function F includes bit expansion,XOR with key,substotuio via 8 Sbox and final perm
+		L=Ri-1
+		R-i=Li-1 XOR F(Ri-1,Ki)
 
 -swap halves after round 16
--apply final permuation FP=IP^-1
+-apply final permuation FP=IP^-1 to produce 64 bit ciphertext
 
 key generation:
 -64 bit key passes through permuted choice 1 which drops every 8th parity bit to give 56 bit
 -56 bits aer split into 2 28 bit halves
--in each round, each half is circulary left shielf 1 or 2 positions  and permuted by PC2 to
-give round key Ki 48 bit
+-for each of 16 round, halves circulary left shielf 1 or 2 positions  and permuted by PC2 to
+give 48 bit round key Ki 
+
+1. c
+meeet in the middle attack:
+	targets double DES by exploiting the fact that Ek1(P)=Dk2(C)
+	attacker can encrypt plaintext with all possible K1 and decrypt ciphertext with all k2
+	reduces effective security from 2^112 to approx 2^57 making it as vulnerable as DES
+
+triple DES:
+	provides higher security and maintains backwards compatibility
+	3 apps of DES (encrypt-decrypt-encrypt) to increase effective key length to 112/168 bits
+
+SHA-1: secure hash algorithm
+-developed by NIST as revised version of SHA-0
+-cryptographic hash functrion that takes varialbe lerngth input message and producse fixed
+160 bit message digest
+-processe data blocks of 512 bits
+
+-append padding bits:
+	message is padded such taht bit liength is congruent to 448 modulo 512
+	l+b≡448 MOD 512
+	ensures padded message is eaxctly 64 bits short of being integer multple of 512
+	padding alwasys starts with single "1" bit followed by necessary 0 bits
+
+-append bit length:
+	64 bit block representing length of original message is appened eto padded message
+	block is treated as unsinged 64 bit interger MSB first
+	total message length is exact multiple of 512 bits
+
+-initialize round constants:
+	4 different constant words K(t), one forf each of its four recrds(each orund 20 steps)
+	Round 1: K(t) = 0x8letters , 0<=t<=19
+
+-initialize MD buffer:
+	160 bit buffer is used to hold intermediate values nad final reults
+	represneted by 5 32-bit regeisters
+	h0=67452301
+	h1=EFCDAB89
+	h2=98BADCFE
+	h3=10325476
+	h4=C3D2E1F0
+
+-process the blocks
+	processes message block by block
+	for each 512 bit block,
+	
+	-word gegenration(expansion):
+		512 bit block is divided into 16 words (W0-W15) of 32 bits each
+		expanded into 80 words (W0-W15) using:
+			Wt=(Wt−3​⊕Wt−8​⊕Wt−14​⊕Wt−16​) left-rotated by 1
+
+	-round operations:
+		performs 80 steps grouped into 4 rounds
+		in each step, regiostesr ABCDE initialized from previous block's hash value
+		are upadted
+	
+	-logical fuinctions:
+		eahc round uses a different primitive logical functiuon f(t;B,C,D)
+		Round 1: (B AND C) OR ((NOT B) AND D)
+		Round 2: B⊕C⊕D
+		Round 3: (B AND C) OR (B AND D) OR (C AND D)
+		Round 4: B⊕C⊕D
