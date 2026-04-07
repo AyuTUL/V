@@ -1,9 +1,20 @@
+1.
+dynamic programming				memoization
+-bottom up approach				top down
+-solves all possible sub problems first and	starts wit poriginal problem and recurse down to
+combines them for bigger problems		sub problems
+-implemented using iteration to fill up		uses recursion by keeoing trakc of sub problems
+n dimnesional table				in cache/look up table
+-better poerformance due to no ovehead for	more overhead due to recursive function calls
+recursion					and stack management
+-all sub problems have to be solved at least	solves only those sub problems defnintely
+once						needed for final solution
 2.
 -in quick sort, array is partionened about an elemtn called pivot
 -partiointing step rearranges th earray so that pivot elemnt is placed in its coorect position
 -all elemt sto left of pivot are smaller and to the right are greater
 -time complexity is O(n^2) which occurs when partioining process is highly unbalanced ie
-input is nearly/already sorted
+input is nearly/already sorted or reverse sorted
 -randomized quick sort handles this by choosing a pivot randomly from array isntead of 1sdt/last
 element which makes worst case scenario highly unlikely ensuring average case time complexity
 of O(nlogn)
