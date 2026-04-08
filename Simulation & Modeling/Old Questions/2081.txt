@@ -1,9 +1,13 @@
 1.
-ti is necessary to analyze smiulation output because the results of simulation studfy are only
-reliable approximateions subject to statistical erros,especially when the model deals with
-unceratintines. outopu variables in stochastic simulations are estimates that ocntain random error, 
-therefore, proper statistical analysis is requied to draw valid inferences concerning the
-operating characterisctics of real ysstem.
+simluation output is inherentlky rtandom because most simuations include stochastic components
+like random arrival time or service variations
+since inputs are random, outputs are also random variables
+
+-draw correct inference convercning the operating characteristics of real system
+-provide statistical basis fore testing different ideas and learning how a system behves
+under new conditions
+-overcome the fact t hat simulkation results ar eoften auto correlated(not indepenedent),
+making simple averages potentially misleading
 
 monte carlo simulation:
 -computational technique that utlizies random sampling to model and analyze complex systems/process
