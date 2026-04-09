@@ -1,0 +1,146 @@
+1. eXtensible Markup Language
+-self descrbiing, platform independent mrk up language that defines a set of rules for encoding
+documentins in a format that is both human and mahine readable for sotring and transporting data
+in a structured manner
+
+-starting tag: <?xml version="1.0" encoding="UTF-8"?>
+-must have root element
+-all tags must be paired
+-al tags must be propoerly nested
+-tag nanmes are case sensistive
+-tag names cant contain spaces
+-attribute values must appaer within quotes
+-white space is presevred
+-tag name restrictions: cant start with letters "xml",numer or punctuiaiont except _
+-avoid html tags
+
+XML Schema Definition:
+-structual definitino thast specifies rules, csontraints and data types for XML document
+-defines structre and content of XML docuemtn allowin validaion,data integrity,interoperability
+
+xml: library.xml
+<library xsi:schemalocation="library.xsd">
+<?xml version="1.0" encoding="UTF-8">
+<library>
+	<book id="123">
+		<title>Web</title>
+		<author>Yachu</author>
+	</book>
+</library>
+
+xsd: library.xsd
+<xs:schema xmlns:xs="https://"/>
+	<xs:element name="library">
+		<xs:complexType>
+			<xs:element name="book">
+				<xs:complexType>
+					<xs:attribute name="id" type="xs:int" use="required"/>
+					<xs:sequence>
+						<xs:element name="title" type="xs:string"/>
+						<xs:element name="title" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>
+
+2.
+<html>
+<head>
+    <title>Form Validation</title>
+    <script>
+        function validateForm()
+        {
+            var name = document.userForm.nameField.value;
+            var country = document.userForm.countryField.value;
+            var gender = document.userForm.genderField;
+            var password = document.userForm.passwordField.value;
+            var checkbox = document.userForm.checkboxField;
+
+            // Name regex (only letters, min 3 chars)
+            const namePattern = /^[A-Za-z]{3,}$/;
+
+            // Password regex (min 6 chars, at least 1 number, 1 letter)
+            const passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/;
+
+            if(name == "")
+            {
+                alert("Name can't be empty");
+                return false;
+            }
+            else if(!namePattern.test(name))
+            {
+                alert("Name must contain only letters and at least 3 characters");
+                return false;
+            }
+
+            if(country == "")
+            {
+                alert("Country can't be empty");
+                return false;
+            }
+
+            var genderSelected = false;
+            for(var i = 0; i < gender.length; i++)
+            {
+                if(gender[i].checked)
+                {
+                    genderSelected = true;
+                    break;
+                }
+            }
+            if(!genderSelected)
+            {
+                alert("Please select a gender");
+                return false;
+            }
+
+            if(password == "")
+            {
+                alert("Password can't be empty");
+                return false;
+            }
+            else if(!passwordPattern.test(password))
+            {
+                alert("Password must be at least 6 characters and include letters and numbers");
+                return false;
+            }
+
+            if(!checkbox.checked)
+            {
+                alert("You must agree to terms and conditions");
+                return false;
+            }
+
+            alert("Validation successful");
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <form name="userForm" onsubmit="return validateForm()" method="post">
+        
+        <label>Name:</label>
+        <input type="text" name="nameField"><br>
+
+        <label>Country:</label>
+        <select name="countryField">
+            <option value="">--Select--</option>
+            <option value="Nepal">Nepal</option>
+            <option value="Korea">Korea</option>
+        </select><br>
+
+        <label>Gender:</label>
+        <input type="radio" name="genderField" value="Male"> Male
+        <input type="radio" name="genderField" value="Female"> Female<br>
+
+        <label>Password:</label>
+        <input type="password" name="passwordField"><br>
+
+        <input type="checkbox" name="checkboxField"> I agree to terms<br>
+
+        <input type="submit" value="Validate">
+    </form>
+</body>
+</html>

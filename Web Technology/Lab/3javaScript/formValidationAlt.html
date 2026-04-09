@@ -1,0 +1,98 @@
+<html>
+<head>
+    <title>Form Validation</title>
+    <script>
+        function validateForm()
+        {
+            var name = document.userForm.nameField.value;
+            var country = document.userForm.countryField.value;
+            var gender = document.userForm.genderField;
+            var password = document.userForm.passwordField.value;
+            var checkbox = document.userForm.checkboxField;
+
+            // Name regex (only letters, min 3 chars)
+            const namePattern = /^[A-Za-z]{3,}$/;
+
+            // Password regex (min 6 chars, at least 1 number, 1 letter)
+            const passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/;
+
+            if(name == "")
+            {
+                alert("Name can't be empty");
+                return false;
+            }
+            else if(!namePattern.test(name))
+            {
+                alert("Name must contain only letters and at least 3 characters");
+                return false;
+            }
+
+            if(country == "")
+            {
+                alert("Country can't be empty");
+                return false;
+            }
+
+            var genderSelected = false;
+            for(var i = 0; i < gender.length; i++)
+            {
+                if(gender[i].checked)
+                {
+                    genderSelected = true;
+                    break;
+                }
+            }
+            if(!genderSelected)
+            {
+                alert("Please select a gender");
+                return false;
+            }
+
+            if(password == "")
+            {
+                alert("Password can't be empty");
+                return false;
+            }
+            else if(!passwordPattern.test(password))
+            {
+                alert("Password must be at least 6 characters and include letters and numbers");
+                return false;
+            }
+
+            if(!checkbox.checked)
+            {
+                alert("You must agree to terms and conditions");
+                return false;
+            }
+
+            alert("Validation successful");
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <form name="userForm" onsubmit="return validateForm()" method="post">
+        
+        <label>Name:</label>
+        <input type="text" name="nameField"><br>
+
+        <label>Country:</label>
+        <select name="countryField">
+            <option value="">--Select--</option>
+            <option value="Nepal">Nepal</option>
+            <option value="Korea">Korea</option>
+        </select><br>
+
+        <label>Gender:</label>
+        <input type="radio" name="genderField" value="Male"> Male
+        <input type="radio" name="genderField" value="Female"> Female<br>
+
+        <label>Password:</label>
+        <input type="password" name="passwordField"><br>
+
+        <input type="checkbox" name="checkboxField"> I agree to terms<br>
+
+        <input type="submit" value="Validate">
+    </form>
+</body>
+</html>

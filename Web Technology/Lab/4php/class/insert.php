@@ -11,6 +11,6 @@ $sql = "INSERT INTO employee(eid,name)VALUES(1,'Nirjala'),(2,'Nirjal');";
 if (($conn->query($sql)) === TRUE)
     echo "record inserted";
 else
-    echo "insertion failed";
+    echo "insertion failed:".$conn->error;   
 $conn->close();
 ?>
