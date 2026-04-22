@@ -1,0 +1,143 @@
+image segmentation:
+-process of dividing image into difeernt meaningful regions
+-pixels with simlar characteristics are grouped together
+
+example:
+-detecting tumors in medical iamges in medica imaging
+-identifying roads in satellite iamges in statellite image analysis
+-separating person from basckgrouind in face recognition
+
+discontiunity based:
+-divide image based on sudden chang in intensity/color
+-detect edges were poixel values change sharply
+
+-edge detection:
+	detects boundaries between objects
+	operators: sobeel,prewitt,cvanny edge,roberts
+
+	-gradient filters:
+		emsures rate of change of intensity in image
+		if intensity changes rapdily between neighbouring pixels, presence of edge
+		operators: sobel,prewitt,roberts
+		sobel Gy:
+			-1 0 -1
+			-2 0  2
+			-1 0  1
+		example:
+		-object boundary deetction
+		-road lane detection
+		-face detection system
+		-medical image analyis
+
+	-laplacian filters:
+		copmutes 2nd derivative of image intensity
+		uses single mask to detect edges in all directions
+		 0 -1  0	-1 -1 -1
+		-1  4  0	-1  8 -1
+		 0 -1  0	-1 -1 -1
+		example:
+		-image sharpening
+		-edge detection in meidcal iamges
+		-satelliltle image analysis
+		-feature extraction i ncompture vision
+
+-line detection:
+	detected staight horizontal,vertical,diagonal lines in image
+	mask is applied over image using convolution
+	if resulting value is greater than specified threshold, pixel is detected point
+	for horizontal line, -1 -1 -1
+			      2  2  2
+			     -1 -1 -1
+
+	for diagonal line, -1 -1  2
+			   -1  2 -1
+			    2 -1 -1
+	
+-point detection:
+	detects isolted poiunts with intensity significantly different from surreoiunding pixels
+	mask is applied over image using convolution
+	if resulting value is greater than specified threshold, pixel is detected point
+	-1 -1 -1
+	-1  8 -1
+	-1 -1 -1
+
+example:
+-detecting stars in astonomical iamges
+-idetifying defects in industrial inspection
+-idetifying noise in digital images
+
+mexican hat filter: LoG
+-used for edge detection and feature detection
+-gaussian smoothing to remove noise, laplacian operator to detect edges
+-3d shape of filter looks like mexican sombrero hat
+
+setps:
+-smooth image using gaussian fileter
+-apply laplacian operator to detect rapid intensity chanfes
+-filter highlihst edges and fine details in image
+	LoG(x,y)=delta^2(G(x,y))
+	formula
+	-1 -1 -1
+	-1  8 -1
+	-1 -1 -1
+
+example:
+-detect obejct boundary in mage
+-detect bolbs like cells ,star
+-idenitfy important patterns in images in feature extraction
+-object edetectini and segmetnmation in comuter vision
+-detect tumors in medical iamgfe anayiss
+
+hough transform:
+-detect geomtric shoaes in image
+-converts points from image space into parameter spce and find intersections that repersnt
+particaulr shape
+
+algorithm:
+-load iamge
+-determine image edegs using edge detector
+-quantize paramter space P
+-repeat process for all pixzel of image:
+	if pixzel is edge pixel,
+		c=(-x)m+y
+		P(c.m)=P(c.m)+1
+-show hough space
+-find local maxima in parameter spqace
+-draw line using local maxima
+
+simlarity based techniques:
+-group pixerls into geions basedo nsimplar properties like insity, oclro or tecture
+
+thresholding:
+-separates image into foreground and background by o mpcaring pixel intesity with T
+	g(x,y)={1 if f(x,y)>=T
+		0 if f(x,y)<T
+
+	global:
+	-suse single T for entire image
+	-uised for iamge with uniform lighting,simpel,fast
+
+	local/dynamic:
+	-computes threshold inde[pepndetly for each ixl based on intensity of neighbour
+	-used for image with non uniform illumination
+	
+	adaptive:
+	-threshold changes per pixel consierding both local eman and standarrd deviation
+		T(x,y)=mu(x,y)+k.sigma(x,y)
+	-better than local for uneven illumination
+
+region grrowing algorithm:
+-statr swith seed point and grows region by appending nieighbouring pixel that are similar
+based of predefined criteria
+
+algorithm:
+-select seed point ofr each region
+-check neighbourign pixels of current region
+-add neihbours to region if they satify simlarilty criteia
+-repeat until no more pzels can be added
+
+problems:
+-accuracy relies on mauanl seed selcetion
+-noipsy pixels can leak into regions causing premature termiation
+-fixed threshiold may overmerge or undersegment
+-slow for large images due to nighbour checks for every poxixerl

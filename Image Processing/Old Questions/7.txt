@@ -1,0 +1,47 @@
+1.
+perceotron is basic ANN containign a layer of neurons(nodes) connected to input layer
+each neutron performs weighted sum of its inputs, applies ativaion function and produces output
+
+neural networks are applied in DIP for image classificaiton, edge detection and noise reduction
+
+steps:
+-image representation:
+	digital iamge is traeated as matrix of pixel values which is flattend into vector
+for processing by perceptron
+
+-input layer:
+	perceptron's input layer contains one neuron for every pixel in image
+
+-processing(weights and bias):
+	each input is multiplied byu a weight,result is summed and bais term is added to total
+		z=sum(wi.xi)+b
+	weights are initally small random values that the netweork adjust during training
+
+-activation functoin:
+	weighted sum z is passed thourgh activation function like step function,sigmomid
+ReLu(Rectified Linear UNit) to produces ouput
+	step fiunction can be used to produce binary output
+		output={1 if z>=0
+			0 if z<0
+-output:
+	output can represnt a clas label
+
+example: detect patterns like horizontal edges in 3x3 eimage
+
+3. FIG ssfcp
+-sensor:
+	converts physical input into digital signal data
+
+-segnmentation:
+	segregates sensed object from background nopise, ensuirng syustem focues only on relevant
+part of image
+
+-feature extractor:
+	measures properties of object and selects most important features needed for classifiction
+
+-classifier:
+	uses extracted features to assign object to a specific category/class
+
+-post processor:
+	final stage takes other factors into account such as cost of potential error to
+decide most appropriate final action
