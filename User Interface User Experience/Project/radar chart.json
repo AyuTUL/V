@@ -1,0 +1,55 @@
+{
+  type: 'radar',
+  data: {
+    labels: [
+      ['HP', '75'],
+      ['Attack', '125'],
+      ['Defense', '140'],
+      ['Speed', '60'],
+      ['Sp. Def', '90'],
+      ['Sp. Atk', '40'],
+    ],
+    datasets: [
+      {
+        data: [75, 125, 140, 60, 90, 40],
+        backgroundColor: 'rgba(204,95,207,0.4)',
+        borderColor: '#CC5FCF',
+        borderWidth: 2,
+        pointBackgroundColor: '#CC5FCF',
+      },
+    ],
+  },
+
+  options: {
+    plugins: {
+      title: {
+        display: true,
+        text: 'Base Stats',
+        font: {
+          size: 30,
+        },
+        color: '#000',
+      },
+      legend: {
+        display: false,
+      },
+    },
+
+    scales: {
+      r: {
+        min: 0,
+        max: 255,
+        ticks: {
+          display: false,
+          stepSize: 51,
+        },
+
+        pointLabels: {
+          font: {
+            size: 28,
+          },
+        },
+      },
+    },
+  },
+}
