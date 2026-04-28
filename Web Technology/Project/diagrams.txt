@@ -1,0 +1,76 @@
+USE CASE DIAGRAM:
+flowchart LR
+
+    User([User])
+    Admin([Admin])
+
+    subgraph Penalty_Game_System["Penalty Shootout Game"]
+
+        UC_REG((Register))
+        UC_LOGIN((Login))
+        UC2((Play Game))
+        UC3((Answer Quiz Lifeline))
+        UC5((View Leaderboard))
+        UC6((Manage Questions))
+        UC8((Manage Scores))
+        UC9((Configure Difficulty))
+    end
+
+    %% User interactions
+    User --> UC_REG
+    User --> UC_LOGIN
+    User --> UC2
+    User --> UC5
+
+    %% Admin interactions
+    Admin --> UC_LOGIN
+    Admin --> UC5
+    Admin --> UC6
+    Admin --> UC8
+    Admin --> UC9
+
+    %% Extend relationship (use dashed link)
+    UC2 -.->|<<extend>>| UC3
+
+ER DIAGRAM:
+erDiagram
+
+    USER {
+        int user_id PK
+        varchar(50) username
+        varchar(255) password_hash
+        varchar(5) role
+        datetime created_at
+    }
+
+    GAME_SESSION {
+        int session_id PK
+        int user_id FK
+        int goals_scored
+        int goals_saved
+        int goals_conceded
+        int lifelines_used
+        datetime played_at
+    }
+
+    QUIZ_QUESTION {
+        int question_id PK
+        int created_by FK
+        text question
+        varchar(255) option_a
+        varchar(255) option_b
+        varchar(255) option_c
+        varchar(255) option_d
+        varchar(255) correct_answer
+        datetime created_at
+    }
+
+    SETTINGS {
+        int setting_id PK
+        varchar(255) setting_key
+        varchar(255) setting_value
+        datetime updated_at
+    }
+
+    USER ||--o{ GAME_SESSION : plays
+    USER ||--o{ QUIZ_QUESTION : creates
