@@ -1,7 +1,6 @@
 <?php
 require_once '../config.php';
 requireAdmin();
-$username = $_SESSION['username'];
 $activePage = 'dashboard';
 ?>
 <!DOCTYPE html>
@@ -9,96 +8,105 @@ $activePage = 'dashboard';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard — Penalty Shootout</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+    <title>Dashboard | Admin</title>
     <link rel="stylesheet" href="../css/admin.css">
 </head>
 <body>
-
 <?php include 'sidebar.php'; ?>
-
-<div class="main">
-    <div class="page-header">
-        <h1>DASHBOARD</h1>
-        <p>Overview of the Penalty Shootout system</p>
+<main class="main">
+    <div class="page-hd">
+        <h1>Dashboard</h1>
+        <p>Players, sessions, and the current quiz setup.</p>
     </div>
 
-    <!-- Stats -->
-    <div class="stats-grid" id="stats-grid">
-        <div class="stat-card"><div class="label">TOTAL USERS</div><div class="value green" id="stat-users">—</div></div>
-        <div class="stat-card"><div class="label">GAMES PLAYED</div><div class="value" id="stat-games">—</div></div>
-        <div class="stat-card"><div class="label">QUIZ QUESTIONS</div><div class="value" id="stat-questions">—</div></div>
-        <div class="stat-card"><div class="label">HIGHEST SCORE</div><div class="value green" id="stat-high">—</div></div>
-        <div class="stat-card"><div class="label">GOALIE DIFFICULTY</div><div class="value" id="stat-diff" style="font-size:20px;text-transform:uppercase">—</div></div>
-    </div>
-
-    <!-- Recent scores preview -->
-    <div class="card">
-        <div class="card-header">
-            <span class="card-title">📊 RECENT GAMES</span>
-            <a href="scores.php" style="font-size:13px;color:var(--muted);text-decoration:none">View all →</a>
+    <section class="dash-summary" aria-label="System summary">
+        <div class="dash-summary-main">
+            <div class="dash-summary-label">Current totals</div>
+            <div class="dash-summary-metrics">
+                <div class="dash-metric">
+                    <span class="dash-metric-value" id="s-users">-</span>
+                    <span class="dash-metric-label">Players</span>
+                </div>
+                <div class="dash-metric">
+                    <span class="dash-metric-value" id="s-games">-</span>
+                    <span class="dash-metric-label">Sessions</span>
+                </div>
+            </div>
         </div>
-        <div style="overflow-x:auto">
-            <table class="admin-table">
-                <thead>
-                    <tr>
-                        <th>PLAYER</th>
-                        <th>GOALS</th>
-                        <th>SAVES</th>
-                        <th>LIFELINES</th>
-                        <th>SCORE</th>
-                        <th>DATE</th>
-                    </tr>
-                </thead>
-                <tbody id="recent-scores">
-                    <tr><td colspan="6" style="text-align:center;color:var(--muted);padding:24px">Loading...</td></tr>
+        <dl class="dash-summary-meta">
+            <div class="dash-meta-item">
+                <dt>Quiz Questions</dt>
+                <dd id="s-questions">-</dd>
+            </div>
+            <div class="dash-meta-item">
+                <dt>Difficulty</dt>
+                <dd id="s-diff">-</dd>
+            </div>
+        </dl>
+    </section>
+
+    <section class="dash-section" aria-labelledby="recent-games-title">
+        <div class="dash-section-head">
+            <div>
+                <h2 id="recent-games-title">Recent Games</h2>
+                <p>Most recent saved sessions.</p>
+            </div>
+        </div>
+        <div class="table-wrap">
+            <table class="tbl">
+                <caption class="sr-only">Recent game sessions</caption>
+                <thead><tr>
+                    <th>Player</th><th>Goals</th><th>Saves</th><th>Conceded</th><th>Lifelines</th><th>Date</th>
+                </tr></thead>
+                <tbody id="recent-tbody">
+                    <tr><td colspan="6" class="dash-empty">Loading...</td></tr>
                 </tbody>
             </table>
         </div>
-    </div>
-</div>
-
+    </section>
+</main>
 <script>
-async function loadStats() {
-    const res = await fetch('../api/admin.php?action=get_stats');
-    const data = await res.json();
-    if (data.success) {
-        const s = data.stats;
-        document.getElementById('stat-users').textContent     = s.total_users;
-        document.getElementById('stat-games').textContent     = s.total_games;
-        document.getElementById('stat-questions').textContent = s.total_questions;
-        document.getElementById('stat-high').textContent      = s.highest_score || 0;
-        const diff = s.goalie_difficulty;
-        const el   = document.getElementById('stat-diff');
-        el.textContent = diff;
-        el.style.color = diff === 'easy' ? 'var(--green)' : diff === 'hard' ? 'var(--red)' : 'var(--yellow)';
-    }
-}
+const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+const num = value => value ?? 0;
 
-async function loadRecentScores() {
-    const res = await fetch('../api/admin.php?action=get_scores');
-    const data = await res.json();
-    const tbody = document.getElementById('recent-scores');
-    if (!data.success || !data.scores.length) {
-        tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;color:var(--muted);padding:24px">No games yet.</td></tr>';
+async function load() {
+    const [sd, rd] = await Promise.all([
+        fetch('../api/admin.php?action=get_stats').then(r => r.json()),
+        fetch('../api/admin.php?action=get_scores').then(r => r.json())
+    ]);
+
+    if (sd.success) {
+        const s = sd.stats;
+        document.getElementById('s-users').textContent = s.total_users;
+        document.getElementById('s-games').textContent = s.total_games;
+        document.getElementById('s-questions').textContent = s.total_questions;
+        const dEl = document.getElementById('s-diff');
+        dEl.textContent = s.goalie_difficulty.charAt(0).toUpperCase() + s.goalie_difficulty.slice(1);
+        dEl.className = s.goalie_difficulty === 'easy'
+            ? 'dash-meta-value-easy'
+            : s.goalie_difficulty === 'hard'
+                ? 'dash-meta-value-hard'
+                : 'dash-meta-value-medium';
+    }
+
+    const tbody = document.getElementById('recent-tbody');
+    if (!rd.success || !rd.scores.length) {
+        tbody.innerHTML = '<tr><td colspan="6" class="dash-empty">No games yet.</td></tr>';
         return;
     }
-    tbody.innerHTML = data.scores.slice(0, 8).map(row => `
+
+    tbody.innerHTML = rd.scores.slice(0, 8).map(r => `
         <tr>
-            <td><strong>${esc(row.username)}</strong></td>
-            <td>⚽ ${row.goals_scored}</td>
-            <td>🧤 ${row.goals_saved}</td>
-            <td>${row.lifelines_used}</td>
-            <td><strong style="color:var(--green)">${row.final_score}</strong></td>
-            <td style="color:var(--muted)">${new Date(row.played_at).toLocaleDateString()}</td>
+            <td><strong>${esc(r.username)}</strong></td>
+            <td>${num(r.goals_scored)}</td>
+            <td>${num(r.goals_saved)}</td>
+            <td>${num(r.goals_conceded)}</td>
+            <td>${num(r.lifelines_used)}</td>
+            <td><span class="muted-date">${new Date(r.played_at).toLocaleDateString()}</span></td>
         </tr>`).join('');
 }
 
-function esc(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
-
-loadStats();
-loadRecentScores();
+load();
 </script>
 </body>
 </html>

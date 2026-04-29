@@ -2,7 +2,6 @@
 require_once 'config.php';
 requireLogin();
 if ($_SESSION['role'] === 'admin') { header('Location: ' . BASE_URL . 'admin/index.php'); exit; }
-$username = $_SESSION['username'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -10,140 +9,97 @@ $username = $_SESSION['username'];
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Penalty Shootout</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/game.css">
 </head>
 <body>
 
-<!-- HUD -->
-<div class="hud">
-    <div class="hud-left">
-        <div class="hud-stat">GOALS <span id="hud-kick" class="green">0</span></div>
-        <div class="hud-stat">SAVES <span id="hud-save" class="green">0</span></div>
-        <div class="hud-stat">LIFELINES <span id="hud-lifeline" class="red">0</span></div>
+<header class="hud">
+    <div class="hud-brand">
+        <div class="hud-kicker">PENALTY<span>.</span>SHOOTOUT</div>
+        <div class="hud-meta">Arcade demo with quiz lifelines</div>
     </div>
-    <div class="hud-title">⚽ PENALTY SHOOTOUT</div>
-    <div class="hud-right">
-        <div class="hud-stat">ROUND <span id="hud-round">1/5</span></div>
-        <a href="leaderboard.php" class="btn-leaderboard">🏆 SCORES</a>
-        <button class="btn-logout" onclick="logout()">LOGOUT</button>
+    <div class="hud-score" aria-label="Match stats">
+        <span class="hud-stat"><span class="hud-stat-label">Goals</span><b class="g" id="hud-goals">0</b></span>
+        <span class="hud-stat"><span class="hud-stat-label">Saves</span><b class="g" id="hud-saves">0</b></span>
+        <span class="hud-stat"><span class="hud-stat-label">Lifelines</span><b class="r" id="hud-quizzes">0</b></span>
     </div>
-</div>
-
-<!-- GAME AREA -->
-<div id="game-area">
-
-    <!-- Phase label -->
-    <div id="phase-label">⚽ YOUR TURN — SHOOT</div>
-
-    <!-- Round tracker (top-right dots) -->
-    <div id="round-tracker"></div>
-
-    <!-- ===== KICK PHASE ===== -->
-    <div id="goal-container">
-        <div id="goal-frame">
-            <div class="goal-zone" id="zone-left"></div>
-            <div class="goal-zone" id="zone-center"></div>
-            <div class="goal-zone" id="zone-right"></div>
-            <div id="keeper"></div>
-            <div id="aim-indicator">
-                <div class="aim-circle"></div>
-            </div>
-        </div>
+    <div class="hud-actions">
+        <a href="leaderboard.php" class="hud-btn accent">Scores</a>
+        <button type="button" class="hud-btn" onclick="logout()">Logout</button>
     </div>
+</header>
 
-    <div id="ball"></div>
+<main id="game-area" aria-describedby="phase-label">
+    <div id="phase-label" aria-live="polite">Kick: aim, lock, shoot.</div>
 
-    <!-- Power bar -->
-    <div id="power-wrap">
-        <div id="power-label">POWER</div>
-        <div id="power-track">
-            <div id="power-fill"></div>
-        </div>
-    </div>
-
-    <!-- Shoot button -->
-    <button id="shoot-btn">HOLD TO CHARGE & RELEASE TO SHOOT</button>
-
-    <!-- ===== SAVE PHASE ===== -->
-    <div id="save-area">
-        <div id="save-instruction">🧤 MOVE MOUSE TO POSITION KEEPER — CLICK TO DIVE!</div>
-        <div id="save-goal-container">
-            <div id="save-goal-frame">
-                <div class="save-zone" id="szone-left"></div>
-                <div class="save-zone" id="szone-center"></div>
-                <div class="save-zone" id="szone-right"></div>
-                <div id="save-keeper"></div>
-                <div id="ai-ball"></div>
-                <div id="save-cursor"></div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Result flash -->
-    <div id="result-flash">
-        <div id="result-emoji">⚽</div>
-        <div id="result-text">GOAL!</div>
+    <div id="result-flash" role="status" aria-live="polite" aria-atomic="true">
+        <div id="result-word">GOAL!</div>
         <div id="result-sub"></div>
     </div>
 
-</div>
+    <div id="kick-panel">
+        <div id="kick-goal-container">
+            <div id="kick-goal-frame" tabindex="0" aria-label="Penalty goal area. Use arrow keys to aim, Enter to lock your shot, then hold Space to charge and release to shoot.">
+                <div id="kick-aim"><div class="aim-ring"></div></div>
+                <div id="kick-keeper"></div>
+                <div id="kick-ball"></div>
+            </div>
+        </div>
+        <div id="kick-aim-lock-msg" class="inst-msg">Locked. Hold <kbd>SPACE</kbd>, then release to shoot.</div>
+        <div id="power-wrap">
+            <div id="power-label">Power</div>
+            <div id="power-track"><div id="power-fill"></div></div>
+        </div>
+    </div>
 
-<!-- QUIZ MODAL -->
-<div id="quiz-modal">
+    <div id="goalie-panel">
+        <div id="goalie-goal-container">
+            <div id="goalie-goal-frame" tabindex="0" aria-label="Goalkeeper area. Click inside the goal or use arrow keys to choose a dive target, then press Enter to lock it before the shot.">
+                <div id="goalie-keeper"></div>
+                <div id="goalie-ai-ball"></div>
+                <div id="goalie-cursor"></div>
+            </div>
+        </div>
+        <div id="goalie-lock-msg" class="inst-msg">Dive locked. Shot in <span id="goalie-countdown">3</span>.</div>
+    </div>
+</main>
+
+<div id="quiz-modal" role="dialog" aria-modal="true" aria-labelledby="quiz-title" aria-describedby="quiz-q" aria-hidden="true">
     <div class="quiz-card">
-        <div class="quiz-header">
-            <div class="quiz-icon">🧠</div>
-            <div>
-                <div class="quiz-title">FOOTBALL QUIZ LIFELINE</div>
-                <div class="quiz-miss-text">Answer correctly to earn back your missed shot!</div>
-            </div>
+        <div class="quiz-top">
+            <span class="quiz-tag" id="quiz-title">Quiz lifeline</span>
+            <div class="quiz-hint">Answer correctly to keep the run alive.</div>
         </div>
-        <div class="quiz-question" id="quiz-question"></div>
-        <div class="quiz-options" id="quiz-options"></div>
-        <div class="quiz-result" id="quiz-result"></div>
-        <button id="quiz-continue">CONTINUE →</button>
+        <div class="quiz-body">
+            <div class="quiz-q" id="quiz-q"></div>
+            <div class="quiz-opts" id="quiz-opts" role="group" aria-label="Quiz answers"></div>
+            <div class="quiz-result" id="quiz-result" aria-live="polite"></div>
+        </div>
+        <button id="quiz-continue" type="button">Continue</button>
     </div>
 </div>
 
-<!-- GAME OVER MODAL -->
-<div id="gameover-modal">
-    <div class="gameover-card">
-        <div class="gameover-trophy" id="go-trophy">🏆</div>
-        <div class="gameover-title">FULL TIME</div>
-        <div style="font-family:'Oswald',sans-serif;font-size:13px;letter-spacing:2px;color:var(--muted);margin-top:4px">FINAL SCORE</div>
-        <div class="gameover-score" id="final-score">0</div>
-
-        <div class="gameover-breakdown">
-            <div class="breakdown-stat">
-                <span id="go-goals-scored">0</span>
-                Goals Scored
-            </div>
-            <div class="breakdown-stat">
-                <span id="go-goals-saved">0</span>
-                Shots Saved
-            </div>
-            <div class="breakdown-stat">
-                <span id="go-lifelines">0</span>
-                Lifelines Used
-            </div>
+<div id="gameover-modal" role="dialog" aria-modal="true" aria-labelledby="go-title" aria-describedby="go-summary" aria-hidden="true">
+    <div class="go-card">
+        <div class="go-top">
+            <div class="go-label">Session complete</div>
+            <div class="go-title" id="go-title">Game over</div>
         </div>
-
-        <div class="gameover-btns">
-            <button class="btn-play-again" id="btn-play-again">▶ PLAY AGAIN</button>
-            <a href="leaderboard.php" class="btn-see-scores">🏆 VIEW LEADERBOARD</a>
+        <div class="go-body">
+            <div class="go-stats" id="go-summary">
+                <div class="go-stat"><div class="go-stat-n" id="go-goals">0</div><div class="go-stat-l">Goals</div></div>
+                <div class="go-stat"><div class="go-stat-n" id="go-saves">0</div><div class="go-stat-l">Saves</div></div>
+                <div class="go-stat"><div class="go-stat-n" id="go-conceded">0</div><div class="go-stat-l">Conceded</div></div>
+                <div class="go-stat"><div class="go-stat-n" id="go-quizzes">0</div><div class="go-stat-l">Lifelines</div></div>
+            </div>
+            <div class="go-btns">
+                <button class="go-btn-primary" id="btn-play-again" type="button">Play again</button>
+                <a href="leaderboard.php" class="go-btn-secondary">Leaderboard</a>
+            </div>
         </div>
     </div>
 </div>
 
-<script>
-    function logout() {
-        fetch('api/auth.php', { method:'POST', body: new URLSearchParams({ action:'logout' }) })
-        .then(r => r.json())
-        .then(d => { window.location.href = d.redirect; });
-    }
-</script>
 <script src="js/game.js"></script>
 </body>
 </html>

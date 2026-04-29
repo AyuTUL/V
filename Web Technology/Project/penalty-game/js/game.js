@@ -1,543 +1,665 @@
-// ============================================
-// game.js — Full penalty shootout engine
-// ============================================
+// game.js - Penalty Shootout
 
-const TOTAL_ROUNDS = 5;
-
-// Difficulty settings from server
-let GOALIE_DIFFICULTY = 'medium'; // easy|medium|hard → reaction time of AI keeper
-
-// Difficulty → AI keeper reaction speed (px per frame)
-const DIFFICULTY_SPEED = { easy: 1.5, medium: 3.5, hard: 7 };
-// Difficulty → probability AI keeper correctly predicts zone
-const DIFFICULTY_PREDICT = { easy: 0.3, medium: 0.5, hard: 0.75 };
-
-// ===== STATE =====
-let state = {
-    round:         1,
-    phase:         'kick',   // 'kick' | 'save' | 'done'
-    kickScore:     0,        // player goals scored
-    saveScore:     0,        // player saves made
-    lifelinesUsed: 0,
-    roundDots:     [],       // 'pending'|'goal'|'miss' per round
-    power:         0,
-    powerDir:      1,
-    powerRunning:  false,
-    shotFired:     false,
-    saveDone:      false,
-    aimX:          280,      // inside goal (0–560)
-    aimY:          60,       // from bottom (0–230)
-    seenQuestions: [],
-    animFrame:     null,
+let DIFFICULTY = 'medium';
+const PREDICT = { easy: 0.30, medium: 0.50, hard: 0.75 };
+const POST = 8;
+const KEYBOARD_STEP = 18;
+const BALL_TRAVEL_MS = 620;
+const BALL_RESOLVE_MS = 700;
+const GOAL_MOUTH_X_INSET = 0.085;
+const GOAL_MOUTH_TOP_INSET = 0.12;
+const GOAL_MOUTH_BOTTOM_INSET = 0.02;
+const KEEPER_CORNER_BIAS = 0.04;
+const KEEPER_SPRITES = {
+    center: 'img/keeper.png',
+    left: 'img/keeper-left.png',
+    topLeft: 'img/keeper-top-left.png',
+    topRight: 'img/keeper-top-right.png',
+    right: 'img/keeper-right.png',
+};
+const KEEPER_POSES = ['left', 'topLeft', 'center', 'topRight', 'right'];
+const KEEPER_POSE_TARGETS = {
+    left: { x: 1 / 6, y: 0.58 },
+    topLeft: { x: 1 / 6, y: 0.83 },
+    center: { x: 1 / 2, y: 0.46 },
+    topRight: { x: 5 / 6, y: 0.83 },
+    right: { x: 5 / 6, y: 0.58 },
 };
 
-// ===== DOM REFS =====
+const S = {
+    phase: 'kick',
+    goalsScored: 0,
+    shotsSaved: 0,
+    goalsConceeded: 0,
+    quizzesUsed: 0,
+    seenQs: [],
+    aimLocked: false,
+    lockedX: 0,
+    lockedY: 0,
+    aimX: 0,
+    aimY: 0,
+    power: 0,
+    powerDir: 1,
+    charging: false,
+    shotFired: false,
+    keeperLocked: false,
+    keeperX: 0,
+    keeperPreviewX: 0,
+    keeperPreviewY: 0,
+    keeperPreviewPose: 'center',
+    lockedKeeperDive: 'center',
+    aiShotZone: 'left',
+};
+
 const $ = id => document.getElementById(id);
 
-const phaseLabel      = $('phase-label');
-const aimIndicator    = $('aim-indicator');
-const powerFill       = $('power-fill');
-const shootBtn        = $('shoot-btn');
-const ball            = $('ball');
-const keeper          = $('keeper');
-const resultFlash     = $('result-flash');
-const resultEmoji     = $('result-emoji');
-const resultText      = $('result-text');
-const resultSub       = $('result-sub');
-const quizModal       = $('quiz-modal');
-const quizQuestion    = $('quiz-question');
-const quizOptions     = $('quiz-options');
-const quizResult      = $('quiz-result');
-const quizContinue    = $('quiz-continue');
-const gameoverModal   = $('gameover-modal');
-const saveArea        = $('save-area');
-const saveGoalFrame   = $('save-goal-frame');
-const saveKeeper      = $('save-keeper');
-const aiBall          = $('ai-ball');
-const saveCursor      = $('save-cursor');
+const kickPanel = $('kick-panel'), goaliePanel = $('goalie-panel');
+const kickFrame = $('kick-goal-frame'), goalieFrame = $('goalie-goal-frame');
+const kickAim = $('kick-aim'), kickAimMsg = $('kick-aim-lock-msg');
+const kickBall = $('kick-ball'), kickKeeper = $('kick-keeper');
+const powerWrap = $('power-wrap'), powerFill = $('power-fill');
+const phaseLabel = $('phase-label'), resultFlash = $('result-flash');
+const resultWord = $('result-word'), resultSub = $('result-sub');
+const goalieKeeper = $('goalie-keeper'), goalieCursor = $('goalie-cursor');
+const goalieAiBall = $('goalie-ai-ball'), goalieCountdown = $('goalie-countdown');
+const goalieLockMsg = $('goalie-lock-msg');
+const quizModal = $('quiz-modal'), quizQ = $('quiz-q');
+const quizOpts = $('quiz-opts'), quizResult = $('quiz-result');
+const quizContinue = $('quiz-continue'), gameoverModal = $('gameover-modal');
+const hudGoals = $('hud-goals'), hudSaves = $('hud-saves');
+const hudQuizzes = $('hud-quizzes');
 
-// HUD
-const hudKick    = $('hud-kick');
-const hudSave    = $('hud-save');
-const hudRound   = $('hud-round');
-const hudLifeline= $('hud-lifeline');
+let cdTimer = null, aiScheduled = false;
+let curQuestion = null, quizCtx = '';
+let activeDialog = null;
+let lastFocus = null;
 
-// ===== INIT =====
 async function init() {
+    preloadKeeperSprites();
     try {
-        const res = await fetch('../api/game.php?action=get_settings');
-        const data = await res.json();
-        if (data.success) GOALIE_DIFFICULTY = data.goalie_difficulty;
-    } catch (e) { /* use default */ }
-
-    buildRoundDots();
+        const d = await fetch('api/game.php?action=get_settings').then(r => r.json());
+        if (d.success) DIFFICULTY = d.goalie_difficulty;
+    } catch {}
     updateHUD();
-    startKickPhase();
+    startKick();
 }
 
-// ===== ROUND DOTS =====
-function buildRoundDots() {
-    const tracker = $('round-tracker');
-    tracker.innerHTML = '';
-    for (let i = 0; i < TOTAL_ROUNDS; i++) {
-        const dot = document.createElement('div');
-        dot.className = 'round-dot' + (i === 0 ? ' active' : '');
-        dot.id = `dot-${i}`;
-        tracker.appendChild(dot);
-    }
-}
-
-function setDot(round, status) {
-    const dot = $(`dot-${round - 1}`);
-    if (!dot) return;
-    dot.className = 'round-dot';
-    if (status === 'goal') dot.classList.add('kick-scored');
-    if (status === 'miss') dot.classList.add('kick-missed');
-    if (status === 'active') dot.classList.add('active');
-}
-
-// ===== HUD =====
 function updateHUD() {
-    hudKick.textContent     = state.kickScore;
-    hudSave.textContent     = state.saveScore;
-    hudRound.textContent    = `${Math.min(state.round, TOTAL_ROUNDS)}/${TOTAL_ROUNDS}`;
-    hudLifeline.textContent = state.lifelinesUsed;
+    hudGoals.textContent = S.goalsScored;
+    hudSaves.textContent = S.shotsSaved;
+    hudQuizzes.textContent = S.quizzesUsed;
 }
 
-// ============================================================
-// =====================  KICK PHASE  ========================
-// ============================================================
-function startKickPhase() {
-    state.phase      = 'kick';
-    state.shotFired  = false;
-    state.power      = 0;
-    state.powerDir   = 1;
+function startKick() {
+    S.phase = 'kick';
+    S.aimLocked = false;
+    S.shotFired = false;
+    S.charging = false;
+    S.power = 0;
+    S.powerDir = 1;
 
-    phaseLabel.textContent = '⚽ YOUR TURN — SHOOT';
+    phaseLabel.textContent = 'Kick: aim, lock, shoot.';
+    kickPanel.style.display = 'flex';
+    goaliePanel.style.display = 'none';
 
-    // Show goal + ball, hide save area
-    $('goal-container').style.display = 'block';
-    saveArea.style.display = 'none';
-    shootBtn.style.display = 'block';
-    $('power-wrap').style.display = 'flex';
+    kickAim.style.display = 'block';
+    kickAim.classList.remove('locked');
+    kickAimMsg.style.display = 'none';
+    powerWrap.style.display = 'none';
+    setPower(5);
 
-    // Reset keeper position
-    keeper.style.left = '240px';
-    keeper.style.transform = 'translateX(0) scaleX(1)';
+    resetKickBall();
+    const metrics = frameMetrics(kickFrame);
+    setKickAim(metrics.width / 2, Math.max(48, metrics.height * 0.35));
+    setKeeperPose(kickKeeper, 'center');
+    setKeeperPositionForPose(kickKeeper, metrics.width, 'center');
+    kickFrame.style.cursor = 'crosshair';
+    kickFrame.focus();
 
-    // Reset ball
-    resetBall();
-
-    // Reset aim
-    state.aimX = 280; state.aimY = 60;
-    updateAim();
-
-    // Set active dot
-    if (state.round <= TOTAL_ROUNDS) setDot(state.round, 'active');
-
-    // Start power oscillation
-    state.powerRunning = true;
-    runPower();
-
-    // Bind shoot button
-    shootBtn.onclick = null;
-    shootBtn.onmousedown = startCharge;
-    shootBtn.onmouseup   = releaseShoot;
-    shootBtn.ontouchstart = (e) => { e.preventDefault(); startCharge(); };
-    shootBtn.ontouchend   = (e) => { e.preventDefault(); releaseShoot(); };
-    shootBtn.textContent  = 'HOLD TO CHARGE & RELEASE TO SHOOT';
+    kickFrame.addEventListener('pointermove', onKickMove);
+    kickFrame.addEventListener('pointerdown', onKickClick);
 }
 
-function startCharge() {
-    if (state.shotFired) return;
-    state.powerRunning = true;
+function onKickMove(e) {
+    if (S.aimLocked || S.shotFired) return;
+    const r = kickFrame.getBoundingClientRect();
+    setKickAim(e.clientX - r.left, r.height - (e.clientY - r.top));
 }
 
-function releaseShoot() {
-    if (state.shotFired) return;
-    state.shotFired    = true;
-    state.powerRunning = false;
-    shootBtn.style.display = 'none';
-    $('power-wrap').style.display = 'none';
-    executeShot();
+function onKickClick(e) {
+    if (S.aimLocked || S.shotFired) return;
+    const r = kickFrame.getBoundingClientRect();
+    setKickAim(e.clientX - r.left, r.height - (e.clientY - r.top));
+    S.lockedX = S.aimX;
+    S.lockedY = S.aimY;
+    S.aimLocked = true;
+
+    kickAim.classList.add('locked');
+    kickFrame.removeEventListener('pointermove', onKickMove);
+    kickFrame.removeEventListener('pointerdown', onKickClick);
+    kickFrame.style.cursor = 'default';
+
+    kickAimMsg.style.display = 'block';
+    powerWrap.style.display = 'flex';
+
+    (function tick() {
+        if (!S.aimLocked || S.shotFired) return;
+        if (S.charging) {
+            S.power += S.powerDir * 1.2;
+            if (S.power >= 100) { S.power = 100; S.powerDir = -1; }
+            if (S.power <= 5) { S.power = 5; S.powerDir = 1; }
+            setPower(S.power);
+        }
+        requestAnimationFrame(tick);
+    })();
 }
 
-function runPower() {
-    if (!state.powerRunning || state.shotFired) return;
-    state.power += state.powerDir * 3;
-    if (state.power >= 100) { state.power = 100; state.powerDir = -1; }
-    if (state.power <= 5)   { state.power = 5;   state.powerDir = 1;  }
-    powerFill.style.width = state.power + '%';
-    requestAnimationFrame(runPower);
-}
+function executeKick() {
+    const { width, height } = frameMetrics(kickFrame);
+    const inPost = isKickInsideGoal(S.lockedX, S.lockedY, width, height);
+    const shotPose = keeperPoseFromShot(S.lockedX, S.lockedY, width, height);
+    const keeperPose = aiKeeperDecision(shotPose);
 
-// ===== GOAL MOUSE AIMING =====
-$('goal-frame').addEventListener('mousemove', (e) => {
-    if (state.phase !== 'kick' || state.shotFired) return;
-    const rect = $('goal-frame').getBoundingClientRect();
-    state.aimX = e.clientX - rect.left;
-    state.aimY = rect.height - (e.clientY - rect.top);
-    state.aimX = Math.max(10, Math.min(state.aimX, 550));
-    state.aimY = Math.max(5,  Math.min(state.aimY, 220));
-    updateAim();
-});
-
-function updateAim() {
-    aimIndicator.style.left   = state.aimX + 'px';
-    aimIndicator.style.bottom = state.aimY + 'px';
-}
-
-// ===== EXECUTE SHOT =====
-function executeShot() {
-    // Determine shot zone
-    const shotZone = getZone(state.aimX, 560);
-    const keeperZone = aiKeeperDecision(shotZone);
-
-    // Move keeper
-    animateKeeperDive(keeperZone);
-
-    // Animate ball flying into goal
-    ball.style.transition = 'left 0.5s ease-out, bottom 0.5s ease-out, transform 0.5s, width 0.5s';
-    ball.style.left   = (state.aimX - 175) + 'px';  // relative to goal-container offset
-    ball.style.bottom = (state.aimY + 80) + 'px';
-    ball.style.width  = '28px';
-    ball.style.transform = 'rotate(360deg)';
+    setKeeperPose(kickKeeper, keeperPose);
+    setKeeperPositionForPose(kickKeeper, width, keeperPose);
+    animateBall(kickBall, kickFrame, S.lockedX, S.lockedY, -20, 0.6);
 
     setTimeout(() => {
-        const isGoal = shotZone !== keeperZone;
-        showRoundResult('kick', isGoal);
-    }, 550);
-}
-
-function getZone(x, width) {
-    if (x < width / 3)       return 'left';
-    if (x < (width * 2 / 3)) return 'center';
-    return 'right';
-}
-
-function aiKeeperDecision(shotZone) {
-    const prob = DIFFICULTY_PREDICT[GOALIE_DIFFICULTY] || 0.5;
-    if (Math.random() < prob) return shotZone; // AI correctly guesses
-    // Random wrong zone
-    const zones = ['left', 'center', 'right'].filter(z => z !== shotZone);
-    return zones[Math.floor(Math.random() * zones.length)];
-}
-
-function animateKeeperDive(zone) {
-    const positions = { left: '60px', center: '240px', right: '420px' };
-    keeper.style.left = positions[zone];
-    if (zone === 'left')   keeper.style.transform = 'scaleX(-1)';
-    if (zone === 'right')  keeper.style.transform = 'scaleX(1)';
-    if (zone === 'center') keeper.style.transform = 'scaleX(1)';
-}
-
-function resetBall() {
-    ball.style.transition = 'none';
-    ball.style.left   = '50%';
-    ball.style.transform = 'translateX(-50%)';
-    ball.style.bottom = '30px';
-    ball.style.width  = '44px';
-}
-
-// ============================================================
-// =====================  SAVE PHASE  ========================
-// ============================================================
-function startSavePhase() {
-    state.phase    = 'save';
-    state.saveDone = false;
-
-    phaseLabel.textContent = '🧤 SAVE THE SHOT — CLICK TO DIVE';
-
-    $('goal-container').style.display = 'none';
-    saveArea.style.display = 'flex';
-    $('power-wrap').style.display = 'none';
-    shootBtn.style.display = 'none';
-
-    // Reset save keeper
-    saveKeeper.style.left   = '50%';
-    saveKeeper.style.transform = 'translateX(-50%)';
-    aiBall.style.display = 'none';
-
-    // Keeper follows mouse inside save-goal-frame
-    saveGoalFrame.addEventListener('mousemove', onSaveMouseMove);
-    saveGoalFrame.addEventListener('click', onSaveDive);
-
-    // Cursor
-    saveGoalFrame.addEventListener('mouseenter', () => { saveCursor.style.display = 'block'; });
-    saveGoalFrame.addEventListener('mouseleave', () => { saveCursor.style.display = 'none'; });
-
-    // AI shot fires after 1.5s
-    setTimeout(fireAIShot, 1500);
-}
-
-let saveKeeperX = 280; // current pixel position of save keeper center
-
-function onSaveMouseMove(e) {
-    if (state.saveDone) return;
-    const rect = saveGoalFrame.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-
-    // Keeper follows mouse (center on mouse)
-    saveKeeperX = Math.max(0, Math.min(x - 40, 480));
-    saveKeeper.style.left      = saveKeeperX + 'px';
-    saveKeeper.style.transform = 'none';
-
-    saveCursor.style.left = x + 'px';
-    saveCursor.style.top  = y + 'px';
-}
-
-function onSaveDive(e) {
-    if (state.saveDone) return;
-    state.saveDone = true;
-
-    saveGoalFrame.removeEventListener('mousemove', onSaveMouseMove);
-    saveGoalFrame.removeEventListener('click', onSaveDive);
-    saveCursor.style.display = 'none';
-
-    // Record where keeper is when clicked → zone
-    const keeperCenter = saveKeeperX + 40;
-    state.savedZone = getZone(keeperCenter, 560);
-}
-
-let aiShotZone = 'left';
-
-function fireAIShot() {
-    // AI picks a zone
-    const zones = ['left', 'center', 'right'];
-    aiShotZone = zones[Math.floor(Math.random() * zones.length)];
-
-    const targetX = { left: 80, center: 280, right: 440 };
-    const targetY = { left: 120, center: 80, right: 120 };
-
-    // Show ball and animate
-    aiBall.style.display = 'block';
-    aiBall.style.transition = 'none';
-    aiBall.style.left   = '50%';
-    aiBall.style.bottom = '-30px';
-    aiBall.style.transform = 'translateX(-50%)';
-
-    requestAnimationFrame(() => {
-        aiBall.style.transition = 'all 0.5s ease-out';
-        aiBall.style.left   = targetX[aiShotZone] + 'px';
-        aiBall.style.bottom = targetY[aiShotZone] + 'px';
-        aiBall.style.transform = 'none';
-    });
-
-    setTimeout(() => {
-        // If player hasn't clicked yet → auto-check based on keeper position
-        const saveZone = state.savedZone || getZone(saveKeeperX + 40, 560);
-        const isSave   = (saveZone === aiShotZone);
-        showRoundResult('save', isSave);
-    }, 600);
-}
-
-// ============================================================
-// ===================  ROUND RESULTS  =======================
-// ============================================================
-function showRoundResult(type, success) {
-    let emoji, text, color, sub;
-
-    if (type === 'kick') {
-        if (success) {
-            emoji = '⚽'; text = 'GOAL!'; color = '#00c853';
-            sub   = '+10 points';
-            state.kickScore++;
-            setDot(state.round, 'goal');
-        } else {
-            emoji = '🧤'; text = 'SAVED!'; color = '#ff3d3d';
-            sub   = 'Quiz lifeline available!';
-            setDot(state.round, 'miss');
+        if (!inPost) {
+            flash('MISS', 'var(--muted)', 'Off target. Quiz lifeline.', () => triggerQuiz('kick_miss'));
+            return;
         }
-    } else {
-        if (success) {
-            emoji = '🧤'; text = 'GREAT SAVE!'; color = '#1de9b6';
-            sub   = '+8 points';
-            state.saveScore++;
-        } else {
-            emoji = '😬'; text = 'GOAL CONCEDED'; color = '#ff3d3d';
-            sub   = '';
-        }
-    }
-
-    resultEmoji.textContent = emoji;
-    resultText.textContent  = text;
-    resultText.style.color  = color;
-    resultSub.textContent   = sub;
-    resultFlash.classList.add('show');
-
-    updateHUD();
-
-    if (type === 'kick' && !success) {
-        // Offer quiz lifeline
-        setTimeout(() => {
-            resultFlash.classList.remove('show');
-            showQuiz();
-        }, 1200);
-    } else {
-        setTimeout(() => {
-            resultFlash.classList.remove('show');
-            advanceRound(type);
-        }, 1600);
-    }
-}
-
-function advanceRound(completedPhase) {
-    if (completedPhase === 'kick') {
-        startSavePhase();
-    } else {
-        // Both kick and save done → next round
-        state.round++;
-        if (state.round > TOTAL_ROUNDS) {
-            endGame();
-        } else {
+        const isGoal = shotPose !== keeperPose;
+        if (isGoal) {
+            S.goalsScored++;
             updateHUD();
-            startKickPhase();
+            flash('GOAL', 'var(--accent)', '+1 goal. You stay on attack.', () => startKick());
+        } else {
+            flash('SAVED', 'var(--danger)', 'Keeper got there. Quiz lifeline.', () => triggerQuiz('kick_miss'));
         }
-    }
+    }, BALL_RESOLVE_MS);
 }
 
-// ============================================================
-// ====================  QUIZ LIFELINE  ======================
-// ============================================================
-let currentQuestion = null;
+function resetKickBall() {
+    kickBall.style.cssText = 'display:none;transition:none;left:50%;bottom:-20px;transform:translateX(-50%) translate3d(0,0,0) scale(1) rotate(0deg)';
+}
 
-async function showQuiz() {
-    quizModal.classList.add('show');
-    quizOptions.innerHTML = '<div style="color:var(--muted);text-align:center;padding:20px">Loading question...</div>';
+function startGoalie() {
+    S.phase = 'goalie';
+    S.keeperLocked = false;
+    S.lockedKeeperDive = 'center';
+    S.keeperPreviewPose = 'center';
+    aiScheduled = false;
+
+    phaseLabel.textContent = 'Save: choose a dive target, then lock it.';
+    kickPanel.style.display = 'none';
+    goaliePanel.style.display = 'flex';
+
+    const metrics = frameMetrics(goalieFrame);
+    goalieKeeper.style.left = '0';
+    goalieKeeper.style.transition = 'transform .18s ease-out';
+    setKeeperPose(goalieKeeper, 'center');
+    setKeeperPositionForPose(goalieKeeper, metrics.width, 'center');
+    goalieAiBall.style.display = 'none';
+    goalieCountdown.textContent = '';
+    goalieLockMsg.style.display = 'none';
+    goalieFrame.style.cursor = 'crosshair';
+    goalieFrame.focus();
+
+    setGoaliePreviewFromPose('center', metrics.width, metrics.height);
+    showGoalieCursor(true);
+    goalieCursor.classList.remove('locked');
+
+    goalieFrame.addEventListener('pointermove', onGoalieMove);
+    goalieFrame.addEventListener('pointerdown', onGoalieClick);
+    goalieFrame.addEventListener('pointerenter', onGoalieEnter);
+    goalieFrame.addEventListener('pointerleave', onGoalieLeave);
+}
+
+function onGoalieEnter() {
+    showGoalieCursor(true);
+}
+
+function onGoalieLeave() {
+    if (!S.keeperLocked) showGoalieCursor(false);
+}
+
+function onGoalieMove(e) {
+    if (S.keeperLocked) return;
+    const r = goalieFrame.getBoundingClientRect();
+    setGoalieCursorPosition(e.clientX - r.left, e.clientY - r.top);
+}
+
+function onGoalieClick(e) {
+    if (S.keeperLocked) return;
+    const r = goalieFrame.getBoundingClientRect();
+    const clickX = e.clientX - r.left;
+    const clickY = e.clientY - r.top;
+    const pose = keeperPoseFromPoint(clickX, clickY, r.width, r.height);
+    lockGoalieDive(pose, r.width, r.height, clickX, clickY);
+}
+
+function lockGoalieDive(pose, width, height, cursorX, cursorY) {
+    S.lockedKeeperDive = pose;
+    S.keeperPreviewPose = pose;
+    S.keeperLocked = true;
+
+    if (typeof cursorX === 'number' && typeof cursorY === 'number') {
+        setGoalieCursorPosition(cursorX, cursorY);
+    } else {
+        setGoaliePreviewFromPose(pose, width, height);
+    }
+    showGoalieCursor(true);
+    goalieCursor.classList.add('locked');
+    goalieFrame.removeEventListener('pointermove', onGoalieMove);
+    goalieFrame.removeEventListener('pointerdown', onGoalieClick);
+    goalieFrame.style.cursor = 'default';
+    goalieLockMsg.style.display = 'block';
+
+    let n = 3;
+    goalieCountdown.textContent = n;
+    clearInterval(cdTimer);
+    cdTimer = setInterval(() => {
+        n--;
+        if (n > 0) {
+            goalieCountdown.textContent = n;
+        } else {
+            clearInterval(cdTimer);
+            goalieCountdown.textContent = '!';
+            fireAI();
+        }
+    }, 1000);
+}
+
+function fireAI() {
+    if (aiScheduled) return;
+    aiScheduled = true;
+    if (!S.keeperLocked) {
+        const { width, height } = frameMetrics(goalieFrame);
+        lockGoalieDive(S.keeperPreviewPose || 'center', width, height);
+    }
+    const { width, height } = frameMetrics(goalieFrame);
+    S.aiShotZone = KEEPER_POSES[Math.floor(Math.random() * KEEPER_POSES.length)];
+    const isSave = S.lockedKeeperDive === S.aiShotZone;
+    const target = targetPointForPose(S.aiShotZone, width, height);
+
+    setKeeperPose(goalieKeeper, S.lockedKeeperDive);
+    setKeeperPositionForPose(goalieKeeper, width, S.lockedKeeperDive);
+    animateBall(goalieAiBall, goalieFrame, target.x, target.y, -30, 0.65);
+
+    setTimeout(() => {
+        showGoalieCursor(false);
+        goalieCursor.classList.remove('locked');
+        if (isSave) {
+            S.shotsSaved++;
+            updateHUD();
+            flash('SAVE', 'var(--accent)', '+1 save. Your turn to shoot.', () => startKick());
+        } else {
+            S.goalsConceeded++;
+            flash('GOAL', 'var(--danger)', 'They scored. Quiz lifeline.', () => triggerQuiz('goalie_miss'));
+        }
+    }, BALL_RESOLVE_MS);
+}
+
+function flash(word, color, sub, cb) {
+    resultWord.textContent = word;
+    resultWord.style.color = color;
+    resultSub.textContent = sub;
+    resultFlash.classList.add('show');
+    setTimeout(() => {
+        resultFlash.classList.remove('show');
+        setTimeout(cb, 220);
+    }, 1400);
+}
+
+async function triggerQuiz(ctx) {
+    quizCtx = ctx;
+    S.phase = 'quiz';
+    S.quizzesUsed++;
+    updateHUD();
+    openDialog(quizModal);
+    quizQ.textContent = 'Loading...';
+    quizOpts.innerHTML = '';
     quizResult.style.display = 'none';
     quizContinue.style.display = 'none';
-
     try {
         const body = new FormData();
         body.append('action', 'get_quiz');
-        body.append('exclude', state.seenQuestions.join(','));
-
-        const res  = await fetch('../api/game.php', { method: 'POST', body });
-        const data = await res.json();
-
-        if (!data.success) {
-            quizOptions.innerHTML = `<div style="color:var(--red)">${data.error}</div>`;
+        body.append('exclude', S.seenQs.join(','));
+        const d = await fetch('api/game.php', { method: 'POST', body }).then(r => r.json());
+        if (!d.success) {
+            quizQ.textContent = d.error || 'No questions available.';
             return;
         }
-
-        currentQuestion = data.question;
-        state.seenQuestions.push(currentQuestion.id);
-
-        quizQuestion.textContent = currentQuestion.question;
-        quizOptions.innerHTML = '';
-
-        ['a','b','c','d'].forEach(letter => {
-            const opt = document.createElement('div');
-            opt.className = 'quiz-opt';
-            opt.dataset.answer = letter;
-            opt.innerHTML = `<span class="opt-letter">${letter.toUpperCase()}</span> ${currentQuestion['option_' + letter]}`;
-            opt.addEventListener('click', () => submitAnswer(letter, opt));
-            quizOptions.appendChild(opt);
+        curQuestion = d.question;
+        S.seenQs.push(curQuestion.id);
+        quizQ.textContent = curQuestion.question;
+        quizOpts.innerHTML = '';
+        ['a', 'b', 'c', 'd'].forEach(l => {
+            const el = document.createElement('button');
+            el.className = 'quiz-opt';
+            el.dataset.answer = l;
+            el.type = 'button';
+            el.innerHTML = `<span class="opt-key">${l.toUpperCase()}</span>${curQuestion['option_' + l]}`;
+            el.addEventListener('click', () => submitAnswer(l, el));
+            quizOpts.appendChild(el);
         });
-    } catch (e) {
-        quizOptions.innerHTML = `<div style="color:var(--red)">Failed to load question.</div>`;
+        quizOpts.querySelector('.quiz-opt')?.focus();
+    } catch {
+        quizQ.textContent = 'Failed to load question.';
     }
 }
 
-async function submitAnswer(answer, clickedEl) {
-    // Disable all options
-    document.querySelectorAll('.quiz-opt').forEach(o => {
-        o.style.pointerEvents = 'none';
-    });
-
-    state.lifelinesUsed++;
-    updateHUD();
-
+async function submitAnswer(ans, el) {
+    document.querySelectorAll('.quiz-opt').forEach(o => o.disabled = true);
     const body = new FormData();
     body.append('action', 'check_answer');
-    body.append('question_id', currentQuestion.id);
-    body.append('answer', answer);
-
-    const res  = await fetch('../api/game.php', { method: 'POST', body });
-    const data = await res.json();
-
-    clickedEl.classList.add(data.correct ? 'correct' : 'wrong');
-
-    if (!data.correct) {
-        // Reveal correct answer
+    body.append('question_id', curQuestion.id);
+    body.append('answer', ans);
+    const d = await fetch('api/game.php', { method: 'POST', body }).then(r => r.json());
+    el.classList.add(d.correct ? 'correct' : 'wrong');
+    if (!d.correct) {
         document.querySelectorAll('.quiz-opt').forEach(o => {
-            if (o.dataset.answer === data.correct_answer) o.classList.add('reveal');
+            if (o.dataset.answer === d.correct_answer) o.classList.add('reveal');
         });
     }
-
     quizResult.style.display = 'block';
-    quizResult.className = 'quiz-result ' + (data.correct ? 'win' : 'lose');
-    quizResult.textContent = data.correct
-        ? '✅ CORRECT! You earned a lifeline — shot counts as saved!'
-        : '❌ WRONG! The miss stands. Better luck next time.';
-
-    quizContinue.style.display = 'block';
-    quizContinue.textContent   = 'CONTINUE →';
-    quizContinue.onclick = () => {
-        quizModal.classList.remove('show');
-        // If correct → treat as goal (grant the point)
-        if (data.correct) {
-            state.kickScore++;
-            setDot(state.round, 'goal');
-            updateHUD();
-        }
-        advanceRound('kick');
-    };
+    if (d.correct) {
+        quizResult.className = 'quiz-result win';
+        quizResult.textContent = quizCtx === 'kick_miss' ? 'Correct. Shoot again.' : 'Correct. Stay in goal.';
+        quizContinue.style.display = 'block';
+        quizContinue.textContent = 'Continue';
+        quizContinue.onclick = () => {
+            closeDialog(quizModal);
+            quizCtx === 'kick_miss' ? startKick() : startGoalie();
+        };
+    } else {
+        quizResult.className = 'quiz-result lose';
+        quizResult.textContent = quizCtx === 'kick_miss' ? 'Wrong. You switch to goal.' : 'Wrong. Run over.';
+        quizContinue.style.display = 'block';
+        quizContinue.textContent = quizCtx === 'kick_miss' ? 'Go to goal' : 'See score';
+        quizContinue.onclick = () => {
+            closeDialog(quizModal);
+            quizCtx === 'kick_miss' ? startGoalie() : endGame();
+        };
+    }
+    quizContinue.focus();
 }
 
-// ============================================================
-// ======================  GAME OVER  ========================
-// ============================================================
 async function endGame() {
-    state.phase = 'done';
-
-    // Save score to DB
+    S.phase = 'over';
+    kickPanel.style.display = goaliePanel.style.display = 'none';
     try {
         const body = new FormData();
-        body.append('action',       'save_score');
-        body.append('goals_scored', state.kickScore);
-        body.append('goals_saved',  state.saveScore);
-        body.append('rounds_played', TOTAL_ROUNDS);
-        body.append('lifelines_used', state.lifelinesUsed);
+        body.append('action', 'save_score');
+        body.append('goals_scored', S.goalsScored);
+        body.append('goals_saved', S.shotsSaved);
+        body.append('goals_conceded', S.goalsConceeded);
+        body.append('lifelines_used', S.quizzesUsed);
+        await fetch('api/game.php', { method: 'POST', body });
+    } catch {}
 
-        const res  = await fetch('../api/game.php', { method: 'POST', body });
-        const data = await res.json();
-
-        if (data.success) {
-            $('final-score').textContent = data.final_score;
-        }
-    } catch (e) {
-        $('final-score').textContent = (state.kickScore * 10) + (state.saveScore * 8);
-    }
-
-    $('go-goals-scored').textContent  = state.kickScore;
-    $('go-goals-saved').textContent   = state.saveScore;
-    $('go-lifelines').textContent     = state.lifelinesUsed;
-
-    // Trophy
-    const total = state.kickScore + state.saveScore;
-    const trophy = total >= 8 ? '🏆' : total >= 5 ? '🥈' : '🥉';
-    $('go-trophy').textContent = trophy;
-
-    gameoverModal.classList.add('show');
+    const total = S.goalsScored + S.shotsSaved;
+    $('go-title').textContent = total >= 12 ? 'Outstanding' : total >= 6 ? 'Strong run' : 'Game over';
+    $('go-goals').textContent = S.goalsScored;
+    $('go-saves').textContent = S.shotsSaved;
+    $('go-conceded').textContent = S.goalsConceeded;
+    $('go-quizzes').textContent = S.quizzesUsed;
+    openDialog(gameoverModal, $('btn-play-again'));
 }
 
-// ===== PLAY AGAIN =====
 $('btn-play-again').addEventListener('click', () => {
-    gameoverModal.classList.remove('show');
-    state = {
-        round: 1, phase: 'kick',
-        kickScore: 0, saveScore: 0, lifelinesUsed: 0,
-        roundDots: [], power: 0, powerDir: 1,
-        powerRunning: false, shotFired: false, saveDone: false,
-        aimX: 280, aimY: 60,
-        seenQuestions: [], animFrame: null,
-    };
-    buildRoundDots();
+    closeDialog(gameoverModal);
+    Object.assign(S, {
+        phase: 'kick',
+        goalsScored: 0,
+        shotsSaved: 0,
+        goalsConceeded: 0,
+        quizzesUsed: 0,
+        seenQs: [],
+        aimLocked: false,
+        lockedX: 0,
+        lockedY: 0,
+        aimX: 0,
+        aimY: 0,
+        power: 0,
+        powerDir: 1,
+        charging: false,
+        shotFired: false,
+        keeperLocked: false,
+        keeperX: 0,
+        keeperPreviewX: 0,
+        keeperPreviewY: 0,
+        keeperPreviewPose: 'center',
+        lockedKeeperDive: 'center',
+        aiShotZone: 'left',
+    });
     updateHUD();
-    startKickPhase();
+    startKick();
 });
 
-// ===== START =====
+document.addEventListener('keydown', e => {
+    if (activeDialog && e.key === 'Escape' && activeDialog === gameoverModal) {
+        closeDialog(gameoverModal);
+        return;
+    }
+    if (S.phase === 'kick' && document.activeElement === kickFrame && !S.aimLocked && ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'Enter'].includes(e.key)) {
+        e.preventDefault();
+        if (e.key === 'Enter') {
+            const r = kickFrame.getBoundingClientRect();
+            onKickClick({ clientX: r.left + S.aimX, clientY: r.bottom - S.aimY });
+            return;
+        }
+        nudgeKickAim(e.key);
+        return;
+    }
+    if (S.phase === 'goalie' && document.activeElement === goalieFrame && !S.keeperLocked && ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'Enter'].includes(e.key)) {
+        e.preventDefault();
+        if (e.key === 'Enter') {
+            const metrics = frameMetrics(goalieFrame);
+            lockGoalieDive(S.keeperPreviewPose, metrics.width, metrics.height);
+            return;
+        }
+        nudgeKeeperSelection(e.key);
+        return;
+    }
+    if (e.code !== 'Space') return;
+    e.preventDefault();
+    if (S.phase === 'kick' && S.aimLocked && !S.shotFired) S.charging = true;
+});
+
+document.addEventListener('keyup', e => {
+    if (e.code !== 'Space') return;
+    if (S.phase !== 'kick' || !S.aimLocked || S.shotFired || !S.charging) return;
+    S.charging = false;
+    S.shotFired = true;
+    executeKick();
+});
+
+function frameMetrics(frame) {
+    const rect = frame.getBoundingClientRect();
+    return { width: rect.width, height: rect.height };
+}
+
+function isKickInsideGoal(x, yFromBottom, width, height) {
+    const xInset = Math.max(POST, width * GOAL_MOUTH_X_INSET);
+    const topLimit = height * (1 - GOAL_MOUTH_TOP_INSET);
+    const bottomLimit = Math.max(POST, height * GOAL_MOUTH_BOTTOM_INSET);
+    return x > xInset && x < (width - xInset) &&
+        yFromBottom > bottomLimit && yFromBottom < topLimit;
+}
+
+function clamp(n, min, max) {
+    return Math.max(min, Math.min(n, max));
+}
+
+function zoneCenterX(zoneName, width) {
+    const target = KEEPER_POSE_TARGETS[zoneName] || KEEPER_POSE_TARGETS.center;
+    return width * target.x;
+}
+
+function targetPointForPose(pose, width, height) {
+    const target = KEEPER_POSE_TARGETS[pose] || KEEPER_POSE_TARGETS.center;
+    return { x: width * target.x, y: height * target.y };
+}
+
+function keeperWidth(el) {
+    return el.getBoundingClientRect().width || 56;
+}
+
+function setPower(value) {
+    powerFill.style.transform = `scaleX(${value / 100})`;
+}
+
+function setKickAim(x, y) {
+    const { width, height } = frameMetrics(kickFrame);
+    S.aimX = clamp(x, 10, width - 10);
+    S.aimY = clamp(y, 10, height - 10);
+    kickAim.style.left = `${S.aimX}px`;
+    kickAim.style.bottom = `${S.aimY}px`;
+}
+
+function setKeeperHorizontalPosition(el, frameWidth, x) {
+    const max = Math.max(0, frameWidth - keeperWidth(el));
+    const clamped = clamp(x, 0, max);
+    S.keeperX = clamped;
+    el.style.transform = `translateX(${clamped}px)`;
+}
+
+function setKeeperPositionForPose(el, frameWidth, pose) {
+    const x = zoneCenterX(pose, frameWidth) - keeperWidth(el) / 2;
+    setKeeperHorizontalPosition(el, frameWidth, x);
+}
+
+function setKeeperPose(el, pose) {
+    const nextPose = KEEPER_SPRITES[pose] ? pose : 'center';
+    el.dataset.pose = nextPose;
+    el.style.backgroundImage = `url('${KEEPER_SPRITES[nextPose]}')`;
+}
+
+function showGoalieCursor(visible) {
+    goalieCursor.style.display = visible ? 'block' : 'none';
+}
+
+function setGoalieCursorPosition(x, y) {
+    S.keeperPreviewX = x;
+    S.keeperPreviewY = y;
+    goalieCursor.style.left = `${x}px`;
+    goalieCursor.style.top = `${y}px`;
+}
+
+function setGoaliePreviewFromPose(pose, width, height) {
+    const target = targetPointForPose(pose, width, height);
+    S.keeperPreviewPose = pose;
+    setGoalieCursorPosition(target.x, height - target.y);
+}
+
+function preloadKeeperSprites() {
+    Object.values(KEEPER_SPRITES).forEach(src => {
+        const img = new Image();
+        img.decoding = 'async';
+        img.src = src;
+    });
+}
+
+function keeperHorizontalZone(x, width) {
+    const xInset = Math.max(POST, width * GOAL_MOUTH_X_INSET);
+    const playableWidth = Math.max(1, width - (xInset * 2));
+    const leftBoundary = xInset + playableWidth / 3;
+    const rightBoundary = width - xInset - playableWidth / 3;
+
+    if (x <= leftBoundary) return 'left';
+    if (x >= rightBoundary) return 'right';
+    return 'center';
+}
+
+function keeperPoseFromShot(x, yFromBottom, width, height) {
+    const side = keeperHorizontalZone(x, width);
+    if (side === 'center') return 'center';
+
+    const sidePose = side;
+    const topPose = side === 'left' ? 'topLeft' : 'topRight';
+    const sideTarget = targetPointForPose(sidePose, width, height);
+    const topTarget = targetPointForPose(topPose, width, height);
+    const splitY = ((sideTarget.y + topTarget.y) / 2) - (height * KEEPER_CORNER_BIAS);
+
+    return yFromBottom >= splitY ? topPose : sidePose;
+}
+
+function keeperPoseFromPoint(xFromLeft, yFromTop, width, height) {
+    return keeperPoseFromShot(xFromLeft, height - yFromTop, width, height);
+}
+
+function ballRadius(el) {
+    const rect = el.getBoundingClientRect();
+    if (rect.height) return rect.height / 2;
+
+    const computedHeight = parseFloat(getComputedStyle(el).height);
+    return Number.isFinite(computedHeight) ? computedHeight / 2 : 12;
+}
+
+function animateBall(el, frame, targetX, targetY, startBottom, scale) {
+    const { width } = frameMetrics(frame);
+    const startX = width / 2;
+    const dx = targetX - startX;
+    el.style.cssText = `display:block;transition:none;left:50%;bottom:${startBottom}px;opacity:1;transform:translateX(-50%) translate3d(0,0,0) scale(1) rotate(0deg)`;
+    const dy = (targetY - ballRadius(el)) - startBottom;
+    requestAnimationFrame(() => {
+        el.style.transition = `transform ${BALL_TRAVEL_MS}ms ease-out,opacity ${BALL_TRAVEL_MS}ms`;
+        el.style.transform = `translateX(-50%) translate3d(${dx}px, ${-dy}px, 0) scale(${scale}) rotate(540deg)`;
+    });
+}
+
+function nudgeKickAim(key) {
+    const delta = {
+        ArrowLeft: [-KEYBOARD_STEP, 0],
+        ArrowRight: [KEYBOARD_STEP, 0],
+        ArrowUp: [0, KEYBOARD_STEP],
+        ArrowDown: [0, -KEYBOARD_STEP],
+    }[key];
+    if (!delta) return;
+    setKickAim(S.aimX + delta[0], S.aimY + delta[1]);
+}
+
+function nudgeKeeperSelection(key) {
+    const nextPose = {
+        center: { ArrowLeft: 'left', ArrowRight: 'right' },
+        left: { ArrowRight: 'center', ArrowUp: 'topLeft' },
+        topLeft: { ArrowDown: 'left', ArrowRight: 'center' },
+        right: { ArrowLeft: 'center', ArrowUp: 'topRight' },
+        topRight: { ArrowDown: 'right', ArrowLeft: 'center' },
+    }[S.keeperPreviewPose]?.[key];
+
+    if (!nextPose) return;
+    const { width, height } = frameMetrics(goalieFrame);
+    setGoaliePreviewFromPose(nextPose, width, height);
+    showGoalieCursor(true);
+}
+
+function aiKeeperDecision(shotPose) {
+    if (Math.random() < (PREDICT[DIFFICULTY] ?? 0.5)) return shotPose;
+    const fallback = KEEPER_POSES.filter(pose => pose !== shotPose);
+    return fallback[Math.floor(Math.random() * fallback.length)];
+}
+
+function openDialog(dialog, focusEl) {
+    lastFocus = document.activeElement;
+    activeDialog = dialog;
+    dialog.classList.add('show');
+    dialog.setAttribute('aria-hidden', 'false');
+    (focusEl || dialog.querySelector('button, a, input, select, textarea'))?.focus();
+}
+
+function closeDialog(dialog) {
+    dialog.classList.remove('show');
+    dialog.setAttribute('aria-hidden', 'true');
+    activeDialog = null;
+    lastFocus?.focus?.();
+}
+
+function logout() {
+    fetch('api/auth.php', { method: 'POST', body: new URLSearchParams({ action: 'logout' }) })
+    .then(r => r.json()).then(d => window.location.href = d.redirect);
+}
+
 init();

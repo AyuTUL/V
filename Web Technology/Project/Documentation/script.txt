@@ -1,0 +1,56 @@
+Slide 1 — Title
+
+"Good [morning/afternoon], everyone. My name is Ayush Tuladhar, and today I'll be presenting my Web Technology project — a Penalty Shootout Game. This is a full-stack web application built using HTML, CSS, JavaScript, PHP, and MySQL."
+
+
+Slide 2 — What is the Game?
+
+"So what exactly is this game? At its core, it's an interactive browser-based penalty shootout where you both take and save penalty kicks. But what makes it unique is a trivia mechanic — if you concede a goal, a football trivia question pops up, and answering it correctly gives you a second life. The entire application is full-stack, meaning the game logic, user data, and scores are all connected through a backend."
+
+
+Slide 3 — Problem Statement
+
+"Now, why build this in the first place? Most browser games you find online are purely client-side. The moment you close the tab, everything is gone — no history, no account, nothing saved. There's also no way to compare your performance with other players, and no way for an administrator to manage the game content without going directly into the database. These were the core problems I wanted to solve."
+
+
+Slide 4 — Proposed Solution
+
+"My solution addresses all three problems with five key components. First, an interactive penalty game for users to actually play. Second, a user authentication system so players have accounts. Third, a database layer that stores and retrieves scores persistently. Fourth, a leaderboard so players can compare their performance with others. And fifth, an admin panel that lets administrators manage the game without ever touching the database directly."
+
+
+Slide 5 — System Architecture
+
+"Here's how the system is structured technically. The frontend — built in HTML, CSS, and JavaScript — communicates with the backend using the browser's Fetch API. The backend is a PHP API layer, split into three files: auth.php for authentication, game.php for game logic, and admin.php for admin operations. The PHP layer then talks to a MySQL database using PDO prepared statements, which also protects against SQL injection."
+
+
+Slide 6 — Modules
+
+"The application is divided into six modules. The Game Module handles all penalty logic and player interaction. Score Management stores and retrieves scores from the database. The Leaderboard displays player rankings. Authentication controls user login and access. The Admin Panel lets admins manage quiz questions, scores, and game settings. And finally, the API Module acts as the bridge connecting the frontend and backend."
+
+
+Slide 7 — Use Case Diagram
+
+"This use case diagram shows the two types of actors in the system — a regular User and an Admin. A user can register, log in, play the game, answer quiz lifeline questions, and view the leaderboard. An admin, on the other hand, has elevated access — they can manage questions, manage scores, and configure the game's difficulty level."
+
+
+Slide 8 — ER Diagram
+
+"Looking at the database design, we have four tables. The USER table stores account information including username, password hash, and role. The GAME_SESSION table records each game played — goals scored, saved, conceded, and lifelines used — linked to a user via a foreign key. The QUIZ_QUESTION table stores trivia questions with four options and the correct answer. And the SETTINGS table holds key-value pairs for admin-configurable options like difficulty."
+
+
+Slide 9 — How it Works
+
+"Let me walk you through the actual gameplay. When you're the kicker, you aim your cursor over the goal, hold the Space bar to charge a power bar, then release to shoot. An AI goalkeeper dives to save it — and its accuracy depends on the difficulty level set by the admin. If you miss, a football trivia question appears. Answer correctly and you get a second life. Answer wrong, and the roles switch — you become the goalkeeper and the AI takes the kick.
+
+
+When you're the goalkeeper, the same lifeline mechanic applies. Concede a goal, get a trivia question. Answer correctly, stay alive. Answer wrong, the game ends and your session is saved to the database."
+
+
+Slide 10 — Future Implementation
+
+"There are several features I plan to add in the future. User management in the admin panel — currently admins can manage content but can't yet list or remove user accounts. I also want to record per-round data for more detailed analytics. A multiplayer mode using WebSockets would allow real-time matches between two players. Making the game controls mobile-responsive is another goal. And finally, deploying the application publicly with HTTPS."
+
+
+Slide 11 — Key Takeaways
+
+"To wrap up the technical side, here are my main takeaways from building this project. First — role-based access must always be enforced on the server side. Relying only on the frontend to restrict access is not secure. Second — separating the project into distinct layers — frontend, API, and database — made debugging significantly easier. Third — adding the quiz mechanic completely transformed the feel of the game; it adds stakes and engagement that a simple shootout wouldn't have. And finally, keeping the interface clean and user-friendly made the whole experience much more enjoyable."

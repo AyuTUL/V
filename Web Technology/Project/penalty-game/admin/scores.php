@@ -8,130 +8,159 @@ $activePage = 'scores';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>All Scores — Admin</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+    <title>All Scores | Admin</title>
     <link rel="stylesheet" href="../css/admin.css">
 </head>
 <body>
-
 <?php include 'sidebar.php'; ?>
-
-<div class="main">
-    <div class="page-header">
-        <h1>🏆 ALL SCORES</h1>
-        <p>Full game history across all players (last 100 games)</p>
+<main class="main">
+    <div class="page-hd">
+        <h1>All Scores</h1>
+        <p>View and delete session history, plus player totals.</p>
     </div>
 
-    <div class="card">
-        <div class="card-header">
-            <span class="card-title">GAME HISTORY</span>
-            <div style="display:flex;gap:10px;align-items:center">
-                <input type="text" id="search-input" placeholder="Search player..." 
-                       style="background:rgba(255,255,255,0.05);border:1px solid var(--border);border-radius:6px;color:var(--text);padding:7px 12px;font-family:'Barlow',sans-serif;font-size:13px;outline:none">
-                <button class="btn-primary" onclick="loadScores()" style="font-size:12px;padding:8px 16px">↺ REFRESH</button>
+    <section class="section-block" aria-labelledby="scores-total-title">
+        <div class="section-head">
+            <span class="section-title" id="scores-total-title">Totals</span>
+        </div>
+        <div class="table-wrap">
+            <table class="tbl">
+                <caption class="sr-only">Leaderboard summary of player totals</caption>
+                <thead><tr>
+                    <th>#</th><th>Player</th><th>Games</th>
+                    <th>Goals</th><th>Saves</th><th>Conceded</th><th>Lifelines</th><th>Last Played</th>
+                </tr></thead>
+                <tbody id="lb-tbody">
+                    <tr><td colspan="8" class="table-empty">Loading...</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section class="section-block" aria-labelledby="scores-history-title">
+        <div class="section-head">
+            <span class="section-title" id="scores-history-title">Sessions</span>
+            <div class="toolbar-group">
+                <label class="sr-only" for="search">Filter by player</label>
+                <input type="text" class="search-input" id="search" placeholder="Filter by player">
             </div>
         </div>
-        <div style="overflow-x:auto">
-            <table class="admin-table">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>PLAYER</th>
-                        <th>GOALS</th>
-                        <th>SAVES</th>
-                        <th>ROUNDS</th>
-                        <th>LIFELINES</th>
-                        <th>FINAL SCORE</th>
-                        <th>DATE & TIME</th>
-                    </tr>
-                </thead>
+        <div class="table-wrap">
+            <table class="tbl">
+                <caption class="sr-only">Game history for all player sessions</caption>
+                <thead><tr>
+                    <th>ID</th><th>Player</th>
+                    <th>Goals</th><th>Saves</th><th>Conceded</th><th>Lifelines</th>
+                    <th>Date</th><th>Actions</th>
+                </tr></thead>
                 <tbody id="scores-tbody">
-                    <tr><td colspan="8" style="text-align:center;color:var(--muted);padding:24px">Loading...</td></tr>
+                    <tr><td colspan="8" class="table-empty">Loading...</td></tr>
                 </tbody>
             </table>
         </div>
-    </div>
+    </section>
+</main>
 
-    <!-- Per-player leaderboard -->
-    <div class="card">
-        <div class="card-header"><span class="card-title">PLAYER STATS (BEST SCORES)</span></div>
-        <div style="overflow-x:auto">
-            <table class="admin-table">
-                <thead>
-                    <tr>
-                        <th>RANK</th>
-                        <th>PLAYER</th>
-                        <th>BEST SCORE</th>
-                        <th>GAMES</th>
-                        <th>TOTAL GOALS</th>
-                        <th>LAST PLAYED</th>
-                    </tr>
-                </thead>
-                <tbody id="lb-tbody">
-                    <tr><td colspan="6" style="text-align:center;color:var(--muted);padding:24px">Loading...</td></tr>
-                </tbody>
-            </table>
+<div class="modal" id="del-modal" role="dialog" aria-modal="true" aria-labelledby="delete-score-title" aria-describedby="delete-score-desc" aria-hidden="true">
+    <div class="modal-box">
+        <h3 id="delete-score-title">Delete this score?</h3>
+        <p id="delete-score-desc">This cannot be undone.</p>
+        <div class="modal-actions">
+            <button type="button" class="btn btn-ghost" onclick="closeDeleteModal()">Cancel</button>
+            <button type="button" class="btn btn-acc" id="confirm-del">Delete</button>
         </div>
     </div>
 </div>
 
 <script>
-let allScores = [];
+let allScores = [], deleteId = null, lastFocus = null;
+const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+const num = value => value ?? 0;
 
-async function loadScores() {
-    const res  = await fetch('../api/admin.php?action=get_scores');
-    const data = await res.json();
-    allScores  = data.scores || [];
-    renderScores(allScores);
+function showDel(id) {
+    deleteId = id;
+    lastFocus = document.activeElement;
+    const modal = document.getElementById('del-modal');
+    modal.classList.add('show');
+    modal.setAttribute('aria-hidden', 'false');
+    document.getElementById('confirm-del').focus();
 }
 
-function renderScores(scores) {
-    const tbody = document.getElementById('scores-tbody');
-    if (!scores.length) {
-        tbody.innerHTML = '<tr><td colspan="8" style="text-align:center;color:var(--muted);padding:24px">No games played yet.</td></tr>';
-        return;
+function closeDeleteModal() {
+    deleteId = null;
+    const modal = document.getElementById('del-modal');
+    modal.classList.remove('show');
+    modal.setAttribute('aria-hidden', 'true');
+    lastFocus?.focus?.();
+}
+
+document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && document.getElementById('del-modal').classList.contains('show')) {
+        closeDeleteModal();
     }
-    tbody.innerHTML = scores.map((row, i) => `
-        <tr>
-            <td style="color:var(--muted)">${i+1}</td>
-            <td><strong>${esc(row.username)}</strong></td>
-            <td>⚽ ${row.goals_scored}/5</td>
-            <td>🧤 ${row.goals_saved}/5</td>
-            <td>${row.rounds_played}</td>
-            <td>${row.lifelines_used}</td>
-            <td><strong style="color:var(--green);font-family:'Oswald',sans-serif;font-size:18px">${row.final_score}</strong></td>
-            <td style="color:var(--muted);font-size:13px">${new Date(row.played_at).toLocaleString()}</td>
-        </tr>`).join('');
-}
-
-async function loadLeaderboard() {
-    const res  = await fetch('../api/game.php?action=get_leaderboard');
-    const data = await res.json();
-    const tbody = document.getElementById('lb-tbody');
-    if (!data.success || !data.leaderboard.length) {
-        tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;color:var(--muted);padding:24px">No data.</td></tr>';
-        return;
-    }
-    const medals = ['🥇','🥈','🥉'];
-    tbody.innerHTML = data.leaderboard.map((row, i) => `
-        <tr>
-            <td>${medals[i] || (i+1)}</td>
-            <td><strong>${esc(row.username)}</strong></td>
-            <td><strong style="color:var(--green);font-family:'Oswald',sans-serif;font-size:18px">${row.best_score}</strong></td>
-            <td>${row.games_played}</td>
-            <td>⚽ ${row.total_goals}</td>
-            <td style="color:var(--muted)">${new Date(row.last_played).toLocaleDateString()}</td>
-        </tr>`).join('');
-}
-
-// Search filter
-document.getElementById('search-input').addEventListener('input', (e) => {
-    const q = e.target.value.toLowerCase();
-    renderScores(allScores.filter(s => s.username.toLowerCase().includes(q)));
 });
 
-function esc(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+async function loadScores() {
+    const d = await fetch('../api/admin.php?action=get_scores').then(r => r.json());
+    allScores = d.scores || [];
+    render(allScores);
+}
+
+function render(scores) {
+    const tbody = document.getElementById('scores-tbody');
+    if (!scores.length) {
+        tbody.innerHTML = '<tr><td colspan="8" class="table-empty">No results.</td></tr>';
+        return;
+    }
+    tbody.innerHTML = scores.map(r => `
+        <tr id="row-${r.id}">
+            <td><span class="table-id">${r.id}</span></td>
+            <td><strong>${esc(r.username)}</strong></td>
+            <td>${num(r.goals_scored)}</td>
+            <td>${num(r.goals_saved)}</td>
+            <td>${num(r.goals_conceded)}</td>
+            <td>${num(r.lifelines_used)}</td>
+            <td><span class="muted-date">${new Date(r.played_at).toLocaleDateString()}</span></td>
+            <td>
+                <button type="button" class="btn-del" onclick="showDel(${r.id})">Delete</button>
+            </td>
+        </tr>`).join('');
+}
+
+document.getElementById('confirm-del').addEventListener('click', async () => {
+    if (!deleteId) return;
+    const body = new FormData();
+    body.append('action', 'delete_score');
+    body.append('id', deleteId);
+    await fetch('../api/admin.php', { method: 'POST', body });
+    closeDeleteModal();
+    loadScores();
+});
+
+document.getElementById('search').addEventListener('input', e => {
+    const q = e.target.value.toLowerCase();
+    render(allScores.filter(s => s.username.toLowerCase().includes(q)));
+});
+
+async function loadLeaderboard() {
+    const d = await fetch('../api/game.php?action=get_leaderboard').then(r => r.json());
+    const tbody = document.getElementById('lb-tbody');
+    if (!d.success || !d.leaderboard.length) {
+        tbody.innerHTML = '<tr><td colspan="8" class="table-empty">No data.</td></tr>';
+        return;
+    }
+    tbody.innerHTML = d.leaderboard.map((r, i) => `
+        <tr>
+            <td><span class="table-id">${i + 1}</span></td>
+            <td><strong>${esc(r.username)}</strong></td>
+            <td>${num(r.games_played)}</td>
+            <td><strong>${num(r.total_goals)}</strong></td>
+            <td>${num(r.total_saves)}</td>
+            <td>${num(r.total_conceded)}</td>
+            <td>${num(r.total_lifelines)}</td>
+            <td><span class="muted-date">${new Date(r.last_played).toLocaleDateString()}</span></td>
+        </tr>`).join('');
+}
 
 loadScores();
 loadLeaderboard();

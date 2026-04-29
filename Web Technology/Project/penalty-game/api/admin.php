@@ -1,5 +1,5 @@
 <?php
-// api/admin.php — admin-only actions
+// api/admin.php Ã¢â‚¬â€ admin-only actions
 require_once '../config.php';
 requireAdmin();
 
@@ -87,13 +87,29 @@ switch ($action) {
     case 'get_scores':
         $pdo = getDB();
         $stmt = $pdo->query("
-            SELECT gs.*, u.username 
+            SELECT gs.id,
+                   gs.goals_scored,
+                   gs.goals_saved,
+                   gs.goals_conceded,
+                   gs.lifelines_used,
+                   gs.played_at,
+                   u.username
             FROM game_sessions gs
             JOIN users u ON u.id = gs.user_id
             ORDER BY gs.played_at DESC
             LIMIT 100
         ");
         jsonResponse(['success' => true, 'scores' => $stmt->fetchAll()]);
+        break;
+
+    case 'delete_score':
+        $id = intval($_POST['id'] ?? 0);
+        if (!$id) jsonResponse(['success' => false, 'error' => 'Invalid ID.'], 400);
+
+        $pdo  = getDB();
+        $stmt = $pdo->prepare("DELETE FROM game_sessions WHERE id=?");
+        $stmt->execute([$id]);
+        jsonResponse(['success' => true, 'message' => 'Score deleted.']);
         break;
 
     case 'get_stats':
@@ -108,9 +124,6 @@ switch ($action) {
 
         $stmt = $pdo->query("SELECT COUNT(*) as c FROM quiz_questions");
         $stats['total_questions'] = $stmt->fetch()['c'];
-
-        $stmt = $pdo->query("SELECT MAX(final_score) as c FROM game_sessions");
-        $stats['highest_score'] = $stmt->fetch()['c'] ?? 0;
 
         $stats['goalie_difficulty'] = getSetting('goalie_difficulty', 'medium');
 

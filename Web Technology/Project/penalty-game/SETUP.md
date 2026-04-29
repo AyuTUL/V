@@ -97,8 +97,8 @@ appear empty but all mechanics work. You can use emoji or colored boxes instead.
 1. Register an account on the login page
 2. **Kick phase:** Move mouse inside the goal to aim, hold the shoot button to charge power, release to shoot
 3. **Save phase:** Move mouse to position keeper, click to dive and save the AI's shot
-4. **Lifeline:** If you miss, a football quiz appears — answer correctly to earn the goal back!
-5. Play 5 rounds, scores are saved automatically
+4. **Lifeline:** If you miss, a football quiz appears. Answer correctly to keep the run alive.
+5. Keep the run alive as long as you can, session stats are saved automatically when the run ends
 
 ### As Admin:
 1. Login with admin credentials
@@ -109,13 +109,16 @@ appear empty but all mechanics work. You can use emoji or colored boxes instead.
 
 ---
 
-## 7. SCORING FORMULA
+## 7. SAVED SESSION DATA
 
-```
-Final Score = (Goals Scored × 10) + (Shots Saved × 8) + ((5 - Lifelines Used) × 2)
-```
+Each game session stores:
+- Goals scored
+- Saves made
+- Goals conceded
+- Lifelines used
+- Played timestamp
 
-Perfect game (5 goals, 5 saves, 0 lifelines): **100 points**
+Leaderboard totals are ranked by goals first, then saves.
 
 ---
 

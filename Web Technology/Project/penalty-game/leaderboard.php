@@ -9,104 +9,72 @@ $role     = $_SESSION['role'];
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leaderboard — Penalty Shootout</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+    <title>Leaderboard | Penalty Shootout</title>
     <link rel="stylesheet" href="css/auth.css">
-    <style>
-        body { overflow: auto; }
-        .lb-container { max-width: 800px; margin: 0 auto; padding: 30px 20px; }
-        .lb-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:28px; }
-        .lb-title { font-family:'Oswald',sans-serif; font-size:28px; font-weight:700; letter-spacing:4px; }
-        .lb-back { color:var(--muted); text-decoration:none; font-size:13px; letter-spacing:1px; transition:color 0.2s; }
-        .lb-back:hover { color:var(--text); }
-        .lb-table { width:100%; border-collapse: collapse; }
-        .lb-table th {
-            font-family:'Oswald',sans-serif; font-size:11px; letter-spacing:2px;
-            color:var(--muted); text-align:left; padding:10px 16px;
-            border-bottom: 1px solid var(--border);
-        }
-        .lb-table td {
-            padding: 14px 16px; font-size:15px;
-            border-bottom: 1px solid rgba(255,255,255,0.04);
-        }
-        .lb-table tr:hover td { background: rgba(255,255,255,0.02); }
-        .lb-table tr.me td { color: var(--green); }
-        .rank { font-family:'Oswald',sans-serif; font-size:18px; font-weight:700; }
-        .rank-1 { color: #ffd600; }
-        .rank-2 { color: #bdbdbd; }
-        .rank-3 { color: #bf8970; }
-        .score-val { font-family:'Oswald',sans-serif; font-size:22px; font-weight:700; color:var(--green); }
-        .empty { text-align:center; padding:40px; color:var(--muted); font-size:15px; }
-    </style>
 </head>
-<body>
-<div class="auth-bg">
-    <div class="auth-noise"></div>
-    <div class="lb-container">
-        <div class="lb-header">
-            <div class="lb-title">🏆 LEADERBOARD</div>
-            <a href="<?= $role === 'admin' ? 'admin/index.php' : 'game.php' ?>" class="lb-back">← BACK TO <?= $role === 'admin' ? 'DASHBOARD' : 'GAME' ?></a>
+<body class="leaderboard-screen">
+<main class="lb-wrap">
+    <div class="page-head">
+        <div>
+            <h1>Leaderboard</h1>
+            <p>Totals across every saved session.</p>
         </div>
-
-        <div id="lb-content">
-            <div class="empty">Loading scores...</div>
-        </div>
+        <a class="page-link" href="<?= $role === 'admin' ? 'admin/index.php' : 'game.php' ?>">
+            &larr; Back to <?= $role === 'admin' ? 'dashboard' : 'game' ?>
+        </a>
     </div>
-</div>
-
+    <div class="table-wrap">
+        <table class="lb-table">
+            <caption class="sr-only">Leaderboard of players and their game totals</caption>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Player</th>
+                    <th class="center">Games</th>
+                    <th class="center">Goals</th>
+                    <th class="center">Saves</th>
+                    <th class="center">Conceded</th>
+                    <th class="center">Lifelines</th>
+                    <th>Last played</th>
+                </tr>
+            </thead>
+            <tbody id="lb-body">
+                <tr class="empty-row"><td colspan="8">Loading...</td></tr>
+            </tbody>
+        </table>
+    </div>
+</main>
 <script>
-const ME = <?= json_encode($username) ?>;
+const ME  = <?= json_encode($username) ?>;
+const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+const num = value => value ?? 0;
+const formatDate = value => new Date(value).toLocaleDateString();
 
-async function loadLeaderboard() {
-    try {
-        const res = await fetch('api/game.php?action=get_leaderboard');
-        const data = await res.json();
-
-        if (!data.success || !data.leaderboard.length) {
-            document.getElementById('lb-content').innerHTML = '<div class="empty">No games played yet. Be the first!</div>';
-            return;
-        }
-
-        const rows = data.leaderboard.map((row, i) => {
-            const rank = i + 1;
-            const rankClass = rank <= 3 ? `rank-${rank}` : '';
-            const rankDisplay = rank <= 3 ? ['🥇','🥈','🥉'][rank-1] : rank;
-            const isMe = row.username === ME;
-            return `<tr class="${isMe ? 'me' : ''}">
-                <td><span class="rank ${rankClass}">${rankDisplay}</span></td>
-                <td>${isMe ? '★ ' : ''}${escHtml(row.username)}</td>
-                <td><span class="score-val">${row.best_score}</span></td>
-                <td>${row.games_played}</td>
-                <td>${row.total_goals}</td>
-                <td>${new Date(row.last_played).toLocaleDateString()}</td>
-            </tr>`;
-        }).join('');
-
-        document.getElementById('lb-content').innerHTML = `
-            <table class="lb-table">
-                <thead>
-                    <tr>
-                        <th>RANK</th>
-                        <th>PLAYER</th>
-                        <th>BEST SCORE</th>
-                        <th>GAMES</th>
-                        <th>TOTAL GOALS</th>
-                        <th>LAST PLAYED</th>
-                    </tr>
-                </thead>
-                <tbody>${rows}</tbody>
-            </table>`;
-    } catch(e) {
-        document.getElementById('lb-content').innerHTML = '<div class="empty">Failed to load scores.</div>';
+fetch('api/game.php?action=get_leaderboard')
+.then(r => r.json()).then(d => {
+    const tbody = document.getElementById('lb-body');
+    if (!d.success || !d.leaderboard.length) {
+        tbody.innerHTML = '<tr class="empty-row"><td colspan="8">No games played yet.</td></tr>';
+        return;
     }
-}
-
-function escHtml(str) {
-    return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-}
-
-loadLeaderboard();
+    const rankClass = i => i === 0 ? 'rank-1' : i === 1 ? 'rank-2' : i === 2 ? 'rank-3' : 'rank-num';
+    tbody.innerHTML = d.leaderboard.map((r, i) => `
+        <tr class="${r.username === ME ? 'me' : ''}">
+            <td><span class="${rankClass(i)}">${i + 1}</span></td>
+            <td>
+                ${esc(r.username)}
+                ${r.username === ME ? '<span class="me-tag">YOU</span>' : ''}
+            </td>
+            <td class="center"><span class="stat-n">${num(r.games_played)}</span></td>
+            <td class="center"><span class="stat-n">${num(r.total_goals)}</span></td>
+            <td class="center"><span class="stat-n">${num(r.total_saves)}</span></td>
+            <td class="center"><span class="stat-n">${num(r.total_conceded)}</span></td>
+            <td class="center"><span class="stat-n">${num(r.total_lifelines)}</span></td>
+            <td><span class="muted-date">${formatDate(r.last_played)}</span></td>
+        </tr>`).join('');
+}).catch(() => {
+    document.getElementById('lb-body').innerHTML = '<tr class="empty-row"><td colspan="8">Failed to load.</td></tr>';
+});
 </script>
 </body>
 </html>

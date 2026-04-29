@@ -2,8 +2,7 @@
 require_once 'config.php';
 startSession();
 if (!empty($_SESSION['user_id'])) {
-    $redirect = $_SESSION['role'] === 'admin' ? 'admin/index.php' : 'game.php';
-    header('Location: ' . BASE_URL . $redirect);
+    header('Location: ' . BASE_URL . ($_SESSION['role'] === 'admin' ? 'admin/index.php' : 'game.php'));
     exit;
 }
 ?>
@@ -12,121 +11,144 @@ if (!empty($_SESSION['user_id'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Penalty Shootout — Login</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+    <title>Penalty Shootout</title>
     <link rel="stylesheet" href="css/auth.css">
 </head>
-<body>
-    <div class="auth-bg">
-        <div class="auth-noise"></div>
-        <div class="auth-container">
-            <div class="auth-logo">
-                <div class="logo-ball">⚽</div>
-                <h1>PENALTY<br><span>SHOOTOUT</span></h1>
-            </div>
+<body class="login-screen">
+<main class="wrap" aria-labelledby="auth-title">
+    <div class="wordmark">
+        
+        <div class="wordmark-title" id="auth-title">PENALTY<span>.</span>SHOOTOUT</div>
+    </div>
 
-            <div class="auth-card">
-                <div class="tab-switcher">
-                    <button class="tab-btn active" data-tab="login">LOGIN</button>
-                    <button class="tab-btn" data-tab="register">REGISTER</button>
-                </div>
+    <div class="card">
+        <div class="tabs" role="tablist" aria-label="Authentication views">
+            <button type="button" class="tab active" id="tab-btn-login" data-tab="login" role="tab" aria-controls="tab-login" aria-selected="true">Login</button>
+            <button type="button" class="tab" id="tab-btn-register" data-tab="register" role="tab" aria-controls="tab-register" aria-selected="false">Register</button>
+        </div>
+        <div class="tab-body">
 
-                <div id="tab-login" class="tab-content active">
-                    <form id="loginForm">
-                        <div class="field-group">
-                            <label>USERNAME</label>
-                            <input type="text" name="username" id="login-username" autocomplete="username" required>
-                        </div>
-                        <div class="field-group">
-                            <label>PASSWORD</label>
-                            <input type="password" name="password" id="login-password" autocomplete="current-password" required>
-                        </div>
-                        <div class="error-msg" id="login-error"></div>
-                        <button type="submit" class="btn-primary">KICK OFF →</button>
-                    </form>
-                    <p class="auth-hint">Admin? Use your admin credentials to access the dashboard.</p>
-                </div>
+            <section id="tab-login" class="tab-pane active" role="tabpanel" aria-labelledby="tab-btn-login">
+                <fieldset class="role-row role-group">
+                    <legend class="sr-only">Login role</legend>
+                    <label class="role-opt active">
+                        <input type="radio" name="role" value="user" checked>
+                        <span class="role-dot"></span>
+                        <span class="role-label">Player</span>
+                    </label>
+                    <label class="role-opt">
+                        <input type="radio" name="role" value="admin">
+                        <span class="role-dot"></span>
+                        <span class="role-label">Admin</span>
+                    </label>
+                </fieldset>
+                <form id="loginForm">
+                    <div class="field">
+                        <label for="l-user">Username</label>
+                        <input type="text" id="l-user" autocomplete="username" required aria-describedby="l-err">
+                    </div>
+                    <div class="field">
+                        <label for="l-pass">Password</label>
+                        <input type="password" id="l-pass" autocomplete="current-password" required aria-describedby="l-err">
+                    </div>
+                    <div class="msg err" id="l-err" aria-live="polite"></div>
+                    <button type="submit" class="btn">Enter</button>
+                </form>
+            </section>
 
-                <div id="tab-register" class="tab-content">
-                    <form id="registerForm">
-                        <div class="field-group">
-                            <label>USERNAME</label>
-                            <input type="text" name="username" id="reg-username" autocomplete="username" required minlength="3" maxlength="50">
-                        </div>
-                        <div class="field-group">
-                            <label>PASSWORD</label>
-                            <input type="password" name="password" id="reg-password" autocomplete="new-password" required minlength="6">
-                        </div>
-                        <div class="error-msg" id="register-error"></div>
-                        <div class="success-msg" id="register-success"></div>
-                        <button type="submit" class="btn-primary">CREATE ACCOUNT</button>
-                    </form>
-                </div>
-            </div>
+            <section id="tab-register" class="tab-pane" role="tabpanel" aria-labelledby="tab-btn-register" hidden>
+                <div class="note">Players can register here. Admin accounts are created separately.</div>
+                <form id="regForm">
+                    <div class="field">
+                        <label for="r-user">Username</label>
+                        <input type="text" id="r-user" autocomplete="username" required minlength="3" maxlength="50" aria-describedby="r-err r-ok">
+                    </div>
+                    <div class="field">
+                        <label for="r-pass">Password</label>
+                        <input type="password" id="r-pass" autocomplete="new-password" required minlength="6" aria-describedby="r-err r-ok">
+                    </div>
+                    <div class="msg err" id="r-err" aria-live="polite"></div>
+                    <div class="msg ok" id="r-ok" aria-live="polite"></div>
+                    <button type="submit" class="btn">Create Account</button>
+                </form>
+            </section>
+
         </div>
     </div>
-    <script>
-        // Tab switching
-        document.querySelectorAll('.tab-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                document.querySelectorAll('.tab-btn, .tab-content').forEach(el => el.classList.remove('active'));
-                btn.classList.add('active');
-                document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
-            });
-        });
+</main>
 
-        // Login
-        document.getElementById('loginForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const err = document.getElementById('login-error');
-            err.textContent = '';
-            const btn = e.target.querySelector('button');
-            btn.disabled = true; btn.textContent = 'LOGGING IN...';
+<script>
+document.querySelectorAll('.tab').forEach(t => t.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach(tab => {
+        const active = tab === t;
+        tab.classList.toggle('active', active);
+        tab.setAttribute('aria-selected', String(active));
+    });
+    document.querySelectorAll('.tab-pane').forEach(pane => {
+        const active = pane.id === 'tab-' + t.dataset.tab;
+        pane.classList.toggle('active', active);
+        pane.hidden = !active;
+    });
+}));
 
-            const body = new FormData();
-            body.append('action', 'login');
-            body.append('username', document.getElementById('login-username').value);
-            body.append('password', document.getElementById('login-password').value);
+document.querySelectorAll('input[name="role"]').forEach(r => r.addEventListener('change', () => {
+    document.querySelectorAll('.role-opt').forEach(l => l.classList.remove('active'));
+    r.closest('.role-opt').classList.add('active');
+}));
 
-            try {
-                const res = await fetch('api/auth.php', { method: 'POST', body });
-                const data = await res.json();
-                if (data.success) {
-                    window.location.href = data.redirect;
-                } else {
-                    err.textContent = data.error;
-                    btn.disabled = false; btn.textContent = 'KICK OFF →';
-                }
-            } catch { err.textContent = 'Connection error.'; btn.disabled = false; btn.textContent = 'KICK OFF →'; }
-        });
+document.getElementById('loginForm').addEventListener('submit', async e => {
+    e.preventDefault();
+    const err = document.getElementById('l-err');
+    const btn = e.target.querySelector('button');
+    err.textContent = '';
+    btn.disabled = true;
+    btn.textContent = 'Loading...';
+    const body = new FormData();
+    body.append('action', 'login');
+    body.append('username', document.getElementById('l-user').value.trim());
+    body.append('password', document.getElementById('l-pass').value);
+    body.append('expected_role', document.querySelector('input[name="role"]:checked').value);
+    try {
+        const d = await fetch('api/auth.php', { method: 'POST', body }).then(r => r.json());
+        if (d.success) {
+            window.location.href = d.redirect;
+            return;
+        }
+        err.textContent = d.error;
+    } catch {
+        err.textContent = 'Connection error.';
+    }
+    btn.disabled = false;
+    btn.textContent = 'Enter';
+});
 
-        // Register
-        document.getElementById('registerForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const err = document.getElementById('register-error');
-            const succ = document.getElementById('register-success');
-            err.textContent = ''; succ.textContent = '';
-            const btn = e.target.querySelector('button');
-            btn.disabled = true; btn.textContent = 'CREATING...';
-
-            const body = new FormData();
-            body.append('action', 'register');
-            body.append('username', document.getElementById('reg-username').value);
-            body.append('password', document.getElementById('reg-password').value);
-
-            try {
-                const res = await fetch('api/auth.php', { method: 'POST', body });
-                const data = await res.json();
-                if (data.success) {
-                    succ.textContent = data.message;
-                    e.target.reset();
-                } else {
-                    err.textContent = data.error;
-                }
-            } catch { err.textContent = 'Connection error.'; }
-            btn.disabled = false; btn.textContent = 'CREATE ACCOUNT';
-        });
-    </script>
+document.getElementById('regForm').addEventListener('submit', async e => {
+    e.preventDefault();
+    const err = document.getElementById('r-err');
+    const ok = document.getElementById('r-ok');
+    const btn = e.target.querySelector('button');
+    err.textContent = '';
+    ok.textContent = '';
+    btn.disabled = true;
+    btn.textContent = 'Creating...';
+    const body = new FormData();
+    body.append('action', 'register');
+    body.append('username', document.getElementById('r-user').value.trim());
+    body.append('password', document.getElementById('r-pass').value);
+    try {
+        const d = await fetch('api/auth.php', { method: 'POST', body }).then(r => r.json());
+        if (d.success) {
+            ok.textContent = d.message;
+            e.target.reset();
+        } else {
+            err.textContent = d.error;
+        }
+    } catch {
+        err.textContent = 'Connection error.';
+    }
+    btn.disabled = false;
+    btn.textContent = 'Create Account';
+});
+</script>
 </body>
 </html>
