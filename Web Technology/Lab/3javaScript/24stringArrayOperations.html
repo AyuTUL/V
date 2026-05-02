@@ -1,1 +1,30 @@
 <!-- Lab 24: Write a javascript to create an array of fruits with values apple, orange, mango. Then add three more items in the form of array using javascript function and remove two items from the back of the array. Now display the items of array in string format. -->
+<html>
+
+<head>
+    <title>String Array Operations</title>
+
+    <script>
+        function add() {
+            arr.push("banana", "watermelon", "avocado");
+        }
+
+        function remove() {
+            arr.pop();
+            arr.pop();
+        }
+
+        arr = ["apple", "orange", "mango"];
+        document.write("Original Array : [" + arr + "]" + "<br><br>");
+
+        add();
+        document.write("Array after push : [" + arr + "]" + "<br><br>");
+
+        remove();
+        document.write("Array after pop : [" + arr + "]" + "<br><br>");
+
+        document.write("String : " + arr.toString());
+    </script>
+</head>
+
+</html>

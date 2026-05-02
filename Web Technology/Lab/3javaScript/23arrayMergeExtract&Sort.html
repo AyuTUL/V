@@ -1,1 +1,22 @@
 <!-- Lab 23: Create any two array of size 5 each and merge those arrays, extract element from position 4 to 8 of merged array, sort the merged array in ascending order.  -->
+<html>
+
+<head>
+    <title>Merging Arrays</title>
+
+    <script>
+        let arr1 = ["Son", "Kane", "Erikson", "Alli", "Lloris"];
+        let arr2 = [7, 10, 23, 20, 1];
+        document.write("Array 1 : " + arr1 + "<br>");
+        document.write("Array 2 : " + arr2 + "<br><br>");
+        let mergedArr = arr1.concat(arr2);
+
+        document.write("Merged Array : " + mergedArr + "<br><br>");
+        let extractedArr = mergedArr.slice(3, 8);
+        document.write("Extracted Array (position 4-8) : " + extractedArr + "<br><br>");
+        let sortedArr = mergedArr.sort();
+        document.write("Sorted Merged Array : " + sortedArr);
+    </script>
+</head>
+
+</html>

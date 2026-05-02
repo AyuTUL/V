@@ -5,39 +5,25 @@
     <title>Display Array</title>
 
     <script>
-        function createInputs() {
-            let size = document.array.size.value;
-            let html = "";
-
-            for (let i = 0; i < size; i++)
-                html += "Enter value for index " + i +
-                    " : <input type='text' id='value" + i + "'><br>";
-
-            html += "<button type='button' onclick='displayArray(" + size + ")'>Show Array</button>";
-
-            document.getElementById("inputs").innerHTML = html;
-        }
-
-        function displayArray(size) {
+        function createArray() {
+            let size = document.getElementById("size").value;
             let arr = [];
 
             for (let i = 0; i < size; i++)
-                arr[i] = document.getElementById("value" + i).value;
+                arr[i] = prompt("Enter value for element " + (i + 1) + " :");
 
-            document.getElementById("result").innerHTML = "Array Values: " + arr;
+            document.getElementById("result").innerHTML = "Array: [" + arr.join(", ") + "]";
         }
+
     </script>
 </head>
 
 <body>
-    <form name="array">
         Enter array size :
-        <input type="number" name="size">
+        <input type="number" id="size">
+        <button type="button" onclick="createArray()">Create Array</button>
 
-        <button type="button" onclick="createInputs()">Submit</button>
-        <p id="inputs"></p>
-        <p id="result"></p>
-    </form>
+        <div id="result"></div>
 </body>
 
 </html>

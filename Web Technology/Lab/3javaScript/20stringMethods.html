@@ -2,19 +2,26 @@
 <html>
 
 <head>
-    <title>Array Operations</title>
-
-    <script>
-	html="";
-        for(let i=0;i<10;i++) {
-		html+="<input type="text" id=""+i+""><br>
-	}
-	document.getElementById("inputs").innerHTML=html;
-    </script>
+	<title>String Methods</title>
 </head>
+
 <body>
-	<form name="array">
-		Enter 10 array elements:<br>
-		<div id="inputs">
-		<button onclick="operations()">Submit</button>
+	<script>
+		let text = "web programming is amazing and exciting to learn";
+		document.write("Original String: " + text + "<br><br>");
+		document.write("Length: " + text.length + "<br>");
+		document.write("Reverse: " + text.split("").reverse().join("") + "<br>");
+		if(text.includes("exciting")) {
+			document.write("Search 'exciting': " + text.indexOf("exciting") + "<br>");
+		} else {
+			document.write("Search 'exciting': Not found<br>");
+		}
+		document.write("Remove extra space: " + text.trim() + "<br>");
+		document.write("Array: [" + text.split(" ").join(", ") + "]<br>");
+		document.write("Char at position 8: " + text.charAt(8) + "<br>");
+		document.write("Substring (2 to 10): " + text.substring(2, 10) + "<br>");
+		document.write("Replace 'programming': " + text.replace("programming", "technology") + "<br>");
+	</script>
+</body>
+
 </html>

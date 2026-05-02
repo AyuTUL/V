@@ -4,35 +4,123 @@
 <head>
     <title>Array Operations</title>
     <script>
-        function createInputs(start, size) {
-            let html = "";
-            for (let i = start; i < size; i++)
-                html += "Enter value for index " + i + "<input type='text' id='index" + i"'>";
-            html += "<br><button onclick="createArray(start, size)">Submit</button";
-            document.getElementById("ipnuts").innerHTML = html;
+        let arr = [];
+
+        function show(id) {
+            document.getElementById(id).style.display = "block";
         }
 
-        function createArray(start, size) {
-            let arr = [];
-            for (int i = start; i < size; i++)
-            arr[i] = document.array.("value" + i).value;
+        function display(id) {
+            document.getElementById(id).innerHTML = "Array: [" + arr.join(", ") + "]";
         }
 
+        function readBase() {
+            arr = [];
+            for (let i = 0; i < 10; i++)
+                arr[i] = document.getElementById("index" + i).value;
+            display("original");
+            show("original");
+            show("pushSection");
+        }
 
+        function doPush() {
+            arr.push(
+                document.getElementById("push0").value,
+                document.getElementById("push1").value,
+                document.getElementById("push2").value
+            );
+            display("push");
+            show("popSection");
+        }
+
+        function doPop() {
+            arr.pop();
+            display("pop");
+            show("unshiftSection");
+        }
+
+        function doUnshift() {
+            arr.unshift(
+                document.getElementById("unshift0").value,
+                document.getElementById("unshift1").value,
+                document.getElementById("unshift2").value
+            );
+            display("unshift");
+            show("spliceSection");
+        }
+
+        function doSpliceAdd() {
+            arr.splice(5, 0,
+                document.getElementById("splice0").value,
+                document.getElementById("splice1").value,
+                document.getElementById("splice2").value,
+                document.getElementById("splice3").value,
+                document.getElementById("splice4").value
+            );
+            display("splice");
+            show("deleteSection");
+        }
+
+        function doDelete() {
+            arr.splice(1, 2);
+            display("slice");
+            document.getElementById("result").innerHTML = "String: " + arr.toString();
+        }
     </script>
 </head>
 
 <body>
-    <form name="array">
-        Enter 10 array elements :<br>
-        <div id="inputs" onload="createInputs(0,10)></div>
-</form>
-<div id=" push"></div>
-        <div id="pop"></div>
-        <div id="unshift"></div>
-        <div id="splice"></div>
-        <div id="slice"></div>
-        <div id="result"></div>
+    <h3>Enter 10 array elements</h3>
+    <div>
+        <script>
+            for (let i = 0; i < 10; i++)
+                document.write("Value " + i + ": <input type='text' id='index" + i + "'><br>");
+        </script>
+        <button type="button" onclick="readBase()">Confirm</button>
+        <p id="original" style="display: none;"></p>
+    </div>
+
+    <div id="pushSection" style="display: none;">
+        <h3>Add 3 elements at last</h3>
+        <input type="text" id="push0"><br>
+        <input type="text" id="push1"><br>
+        <input type="text" id="push2"><br>
+        <button type="button" onclick="doPush()">Confirm</button>
+        <p id="push"></p>
+    </div>
+
+    <div id="popSection" style="display: none;">
+        <h3>Remove 1 element from last</h3>
+        <button type="button" onclick="doPop()">Confirm</button>
+        <p id="pop"></p>
+    </div>
+
+    <div id="unshiftSection" style="display: none;">
+        <h3>Add 3 elements at first</h3>
+        <input type="text" id="unshift0"><br>
+        <input type="text" id="unshift1"><br>
+        <input type="text" id="unshift2"><br>
+        <button type="button" onclick="doUnshift()">Confirm</button>
+        <p id="unshift"></p>
+    </div>
+
+    <div id="spliceSection" style="display: none;">
+        <h3>Add 5 elements at position 6</h3>
+        <input type="text" id="splice0"><br>
+        <input type="text" id="splice1"><br>
+        <input type="text" id="splice2"><br>
+        <input type="text" id="splice3"><br>
+        <input type="text" id="splice4"><br>
+        <button type="button" onclick="doSpliceAdd()">Confirm</button>
+        <p id="splice"></p>
+    </div>
+
+    <div id="deleteSection" style="display: none;">
+        <h3>Delete 2 elements from position 2</h3>
+        <button type="button" onclick="doDelete()">Confirm</button>
+        <p id="slice"></p>
+        <p id="result"></p>
+    </div>
 </body>
 
 </html>
