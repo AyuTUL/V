@@ -1,1 +1,42 @@
 <!-- Lab 16: Provide example on all the inbuilt array handling methods. -->
+<html>
+
+<head>
+    <title>Inbuilt Array Handling Methods</title>
+
+    <script>
+        let arr=[1,"ronaldo",9.70,true,"son"];
+        document.write("Original Array : " + arr + "<br><br>");
+        
+        arr.push("fernandes");
+        document.write("After push('fernandes') : " + arr + "<br>");
+
+        document.write("After pop() : " + arr.pop() + "<br>");
+
+        document.write("After shift() : " + arr.shift() + "<br>");
+
+        arr.unshift("heesang");
+        document.write("After unshift('heesang') : " + arr + "<br>");
+
+        let clubs=["mun","mci","rma","bvb"];
+        document.write("After concat() with clubs array : " + arr.concat(clubs) + "<br>");
+
+        let slicedArr = arr.slice(1, 4);
+        document.write("Sliced Array (1-4) : " + slicedArr + "<br>");
+
+        arr.splice(2, 1, "bruno");
+        document.write("After splice() at index 2 : " + arr + "<br>");
+
+        document.write("Index of 'son' : " + arr.indexOf("son") + "<br>");
+
+        document.write("Includes 'ronaldo' : " + arr.includes("ronaldo") + "<br>");
+
+        document.write("Joined Array : " + arr.join(" - ") + "<br>");
+
+        document.write("Sorted Array : " + arr.sort() + "<br>");
+
+        document.write("Reversed Array : " + arr.reverse());
+    </script>
+</head>
+
+</html>

@@ -1,1 +1,20 @@
 <!-- Lab 21: For the string “Web programming is fun to learn but at the same time programming is difficult too. Web programming is core course in BIM third semester”. Find out no. of times a word programming is repeated. -->
+<html>
+
+<head>
+    <title>Repeated Words</title>
+
+    <script>
+        let str = "Web programming is fun to learn but at the same time programming is difficult too. Web programming is core course in BIM third semester";
+        let array = str.split(" ");
+        let count = 0;
+        for (let i = 0; i < array.length; i++) {
+            if (array[i].toLowerCase() === "programming")
+                count++;
+        }
+        document.write("Original String :<br>" + str + "<br><br>");
+        document.write("Number of times 'programming' is repeated : " + count + "<br>");
+    </script>
+</head>
+
+</html>

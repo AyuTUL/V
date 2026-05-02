@@ -1,1 +1,56 @@
 <!-- Lab 11: Write a java script code to demonstrate String methods like below: -->
+<html>
+
+<head>
+    <title>String Methods</title>
+
+    <script>
+        function append(id) {
+            return document.getElementById(id).value;
+        }
+
+        function appendResult(text) {
+            document.getElementById("result").innerHTML += text + "<br>";
+        }
+
+        function action(mode) {
+            switch (mode) {
+                case "len":
+                    appendResult("Length : " + append("sentence").length);
+                    break;
+                case "upper":
+                    appendResult("Uppercase : " + append("sentence").toUpperCase());
+                    break;
+                case "lower":
+                    appendResult("Lowercase : " + append("sentence").toLowerCase());
+                    break;
+                case "concat":
+                    appendResult("Full Name : " + append("firstName").concat(" ", append("lastName")));
+                    break;
+                case "slice":
+                    appendResult("Sliced String : " + append("slice").slice(parseInt(append("startIndex")), parseInt(append("endIndex"))));
+                    break;
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <input type="text" placeholder="Enter a sentence" id="sentence">
+    <button onclick="action('len')">Get Length</button>
+    <button onclick="action('upper')">Convert to Uppercase</button>
+    <button onclick="action('lower')">Convert to Lowercase</button><br>
+
+    <input type="text" placeholder="Enter first name" id="firstName">
+    <input type="text" placeholder="Enter last name" id="lastName">
+    <button onclick="action('concat')">Concat</button><br>
+
+    <input type="text" placeholder="Enter a sentence" id="slice">
+    <input type="text" placeholder="Enter start index" id="startIndex">
+    <input type="text" placeholder="Enter end index" id="endIndex">
+    <button onclick="action('slice')">Slice</button>
+
+    <p id="result"></p>
+</body>
+
+</html>

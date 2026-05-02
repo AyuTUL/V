@@ -1,1 +1,20 @@
 <!-- Lab 20: For the string “web programming is amazing and exciting to learn”. Find out length of string, reverse a string, search a word “exciting”, remove extra white space if present, convert the string into array and display, find the character present on position 8, extract the part of the string from position 2 to 10, replace the word programming with technology. -->
+<html>
+
+<head>
+    <title>Array Operations</title>
+
+    <script>
+	html="";
+        for(let i=0;i<10;i++) {
+		html+="<input type="text" id=""+i+""><br>
+	}
+	document.getElementById("inputs").innerHTML=html;
+    </script>
+</head>
+<body>
+	<form name="array">
+		Enter 10 array elements:<br>
+		<div id="inputs">
+		<button onclick="operations()">Submit</button>
+</html>

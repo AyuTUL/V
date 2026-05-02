@@ -1,1 +1,28 @@
 <!-- Lab 12: Write a java script code to demonstrate replace() method like below: -->
+<html>
+
+<head>
+    <title>String Replace() Method</title>
+
+    <script>
+        function replaceText(){
+            let oldSentence=document.getElementById("sentence").value;
+            let oldText=document.getElementById("oldText").value;
+            let newText=document.getElementById("newText").value;
+
+            let newSentence=oldSentence.replaceAll(oldText, newText);
+            document.getElementById("result").innerHTML = "Original: " + oldSentence + "<br>Replaced : " + newSentence;
+        }
+    </script>
+</head>
+
+<body>
+    <input type="text" placeholder="Enter a sentence" id="sentence">
+    <input type="text" placeholder="Enter word to replace" id="oldText">
+    <input type="text" placeholder="Enter replacement word" id="newText">
+    <button onclick="replaceText()">Replace</button>
+    
+    <p id="result"></p>
+</body>
+
+</html>

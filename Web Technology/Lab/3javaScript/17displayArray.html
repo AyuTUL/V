@@ -1,1 +1,43 @@
 <!-- Lab 17: Write a java script program to take size of array, value from user and display the value. -->
+<html>
+
+<head>
+    <title>Display Array</title>
+
+    <script>
+        function createInputs() {
+            let size = document.array.size.value;
+            let html = "";
+
+            for (let i = 0; i < size; i++)
+                html += "Enter value for index " + i +
+                    " : <input type='text' id='value" + i + "'><br>";
+
+            html += "<button type='button' onclick='displayArray(" + size + ")'>Show Array</button>";
+
+            document.getElementById("inputs").innerHTML = html;
+        }
+
+        function displayArray(size) {
+            let arr = [];
+
+            for (let i = 0; i < size; i++)
+                arr[i] = document.getElementById("value" + i).value;
+
+            document.getElementById("result").innerHTML = "Array Values: " + arr;
+        }
+    </script>
+</head>
+
+<body>
+    <form name="array">
+        Enter array size :
+        <input type="number" name="size">
+
+        <button type="button" onclick="createInputs()">Submit</button>
+        <p id="inputs"></p>
+        <p id="result"></p>
+    </form>
+</body>
+
+</html>
