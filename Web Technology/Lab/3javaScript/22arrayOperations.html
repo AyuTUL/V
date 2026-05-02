@@ -1,1 +1,38 @@
 <!-- Lab 22: Create an array of size 10, add some element on it of your choice. Now add any three element at last, remove one element from last, add 3 new element from first position, add 5 new element from position 6 onward, delete any 2 elements from position 2 to 4. Convert final array into string and display the result. -->
+<html>
+
+<head>
+    <title>Array Operations</title>
+    <script>
+        function createInputs(start, size) {
+            let html = "";
+            for (let i = start; i < size; i++)
+                html += "Enter value for index " + i + "<input type='text' id='index" + i"'>";
+            html += "<br><button onclick="createArray(start, size)">Submit</button";
+            document.getElementById("ipnuts").innerHTML = html;
+        }
+
+        function createArray(start, size) {
+            let arr = [];
+            for (int i = start; i < size; i++)
+            arr[i] = document.array.("value" + i).value;
+        }
+
+
+    </script>
+</head>
+
+<body>
+    <form name="array">
+        Enter 10 array elements :<br>
+        <div id="inputs" onload="createInputs(0,10)></div>
+</form>
+<div id=" push"></div>
+        <div id="pop"></div>
+        <div id="unshift"></div>
+        <div id="splice"></div>
+        <div id="slice"></div>
+        <div id="result"></div>
+</body>
+
+</html>
