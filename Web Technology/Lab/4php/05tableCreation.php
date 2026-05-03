@@ -16,7 +16,7 @@ $createTable = "CREATE TABLE IF NOT EXISTS student (
 			address VARCHAR(15),
 			contact CHAR(10)
 		);";
-$insertRecord = "INSERT INTO student VALUES (7,'Suresh','Dallu','9767488322');";
+$insertRecord = "INSERT INTO student VALUES (17,'Suresh','dallu','9767488322');";
 if ($connection->query($createTable) === TRUE)
     echo "Table created successfully.<br>";
 else

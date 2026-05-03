@@ -1,30 +1,18 @@
 <!-- Lab 9: Write PHP code to delete the records whose address is Lalitpur. -->
-<html>
-
-<head>
-    <title>String Array Operations</title>
-
-    <script>
-        function add() {
-            arr.push("banana", "watermelon", "avocado");
-        }
-
-        function remove() {
-            arr.pop();
-            arr.pop();
-        }
-
-        arr = ["apple", "orange", "mango"];
-        document.write("Original Array : [" + arr + "]" + "<br><br>");
-
-        add();
-        document.write("Array after push : [" + arr + "]" + "<br><br>");
-
-        remove();
-        document.write("Array after pop : [" + arr + "]" + "<br><br>");
-
-        document.write("String : " + arr.toString());
-    </script>
-</head>
-
-</html>
+<?php
+$server = "localhost";
+$username = "root";
+$password = "";
+$database = "labassignment1";
+$connection = new mysqli($server, $username, $password, $database);
+if ($connection->connect_error)
+    die("Connection failed : " . $connection->connect_error);
+echo "Connection successful<br>";
+$DeleteRecord = "DELETE FROM student WHERE address='Lalitpur';";
+$result = $connection->query($DeleteRecord);
+if (mysqli_affected_rows($connection) > 0)
+    echo "Delete successful<br>No of records deleted = " . mysqli_affected_rows($connection);
+else
+    echo "No record deleted";
+$connection->close();
+?>
