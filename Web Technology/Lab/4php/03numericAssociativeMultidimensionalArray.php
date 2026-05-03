@@ -1,0 +1,30 @@
+<!-- Lab 3: Write a program for  change values in numeric array, associative array and multidimensional array. -->
+<html>
+
+<head>
+    <title>String Array Operations</title>
+
+    <script>
+        function add() {
+            arr.push("banana", "watermelon", "avocado");
+        }
+
+        function remove() {
+            arr.pop();
+            arr.pop();
+        }
+
+        arr = ["apple", "orange", "mango"];
+        document.write("Original Array : [" + arr + "]" + "<br><br>");
+
+        add();
+        document.write("Array after push : [" + arr + "]" + "<br><br>");
+
+        remove();
+        document.write("Array after pop : [" + arr + "]" + "<br><br>");
+
+        document.write("String : " + arr.toString());
+    </script>
+</head>
+
+</html>
