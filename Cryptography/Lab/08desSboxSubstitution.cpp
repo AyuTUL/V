@@ -2,6 +2,11 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+// Lab 8: DES S-Box substitution demonstration
+// - Input: 6-bit binary string (b0 b1 b2 b3 b4 b5)
+// - Row formed from outer bits: b0 and b5
+// - Column formed from middle 4 bits: b1..b4
+// - Output: 4-bit binary (DES S-box value)
 int main()
 {
     int S1[4][16] = {
@@ -15,11 +20,10 @@ int main()
     cin >> bits;
 
     if (bits.length() != 6)
-    {
-           cout << endl
-               << "Invalid input";
-        return 0;
-    }
+        return cout << "Invalid input: need exactly 6 bits\n", 0;
+    for (char c : bits)
+        if (c != '0' && c != '1')
+            return cout << "Invalid input: only characters '0' or '1' allowed", 0;
 
     int row = (bits[0] - '0') * 2 + (bits[5] - '0');
     int col = (bits[1] - '0') * 8 + (bits[2] - '0') * 4 +
@@ -29,14 +33,13 @@ int main()
 
     string output = "";
     for (int i = 3; i >= 0; i--)
-    {
         output += char(((value >> i) & 1) + '0');
-    }
 
-    cout << "Row = " << row << endl;
-    cout << "Column = " << col << endl;
-    cout << "Decimal Output = " << value << endl;
-    cout << "4-bit Output = " << output << endl;
+    cout << "---DES S-Box Substitution---" << endl
+         << "Row = " << row << endl
+         << "Column = " << col << endl
+         << "Decimal Output = " << value << endl
+         << "4-bit Output = " << output << endl;
 
     return 0;
 }

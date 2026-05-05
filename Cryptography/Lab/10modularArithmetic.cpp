@@ -17,20 +17,18 @@ int main()
     cin >> a >> b >> n;
 
     if (n <= 0)
-    {
-           cout << endl
-               << "n must be positive";
-        return 0;
-    }
+        return cout << "n must be positive", 0;
 
     long long A = normalize(a, n);
     long long B = normalize(b, n);
 
-    cout << "(a + b) mod n = " << normalize(A + B, n) << endl;
-    cout << "(a - b) mod n = " << normalize(A - B, n) << endl;
-    cout << "(a * b) mod n = " << normalize(A * B, n) << endl;
-    cout << "Additive inverse of a = " << normalize(-A, n) << endl;
-    cout << "Additive inverse of b = " << normalize(-B, n) << endl;
+    cout << "---Modular Arithmetic & Additive Inverses in Z" << n << "---" << endl;
+
+    cout << "(a + b) mod n = " << normalize(A + B, n) << endl
+         << "(a - b) mod n = " << normalize(A - B, n) << endl
+         << "(a * b) mod n = " << normalize(A * B, n) << endl
+         << "Additive inverse of a = " << normalize(-A, n) << endl
+         << "Additive inverse of b = " << normalize(-B, n) << endl;
 
     return 0;
 }

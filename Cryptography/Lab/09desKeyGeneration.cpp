@@ -1,7 +1,10 @@
 // Lab 9: Implement the DES key generation steps to generate subkeys for multiple rounds (at least for initial rounds).
+//- Input: 64-bit key as binary string
+// - Performs PC-1, left shifts, then PC-2 to produce 48-bit round subkeys
 #include <bits/stdc++.h>
 using namespace std;
 
+// PC-1 permutation (64 -> 56)
 int PC1[56] = {
     57, 49, 41, 33, 25, 17, 9,
     1, 58, 50, 42, 34, 26, 18,
@@ -12,6 +15,7 @@ int PC1[56] = {
     14, 6, 61, 53, 45, 37, 29,
     21, 13, 5, 28, 20, 12, 4};
 
+// PC-2 permutation (56 -> 48)
 int PC2[48] = {
     14, 17, 11, 24, 1, 5,
     3, 28, 15, 6, 21, 10,
@@ -22,6 +26,7 @@ int PC2[48] = {
     44, 49, 39, 56, 34, 53,
     46, 42, 50, 36, 29, 32};
 
+// Left-rotation schedule for each round
 int shifts[16] = {1, 1, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 1};
 
 string permute(string input, int table[], int n)
@@ -50,24 +55,27 @@ int main()
     cin >> rounds;
 
     if (key64.length() != 64 || rounds < 1 || rounds > 16)
-    {
-           cout << endl
-               << "Invalid input";
-        return 0;
-    }
+        return cout << "Invalid input: key must be 64 bits & rounds 1-16", 0;
+
+    // Validate binary key characters
+    for (char c : key64)
+        if (c != '0' && c != '1')
+            return cout << "Invalid input: key must be binary string of 0/1 characters", 0;
 
     string key56 = permute(key64, PC1, 56);
     string C = key56.substr(0, 28);
     string D = key56.substr(28, 28);
+
+    cout << "---DES Key Generation---" << endl
+         << "Initial C : " << C << endl
+         << "Initial D : " << D << endl;
 
     for (int i = 0; i < rounds; i++)
     {
         C = leftShift(C, shifts[i]);
         D = leftShift(D, shifts[i]);
         string subkey = permute(C + D, PC2, 48);
-
         cout << "Round " << i + 1 << " Subkey : " << subkey << endl;
     }
-
     return 0;
 }

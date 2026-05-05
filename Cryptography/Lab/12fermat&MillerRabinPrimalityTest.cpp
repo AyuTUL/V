@@ -31,7 +31,6 @@ bool fermatTest(long long n)
         if (powerMod(bases[i], n - 1, n) != 1)
             return false;
     }
-
     return true;
 }
 
@@ -88,17 +87,22 @@ int main()
     cout << "Enter number : ";
     cin >> n;
 
+    if (n < 2)
+        return cout << "Number must be >= 2", 0;
+
+    cout << "---Fermat & Miller-Rabin Primality Tests---" << endl;
+
     cout << "Fermat Test : ";
     if (fermatTest(n))
-        cout << "Probably Prime\n";
+        cout << "Probably Prime" << endl;
     else
-        cout << "Composite\n";
+        cout << "Composite" << endl;
 
     cout << "Miller-Rabin Test : ";
     if (millerRabin(n))
-        cout << "Probably Prime\n";
+        cout << "Probably Prime";
     else
-        cout << "Composite\n";
+        cout << "Composite";
 
     return 0;
 }

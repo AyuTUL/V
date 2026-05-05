@@ -117,4 +117,5 @@ int main()
 
     cout << endl
          << (choice == 1 ? "Ciphertext : " : "Plaintext : ") << res;
+    return 0;
 }
