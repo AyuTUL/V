@@ -1,0 +1,39 @@
+<!-- Lab 22: Design a webpage using CSS Max-width property and find the difference between width and max-width. -->
+<html>
+
+<head>
+    <title>CSS Max-Width</title>
+    <style>
+        div {
+            background-color: purple;
+            color: yellow;
+            border: 3px solid black;
+            padding: 10px;
+            margin: 10px;
+        }
+
+        #max {
+            max-width: 600px;
+        }
+
+        #fixed {
+            width: 600px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="max">
+        <h3>max-width</h3>
+        <p>This box can shrink on smaller screens but will not exceed 600px.</p>
+    </div>
+
+    <div id="fixed">
+        <h3>width</h3>
+        <p>This box is always 600px wide, even if screen is smaller.</p>
+    </div>
+
+</body>
+
+</html>

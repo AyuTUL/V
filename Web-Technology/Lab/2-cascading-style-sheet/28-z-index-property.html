@@ -1,0 +1,50 @@
+<!-- Lab 28: Make 3 boxes and add position with z-index property and overlap the element. -->
+<html>
+
+<head>
+    <title>Z-index Property</title>
+
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            top: 50px;
+            left: 50px;
+            opacity: 0.8;
+            display: flex;
+        }
+
+        .red {
+            background: lightcoral;
+            z-index: 1;
+        }
+
+        .green {
+            background: lightgreen;
+            top: 80px;
+            left: 80px;
+            z-index: 2;
+            align-items: center;
+        }
+
+        .blue {
+            background: lightskyblue;
+            top: 110px;
+            left: 110px;
+            z-index: -1;
+
+            align-items: flex-end;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>z-index Property</h2>
+    <div class="box red">z-index: 1</div>
+    <div class="box green">z-index: 2</div>
+    <div class="box blue">z-index: -1</div>
+
+</body>
+
+</html>

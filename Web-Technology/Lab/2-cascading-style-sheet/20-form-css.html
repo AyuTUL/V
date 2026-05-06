@@ -1,0 +1,64 @@
+<!-- Lab 20: Design a webpage using <form> tag and CSS property. -->
+<html>
+
+<head>
+    <title>Form with CSS</title>
+    <style>
+        form {
+            background: rgb(235, 235, 235);
+            padding: 20px;
+            width: 350px;
+            border-radius: 5px;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input,
+        textarea {
+            margin: 0 0 20px;
+            padding: 5px;
+            width: 100%;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        input[type="submit"] {
+            background: green;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            width: 25%;
+            padding: 10px;
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+
+<body>
+
+
+
+    <form action="#" method="post">
+        <h2>Contact Us</h2>
+
+        <label for="name">Name:</label>
+        <input type="text" placeholder="Enter your name">
+
+        <label for="name">Email:</label>
+        <input type="email" placeholder="Enter your email">
+
+        <label for="name">Message:</label>
+        <textarea placeholder="Enter your message"></textarea>
+
+        <input type="submit" value="Submit">
+    </form>
+
+</body>
+
+</html>

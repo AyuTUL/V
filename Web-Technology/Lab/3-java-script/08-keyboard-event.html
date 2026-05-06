@@ -1,0 +1,35 @@
+<!-- Lab 8: Write a java script program to demonstrate keyboard event. -->
+<html>
+
+<head>
+    <title>Keyboard Events</title>
+    <style>
+        input {
+            padding: 10px;
+            width: 300px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <input type="text" id="input" placeholder="Type here to view keyboard events">
+    <p id="log">Event: None</p>
+
+    <script>
+        const input = document.getElementById("input");
+        const log = document.getElementById("log");
+
+        function showEvent(event) {
+            log.textContent = "Event : " + event.type + " | Key : " + event.key;
+        }
+
+        input.addEventListener("keydown", showEvent);
+        input.addEventListener("keyup", showEvent);
+        input.addEventListener("keypress", showEvent);
+    </script>
+
+</body>
+
+</html>

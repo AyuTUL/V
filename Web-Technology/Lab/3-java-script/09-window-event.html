@@ -1,0 +1,34 @@
+<!-- Lab 9: Write a java script program to demonstrate window event. -->
+<html>
+
+<head>
+    <title>Window Events</title>
+</head>
+
+<body>
+
+    <h2>Window Event Demonstration</h2>
+    <p id="log">Event : None</p>
+
+    <script>
+        const log = document.getElementById("log");
+
+        function showEvent(event) {
+            log.textContent = "Event: " + event.type;
+        }
+
+        window.addEventListener("load", showEvent);
+        window.addEventListener("beforeunload", function (event) {
+            showEvent(event);
+            event.returnValue = "";
+        });
+        window.addEventListener("resize", showEvent);
+        window.addEventListener("scroll", showEvent);
+        window.addEventListener("focus", showEvent);
+        window.addEventListener("blur", showEvent);
+        document.addEventListener("DOMContentLoaded", showEvent);
+    </script>
+
+</body>
+
+</html>

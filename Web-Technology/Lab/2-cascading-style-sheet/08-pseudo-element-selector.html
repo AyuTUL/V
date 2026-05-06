@@ -1,0 +1,47 @@
+<!-- Lab 8: Design a webpage using pseudo element selector. -->
+<html>
+
+<head>
+    <title>Pseudo Element Selector</title>
+
+    <style>
+        h1::before {
+            content: "★ ";
+        }
+
+        h1::after {
+            content: " ★";
+        }
+
+        p::first-letter {
+            font-size: 30px;
+            color: red;
+        }
+
+        li::marker {
+            color: blue;
+        }
+
+        ::selection {
+            background: yellow;
+            color: red;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <h1>Pseudo Element Selector</h1>
+
+    <p>This paragraph shows first letter styling.</p>
+
+    <ul>
+        <li>Item One</li>
+        <li>Item Two</li>
+        <li>Item Three</li>
+    </ul>
+
+</body>
+
+</html>

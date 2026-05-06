@@ -1,0 +1,61 @@
+<!-- Lab 7: Design a webpage using pseudo class selector. -->
+<html>
+
+<head>
+    <title>Pseudo Class Selector</title>
+
+    <style>
+        a:link {
+            color: blue;
+        }
+
+        a:visited {
+            color: purple;
+        }
+
+        a:hover {
+            text-decoration: overline;
+        }
+
+        a:active {
+            color: red;
+        }
+
+        input:focus {
+            background-color: yellow;
+        }
+
+        p:first-child {
+            text-decoration: underline;
+        }
+
+        p:last-child {
+            text-decoration: overline;
+        }
+
+        p:lang(en) {
+            font-style: italic;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <h1>Pseudo Class Selector</h1>
+
+    <a href="#"">Example Link</a><br><br>
+
+    <input type=" text" placeholder="Click here"><br><br>
+
+        <div>
+            <p>First paragraph</p>
+            <p>Middle paragraph</p>
+            <p>Last paragraph</p>
+        </div>
+
+        <p lang="en">This paragraph is English.</p>
+
+</body>
+
+</html>
