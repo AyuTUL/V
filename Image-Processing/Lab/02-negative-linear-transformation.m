@@ -3,7 +3,7 @@ close all;
 clc;
 pkg load image;
 
-img=imread("Input/02martinLi.jpeg");
+img=imread("Input/02-martin-li.jpeg");
 
 subplot(1,3,1);
 imshow(img);
@@ -19,4 +19,4 @@ subplot(1,3,3);
 imshow(negativeImg);
 title("Negative Image");
 
-imwrite(uint8(negativeImg),"Output/02negativeImage.jpeg");
+imwrite(uint8(negativeImg),"Output/02-negative-image.jpeg");

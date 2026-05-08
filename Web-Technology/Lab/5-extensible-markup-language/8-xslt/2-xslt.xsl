@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Lab 8: Display XML in tabular format. -->
+<!-- Lab 8.2: Display XML in tabular format. -->
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
     <xsl:output method="html" indent="yes" />
     <xsl:template match="/root">

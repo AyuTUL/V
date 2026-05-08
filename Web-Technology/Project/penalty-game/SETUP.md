@@ -84,7 +84,7 @@ Or generate a new hash in PHP: `echo password_hash('your_new_password', PASSWORD
 
 ## 5. IMAGE ASSETS
 
-Place your game images in the `/img/` folder. See `img/README.md` for details.
+Place your game images in the `/img/` folder. See `img/readme.md` for details.
 
 If you don't have images, the game still runs — keeper and ball areas will 
 appear empty but all mechanics work. You can use emoji or colored boxes instead.
@@ -129,5 +129,5 @@ Leaderboard totals are ranked by goals first, then saves.
 | Blank page | Check PHP error logs, enable `display_errors` in php.ini |
 | DB connection error | Verify config.php credentials match your MySQL setup |
 | Quiz not loading | Make sure quiz_questions table has rows (schema.sql seeds 10) |
-| Keeper/ball invisible | Add images to `/img/` folder (see img/README.md) |
+| Keeper/ball invisible | Add images to `/img/` folder (see img/readme.md) |
 | Session issues | Make sure `session.save_path` is writable in php.ini |

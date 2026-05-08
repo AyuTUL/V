@@ -3,7 +3,7 @@ close all;
 clc;
 pkg load image;
 
-img = imread("Input/10rowlet.png");
+img = imread("Input/10-rowlet.png");
 subplot(1,3,1);
 imshow(img);
 title("Original Image");
@@ -19,5 +19,5 @@ subplot(1,3,3);
 imshow(noisyImage);
 title("Gaussian Noisy Image");
 
-imwrite(grayscaleImage,"Output/10gaussianNoise/1grayscaleImage.png");
-imwrite(noisyImage,"Output/10gaussianNoise/2gaussianNoisyImage.png");
+imwrite(grayscaleImage,"Output/10-gaussian-noise/1-grayscale-image.png");
+imwrite(noisyImage,"Output/10-gaussian-noise/2-gaussian-noisy-image.png");

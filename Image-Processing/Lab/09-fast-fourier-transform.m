@@ -3,7 +3,7 @@ close all;
 clc;
 pkg load image;
 
-img = im2double(imread("Input/09wm28.jpg"));
+img = im2double(imread("Input/09-wm28.jpg"));
 
 subplot(3,2,1);
 imshow(img);
@@ -30,7 +30,7 @@ subplot(3,2,5);
 imshow(fft2RealPart);
 title("2D Fast Fourier Transform");
 
-imwrite(abs(fftImage),"Output/09fastFourierTransform/1frequencySpectrum.jpg");
-imwrite(abs(fftShifted),"Output/09fastFourierTransform/2centeredSpectrum.jpg");
-imwrite(logMagnitudeSpectrum,"Output/09fastFourierTransform/3logMagnitudeSpectrum.jpg");
-imwrite(fft2RealPart,"Output/09fastFourierTransform/4twoDFastFourierTransform.jpg");
+imwrite(abs(fftImage),"Output/09-fast-fourier-transform/1-frequency-spectrum.jpg");
+imwrite(abs(fftShifted),"Output/09-fast-fourier-transform/2-centered-spectrum.jpg");
+imwrite(logMagnitudeSpectrum,"Output/09-fast-fourier-transform/3-log-magnitude-spectrum.jpg");
+imwrite(fft2RealPart,"Output/09-fast-fourier-transform/4-2d-fast-fourier-transform.jpg");

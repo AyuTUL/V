@@ -1,0 +1,19 @@
+{
+    "recommendations": [
+        "bmewburn.vscode-intelephense-client",
+        "brapifra.phpserver",
+        "cweijan.vscode-office",
+        "dotjoshjohnson.xml",
+        "formulahendry.code-runner",
+        "fougas.msys2",
+        "kevinrose.vsc-python-indent",
+        "ms-python.black-formatter",
+        "ms-python.debugpy",
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "ms-python.vscode-python-envs",
+        "mtxr.sqltools",
+        "mtxr.sqltools-driver-mysql",
+        "ritwickdey.liveserver"
+    ]
+}

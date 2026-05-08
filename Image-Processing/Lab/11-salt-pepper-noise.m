@@ -3,7 +3,7 @@ close all;
 clc;
 pkg load image;
 
-img = imread("Input/11megamind.jpg");
+img = imread("Input/11-megamind.jpg");
 subplot(1,3,1);
 imshow(img);
 title("Original Image");
@@ -19,5 +19,5 @@ subplot(1,3,3);
 imshow(noisyImage);
 title("Salt & Pepper Noisy Image");
 
-imwrite(grayscaleImage,"Output/11saltPepperNoise/1grayscaleImage.jpg");
-imwrite(noisyImage,"Output/11saltPepperNoise/2saltPepperImage.jpg");
+imwrite(grayscaleImage,"Output/11-salt-pepper-noise/1-grayscale-image.jpg");
+imwrite(noisyImage,"Output/11-salt-pepper-noise/2-salt-pepper-image.jpg");

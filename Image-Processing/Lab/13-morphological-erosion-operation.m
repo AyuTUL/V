@@ -3,7 +3,7 @@ close all;
 clc;
 pkg load image;
 
-img = imread("Input/13mrIncredible.jpg");
+img = imread("Input/13-mr-incredible.jpg");
 
 if size(img,3) == 3
     grayscaleImage = rgb2gray(img);
@@ -32,5 +32,5 @@ subplot(1,3,3);
 imshow(erodedImage);
 title("Eroded Image");
 
-imwrite(binaryImage, "Output/13morphologicalErosionOperation/1binaryImage.jpg");
-imwrite(erodedImage, "Output/13morphologicalErosionOperation/2erodedImage.jpg");
+imwrite(binaryImage, "Output/13-morphological-erosion-operation/1-binary-image.jpg");
+imwrite(erodedImage, "Output/13-morphological-erosion-operation/2-eroded-image.jpg");

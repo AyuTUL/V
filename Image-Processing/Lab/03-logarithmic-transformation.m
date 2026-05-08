@@ -3,7 +3,7 @@ close all;
 clc;
 pkg load image;
 
-img = imread("Input/03peterParker.jpg");
+img = imread("Input/03-peter-parker.jpg");
 
 subplot(2,2,1);
 imshow(img);
@@ -26,6 +26,6 @@ subplot(2,2,4);
 imshow(log200Img);
 title("Log = 200 Image");
 
-imwrite(log1Img,  "Output/03logarithmicTransformation/Log1Image.jpg");
-imwrite(log10Img, "Output/03logarithmicTransformation/Log10Image.jpg");
-imwrite(log200Img,"Output/03logarithmicTransformation/Log200Image.jpg");
+imwrite(log1Img,  "Output/03-logarithmic-transformation/1-log1-image.jpg");
+imwrite(log10Img, "Output/03-logarithmic-transformation/2-log10-image.jpg");
+imwrite(log200Img,"Output/03-logarithmic-transformation/3-log200-image.jpg");

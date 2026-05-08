@@ -3,7 +3,7 @@ close all;
 clc;
 pkg load image;
 
-img = imread("Input/08ltg.png");
+img = imread("Input/08-ltg.png");
 
 subplot(3,2,1);
 imshow(img);
@@ -29,7 +29,7 @@ subplot(3,2,5);
 imshow(medianFilter9x9);
 title("9x9 Median Filter Image");
 
-imwrite(grayscaleImg,"Output/08medianFilter/1grayscaleImg.png");
-imwrite(noisyImg,"Output/08medianFilter/2salt&PepperImage.png");
-imwrite(medianFilter3x3,"Output/08medianFilter/3medianFilter3x3.png");
-imwrite(medianFilter9x9,"Output/08medianFilter/4medianFilter9x9.png");
+imwrite(grayscaleImg,"Output/08-median-filter/1-grayscale-img.png");
+imwrite(noisyImg,"Output/08-median-filter/2-salt-and-pepper-image.png");
+imwrite(medianFilter3x3,"Output/08-median-filter/3-median-filter-3x3.png");
+imwrite(medianFilter9x9,"Output/08-median-filter/4-median-filter-9x9.png");

@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<person xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:noNamespaceSchemaLocation="2-xsd.xsd">
+<!-- Lab 7.1: Write XSD document for xml document with elements:
+<person>
+ <student>
+  <name>…….</name>
+  <age>……</age>
+  <pincode>….</pincode>
+ </student>
+</person>
+
+Rules to set:
+Name must allow only lowercase characters
+Age must be between 16-18
+Pincode must allow 4 digits only. -->
+<person xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="2-xsd.xsd">
     <student>
         <name>yurisha</name>
         <age>18</age>

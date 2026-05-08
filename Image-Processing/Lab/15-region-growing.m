@@ -3,7 +3,7 @@ close all;
 clc;
 pkg load image;
 
-img = imread("Input/15pigeon.jpg");
+img = imread("Input/15-pigeon.jpg");
 grayscaleImage = rgb2gray(img);
 
 seed_x = 50;
@@ -36,4 +36,4 @@ subplot(1,3,3);
 imshow(region);
 title('Region Grown Image');
 
-imwrite(region, "Output/15regionGrownImage.jpg");
+imwrite(region, "Output/15-region-grown-image.jpg");

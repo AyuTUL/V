@@ -3,7 +3,7 @@ close all;
 clc;
 pkg load image;
 
-img = imread("Input/14hammond.jpg");
+img = imread("Input/14-hammond.jpg");
 
 if size(img,3) == 3
     grayscaleImage = rgb2gray(img);
@@ -29,4 +29,4 @@ subplot(1,2,2);
 imshow(edge_img, []);
 title("Edge Detection using Sobel Operator");
 
-imwrite(edge_img, "Output/14edgeDetectedImage.jpg");
+imwrite(edge_img, "Output/14-edge-detected-image.jpg");

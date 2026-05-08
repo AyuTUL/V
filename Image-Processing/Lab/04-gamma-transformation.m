@@ -3,7 +3,7 @@ close all;
 clc;
 pkg load image;
 
-img = imread("Input/04spongebob.png");
+img = imread("Input/04-spongebob.png");
 
 subplot(2,2,1);
 imshow(img);
@@ -32,6 +32,6 @@ subplot(2,2,4);
 imshow(gamma3Img);
 title(["Gamma = ", num2str(gamma3)]);
 
-imwrite(gamma1Img,"Output/04gammaTransformation/1gammaImage.png");
-imwrite(gamma2Img,"Output/04gammaTransformation/2gammaImage.png");
-imwrite(gamma3Img,"Output/04gammaTransformation/3gammaImage.png");
+imwrite(gamma1Img,"Output/04-gamma-transformation/1-gamma-image.png");
+imwrite(gamma2Img,"Output/04-gamma-transformation/2-gamma-image.png");
+imwrite(gamma3Img,"Output/04-gamma-transformation/3-gamma-image.png");

@@ -30,3 +30,6 @@
 *.exe
 *.out
 *.app
+
+# VS Code machine-specific settings
+.vscode/settings.json
