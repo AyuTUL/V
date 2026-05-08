@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Lab 2.3: Create a xml file to join two xml files with same element names. Use xml namespace. -->
+<root>
+    <a:detail xmlns:a="#">
+        <a:name>Mango</a:name>
+        <a:price>200</a:price>
+    </a:detail>
+    <y:detail xmlns:y="#">
+        <y:name>Bir Bahadur</y:name>
+        <y:address>Kalanki</y:address>
+    </y:detail>
+</root>

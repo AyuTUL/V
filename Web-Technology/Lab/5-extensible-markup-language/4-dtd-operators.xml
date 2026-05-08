@@ -1,30 +1,23 @@
-<!-- Lab 4: Write DTD script demonstrating use of different DTD operators. -->
-<html>
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Lab 4: Minimal DTD with +, *, ?, comma, |, () operators -->
+<!DOCTYPE root [
+    <!ELEMENT root (item+)>
+    <!ELEMENT item (title, (desc | note)?, tag*)>
+    <!ELEMENT title (#PCDATA)>
+    <!ELEMENT desc (#PCDATA)>
+    <!ELEMENT note (#PCDATA)>
+    <!ELEMENT tag (#PCDATA)>
+]>
 
-<head>
-    <title>String Array Operations</title>
-
-    <script>
-        function add() {
-            arr.push("banana", "watermelon", "avocado");
-        }
-
-        function remove() {
-            arr.pop();
-            arr.pop();
-        }
-
-        arr = ["apple", "orange", "mango"];
-        document.write("Original Array : [" + arr + "]" + "<br><br>");
-
-        add();
-        document.write("Array after push : [" + arr + "]" + "<br><br>");
-
-        remove();
-        document.write("Array after pop : [" + arr + "]" + "<br><br>");
-
-        document.write("String : " + arr.toString());
-    </script>
-</head>
-
-</html>
+<root>
+    <item>
+        <title>Spurs</title>
+        <desc>Cheeks</desc>
+        <tag>Richarlison</tag>
+        <tag>Paulinha</tag>
+    </item>
+    <item>
+        <title>MUFC</title>
+        <note>Fernandes</note>
+    </item>
+</root>

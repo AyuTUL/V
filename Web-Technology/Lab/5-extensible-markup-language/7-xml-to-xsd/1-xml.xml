@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<person xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="2-xsd.xsd">
+    <student>
+        <name>yurisha</name>
+        <age>18</age>
+        <pincode>3436</pincode>
+    </student>
+</person>

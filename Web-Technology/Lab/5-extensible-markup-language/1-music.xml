@@ -1,30 +1,10 @@
-<!-- Lab 1: Create xml file with root element as music with its children song and sub children( name, artist, playtime). -->
-<html>
-
-<head>
-    <title>String Array Operations</title>
-
-    <script>
-        function add() {
-            arr.push("banana", "watermelon", "avocado");
-        }
-
-        function remove() {
-            arr.pop();
-            arr.pop();
-        }
-
-        arr = ["apple", "orange", "mango"];
-        document.write("Original Array : [" + arr + "]" + "<br><br>");
-
-        add();
-        document.write("Array after push : [" + arr + "]" + "<br><br>");
-
-        remove();
-        document.write("Array after pop : [" + arr + "]" + "<br><br>");
-
-        document.write("String : " + arr.toString());
-    </script>
-</head>
-
-</html>
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Lab 1: Create xml file with root element as music with its children song and sub children(
+name, artist, playtime). -->
+<music>
+    <song>
+        <name>Ice Cream</name>
+        <artist>YUNA</artist>
+        <playtime>2:51</playtime>
+    </song>
+</music>

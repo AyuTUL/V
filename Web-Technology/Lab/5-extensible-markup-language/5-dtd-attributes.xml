@@ -1,30 +1,19 @@
-<!-- Lab 5: Write DTD script demonstrating use of different DTD attribute values. -->
-<html>
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Lab 5: DTD Attribute Values: #REQUIRED, #IMPLIED, #FIXED -->
+<!DOCTYPE root [
+    <!ELEMENT root (item+)>
+    <!ELEMENT item (#PCDATA)>
+    <!ATTLIST item
+        id ID #REQUIRED
+        name CDATA #IMPLIED
+        type (europe|asia|america) #FIXED "europe"
+        status CDATA #REQUIRED
+        description CDATA #IMPLIED
+  >
+]>
 
-<head>
-    <title>String Array Operations</title>
-
-    <script>
-        function add() {
-            arr.push("banana", "watermelon", "avocado");
-        }
-
-        function remove() {
-            arr.pop();
-            arr.pop();
-        }
-
-        arr = ["apple", "orange", "mango"];
-        document.write("Original Array : [" + arr + "]" + "<br><br>");
-
-        add();
-        document.write("Array after push : [" + arr + "]" + "<br><br>");
-
-        remove();
-        document.write("Array after pop : [" + arr + "]" + "<br><br>");
-
-        document.write("String : " + arr.toString());
-    </script>
-</head>
-
-</html>
+<root>
+    <item id="1" name="mufc" status="active" type="europe">Mbeumo</item>
+    <item id="2" status="inactive" type="europe">Valverde</item>
+    <item id="3" name="mls" description="mickey mouse" status="active" type="america">Griezmann</item>
+</root>

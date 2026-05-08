@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="2-xslt.xsl"?>
+<!-- Lab 8: Demonstrate use of XSLT for xml files mentioned in question no.2 in tabular format. -->
+<root>
+    <detail>
+        <name>Mango</name>
+        <price>200</price>
+    </detail>
+    <detail>
+        <name>Bir Bahadur</name>
+        <address>Kalanki</address>
+    </detail>
+</root>

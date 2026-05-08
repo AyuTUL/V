@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Lab 2.1: Create a xml file to join two xml files with same element names. Use xml namespace. -->
+<detail>
+    <name>Mango</name>
+    <price>200</price>
+</detail>

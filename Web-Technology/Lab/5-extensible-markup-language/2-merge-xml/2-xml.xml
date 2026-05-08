@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Lab 2.2: Create a xml file to join two xml files with same element names. Use xml namespace. -->
+<detail>
+    <name>Bir Bahadur</name>
+    <address>Kalanki</address>
+</detail>
