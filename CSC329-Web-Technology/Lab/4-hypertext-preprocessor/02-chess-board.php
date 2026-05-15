@@ -1,30 +1,15 @@
-<!-- Lab 2: Write a php program to display the format of chess board and number them from 1 to 64. -->
-<html>
+<?php
+echo "<table border='1' cellspacing='0' cellpadding='25'>";
 
-<head>
-    <title>String Array Operations</title>
-
-    <script>
-        function add() {
-            arr.push("banana", "watermelon", "avocado");
-        }
-
-        function remove() {
-            arr.pop();
-            arr.pop();
-        }
-
-        arr = ["apple", "orange", "mango"];
-        document.write("Original Array : [" + arr + "]" + "<br><br>");
-
-        add();
-        document.write("Array after push : [" + arr + "]" + "<br><br>");
-
-        remove();
-        document.write("Array after pop : [" + arr + "]" + "<br><br>");
-
-        document.write("String : " + arr.toString());
-    </script>
-</head>
-
-</html>
+$num = 1;
+for ($row = 1; $row <= 8; $row++) {
+    echo "<tr>";
+    for ($col = 1; $col <= 8; $col++) {
+        $color = (($row + $col) % 2 == 0) ? "white" : "black";
+        $textColor = ($color === "white") ? "black" : "white";
+        echo "<td style='background:$color; color:$textColor; text-align:center; vertical-align:middle;'>$num</td>";
+        $num++;
+    }
+    echo "</tr>";
+}
+echo "</table>";

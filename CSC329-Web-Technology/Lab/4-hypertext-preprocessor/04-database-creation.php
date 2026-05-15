@@ -9,7 +9,7 @@ if ($connection->connect_error)
 echo "Connection successful<br>";
 $createDatabase = "CREATE DATABASE IF NOT EXISTS labassignment1";
 if ($connection->query($createDatabase) === TRUE) {
-    echo "Database created successfully";
+    echo "Database labassignment1 created successfully";
 } else {
     echo "Error creating database: " . $connection->error;
 }

@@ -2,29 +2,27 @@
 <html>
 
 <head>
-    <title>String Array Operations</title>
-
-    <script>
-        function add() {
-            arr.push("banana", "watermelon", "avocado");
-        }
-
-        function remove() {
-            arr.pop();
-            arr.pop();
-        }
-
-        arr = ["apple", "orange", "mango"];
-        document.write("Original Array : [" + arr + "]" + "<br><br>");
-
-        add();
-        document.write("Array after push : [" + arr + "]" + "<br><br>");
-
-        remove();
-        document.write("Array after pop : [" + arr + "]" + "<br><br>");
-
-        document.write("String : " + arr.toString());
-    </script>
+    <title>Alternate Column Colors</title>
 </head>
+
+<body>
+
+    <table border="1" cellspacing="0" cellpadding="20">
+        <tr>
+            <?php
+            for ($i = 1; $i <= 10; $i++) {
+
+                if ($i % 2 == 0)
+                    $color = "#FB7299";
+                else
+                    $color = "#5788CE";
+
+                echo "<td style='background-color:$color'>Column $i</td>";
+            }
+            ?>
+        </tr>
+    </table>
+
+</body>
 
 </html>

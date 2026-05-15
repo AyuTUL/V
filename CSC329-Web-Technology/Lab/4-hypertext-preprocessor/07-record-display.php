@@ -13,7 +13,7 @@ $result = $connection->query($displayRecords);
 if (mysqli_num_rows($result) == 0)
     echo "No records found.";
 else {
-    echo "<table border='1'><tr><th>Roll</th><th>Name</th><th>Address</th><th>Contact</th></tr>";
+    echo "<table border='1' cellpadding='10'><tr><th>Roll</th><th>Name</th><th>Address</th><th>Contact</th></tr>";
     while ($row = $result->fetch_object()) {
         echo "<tr><td>";
         echo $row->roll;

@@ -6,13 +6,9 @@ bool hasSuspiciousExtension(string name)
 {
     string exts[] = {".exe", ".bat", ".vbs", ".js", ".scr", ".com"};
     for (int i = 0; i < 6; i++)
-    {
         if (name.size() >= exts[i].size())
-        {
             if (name.substr(name.size() - exts[i].size()) == exts[i])
                 return true;
-        }
-    }
     return false;
 }
 
@@ -27,23 +23,21 @@ int main()
     for (int i = 0; i < n; i++)
         cin >> files[i];
 
-        cout << endl
-            << "Scan Report" << endl;
+    cout << endl
+         << "Scan Report" << endl;
     for (int i = 0; i < n; i++)
-    {
         if (hasSuspiciousExtension(files[i]))
             cout << files[i] << " -> suspicious" << endl;
         else
             cout << files[i] << " -> normal" << endl;
-    }
 
     string agentName;
     int copies;
 
-        cout << endl
-            << "Enter agent name : ";
+    cout << endl
+         << "Enter agent name : ";
     cin >> agentName;
-        cout << "Enter number of copies : ";
+    cout << "Enter number of copies : ";
     cin >> copies;
 
     vector<string> sandboxCopies;

@@ -33,14 +33,12 @@ vector<long long> primeFactors(long long n)
     vector<long long> factors;
 
     for (long long i = 2; i * i <= n; i++)
-    {
         if (n % i == 0)
         {
             factors.push_back(i);
             while (n % i == 0)
                 n /= i;
         }
-    }
 
     if (n > 1)
         factors.push_back(n);
@@ -52,10 +50,8 @@ bool isPrimitiveRoot(long long g, long long p, vector<long long> factors)
     long long phi = p - 1;
 
     for (int i = 0; i < (int)factors.size(); i++)
-    {
         if (powerMod(g, phi / factors[i], p) == 1)
             return false;
-    }
 
     return true;
 }
@@ -69,11 +65,9 @@ int main()
     cin >> g;
 
     if (!isPrime(p))
-    {
-           cout << endl
-               << "p must be prime";
-        return 0;
-    }
+        return cout << endl
+                    << "p must be prime",
+               0;
 
     vector<long long> factors = primeFactors(p - 1);
 
@@ -84,10 +78,8 @@ int main()
 
     cout << "Primitive roots modulo " << p << " : ";
     for (long long i = 2; i < p; i++)
-    {
         if (isPrimitiveRoot(i, p, factors))
             cout << i << " ";
-    }
     cout << endl;
 
     return 0;

@@ -66,11 +66,9 @@ int main()
     long long phi = (p - 1) * (q - 1);
 
     if (n <= 25)
-    {
-           cout << endl
-               << "Choose larger primes";
-        return 0;
-    }
+        return cout << endl
+                    << "Choose larger primes",
+               0;
 
     long long e = 2;
     while (e < phi && gcdValue(e, phi) != 1)

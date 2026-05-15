@@ -1,30 +1,36 @@
 <!-- Lab 3: Write a program for  change values in numeric array, associative array and multidimensional array. -->
-<html>
+<?php
+echo "<h2>Array modification examples</h2>";
 
-<head>
-    <title>String Array Operations</title>
+echo "<h3>Numeric array</h3><pre>";
+$num = [11, -2, 7, 8];
+echo "Before: "; print_r($num);
 
-    <script>
-        function add() {
-            arr.push("banana", "watermelon", "avocado");
-        }
+$num[1] = 9;
+array_push($num, 5);
+array_shift($num);
+echo "After: "; print_r(array_values($num));
+echo "</pre>";
 
-        function remove() {
-            arr.pop();
-            arr.pop();
-        }
+echo "<h3>Associative array</h3><pre>";
+$assoc = ['name' => 'Dragapult', 'type' => 'Dragon', 'bst' => 600];
+echo "Before: "; print_r($assoc);
 
-        arr = ["apple", "orange", "mango"];
-        document.write("Original Array : [" + arr + "]" + "<br><br>");
+$assoc['name'] = 'Toxtricity';
+$assoc['type'] = 'Poison';
+unset($assoc['bst']);
+echo "After: "; print_r($assoc);
+echo "</pre>";
 
-        add();
-        document.write("Array after push : [" + arr + "]" + "<br><br>");
+echo "<h3>Multidimensional array</h3><pre>";
+$multi = [
+	'row1' => ['a' => 1, 'b' => 2],
+	'row2' => ['a' => 3, 'b' => 4]
+];
+echo "Before: "; print_r($multi);
 
-        remove();
-        document.write("Array after pop : [" + arr + "]" + "<br><br>");
-
-        document.write("String : " + arr.toString());
-    </script>
-</head>
-
-</html>
+$multi['row2']['b'] = 40;
+$multi['row3'] = ['a' => 5, 'b' => 6];
+echo "After: "; print_r($multi);
+echo "</pre>";
+?>

@@ -3,32 +3,40 @@
 
 <head>
     <title>PHP Form Validation</title>
+    <style>
+        label {
+            display: inline-block;
+            width: 80px;
+        }
+    </style>
+</head>
 
+<body>
     <h1>Registration Form</h1>
     <form name="Login" action="" method="POST">
 
         <label>Name:</label>
-        <input type="text" name="nameField"><br><br>
+        <input type="text" name="nameField"><br>
 
         <label>Country:</label>
         <select name="countryField">
             <option value="">--Select--</option>
             <option value="Nepal">Nepal</option>
             <option value="Korea">Korea</option>
-        </select><br><br>
+        </select><br>
 
         <label>Gender:</label>
         <input type="radio" name="genderField" value="Male"> Male
-        <input type="radio" name="genderField" value="Female"> Female<br><br>
+        <input type="radio" name="genderField" value="Female"> Female<br>
 
         <label>Password:</label>
-        <input type="password" name="passwordField"><br><br>
+        <input type="password" name="passwordField"><br>
 
         <input type="checkbox" name="checkboxField"> I agree to terms<br><br>
 
         <input type="submit" name="submit" value="Validate">
     </form>
-</head>
+</body>
 
 </html>
 

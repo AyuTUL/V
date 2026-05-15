@@ -6,7 +6,7 @@
         <html>
             <body>
                 <h2>Details</h2>
-                <table border="1">
+                <table border="1" cellpadding="5" cellspacing="0">
                     <tr bgcolor="fuchsia">
                         <th>Name</th>
                         <th>Price</th>
