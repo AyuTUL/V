@@ -11,11 +11,10 @@
 		document.write("Original String: " + text + "<br><br>");
 		document.write("Length: " + text.length + "<br>");
 		document.write("Reverse: " + text.split("").reverse().join("") + "<br>");
-		if(text.includes("exciting")) {
+		if(text.includes("exciting"))
 			document.write("Search 'exciting': " + text.indexOf("exciting") + "<br>");
-		} else {
+		else
 			document.write("Search 'exciting': Not found<br>");
-		}
 		document.write("Remove extra space: " + text.trim() + "<br>");
 		document.write("Array: [" + text.split(" ").join(", ") + "]<br>");
 		document.write("Char at position 8: " + text.charAt(8) + "<br>");
