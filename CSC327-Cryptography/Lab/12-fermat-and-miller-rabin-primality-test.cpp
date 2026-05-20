@@ -90,7 +90,8 @@ int main()
     if (n < 2)
         return cout << "Number must be >= 2", 0;
 
-    cout << "---Fermat & Miller-Rabin Primality Tests---" << endl;
+    cout << endl
+         << "---Fermat & Miller-Rabin Primality Tests---" << endl;
 
     cout << "Fermat Test : ";
     if (fermatTest(n))

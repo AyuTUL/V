@@ -1,0 +1,91 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Page-1" id="QjY4qPVeg371DLNrlIFU">
+    <mxGraphModel dx="1834" dy="895" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="2" parent="1" style="rounded=1;strokeWidth=2;fontStyle=1;verticalAlign=top;align=center;fontSize=16;" value="ATM System" vertex="1">
+          <mxGeometry height="250" width="680" x="150" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="10" parent="2" style="ellipse;whiteSpace=wrap;html=1;" value="Authenticate User" vertex="1">
+          <mxGeometry height="39.0625" width="125.71" x="538.25" y="19.997500000000002" as="geometry" />
+        </mxCell>
+        <mxCell id="11" parent="2" style="ellipse;whiteSpace=wrap;html=1;" value="Withdraw Cash" vertex="1">
+          <mxGeometry height="39.0625" width="108.46" x="294.17" y="187.5" as="geometry" />
+        </mxCell>
+        <mxCell id="12" parent="2" style="ellipse;whiteSpace=wrap;html=1;" value="Check Balance" vertex="1">
+          <mxGeometry height="39.0625" width="102.62" x="67.59" y="187.5" as="geometry" />
+        </mxCell>
+        <mxCell id="13" parent="2" style="ellipse;whiteSpace=wrap;html=1;" value="Deposit Money" vertex="1">
+          <mxGeometry height="39.0625" width="100.66" x="179.34" y="187.5" as="geometry" />
+        </mxCell>
+        <mxCell id="14" parent="2" style="ellipse;whiteSpace=wrap;html=1;" value="Transfer Funds" vertex="1">
+          <mxGeometry height="39.0625" width="106.26" x="420" y="187.5" as="geometry" />
+        </mxCell>
+        <mxCell id="15" parent="2" style="ellipse;whiteSpace=wrap;html=1;" value="Print Receipt" vertex="1">
+          <mxGeometry height="39.0625" width="97.8" x="72.41" y="19.9925" as="geometry" />
+        </mxCell>
+        <mxCell id="16" parent="2" style="ellipse;whiteSpace=wrap;html=1;" value="Validate with Bank" vertex="1">
+          <mxGeometry height="39.0625" width="122.2" x="541.76" y="187.5" as="geometry" />
+        </mxCell>
+        <mxCell id="17" parent="2" style="ellipse;whiteSpace=wrap;html=1;" value="Maintenance" vertex="1">
+          <mxGeometry height="39.0625" width="89" x="8.14" y="139.9975" as="geometry" />
+        </mxCell>
+        <mxCell id="40" edge="1" parent="2" source="11" style="dashed=1;endArrow=open;html=1;" target="10" value="«include»">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="41" edge="1" parent="2" source="12" style="dashed=1;endArrow=open;html=1;" target="10" value="«include»">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="42" edge="1" parent="2" source="13" style="dashed=1;endArrow=open;html=1;" target="10" value="«include»">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="43" edge="1" parent="2" source="14" style="dashed=1;endArrow=open;html=1;" target="10" value="«include»">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="44" edge="1" parent="2" source="10" style="dashed=1;endArrow=open;html=1;" target="16" value="«include»">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="50" edge="1" parent="2" source="15" style="dashed=1;endArrow=open;html=1;" target="11" value="«extend»">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="51" edge="1" parent="2" source="15" style="dashed=1;endArrow=open;html=1;" target="12" value="«extend»">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="52" edge="1" parent="2" source="15" style="dashed=1;endArrow=open;html=1;" target="13" value="«extend»">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="53" edge="1" parent="2" source="15" style="dashed=1;endArrow=open;html=1;" target="14" value="«extend»">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="20" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;" value="Customer" vertex="1">
+          <mxGeometry height="80" width="40" x="478.4" y="380" as="geometry" />
+        </mxCell>
+        <mxCell id="21" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;" value="Bank" vertex="1">
+          <mxGeometry height="80" width="40" x="680" y="380" as="geometry" />
+        </mxCell>
+        <mxCell id="22" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;" value="Technician" vertex="1">
+          <mxGeometry height="80" width="40" x="200" y="380" as="geometry" />
+        </mxCell>
+        <mxCell id="30" edge="1" parent="1" source="20" style="edgeStyle=none;html=1;" target="11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="31" edge="1" parent="1" source="20" style="edgeStyle=none;html=1;" target="12">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="32" edge="1" parent="1" source="20" style="edgeStyle=none;html=1;" target="13">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="33" edge="1" parent="1" source="20" style="edgeStyle=none;html=1;" target="14">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="34" edge="1" parent="1" source="21" style="edgeStyle=none;html=1;" target="16">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="35" edge="1" parent="1" source="22" style="edgeStyle=none;html=1;" target="17">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

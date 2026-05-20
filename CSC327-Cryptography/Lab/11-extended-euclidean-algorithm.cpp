@@ -31,14 +31,15 @@ int main()
 
     long long gcd = extendedGCD(a, n, x, y);
 
-    cout << "---Extended Euclidean Algorithm---" << endl;
+    cout << endl
+         << "---Extended Euclidean Algorithm---" << endl;
 
     cout << "GCD = " << gcd << endl;
 
     if (gcd == 1)
     {
         long long inverse = (x % n + n) % n;
-        cout << "Multiplicative Inverse = " << inverse << endl;
+        cout << "Multiplicative Inverse in Z" << n << " = " << inverse << endl;
     }
     else
         cout << "Inverse does not exist: a & n are not coprime" << endl;

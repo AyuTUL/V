@@ -66,10 +66,12 @@ int main()
     long long s = powerMod(c1, x, p);
     long long sInverse = modInverse(s, p);
     long long decrypted = (c2 * sInverse) % p;
+    cout << endl
+         << "---ElGamal Cryptographic System---" << endl;
 
-    cout << "Public key (p,g,y) = (" << p << "," << g << "," << y << ")" << endl;
-    cout << "Ciphertext = (" << c1 << "," << c2 << ")" << endl;
-    cout << "Decrypted message = " << decrypted << endl;
+    cout << "Public key (p,g,y) = (" << p << "," << g << "," << y << ")" << endl
+         << "Ciphertext = (" << c1 << "," << c2 << ")" << endl
+         << "Decrypted message = " << decrypted;
 
     return 0;
 }

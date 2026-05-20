@@ -64,7 +64,8 @@ int main()
 
     long long n = p * q;
     long long phi = (p - 1) * (q - 1);
-
+    cout << endl
+         << "---RSA Key Generation---" << endl;
     if (n <= 25)
         return cout << endl
                     << "Choose larger primes",
@@ -112,7 +113,6 @@ int main()
             cout << char(plain + 'A');
         }
     }
-    cout << endl;
 
     return 0;
 }

@@ -22,13 +22,14 @@ int main()
     long long A = normalize(a, n);
     long long B = normalize(b, n);
 
-    cout << "---Modular Arithmetic & Additive Inverses in Z" << n << "---" << endl;
+    cout << endl
+         << "---Modular Arithmetic & Additive Inverses in Z" << n << "---" << endl;
 
-    cout << "(a + b) mod n = " << normalize(A + B, n) << endl
-         << "(a - b) mod n = " << normalize(A - B, n) << endl
-         << "(a * b) mod n = " << normalize(A * B, n) << endl
-         << "Additive inverse of a = " << normalize(-A, n) << endl
-         << "Additive inverse of b = " << normalize(-B, n) << endl;
+    cout << "(" << a << " + " << b << ") mod " << n << " = " << normalize(A + B, n) << endl
+         << "(" << a << " - " << b << ") mod " << n << " = " << normalize(A - B, n) << endl
+         << "(" << a << " * " << b << ") mod " << n << " = " << normalize(A * B, n) << endl
+         << "Additive inverse of " << a << " = " << normalize(-A, n) << endl
+         << "Additive inverse of " << b << " = " << normalize(-B, n) << endl;
 
     return 0;
 }

@@ -22,9 +22,8 @@ int main()
     cout << "Enter file names :" << endl;
     for (int i = 0; i < n; i++)
         cin >> files[i];
-
     cout << endl
-         << "Scan Report" << endl;
+         << "Scan Report :" << endl;
     for (int i = 0; i < n; i++)
         if (hasSuspiciousExtension(files[i]))
             cout << files[i] << " -> suspicious" << endl;
@@ -45,7 +44,7 @@ int main()
         sandboxCopies.push_back("copy_" + to_string(i) + "_" + agentName);
 
     cout << endl
-         << "Replication Log" << endl;
+         << "Replication Log :" << endl;
     for (string s : sandboxCopies)
         cout << s << endl;
 

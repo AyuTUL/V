@@ -35,7 +35,8 @@ int main()
     for (int i = 3; i >= 0; i--)
         output += char(((value >> i) & 1) + '0');
 
-    cout << "---DES S-Box Substitution---" << endl
+    cout << endl
+         << "---DES S-Box Substitution---" << endl
          << "Row = " << row << endl
          << "Column = " << col << endl
          << "Decimal Output = " << value << endl

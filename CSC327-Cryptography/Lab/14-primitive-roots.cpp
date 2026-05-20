@@ -63,7 +63,8 @@ int main()
     cin >> p;
     cout << "Enter value g to check : ";
     cin >> g;
-
+    cout << endl
+         << "---Primitive Root Checking & Finding Primitive Roots---" << endl;
     if (!isPrime(p))
         return cout << endl
                     << "p must be prime",
@@ -80,7 +81,5 @@ int main()
     for (long long i = 2; i < p; i++)
         if (isPrimitiveRoot(i, p, factors))
             cout << i << " ";
-    cout << endl;
-
     return 0;
 }

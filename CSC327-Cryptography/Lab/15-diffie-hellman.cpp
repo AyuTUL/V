@@ -34,11 +34,13 @@ int main()
 
     long long sharedAlice = powerMod(B, a, p);
     long long sharedBob = powerMod(A, b, p);
+    cout << endl
+         << "---Diffie-Hellman Key Exchange---" << endl;
 
-    cout << "Alice public value = " << A << endl;
-    cout << "Bob public value = " << B << endl;
-    cout << "Shared key (Alice) = " << sharedAlice << endl;
-    cout << "Shared key (Bob) = " << sharedBob << endl;
+    cout << "Alice public value = " << A << endl
+         << "Bob public value = " << B << endl
+         << "Shared key (Alice) = " << sharedAlice << endl
+         << "Shared key (Bob) = " << sharedBob;
 
     return 0;
 }

@@ -53,19 +53,21 @@ int main()
     cin >> a >> n;
 
     long long phiValue = phi(n);
+    cout << endl
+         << "---Euler's Totient Function & Euler's Theorem---" << endl;
     cout << "phi(" << n << ") = " << phiValue << endl;
 
     if (gcdValue(a, n) == 1)
     {
-        cout << "a^phi(n) mod n = " << powerMod(a, phiValue, n) << endl;
+        cout << a << "^phi(" << n << ") mod " << n << " = " << powerMod(a, phiValue, n) << endl;
 
         if (powerMod(a, phiValue, n) == 1)
-            cout << "Euler’s theorem verified" << endl;
+            cout << "Euler's theorem verified" << endl;
         else
-            cout << "Euler’s theorem not verified" << endl;
+            cout << "Euler's theorem not verified" << endl;
     }
     else
-        cout << "gcd(a, n) != 1, so Euler’s theorem not applicable";
+        cout << "GCD(" << a << ", " << n << ") != 1, so Euler's theorem not applicable";
 
     return 0;
 }

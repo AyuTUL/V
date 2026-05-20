@@ -66,7 +66,8 @@ int main()
     string C = key56.substr(0, 28);
     string D = key56.substr(28, 28);
 
-    cout << "---DES Key Generation---" << endl
+    cout << endl
+         << "---DES Key Generation---" << endl
          << "Initial C : " << C << endl
          << "Initial D : " << D << endl;
 
