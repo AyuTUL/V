@@ -8,10 +8,10 @@ $connection = new mysqli($server, $username, $password, $database);
 if ($connection->connect_error)
     die("Connection failed : " . $connection->connect_error);
 echo "Connection successful<br>";
-$DeleteRecord = "DELETE FROM student WHERE address='Lalitpur';";
-$result = $connection->query($DeleteRecord);
+$deleteRecord = "DELETE FROM student WHERE address='Lalitpur';";
+$result = $connection->query($deleteRecord);
 if (mysqli_affected_rows($connection) > 0)
-    echo "Delete successful<br>No of records deleted = " . mysqli_affected_rows($connection);
+    echo "Delete successful<br>No. of records deleted = " . mysqli_affected_rows($connection);
 else
     echo "No record deleted";
 $connection->close();
