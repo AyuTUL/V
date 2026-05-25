@@ -17,9 +17,8 @@ int main()
         cin >> R[idx];
 
     for (k = 0; k <= M; k++)
-        s35 = s35 + R[i + k * m] * R[i + (k + 1) * m];
-    s35 = s35 / (M + 1);
-    s35 = s35 - 0.25;
+        s35 += R[i + k * m] * R[i + (k + 1) * m];
+    s35 = (s35 / (M + 1)) - 0.25;
     r35 = sqrt(13 * M + 7) / (12 * (M + 1));
     cout << endl
          << "---Autocorrelation Test for Independence---" << endl;

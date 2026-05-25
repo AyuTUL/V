@@ -4,30 +4,16 @@
 #include <ctime>
 using namespace std;
 
-int Arand()
+int Roll()
 {
-    int r;
-    r = 1 + rand() % 5;
-    return r;
-}
-
-int Brand()
-{
-    int r;
-    r = 1 + rand() % 5;
-    return r;
+    return 1 + rand() % 5;
 }
 
 int main()
 {
     srand(static_cast<unsigned int>(time(0)));
-    int sa = 0, sb, a, b, x, y;
-    a = Arand();
-    b = Arand();
-    sa = a + b;
-    x = Brand();
-    y = Brand();
-    sb = x + y;
+    int sa = Roll() + Roll();
+    int sb = Roll() + Roll();
     cout << "---Dice Toss Game---" << endl;
     if (sa > sb)
         cout << "A wins the game by " << sa << " points";

@@ -4,10 +4,21 @@
 #include <cstdlib>
 using namespace std;
 
+float normalLike(float mean, float sd)
+{
+    float sum = 0.0f;
+    for (int i = 1; i <= 12; ++i)
+    {
+        float x = rand() / 32768.0f;
+        sum += x;
+    }
+    return mean + sd * (sum - 6.0f);
+}
+
 int main()
 {
     int i, j, run;
-    float x, iat, st, awt, pcu, wt = 0, it = 0;
+    float iat, st, awt, pcu, wt = 0, it = 0;
     float mean, sd, mue, sigma;
     float sb = 0.0, se = 0.0, cit = 0, cat = 0, cwt = 0;
 
@@ -38,13 +49,7 @@ int main()
     cout << fixed << setprecision(2);
     for (j = 1; j <= run; ++j)
     {
-        float sum = 0;
-        for (i = 1; i <= 12; ++i)
-        {
-            x = rand() / 32768.0f;
-            sum = sum + x;
-        }
-        iat = mean + sd * (sum - 6.0f);
+        iat = normalLike(mean, sd);
         cat = cat + iat;
         if (cat <= se)
         {
@@ -58,13 +63,7 @@ int main()
             it = sb - se;
             cit = cit + it;
         }
-        sum = 0;
-        for (i = 1; i <= 12; ++i)
-        {
-            x = rand() / 32768.0f;
-            sum = sum + x;
-        }
-        st = mue + sigma * (sum - 6.0f);
+        st = normalLike(mue, sigma);
         se = sb + st;
         cout << endl
              << "|" << setw(8) << iat
@@ -81,6 +80,6 @@ int main()
     cout << endl
          << line << endl;
     cout << "Average waiting time =  " << awt << endl
-         << "Percentage capacity untilization =  " << pcu;
+         << "Percentage capacity utilization =  " << pcu;
     return 0;
 }

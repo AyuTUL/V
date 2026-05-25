@@ -12,7 +12,7 @@ int isMarkovMatrix(float m[][N])
     {
         int s = 0;
         for (int j = 0; j < N; j++)
-            s = s + m[i][j];
+            s += m[i][j];
         if (s > 1)
         {
             t = 0;
@@ -37,7 +37,7 @@ int main()
     cout << endl
          << "---Markov Matrix Test---" << endl;
     if (isMarkovMatrix(matrix))
-        cout << "The matrix is Markov Matrix";
+        cout << "The matrix is Markov matrix";
     else
         cout << "The matrix is not Markov matrix";
     return 0;
