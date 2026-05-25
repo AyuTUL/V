@@ -2,65 +2,32 @@
 #include <iostream>
 using namespace std;
 
-#define N 100
-#define alpha 16.9
-
-void sort(float x[])
-{
-    for (int i = 0; i < N; i++)
-        for (int j = 0; j < N - 1; j++)
-            if (x[j + 1] < x[j])
-            {
-                float temp = x[j];
-                x[j] = x[j + 1];
-                x[j + 1] = temp;
-            }
-}
+constexpr int N = 100, kBins = 10;
+constexpr float alpha = 16.9f;
 
 int main()
 {
-    float XO[10], XE[10], XOE[10], XOE2[10], R[10], s = 0.0, x[N];
+    float XO[kBins] = {0.0f}, s = 0.0f, x[N];
 
     cout << "Enter " << N << " random numbers :" << endl;
     for (int i = 0; i < N; i++)
         cin >> x[i];
 
-    sort(x);
-    for (int i = 0; i < 10; i++)
-    {
-        XO[i] = 0.0;
-        XE[i] = 10.0;
-    }
     for (int i = 0; i < N; i++)
     {
-        if (x[i] <= 0.1)
-            XO[0]++;
-        else if (x[i] <= 0.2)
-            XO[1]++;
-        else if (x[i] <= 0.3)
-            XO[2]++;
-        else if (x[i] <= 0.4)
-            XO[3]++;
-        else if (x[i] <= 0.5)
-            XO[4]++;
-        else if (x[i] <= 0.6)
-            XO[5]++;
-        else if (x[i] <= 0.7)
-            XO[6]++;
-        else if (x[i] <= 0.8)
-            XO[7]++;
-        else if (x[i] <= 0.9)
-            XO[8]++;
-        else if (x[i] <= 1.0)
-            XO[9]++;
+        int idx = static_cast<int>(x[i] * kBins);
+        if (idx < 0)
+            idx = 0;
+        if (idx >= kBins)
+            idx = kBins - 1;
+        XO[idx]++;
     }
 
-    for (int i = 0; i < 10; i++)
+    const float expected = static_cast<float>(N) / kBins;
+    for (int i = 0; i < kBins; i++)
     {
-        XOE[i] = XO[i] - XE[i];
-        XOE2[i] = XOE[i] * XOE[i];
-        R[i] = XOE2[i] / XE[i];
-        s = s + R[i];
+        float diff = XO[i] - expected;
+        s += (diff * diff) / expected;
     }
     cout << endl
          << "---Chi-Square Test for Uniform Distribution---" << endl;
