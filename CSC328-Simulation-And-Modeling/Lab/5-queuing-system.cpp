@@ -50,18 +50,18 @@ int main()
     for (j = 1; j <= run; ++j)
     {
         iat = normalLike(mean, sd);
-        cat = cat + iat;
+        cat += iat;
         if (cat <= se)
         {
             sb = se;
             wt = se - cat;
-            cwt = cwt + wt;
+            cwt += wt;
         }
         else
         {
             sb = cat;
             it = sb - se;
-            cit = cit + it;
+            cit += it;
         }
         st = normalLike(mue, sigma);
         se = sb + st;
