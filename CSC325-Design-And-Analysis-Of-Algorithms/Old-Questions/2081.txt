@@ -57,7 +57,13 @@ n items,each with value Vi and weight Wi and knapsack capacity W
 	-if W>=Wi, put whole item in knapsack
 	-else put fraction of item that best fits remaining capacity of knapsack
 
-5.
+5. masters thoerem:
+let a>=1 and b>1 be constantss, f(n) be asymptotically positive function and T(n) be defined
+on non negative integers by the recurrence:
+	T(n)=a.T(n/b)+f(n)
+where, n/b: floor or ceil
+T(n) has following asymptotic bounds:
+
 T(n)=a(n/b)+f(n)
 I:n^logb(a) > f(n) => T(n)=theta(n^logb(a))
 I:n^logb(a) = f(n) => T(n)=theta(n^logb(a)*log2(n))
@@ -77,6 +83,72 @@ algorithm:
 
 time complexity=O(n), loop executes at most n-2 times
 space complexity=O(1), 5 var
+
+7. minimum edit distance:
+https://www.youtube.com/watch?v=b6AGUjqIPsA
+
+8. miller rabin primality test:
+bool isPrime(n, k) {
+    if n <= 1
+        return false
+    if n == 2 or n == 3
+        return true
+    if n % 2 == 0
+        return false
+    // Find d such that:
+    // n - 1 = d * 2^r
+    d = n - 1
+    while d % 2 == 0
+        d = d / 2
+    repeat k times:
+        if millerTest(d, n) == false
+            return false
+    return true
+}
+bool millerTest(d, n) {
+    pick random a in range [2, n-2]
+    x = power(a, d, n)
+    if x == 1 or x == n - 1
+        return true
+    while d != n - 1
+        x = (x * x) % n
+        d = d * 2
+        if x == 1
+            return false
+        if x == n - 1
+            return true
+    return false
+}
+O(k log^3(n))
+recursion					backtracking
+-function calls itself until base case reached	-recursion used to explore all possiblities
+						till best result reached
+-break problem into smaller sub problems	-explore all possible solutions systematically
+-no values are abandoned			-some can be abandoned
+-may follow one path				-explroes multiple paths
+-facotiral,fibonacci,tree traversal		-nqueen,subset sum
+
+9. CRT
+if one knows the remaindesr of Euclidean division of integer n by several intergers, then one
+can determine uniquly the remainder of the division of n by trhe product of these integers
+under the condiont taht the divisors are pairwise co-prime
+
+10.
+vertex cover of a graph G is as set of vertices such that each edge in G is incident to at least
+one of these vertices
+find a max ssize vertex cover of given graph called optimal vertex cover C*
+take edge (u,v) one by one, put both vertices to C and remove all edges incident to u or v
+carry on until all edges have been removed
+
+11. cooks theorem
+Boolean satisfiability problem is NP compelte ie any problem in NP can be reduced in ploynmoial
+times by a deterministic Turing machine to the problem of determing whether a Boolean formula is
+satisfaible
+
+reducibilty:
+problem P1 is reducible to P2 if any instane of P1 can be transformed into instance of P2 in
+polynoimal time,such that solving P2 solves P1
+
 
 12. a.
 asymptotic nmtation is standard notaiton used to analyze complexity of algorithm in terms of
@@ -99,3 +171,9 @@ big theta:
 function g(n) written as f(n)=Theta(g(n)) if there exists some positive constant c1 c2 n0 such
 that c1.g(n)<=f(n)<=c2.g(n) for all n>=n0.
 -provides asymptotic tight (both lower and upper) bound on f(n)
+
+12. b
+class P: problems solvable in polynomial time
+class NP: problesm whose solutions can be verifiable in polynomial times
+NP-complete: hardest problems in NP; if any one is solved in polynomial times, all problems
+in NP can be
