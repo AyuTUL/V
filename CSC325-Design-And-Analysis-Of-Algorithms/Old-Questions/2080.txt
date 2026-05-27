@@ -1,0 +1,131 @@
+1. recurrence relation:
+-equaiton/inequality that describes afunction in terms of ites value on msaller inputs
+-used to analyze running dutration of recurisve algorithms
+-solving recurrence means fionding solution of given realiton in terms of big oh notaions
+-solving means to obtain a function defined on natural number that satsifes the recurrence
+
+2.
+dynamci prorgamming:
+-alogrithmic paradigm that solves coimpelx problems by breaking it down into sub problems ,
+solving the sub problesm only once and storign the results in table to avoid recomputing 
+same results every time it solves same sub problem
+-bottom up
+
+properties:
+-optiomal substrucure: optimal solution to problem contains optimal solution to sub problem
+-overlapping subproblem: recursiv ealgorithm solves same sub problem repeadtedyl insetraed of
+generating new ones
+
+greedy						DP
+-finds feasibel solution at every stage with 	-breaks problem into series of overlapping sub
+hope of finding optimal solution		 problems with hope of avoiding repetitive task
+-best choice at moment and solve sub problems	-choice at each step which depends on solution
+arising afte chocie is made			to sub problem
+-local optimum is slected without considering	-all possible reuqunce in order are considered
+preivous solution				to obtain optimum soltion
+-takes decision i none time			-takes decision at every step
+-optimal substructure,greed choice		-optimal substrucure,overlapping sub problems
+-fractrion al knapsack, kruskal MST		-01 knapsack, matrix chain multiplication
+
+matrix chain multiplication:
+time-O(n^3) ;3 nested loops
+space-O(n^2) ; 2 matrices
+
+m: no. of scalar multiplications (csot)
+s: position of parenthesis
+
+3. heapify:
+-proicess of reaaraning array to maintain heap order property
+time-O(log n)
+space- O(log n) or O(1)
+
+algorithm (max heapify):
+-compare current node with left and right children
+-find largest among the three
+-if parrent isnt largest, swap with largest child
+-recursivly call heapify on affected sub tree
+
+MaxHeapify(A,i,n) {
+	left=2*i*+1;
+	right=2*i+2;
+	largest=i;
+	if(left<=n and A[left]>largest)
+		largest=left;
+	if(right<=n and A[right]>largest)
+		largest=right;
+	if(largest!=i) {
+		swap(A[i],A[largest]);
+		MaxHeapify(A,largest,n);
+	}
+}
+
+4. RAM model: random acces machine
+-base model for study of DAA in machine independent scenario
+-assumes all algorithms must be implemented in a single processor machine
+-measure run time of algorithm by summing no. of steps needed to excute it on set of data
+
+principles:
+-basci operations +-*= are considered to simple that take one time step
+-loops and subroutiens are complex operations composed of mulitipel time steps
+-all memory access take exactly one time step
+
+factorial:
+int fact(int n) {
+	int fact = 1;			1
+	for(int i=1;i<=n;i++)		1 n+1 n
+		fact=fact*i;		2n
+	return fact;			1
+}
+time-O(n)
+space-O(1)
+
+5. insertion sort
+-in palce and stable sorting algo that iterates through each element in unsorted array and
+inserts them in correct position in sorted array
+time-O(n^2)
+space-O(1)
+
+algorithm:
+InsertionSort (A , n) {
+	for(i = 1 ; i < n ; i++) {
+		temp = A[i];
+		j = i - 1;
+		while(j >= 0 and A[j] > temp) {
+			A[j+1] = A[j];
+			j--;
+		}
+		A[j+1] = temp;
+	}
+}
+
+6. min max
+-finds min and max of unsorted array by dividing into 2 halves and returning max and min of each
+half and comparing
+
+algorithm:
+MinMax (A, low, high) {
+	if (low == high)
+		max = min =A[low];
+	else if (low == high-1) {
+		if (A[low] < A[high]) {
+			max = A[high];
+			min = A[low];
+		}
+		else {
+			max = A[low];
+			min = A[high];
+		}
+	}
+	else {
+		mid = (low + high) / 2;
+		{max , min} = MinMax (A, low, mid);
+		{max1 , min1} = MinMax (A, mid+1, high);
+		if (max1 > max)
+			max = max1;
+		if (min1 < min)
+			min = min1;
+	}
+}
+
+time-O(n)
+sapce-O(logn)
