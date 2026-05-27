@@ -75,7 +75,7 @@ KruskalResult kruskal(vector<Edge> edges, int n)
 int main()
 {
     int n, m;
-    cout << "Enter vertices & edges : ";
+    cout << "Enter no. of vertices & edges : ";
     cin >> n >> m;
     vector<Edge> edges(m);
     cout << "Enter edges (u v w) :" << endl;

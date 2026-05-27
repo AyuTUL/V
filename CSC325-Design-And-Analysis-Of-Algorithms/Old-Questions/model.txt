@@ -1,24 +1,36 @@
-2.
-heap is a special type of binary tree where nodes are arranged in specific way
-max heap-value of each node>=value of children
-min heap-value of each node<=value of children
+1. dynamci prorgamming:
+-alogrithmic paradigm that solves coimpelx problems by breaking it down into sub problems ,
+solving the sub problesm only once and storign the results in table to avoid recomputing 
+same results every time it solves same sub problem
+-bottom up
 
 properties:
--structual property:all levels are full,filled from left to except possibly last one
+-optiomal substrucure: optimal solution to problem contains optimal solution to sub problem
+-overlapping subproblem: recursiv ealgorithm solves same sub problem repeadtedyl insetraed of
+generating new ones
+
+2. heap
+-special type of binary tree where nodes are arranged in specific way
+	max heap-value of each node>=value of children
+	min heap-value of each node<=value of children
+
+properties:
+-structual property:all levels are full,filled from left to right except possibly last one
 -order/heap propeorty: for any node x:
 				max-parent(x)>=x
 				min-parent(x)<=x
 
-4.
-in insertion sort, each iteration moves element from unsorted list to sorted list in its
-correct place until all elemts are in sorted list
+4. insertion sort
+-each iteration moves element from unsorted list to sorted list in its correct place until
+all elemts are in sorted list
+-in place and stable
 
 algorithm:
-insertionSort(A,n)	{
-		for(i=1;i<n;i++)	{
+insertionSort(A,n) {
+		for(i=1;i<n;i++) {
 			temp=A[i];
 			j=i-1;
-			while(j>=0 && A[j]>temp)	{
+			while(j>=0 && A[j]>temp) {
 				A[j+1]=A[j];
 				j--;
 			}
@@ -28,9 +40,9 @@ insertionSort(A,n)	{
 time complexity=O(n^2)
 space complexity=O(1)
 
-5.
-binary serach repeatedly divides sorted lisdt in half
-searching starts from central element, if not found, if key is smaller, it starts searching
+5. binary serach 
+-repeatedly divides sorted lisdt in half
+-searching starts from central element, if not found, if key is smaller, it starts searching
 from 1st half, if greater, it starts searchign from 2nd half
 FIG
 
@@ -105,6 +117,34 @@ GCD(a,b)	{
 time complexity=O(n)
 space complexity=O(1)
 	
+9.
+-optimization problem is problem of finding best solution(min/max) rfom all fesible soluition
+-greedy algorithm obtains solution for optimzastion problem
+-makes choice that seems best at that moment ie local optimuim with hope that it leads to
+global optimum
+-no, greddy algorithm desotn always guartantee optimal soln for evey problem although it is
+designed to find bset solution among fesible options in optimziation problems
+-optimal soln only if algorithm has 2 properties:
+	greedy choice:globally optimal soln can be reached by creating locally optimal soln
+	optimal substructure: optimal sol cointains optimal soln to sub problems
+
+10.
+class p: 
+-solved by deerministic Turing machin in polynomial time
+-tractable
+-+- of 2 numbers
+
+clas np:
+-solved by non deterministic machine in polynomial time
+-P is subset of NP
+-problems verifiable in polynomial time
+-factorization
+
+np complete:
+-hardest np problems
+-X in np for which it is possible to reduce any other np porblem Y to X in polynomial time
+-graph isomorphism
+
 
 12. a.
 asymptotic nmtation is standard notaiton used to analyze complexity of algorithm in terms of

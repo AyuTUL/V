@@ -128,4 +128,68 @@ MinMax (A, low, high) {
 }
 
 time-O(n)
-sapce-O(logn)
+space-O(logn)
+
+7.
+-greedy choice:globally optimal soln can be reached by creating locally optimal soln
+-optimal substructure:optimal solution to problem contains optimal solution to sub problem
+
+job sequecing with deadlines:
+-set of n jobs each deadlines di>=0 and profit pi>=0
+-profit is earned if job is completed within deadline
+-to complete job, job has to process for 1 unit of time
+-find subset of jobs so that profit is max
+
+algorithm:
+-find max deadline value from set of jobs
+-arrange jobs in descending order of profits
+-select jobs with highest profit, their time period not exdeeing max deadline
+-selected jobs are output
+
+time-O(nlogn)+O(1)+O(n^2)=O(n^2)
+
+9. huffman encoding
+-lossless data comrpession technique
+-compress s data by representing each alphabet by unique binary code in optimal way
+
+10. extended eculidian algorithm
+
+ExtendedGCD(a, b, x, y) {
+	if b == 0 {
+    		x = 1
+    		y = 0
+   		return a
+	}
+	x1, y1
+
+	gcd = ExtendedGCD(b, a mod b, x1, y1)
+
+	x = y1
+
+	y = x1 - (a / b) * y1
+
+	return gcd
+}
+
+time/space-O(log(min(a,b))
+
+11. complexity classes:
+class p: 
+-solved by deerministic Turing machin in polynomial time
+-tractable
+-+- of 2 numbers
+
+clas np:
+-solved by non deterministic machine in polynomial time
+-P is subset of NP
+-problems verifiable in polynomial time
+-factorization
+
+np complete:
+-hardest np problems
+-X in np for which it is possible to reduce any other np porblem Y to X in polynomial time
+-graph isomorphism
+
+np hard:
+-x is np hard if there is np compelte y such that y is reducible to x in polynomial time
+-halting problem
