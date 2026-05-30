@@ -116,3 +116,150 @@ distruptive technology:
 -disruptive tech is complement new that affects normal opreation of market/industry
 -displaces well established product/tech ,cereating a new industry/amrket
 -eg:ai,vr,expert system,iot,e commerce
+
+4. agile vs traditonal
+agile mthods					traditional methods
+-short iterations with constant feedbasck	-rigid linear sequence
+-changing requiremtns throughout development	-customres sign off requiemtnes early
+-produces minimal working system quickly	-workign software at end only
+-continuous customer involvmenet		-lngo gaps bertween intial requiemetns and final
+						delivery
+
+5. SDLC
+sdlc is systematic conceptual model that explicitly breaks dfown work into phases requiered to
+develop/ alter IS
+
+FIG 5 PADITM
+
+planning:
+-define problam and scope of exisitng system
+-overview new system and determine objectives
+-confirm project feasibiltiy,threats,contraints,integration,security and produce project schedule
+-create feasiblity report
+
+analysis:
+-gather,analyze,validate info
+-define requiremetns and protypes for new system
+-examine needs of end user and enhance goal
+-sofware requiremtn specification SRS document is prepared (sofware,hardawre,functoinal,network
+requirement)
+
+design:
+-edsign of application,network,database,UI,system interface
+-transform srs into logical structure containg details to be implemented into progamming lang
+-create backup,traning,amintenace and review propsed design
+
+implmentation:
+-impklements design into source code through coding
+
+testing and iontegration:
+-combines all modeul stogether in traning enivorinemn to detect error
+-test report contasing errosr is prepared through test plan including test case,generawtion,
+testing criterai,resoucrce allocation
+-integrate IS into environemnt and install new system
+
+maintenace:
+-phone,physical on site support for users after system is isntalled
+-impelenmt chagnes sofware may undergo over aperiod of time
+-handles residual errir after testing phase
+
+7. dialogue dewsign process
+-diaolgue is sequence of interatio bertween user and ysstem
+-interafce is method by which users interadct with IS
+-prototyping approach
+
+designing dialgoue sequnce:
+-defining the sequence of displays users encounter based on a clear understanding of users, 
+tasks, and environment
+-represented using a Dialogue Diagram, formal method for desigining and repressenting human-
+computer dialogue boxes using box nad line diagrms
+
+building a prototype: 
+-creating a working version of the dialogue sequence based on the requirements
+
+-assessing Usability: 
+-evaluating how the design performs in terms of speed, accuracy, and user satisfaction
+-simlified using grahical design environemnt
+
+8. 5 EAKOR
+Physical database design involves transforming logical data models into technical implementations
+ on a specific DBMS
+
+Entity Translation: Logical entities are transformed into physical tables
+Attribute Translation: Attributes are transformed into columns with specific data types
+Key Definition: Identifying primary and foreign keys for each table to ensure integrity
+Optimization: Defining indexes to improve query performance and views to restrict data access
+Relationship Resolution: Resolving complex relationships, such as many-to-many, by creating
+ associative tables
+
+9. installation
+-process of moving from current IS to new
+-all users give up reliance on current and rely on new
+
+direct:
+-changing from old ot new by turnign off old when new is turned on
+-requires compelte installation of whoel sytem
+-highrisk as there may be error that only shown in oeration
+
+parallel:
+-running old nad new at same time until management decides old can beturned off
+-all work done in old is concurrently preformed by new
+-outpus are compared to determine if new is performing as well as old
+-errors in new dont cost oorganizmation much as they can be isolated
+-expensive as aall work is done twice, employ 2 staffs to opreate nad maintain
+-confsiuing to users, not feasible forf large system due to redudant effort
+
+pilot:
+-single location installation
+-chanign from current to new system only in one place linke branch office, department
+-limits potential damage and cost by limiting effects to single site
+-once management decides installation is succesfull in one lcoation, new deployed at rest
+-simpler to user but diff to staff to support 2 versions
+-extra program needed to synchronize current and new system
+
+phased:
+-staged
+-parts of old and new are useed in coopreation till whole new system is installed
+-by converting gradually, risk is spread out over time and place
+-new and old must be able to coesxst and share data
+-reuires c arfeul version control,repeaeted converstaion at each pahsae and long period of change
+-frustraing to users
+
+10.
+-Maintenance effectiveness is measured by how well the system is kept healthy
+ and improved after deployment:
+
+Cost Ratios: Tracking the proportion of the IS budget allocated to maintenance (often 60-80%)
+Handling Requests: Measuring the speed and accuracy of transforming maintenance requests into 
+changes via the IEEE framework
+Performance Monitoring: Using spreadsheet and CASE tools to calculate trends and workload, 
+ensuring satisfactory support for business operations
+Configuration Management: Evaluating how well changes in requirements are controlled and 
+documented to avoid inconsistencies
+
+12 a. testing levels
+unit/componeent testing:
+-smallest unit of software design is tested
+-done y programmer using sampe input and ovserving corresponding output
+-perofmed in standalone moduile
+
+integration testing:
+-take unit trested componenets and buld program with combined group of compnets to produce output
+-focus on interface and interaction between modules
+-carried out by testers
+
+system testing:
+-test softawre for different OS
+-under blackbox testing technique
+-focus on required io without focus on internal working
+-system tested as whole to incover requiemetn errors and verify overall function is good
+
+alpha: by test team within developing org
+beta: selected group of friendly customers
+acceptance: customers to determine whtejer to accept/reject delivery of system
+performance: wheter system meets non function requireketns in SRS
+
+12 b. rdbms
+-data stored in form of related tables/relation
+-relation is a named,2d table of data consisting of named columns and unnamed rows
+-make data est to store nad retrive
