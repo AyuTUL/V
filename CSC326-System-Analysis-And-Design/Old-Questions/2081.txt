@@ -134,12 +134,15 @@ adv:
 -hgelps for management and maintenance
 
 upperCASE tools:
+-plaaning,analysis,design
+-make erds, dfd
 -create and modfity system sesign
 -info about priject is stored in CASe repository
 -analyssi reports shjow error,incompleteness in system desing 
 
 lowerCASe tools:
--generate source code which reduce need for system programming
+-implementation,testing,maintenance
+-generate source code from diagrams and forms,which reduce need for manual programming
 -reduces time for maintentace as test and edbug are eliminated
 
 7.
@@ -199,7 +202,7 @@ roll name year month day marks
 [id] age	[id] subject
 
 3NF:
--no transitive dependency, all non ke attrbutes must not depend on other non key attributes
+-no transitive dependency, all non key attrbutes must not depend on other non key atributes
 
 id name accountno bankno bank
 id name accountno bankno		bankno bank
