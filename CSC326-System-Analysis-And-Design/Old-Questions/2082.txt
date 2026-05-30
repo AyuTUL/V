@@ -70,16 +70,16 @@ requiremetns specification:
 -data produced during fact finding investigation are analyzed to determine reuqireknst specifis,
 description of featues of new system
 	
-	-analysis of factual data: data collected during fact finding study and included in data
-	flow and desicion analysis documentation are examined to determinde how well system is
-	performing and whether it will meet origanizations demand
+analysis of factual data: data collected during fact finding study and included in data
+flow and desicion analysis documentation are examined to determinde how well system is
+performing and whether it will meet origanizations demand
 
-	-identification of essential requiements: feaurtes that must be included in new system
-	rangign from operation details to performance criteria are specified
+identification of essential requiements: feaurtes that must be included in new system
+rangign from operation details to performance criteria are specified
 
-	-selection of requiermnts fulkfillment strategeis: meothods ot be used to achieve
-	stated requiremtns are selected whihc for mbasis for system design which follows
-	reuqimetns specification
+selection of requiermnts fulkfillment strategeis: meothods ot be used to achieve
+stated requiremtns are selected whihc for mbasis for system design which follows
+reuqimetns specification
 
 bservation vs document analysis:
 observation					document analysuis:
@@ -112,7 +112,7 @@ steps: FIG OCGTHNP 7
 -evaluate performance
 
 distruptive technology:
--suteaning tech depends on cremental improvements in already existing tech
+-suteaning tech depends on incremental improvements in already existing tech
 -disruptive tech is complement new that affects normal opreation of market/industry
 -displaces well established product/tech ,cereating a new industry/amrket
 -eg:ai,vr,expert system,iot,e commerce
@@ -179,7 +179,7 @@ building a prototype:
 
 -assessing Usability: 
 -evaluating how the design performs in terms of speed, accuracy, and user satisfaction
--simlified using grahical design environemnt
+-simplified using grahical design environemnt
 
 8. 5 EAKOR
 Physical database design involves transforming logical data models into technical implementations
@@ -206,7 +206,7 @@ parallel:
 -all work done in old is concurrently preformed by new
 -outpus are compared to determine if new is performing as well as old
 -errors in new dont cost oorganizmation much as they can be isolated
--expensive as aall work is done twice, employ 2 staffs to opreate nad maintain
+-expensive as all work is done twice, employ 2 staffs to opreate nad maintain
 -confsiuing to users, not feasible forf large system due to redudant effort
 
 pilot:

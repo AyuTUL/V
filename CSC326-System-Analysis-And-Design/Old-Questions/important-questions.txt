@@ -1,0 +1,39 @@
+1:
+IS
+types of IS
+SDLC
+cASe tools
+prototyping model
+agile model
+project mangement
+
+2:
+identifying and selecting IS projects
+assessing project feasibilty
+types of project fesibilty
+setps of cost beneift nalysis
+BEA
+
+3:
+JAD
+DFD
+decision table
+er modeling
+data modeling
+
+4:
+normalization
+desiginnig forms and reports
+formatting forms and reports
+
+5:
+types of installation
+documenting the system
+maintaining IS
+cost of maintenance
+
+6:
+adv of object oriented devlopment over structural
+UML
+class diagram
+object diagram
