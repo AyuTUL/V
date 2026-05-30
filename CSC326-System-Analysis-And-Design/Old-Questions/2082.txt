@@ -1,0 +1,118 @@
+1. phases of project management IPEMCC
+project management is controlled process of initiating, planning, executing, monitoring and
+controlling and closing down a project
+
+-project initiation phase:
+	project manager is selected who will meet with project sponsor and key stakeholders to	
+	determine objectives,historical info, who is needed in project
+	
+	output: project charter, preliminary scope statement, identification of all stakeholders,
+	,division of proejct into phases
+
+project planning phase:
+	project manager determines team's roles,responsibilites and solidifes scope statement
+	project plan is derived to address requirements like scope,budget,timeline
+	project schedule is developed
+	resources are allocated to project based on budget and schedule
+
+	output: work breakdown structure WBS, WBS dictionary, communication, risk, test plan
+
+project execution phase:
+	longest, complex phase
+	carrying out edtails of project charter, contructs delivarables and presents to
+	stakeholders
+	track project's progress and ensure milestones and delivarables stick to schedule
+	project manger has to manage people,process,comms
+	
+	output: project completed on time & budget,team moral maintained, stakeholders
+	satisfied with overall project progress
+
+monitoring and control phase:
+	monitoring is process of routinely gathering info on all aspects of project
+	checking actual and likely progress against planned progress
+	giving feedback about progess of project to donors,implementers,beneficiaries
+	
+	controling is data gathering, managemnt and analytical process to predit,understand and
+	influcen the time and cost outcomes of poject
+	making changes to plan if neccesary
+	altering schedule
+	escalating proobliesm if necessary
+	taking action to avoid future problems
+
+proejct clossure phase:
+	process that performs controleld shiut down at end of project
+	documentaion to be archived, capturing lessons to be poassed for future projects,
+	ensuring contracts are properly shut down and updating organizstional process assests
+
+2. requirements determination
+-reuiqment is statemnet about intended product that spceifces what it should do and how
+-must be specific, unamibigous and clear to be effectibly implementsed
+-eg: specific button that must enable printing of contents of current screen
+-requiment gathering is studying existing system and garthering info from client,analyze to
+find out what requiektns are,how it works and where imporvemetns are to be made
+
+activities:
+reuqimwnts anticipation:
+-predict characterisetics of system based on rpevious expericne including problems/features
+and requirements for new system
+-mixed blessing, on one hand, experience from rpevious studies can lead to investigation of
+areas otherwise unnoticed by inexperienced analysis
+-other hand, if bias is ibt4roduced/shortcuts are taken during investigation, becomes problem
+
+requirements investigation:
+-heart of system analysis
+-studying curernt sytem and documenting featuers for future analysis
+-using varitey of tools/skills,study current system and document featres ofr further analysis
+-relkiees ofn fact fiding techniques and includes methods for documenting and describing
+system features
+
+requiremetns specification:
+-data produced during fact finding investigation are analyzed to determine reuqireknst specifis,
+description of featues of new system
+	
+	-analysis of factual data: data collected during fact finding study and included in data
+	flow and desicion analysis documentation are examined to determinde how well system is
+	performing and whether it will meet origanizations demand
+
+	-identification of essential requiements: feaurtes that must be included in new system
+	rangign from operation details to performance criteria are specified
+
+	-selection of requiermnts fulkfillment strategeis: meothods ot be used to achieve
+	stated requiremtns are selected whihc for mbasis for system design which follows
+	reuqimetns specification
+
+bservation vs document analysis:
+observation					document analysuis:
+-direct method, analyst watches workers perofrm	-indirect method,analyst reviews existing records
+-highly reliable,abnayst sees exactly what done	-reliablity depends on document are outdated
+-provides real time behavorial view of system	-historical and formal view of requektns
+-allows for direct wokr measuremnt		-no
+-workers may feel uncomfartble/act differently	-time consuming,docuemtns can be outdate
+-scheduling is diffcuitl, acts might occur at	-easier,done at analyst's ocnvienice
+odd itmes
+
+radical methiod for requiremetn determiantion:
+business process re-engineering BPR:
+-business managemetn strategy, pioneerd in early 1990s focsuing on analysis and design of 
+workflows and business proceses withing organization
+-act of chaning organiszation's major fucntions with goal of increasing efficinecy,improiving
+prodcut quality and decreasing costs
+-help organization fundamentlly rethink how they do their owerk to improve customer service,
+cut operational costs and become world class comepttiros
+-start swith in depth analysis of business workflow and indinetfy key area  that need imorvement
+-BPR specialist are hired by companies to facilates transistions to more standardized proesse
+
+steps: FIG OCGTHNP 7
+-define outcomes
+-define current state
+-identify gaps
+-select test case
+-develop/test hypothesis
+-implement new process
+-evaluate performance
+
+distruptive technology:
+-suteaning tech depends on cremental improvements in already existing tech
+-disruptive tech is complement new that affects normal opreation of market/industry
+-displaces well established product/tech ,cereating a new industry/amrket
+-eg:ai,vr,expert system,iot,e commerce
