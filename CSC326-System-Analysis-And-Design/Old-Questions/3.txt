@@ -1,0 +1,123 @@
+requiment determiantion:
+-requiemtn is statement about product that specifies what it shoudl do and how 
+-determiantio nis gathering from client,zanalzy and documetn
+
+types:
+customer:
+-featuers ath are considered necesaary by customer
+-reserach target market or as kcustomers for direct feedback throgh polls, survey, social media
+
+functional:
+-related to functioning of software
+-define what functions do what
+
+non-functional:
+-implicit/expected features of software assumed by user
+-not realted to functionalty
+-eg:securty,loging,storage,config,accsivibilty
+
+ui:
+-needed fofr user acceptance as ui only way for user to perceive system
+-good ui so that functionality of sofwater can be used convenietly
+-easy to operate,quick in respose,handle operational errors,simple consitnet ui
+
+performance:
+-response time,workload,scalability,platform
+
+methods for system requirements:
+traditional:
+interview:
+-fact finding technique where SA collect info from individual by face to face interaction
+-2 raoles: interviewer,interviewee
+
+types:
+-unstructred: general goal with fwe specific quetsions
+-structured: set of specifc questions for interviewee
+
+types of questions:
+-open ended:ask for info for which no soecifc question
+-closed eneded: range of possible answers from which interviee can choose(t/f,mcq)
+
+observing workers:
+-SA wathces person perofrming to learn about system
+
+adv:
+-higly reliable data
+-see eaxactly what is being done
+-inexpensibe
+-work measurement
+
+disadv:
+-poeple feel uncomfrotrable when watched
+-odd times, diffult schedule
+-interruption
+
+studying business documents:
+-revirew eexisting documetns
+-gives historical and formal view of system requiemetns
+-may be outdated,tim econsuming
+
+contemporarry:
+JAD:
+-joint applxiation design
+-highly structured group meeting to nalayze problems and define requiemtns
+-get design r ight the first time
+-conducted in lcoatino other than workplace to reduce distractino
+
+participants:
+-JAD session leader(facilitator): mange entire proces, dont contribute idea but solicit
+-users: ones using the system
+-managers: insight into org aspects of system
+-sponsors: attend beginning and end JAD sessions
+-SA: learn from users and managers
+-scribes: take detailed notes
+-staff: give techinal aspecst to proposed idea
+
+adv:
+-active involemetn of users nad mangers in development
+-reduces amount of time for development
+
+CASE tools: FIG
+-automated tools used by SA to optimize sdlc
+-eg:Visure,SpiraTeam,Jama Sofwatre
+
+upperCASE tools: planning,analysius,design
+lowerCASe tools: implementation,testing,maintenance
+integrated CASE tools: all stages from requiemtn gathering to esting and docuemtatntion
+
+system prototype:
+
+radical:
+business process re-engineering BPR:
+-business managemetn strategy, pioneerd in early 1990s focsuing on analysis and design of 
+workflows and business proceses withing organization
+-act of chaning organiszation's major fucntions with goal of increasing efficinecy,improiving
+prodcut quality and decreasing costs
+-help organization fundamentlly rethink how they do their owerk to improve customer service,
+cut operational costs and become world class comepttiros
+-start swith in depth analysis of business workflow and indinetfy key area  that need imorvement
+-BPR specialist are hired by companies to facilates transistions to more standardized proesse
+
+steps: FIG OCGTHNP 7
+-define outcomes
+-define current state
+-identify gaps
+-select test case
+-develop/test hypothesis
+-implement new process
+-evaluate performance
+
+distruptive technology:
+-suteaning tech depends on incremental improvements in already existing tech
+-disruptive tech is complement new that affects normal opreation of market/industry
+-displaces well established product/tech ,cereating a new industry/amrket
+-eg:ai,vr,expert system,iot,e commerce
+
+DFD:
+-type of process model that graphically represnts flow of data thought IS based on IO
+-determine phyiscal syustem construction requiemtns
+-eastalbiush manual and automated system reuiqrments
+
+decision table:
+-type of logic modeling that visaully reperenst which actions perform for give ncindtions
+

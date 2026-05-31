@@ -1,0 +1,143 @@
+project indetification and selection:
+-identifying a candidate idea for developing to a progject
+-finding out moist apporitae project among several investment opportunites
+
+setps:
+identifying potential development projects:
+sources:
+-ceo,steeing comittee with cross section of manager,dev grop,senior IS manager,user deparmnet
+
+top down identification:
+-senior manamgent,sterring comuittine
+-focus oin glkobal need sof organization
+-crossfunction focus
+
+bottom up identification:
+-user depratment/functional managers
+-narrow on tactical foucs, not overall oals
+
+classyfying and raknig projects
+sources:
+-same as identifying
+
+evaluation crtieria:
+-value chain analysis: exetent to which acts add value and costs
+-strategic aligment: exten to which project helps org achieve goals
+-potential benefits: exten to hich project helps profts
+-resource avialibity: amount,type of resources required and availability
+-prject size/duration: team size and time
+-technial diffuclty/risks: difficulty to complete withing time and resioruce contraints
+
+selecting projects for deveolpement:
+-after end of identification
+-SWOT analysis tool strength,weakenss,opportunity and threat
+-assess each project idea nad selcet one with highest prioity
+-selection based on breif description which is called zeroing te process
+
+factors:
+-perceived needs of organization
+-existing systems and ongoing projects
+-resoruce valibiltiy
+-current busioness conditions
+-persetive of decision makers
+
+corporate strategic planning:
+-ongoing process that defines mission,objectives and strategies of organization
+-prerequisiste for making effective descisions to gain clear idea of where org is,where it wants
+to be in futures and how to make transiton to desired futures state
+
+steps: FIG
+Current Enterprise -> Future Enterprise -> Strategic Plan 
+
+-1st step focus on gaining undestading of curretn enterprise
+-2nd step focus on where it wants enterprise to be in futures
+-3rd step focus on strategic plan taht an be developed to guide transition
+
+feasibilty study:
+-preliminary investigation helping management to take decision about whether study of system
+is feasible for developement or not
+-identifies possibility of imoproving existing system, developing new system and produce 
+refined estimates for further development system
+-used to obtain scope of problem and decide if appropritate solution exists or not
+-output is formal system proposal acting as decision docuemnt which includes complete nature
+and scope of proposed system
+
+economic:
+-analyze cost and benefit of project
+-estimate economic requiremnts of candidate ystem before invsetments are commited to proposal
+
+NPV: usss discount rate from company's cost of capital to establish present value of project
+ROI: ratio of net cash receipts to cash outlays, for comparing projects
+BEA: amount of time required for cumulative cash flow from a porject to equal its initial 
+and ongoing investmenet
+
+techincal:
+-analyze and determine whether soltun can be supported by existing tech like hard,soft or not
+-whether current tech can be upgradded or added to fulfill new requiements
+-snsures candidate system provides appropriate responses to what extent it can supoprt
+technical enhancement
+
+legal:
+-check if system satisfies legfal/ethical rquiemetns or not
+-analzing barriers of laegal implementation of project, data protection acts, sociao media laws,
+proejct certifiacte, license,copright
+
+operational:
+-system is operatinf effectively once developed and implenet or nto
+-about problems taht may occure during opration of system after develeopment
+-smooth operation of system includinng: accuracy,response time,secutiry and efficiney of system
+
+behavorial:
+-behaviour of users and scoiety towards new system
+-is ystem requied special effor to eucate,retiran,tranfer emplyes's job sttus on new ways of
+conductiong business
+
+schedule:
+-ensure project hsosuld be completed withing given time constraint
+-verifes and validaerts wheter deadlines are reasonable or not
+
+phases of project management IPEMCC
+project management is controlled process of initiating, planning, executing, monitoring and
+controlling and closing down a project
+
+-project initiation phase:
+	project manager is selected who will meet with project sponsor and key stakeholders to	
+	determine objectives,historical info, who is needed in project
+	
+	output: project charter, preliminary scope statement, identification of all stakeholders,
+	,division of proejct into phases
+
+project planning phase:
+	project manager determines team's roles,responsibilites and solidifes scope statement
+	project plan is derived to address requirements like scope,budget,timeline
+	project schedule is developed
+	resources are allocated to project based on budget and schedule
+
+	output: work breakdown structure WBS, WBS dictionary, communication, risk, test plan
+
+project execution phase:
+	longest, complex phase
+	carrying out edtails of project charter, contructs delivarables and presents to
+	stakeholders
+	track project's progress and ensure milestones and delivarables stick to schedule
+	project manger has to manage people,process,comms
+	
+	output: project completed on time & budget,team moral maintained, stakeholders
+	satisfied with overall project progress
+
+monitoring and control phase:
+	monitoring is process of routinely gathering info on all aspects of project
+	checking actual and likely progress against planned progress
+	giving feedback about progess of project to donors,implementers,beneficiaries
+	
+	controling is data gathering, managemnt and analytical process to predit,understand and
+	influcen the time and cost outcomes of poject
+	making changes to plan if neccesary
+	altering schedule
+	escalating proobliesm if necessary
+	taking action to avoid future problems
+
+proejct clossure phase:
+	process that performs controleld shiut down at end of project
+	documentaion to be archived, capturing lessons to be poassed for future projects,
+	ensuring contracts are properly shut down and updating organizstional process assests

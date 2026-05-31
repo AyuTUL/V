@@ -1,0 +1,150 @@
+system implementation:
+-converting physdical software specification into working realiable software
+
+steps:
+coding: transalting system design into sourfe code using programming language
+testing: executing program to find erros and verify requiremmts
+installation: moving from old to new system
+documetnation: writing info about systems design and use
+training: educating users how to operate new ystem
+support: provide ongoing help through onlie sites or help desk
+
+testing:
+-executing program wit the intetnion of erifying and validating that a sofwatre is error free,
+meets technical requirektns acc to design, user requirments effectively and handling exceptions
+-not only find faults but measures to imrove software in terms of efficeiny,accuracy,usability
+-main measure specification,functionaliity,performance of softawre
+
+verificiaiotn 					validation
+-wether software conforms to specifications	-whether meets customer requiremtns
+-no executing code				-always
+-human based checking of documetns and files	-computer based execution of program
+-by dev team 					-by client and testing team
+-before validation				-adfter verification
+
+testing methodology:
+black box					white box:
+-test software without knowign internal		-knowing internal code strucure
+code structure
+-by tester and end users			-by software devs,tester,QA
+-no implementation knowledge			-yes
+-no programming knowledge			-yes
+-higher level of testing: system,acecptance	-lower level of testing:unit,integration
+-test functionality of system			-test code structure
+-what sofware is performing			-how software is performing
+-based oin requiemnt specification docuemtn	-based on detail desgin document
+
+testing levels:
+unit/componenet testing:
+-smllest unit of sofwater desigin is tested
+-by programmer using sample input and observing output
+-whiote obx
+
+integration testing:
+-take unit testd ocmpoents, combine into module and test together
+-by tester,less tests than unit
+-white box
+
+system testing:
+-test if software works for different OS
+-black box
+-whole ystem is tested to check for requiement errors
+
+alpha: test team within deveolping orgamization
+beta: selecte dgroup of custiomers
+acceptance: customer decides wheter to accept/reject delivery of system
+performance: whether meets non functional requremets in SRS document
+
+apha						beta
+-both white and black				-black
+-testers of developing org			-cliets not part of org
+-at developers site				-at ender of prodcut
+-reliablity and seciruty not checked		-yes
+-requires testing environement			-no
+-develoeprs immediately address errors		-feedback colleced ,implemented in future version
+
+installation:
+-moving from current IS to new
+
+direct:
+-change from old to new by turning off old when new is turned on
+-complete installation of whole system
+-high risk as problems may appear only during operation
+
+parallel:
+-running old and new at same time until management decides old can be turned off
+-all work in old i sconcurrently done i nnew
+-compare outputs to determine if new is good as old
+-error in new not affect old ude to isolation
+-all work done twice,expensive with 2 staffs operate and mainatin
+-confusing to uers
+-not suitable for large systems abd not teoelrate redundant effort
+
+pilot:
+-sinbgle location
+-convert from current to new only in one place rather than all org
+-location is branch,depratment
+-actual approach in that location can be any other apprach
+-limits potential damage and cost to single site
+-simpel to user but dffult to satff
+-extra program for sync
+
+phased/staged:
+-parts of old and new are in cooperation until whole new ysstem is installed
+-risik is spread out gradually
+-allows some benifits of new beofre whole system is ready
+-extra progarm for sync
+-version control,repeat conversations,long period of change
+
+documentaion:
+-collecting,organizing,storing and maintaing comlete record of system and other dumcents
+used during sdlc
+-if design/dev persion leaves, documentation is used for cojntinuity
+-easy to modify adn maintia in future
+-help for restart system
+
+types:
+system: internal,external
+user
+
+system maintenance:
+-modifying sofwatre after it has been delivared to customer
+-to correct faults and omprove perfomance up to date with chaning envi and user requiremetns
+
+steps:
+-obtaining mainteneasce requests
+-transforming requests into changes
+-desingning changes
+-implementing changes
+
+types:
+corrective: bug fixing
+adaptive: porting and migration
+perfective: enchancements and scalabiity
+preventive: documentation enchancements
+
+cost of maintenace:
+non technical factors:
+-applcaition domain:
+-staff stability:
+-dependence on external envi:
+-hardware stability:
+
+technical factors:
+-module independece:
+-programming languge:
+-prgoam validation and etsting:
+-documentation:
+-config managemenet technique:
+
+maintenace activities:
+-provide dby IEEE for sequential maintetnace in iterative manner
+
+identificaion and tracing: identify reuiwment of maintenace by user/system
+analysis: anakyze severity of impact
+design: design ew modeuls acc to requireetn specification, test for verify validate
+implementation: code, unit testing
+system testing: test as whole
+acceptance testing: test by users
+delivery: delpoy in org
+maintenance mangemetn: version control tools

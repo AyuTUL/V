@@ -1,0 +1,33 @@
+normazliation:
+-database design process in which complex dataastr table is broken down into simpel seprate tables
+
+adv:
+-identify dependecy between data fields
+-minimize data dependency
+-flexible data model
+-faster sorting and index creation
+-improves performance
+-simplify structre of tables
+-avoids loss of info
+
+levels of NF FIG
+1 NF:
+-domain of each attribute contains atomic values only
+-value of attribute contains only single value from domain
+
+roll name dob marks
+roll name y m d marks
+
+2 NF:
+-no partial dependcy
+-all non key attributes must depend on entire primary key,not just part of it
+
+[tid sub] age
+[tid] age [tid] subject
+
+3 NF:
+-no transitive dependcy
+-all non key attributes should not dpeend on other non ke attributes
+
+[id bank no] name account bank
+[id bank no] name account [bank no] bank

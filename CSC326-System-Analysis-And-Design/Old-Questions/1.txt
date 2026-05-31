@@ -1,3 +1,105 @@
+sdlc is systematic conceptual model that explicitly breaks dfown work into phases requiered to
+develop/ alter IS
+
+FIG 5 PADITM
+
+planning:
+-define problam and scope of exisitng system
+-overview new system and determine objectives
+-confirm project feasibiltiy,threats,contraints,integration,security and produce project schedule
+-create feasiblity report
+
+analysis:
+-gather,analyze,validate info
+-define requiremetns and protypes for new system
+-examine needs of end user and enhance goal
+-sofware requiremtn specification SRS document is prepared (sofware,hardawre,functoinal,network
+requirement)
+
+design:
+-edsign of application,network,database,UI,system interface
+-transform srs into logical structure containg details to be implemented into progamming lang
+-create backup,traning,amintenace and review propsed design
+
+implmentation:
+-impklements design into source code through coding
+-combines all modeul stogether in traning enivorinemn to detect error
+
+testing and integration:
+-test report contasing errosr is prepared through test plan including test case,generawtion,
+testing criterai,resoucrce allocation
+-integrate IS into environemnt and install new system
+
+maintenace:
+-phone,physical on site support for users after system is isntalled
+-impelenmt chagnes sofware may undergo over aperiod of time
+-handles residual errir after testing phase
+
+
+IS
+-arrangemetn of people,data,processe,commucntioca and IT that interact to support and improve
+day t oday operations in business and support problem solving and decision making needs of
+management and user
+
+compoenents:
+hardware:
+-phyiscl layer of IS
+-servers,workstastions,networks,telecom equipemnt
+
+software:
+-programs that control hardware and produced desired information
+-system and application software
+
+data:
+-raw info that IS transforms into useful info
+-stored in tables and linked to extract specific info
+
+process:
+-tasks and business functiosn that users,managers and IT staff perform to achieve specific results
+-actual reprsent day to day operations
+
+people:
+-who have interset in IS are stakeholdesr
+-includes managemnet group responsible for system,end users inside and outside company who
+interact with system and IT staff members like system analysts,rpogrammers and network
+administrators who develop and support the system
+
+types of IS: FIG
+TPS: computerized ysstems that perform and reford daily trnasactions to conduct business
+MIS: provides mangers with tools to organize,evaluta enad efficientyl manage deparments
+DSS: provifes user swith descions oriented informastion
+ESS: DSS for org's senior executives
+ES&AI: emplys humand knowdlerge in computer to solve problems reuiqre humn expertise
+-knowledge base: stores facts rules and knowledge to reprsenet human expert
+-inference engine: interprets rules and facts to find solution to ser queires
+-ui: input new knowlsee and query
+
+system analyst
+-person who is thorughly aware of system and guides devlopemtn project by giving proper directions
+-expert having technical and interpesonal sills to carry out developemnt tasks at each phase
+
+skills:
+interpesonal skills:
+-interace with users and programmers
+-facilitate groups and lead smaller teams
+-manage expectations
+-good understanding, communication,selling and teaching abilityies
+
+analytical skills:
+-system study and organzaiotn knowledge
+-problem identification,analyssu and solving
+-common sense and access tradfe off, curisoity to learn
+
+management skills:
+-undersatnd computer jargo and practise
+-resoiurce and project managemt
+-change and reisk mangemtn
+-understand managemetn functiosn thotrughly
+
+tchnical skills:
+-knowledgfe of computer,software,modern development
+-knows ystem design tools and new tech
+
 waterfall model:
 -tradtional approach of SDLC
 -sequential desgin process in which progress is seen flowing downwards steadily like waterfall
@@ -77,6 +179,9 @@ Design:
 -conceptual design in baseline spiral
 -in subsequent sprals, involes architectual
 
+construct:
+evaluation adn risk analysius:
+
 adv:
 -risk analsysi and handling at each pahse
 -suitable for large and compelx projects
@@ -90,3 +195,76 @@ disadv:
 -very dpendent on risk analysis
 -no. of phases is unknown at start of proejct, so time estimation is difcult
 -risk of not metting time schedule/budget
+
+computer aided software engineering
+automated sofwatre tools used by system analyst to develop information system for incresing
+productrivity and improving oveall quality of system
+enforce engirneering type approach to development of sofwater systems
+range from simpel diagrammatic tools to sophisticated programs to documetn and automate stages
+of SDLC
+
+adv:
+-improve quality of systems devloped
+-incersase productivity of system anaklust
+-improve cimmcutaion within dev team and users
+-encourage integrated approach to SDLC
+-hgelps for management and maintenance
+
+upperCASE tools:
+-plaaning,analysis,design
+-make erds, dfd
+-create and modfity system sesign
+-info about priject is stored in CASe repository
+-analyssi reports shjow error,incompleteness in system desing 
+
+lowerCASe tools:
+-implementation,testing,maintenance
+-generate source code from diagrams and forms,which reduce need for manual programming
+-reduces time for maintentace as test and edbug are eliminated
+
+rad:
+-protyping withtout any specific planning
+-combo of jad and cas tools to convert usern eeds to deisng
+-less attention to planning and more to development in short span
+-componetsn are developed parallel
+
+FIG
+business modeling: data flow among business functions
+data modeling: info from business modling into set of entities,attirbtes,rekationships
+process modeling: data model trnasfomr into data flow to implemetn business function
+application generation: case tools to construct software and 4gl
+testing and turnover: reduced testing due to RAD emphasis resuse
+
+adv:
+-requiremtns changed at tany time
+-ative custoimer engament
+-quick reviews
+-shoirt dev time
+
+disadv:
+-strong team ocllab
+-small teams only
+-highly skilled developers
+-active user engamrent thouhut life cycle
+
+agile model:
+-combo of iterative nad inremetnal process
+-samll increamtnal builds interations
+
+FIG
+planning
+requient analysis
+design
+building
+testing
+
+XP:
+-agile deveopmetn strategy
+-wrtiing unit test sbfore pragmming and runnning tests at all times,automated
+-start with simple design enough to code and rediesn when eeded
+-pair pgramming
+-integratin g and testing several times
+-cosntant customer involmvent for feedback
+-software evovles with changing requirekents
+
+FIG
