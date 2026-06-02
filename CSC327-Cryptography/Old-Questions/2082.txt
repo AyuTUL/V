@@ -1,0 +1,208 @@
+1. a. fiestal cipher FIG
+-general stryuctuer used in block cipher in which data is divided into 2 equal halves
+-equal halves which are prceoss through mulitple rounds of substituion and permutation to
+achieve confusion and diffusion respectively
+-data block is split into left half Li and right half Ri
+-in each round i, right half is pocessed by fiestal function F using round sub key Ki and 
+Xord with left halg
+	L=Ri-1
+	Ri=Li-1 XOR F(Ri-1,Ki)
+-decryption uses same structure as encrption, but with round keys in reverser order
+-F doesnt need to be invertible since XOR is already reversible A xor B xor B = A
+
+b. w0, w1 ,w2, w3 - 4 bytes each
+for w4:
+calculate g(w3):
+	rotWord(w3)=circular left shift w3=x1
+	subWord(x1)=substitute x1=y1
+	rCon(1)=01 00 00 00
+	y1 XOR rCon(1) = z1
+	w4= w0 XOR g(w3) = w0 XOR z1
+
+2. a. man in the middle attack FIG
+-exploits lack of authentication in basic diffie hellan potocl
+-intruder intercepts public keys exhanged between sender and receiver, geenreates their own
+private key and send to both,eastablishing connection with intruder instead of each other
+allowing intruder to decrypt,read nad modufy messages between them
+
+process:
+-alice chooses s, calculates R1=g^x mod p and sends R1 to bob
+-intruder eve intercepts R1 and chooses z, calcuates R2=g^z mod p, sends R2 to both
+-bob chooese y, calcualtes R3=g^y mod p sends R3 to alice
+-eve intercepts and never reaches alice
+-alice and eve calcuate shared key K1=g^xz mod p, alice thinks between alice and bob
+-eve and bob calcuate shared key K2=g^zy mod p, bob thinls between alice and bob
+-eve can decrypt read and modify message netween them
+
+2. b.  elgamal
+-public key crptossystem by taher elgamal based on disceret logarithmic problem
+-given e2,e1 and p, it is infeasible to calculate r=d log e1 (e2) mod p
+encryption:
+-select large prime p and primitive root e1 in group  G=<Zp*,x>
+-generate random integer d such taht 1<=d<=p-2
+-compute e2=e1^d mod p
+-selecet random interger r such that 1<r<p-1
+-computer intial cipher c1 = e1^r mod p
+-actual cipher text c2 = m . e2^r mod p
+
+decryption: m =(c2.(c1^d)^-1) mod p
+
+p=19, e1=10, d-5, r=4, M=2
+e2=e1^d mod p=3
+c1=e1^r mod p=6
+c2=m.e2^r mod p=10
+(c1,c2)=(6,10)
+
+3. a. hash function properties
+-pre image rsistance: given h, it is infeasible to find M such that H(M)=h
+-2nd pre-image resistance: given M, infeasible to find M'!=M such that H(M)=H(M')
+-collision resistance: infeasile to find 2 different messages M M' that hash to same value
+-fixed outpout size: produces fixed length digest regardless of input size
+
+3. b. SHA-1 FIG
+-secure hashing algorithm by National Instutue of Standards and Technology NIST
+-block size of 512 produces message digest of 160 bits
+
+algorithm:
+-append padding bits
+-append bit length
+-initialize round constants
+-initialize buffers
+-process bocks
+-generate message digest
+
+append padding bits:
+-message is padded upto bit liength congeutn to 448 modulo 512
+	l+b ≡ 448 mod 512
+-singole 1 is paaded followed by remaming necessary 0
+-ensures padded message is exactly 64 bit less than multiuple of 512
+
+append bit legnth:
+-64 bit blcok rpersenting lenth oforiginal message before padding is appended to padded message
+-this block uis treated as unsigned 64bit integer in big-endian format
+-this akes total message length exact multiple of 512 bits
+
+initialize round constants:
+-4 different round constast Kt 1 for each round(each sround has 20 steps,tootal 80 steps)
+0<=t=<19 Kt=0x5  root 2 x x^30
+20<=t=<39 Kt=0x6	3
+40<=t=<59 Kt=0x8	5
+60<=t=<79 Kt=0xc	10
+
+initialize MD buffer:
+-160 bit buffer holds intermediate and final results
+-represent ed by five 32 bit registers h0-h4 pre intialized with
+h0 = 67 45 23 01
+h1 = EF CD AB 89
+h2 = 98 BA DC FE
+h3 = 10 32 54 76
+h4 = C3 D2 E1 F0
+
+processe the blocks:
+-messgae in processed in 512 bit blocks, for each block
+
+Creation of blocks: FIG
+-block is divided in 16 32bit words (w0-w15)
+-these are expanded into 80 words (w0-w79) using
+	wt=wt-3 xor wt-8 xor wt-14 xor wt-16 
+	left rotated by 1, wt=wt lrot 1
+
+round operation:
+-each block udneroges round oetaion of 20 steps
+-each round uses different primitve logical fctuioin f(t;B,C,D): f1,f2,f3,f4
+	round 1: (B AND C) OR ((NOT B) AND D) 0<=t<=19
+	round 2: B XOR C XOR D			20-39
+	round 3: (B AND C) OR (B AND D) OR (C AND D)	40-59
+	round 4: B XOR C XOR D			50-79
+
+step operation: FIG
+-for each step 0<=t<=79
+	temp= A leftort 5 + (f;B,C,D) + E + Kt + Wt mod 2^32
+	E=D
+	D=C
+	C=B leftrot 30
+	B=A
+	A=temp
+
+generate message direct:
+-after all 80 steps are completed for a block, final values of A B C D E are added to hash values
+h0 h1 h2 h3 h4 using addition mod 2^32
+-once all 512 bit bolcks are processed, final 160 bit message digest is concatenation of h0-h4
+
+4. malicious logic
+-sset of instructiosn intentioanlly develoepd to attac ksystems or violate security policy
+
+types:
+virus:
+-self replicatin sofwatre that attaches itself to other sofwatre
+-operated whern infected code executes
+-alters normal code, tries to remain undetected
+-eg: email attachemtn coiuntain amlicious exe code, melissa
+
+trojan horse:
+-appears to hve useful function but has hidden malicious function evading security mehcnanism
+-eg: emotet 
+
+worm:
+-enter ddeivce without explicit user interaction from internet
+-worm in infected device sancs internet,seacehes for hosts with same vulnerable newtork apps
+and sends copy of itself to consue information
+-eg: ILOVEYOU
+
+zombies:
+-program that secretly takes over anotehr newtowrk computer
+-indirectly launch attacks like DDoS
+-eexpolits known flwas in netwrok system
+-eg: zeus botnet
+
+5. playfair cipher:
+-digraph substitution cipher using 5x5x key matrix
+
+6. modes of block cipher encryption
+ECB electronic codebook: FIG
+-each plaintext block is encrypted omdepednetly using same key
+-pattern in plaintext reamin visible in ciphertext
+
+CBC cipher block chaining: FIG
+-each block is XORed with previous ciphertext block before encryption
+-identical blkocsk produce different cipheretext
+
+6. fermat's little therorem
+-if p odesnt divide a and a!=p then
+	a^(p-1) ≡ 1 mod p
+-if a<p then
+	a^p ≡ a mod p
+
+discrete lograthim:
+b≡ a^i mod p has only one solution if b is relative prime to p and a is primitive root to p
+	i=d.loga (b) mod p
+
+7. DSA
+-320 bit singtasure with 512-1024 bit security
+
+generation of pari of public and private key:
+-choose prime number q called prime divisor
+-choose another prime p : p-1 mod q=0, called prime modulus
+-choose integer g: 1<g<p, g^q mod p = 1 and g = h ^(p-1)/q mod p ,h 14<h<p-1
+-choose integer x: 0<x<q
+-y= g^x mod p
+-public keys: {p,q,g,y}
+-private keys: {p,q,g,x}
+
+signature generation and verification:
+geenration: FIG
+-genrate message digest h using hash algorithm like sha1
+-generate random number k : 0<k<q
+-r=(g^k) mod p)mod q, if r=0 select diferent k
+-s=k^-1(h+rx) mod q. if s=0, select different k
+-dig sign is {r,s}
+
+verification: FIG
+-genreate message digest h using same hash algeotrhim
+-u1=hs^-1 mod q
+-u2=rs^-1 mod q
+-v=((g^u1 x y^u2) mod p) mod q
+-if v==r digital sign is valid
+
+8. firewall
+-device/sofwater sued to filter/control flow of traffic bewteen internal network and internet
