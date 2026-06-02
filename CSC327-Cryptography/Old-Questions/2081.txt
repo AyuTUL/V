@@ -59,3 +59,21 @@ R3: H(X,Y,Z) = X XOR Y XOR Z
 
 output:
 message digest is ABCD 
+
+needham schroder: FIG
+1 IDa || ID b || N1
+2 E(Ka,[Ks || IDa || IDb || N1]) || E(Kb,[Ks || IDa])
+3 E(Kb,[Ks || IDa])
+4 E(Ks,N2)
+5 E(Ks,f(N2))
+
+-Ka and Kb are secret keys of ALice and Bob shared with KDC
+1 alice sends Ida, Idb random number nonce N1 to KDC, N1 prevents use of old Bob key
+2 KDC geenrates session key Ks and sends to alice ticket T for Bob
+3 alice decrypts session key and sends ticket T to bob, mutual authentiation
+4 bob decrypts T and challenges alice with nonce N2
+-vulnerable to relay attacks
+
+3. discrete lgorithm
+-one way function, foundation of public key security for diffie hellman and elgamal
+-y=g^x mod p is easy but finding xgiven y is hard for large primes
