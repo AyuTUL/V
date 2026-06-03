@@ -77,3 +77,75 @@ needham schroder: FIG
 3. discrete lgorithm
 -one way function, foundation of public key security for diffie hellman and elgamal
 -y=g^x mod p is easy but finding xgiven y is hard for large primes
+
+6. firewall
+-firewall acts as barrier between trusted interal network and untrusted external network
+to monitor and control flow of incoming/outgoing traffic between them
+
+circuit level gateway				stateful inspection
+-verifies eastblishment of tcp session,not	-anaylyuze packet contents based on connection
+inspect packet contents				state
+-session layer					-newtork and transport laywe
+-faster byt less granular control		-slower but better security
+-desno monitor packet payload			-monitor and filer based on payload and session
+						info
+7. intrusion and IDS
+-unauthorized attempt to acces/manipulate system and its data for malicious purpoise
+-breaching secirtu to access sensitive info,disrupt operation or install maliciouis sofwatre
+
+-IDS is security tool for monitoring network/system for malicious actions/policy viulations
+
+types:
+statistical anomaly detection:
+-collectino of data relating to behaviour of legetimate users over a period of time
+-sus statistical test to observe behaviour to determien with high level of confindence if 
+behaviour is legetimate or not
+
+threshold detection:
+-counting number of occurreces of specifided event type over interval of time
+
+profile based detection:
+-characterizng past behaviour of users and detect significant deviation
+
+rule based detection:
+-attempt to define ser of rules to decide given behaviour is of intrduer
+
+anomaly deection:
+-historical audit records are analyzed to idenityfy usage pattersn and auto generate rules
+that describve these patterns
+
+peenratrion identification:
+-rules for identifying know penetraions or penetrations that would exploit known weakneses
+
+9. dos
+-deliberate attack for make serices unaavliable to autothrized users by exhasting bandwhith
+or system resources
+
+PKI public key infrastriucutre:
+-fraweork for manging public keys and digital certifaicts
+-how entities trust each other thought certificates issued by trusted CA
+
+types:
+single ca model: evreyoen trusts sungole CA
+web of trust: uesrs mutulasy sign and trust each others keys
+mesh model: muultiple CA cross certify each other to extend trust
+
+10. modes of bloc kcipher: FIGS
+ECD electronic code book
+-plaintext is handles one block at aatime, each block is encrypted suing same key
+-for given key, eeach plaitnext has uniqiue cihpertext
+
+CBC cipher block chaining:
+-input to encrption alkgorthi mis XOR of curernt P and preceding C
+-same key is used for each block
+
+CF cipher feedback mode:
+-each C gets feedback into encryption  proces to encrypt next P
+-data is encrypted in shift registers with key k taking S number of MSB
+
+OF output feedback:
+-output of encryptino is fed back into shift register
+
+counter mode:
+-counter equal to P and incremented by 1 for each block
+-counter is encrypted with key LK and xored with output of P to produe C
