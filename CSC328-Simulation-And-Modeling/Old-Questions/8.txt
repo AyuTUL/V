@@ -1,0 +1,46 @@
+GPSS:
+-simulation programming language developed by IBM for modelling and simulating discrete
+event systems like queuing ,manufacturing ,inventory,traffic systems and computer networks
+simulate real wowrld systems events occur at specific points in time
+-simulation clock advances in discrete steps
+-entities like customers,machiens parts,vechicles are modelled as transactions that
+move through series of service blocks
+-user translates program into conceptual model which is block idagram
+-gpss program packages,processes this block diagram and executes simutaion run and produces
+statistics
+
+basic structure:
+-transaction is GPSS object with number of attributes
+-dynamic entity that rpresents item flowing through system being simulated
+
+FIG
+
+GENERATE QUEUE SEIZE ADVANCE RELEASE TERMINATE END
+
+GENERATE:
+-generates stream of transactios with specific set of behaviour at specified intervals
+-no transaction may again enter this block
+-behaviour could be deterministc,stochastic,functinoal etc
+
+QUEUE:
+-manages entities waiting in line and their departure
+-never refuses any transaction
+-simulates infinitely long buffer as if trnsaactio ncant enter next block, stays at current
+block
+
+SEIZE:
+-allocates resource to entity
+-transaction attempts to seize a facility like server,router,CPU for service
+-if success leave current block and use facility else stay until next time
+-as long as facility is occupied can t allow another transaction to seize it
+
+ADVANCE:
+-delays entity for specified amount of time
+-delay could be deterministc,probablitis
+
+RELEASE:
+-forces transaction to release its facility
+-for every successful SEIZE there must be RELEASE
+
+TERMINATE:
+-kills entering transaction
