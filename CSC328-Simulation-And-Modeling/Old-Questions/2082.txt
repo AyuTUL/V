@@ -1,0 +1,137 @@
+1.
+MARK:
+-set/update value of user defined attributwe for transaction
+-for tracking speicifc properties/states of transaction as it moves through model
+
+TABULATE:
+-updates histogram data accumulated in Table enitiy
+-collect and analyze statisics to help understand system behaviour and identify bottlenexks
+
+GENERATE 3; customers arrive every 3 mins
+QUEUE COFFEE_Q; enter waiting line
+SEIZE BARISTA; take single barista(facility)
+DEPART COFFEE_Q; leave queue
+ADVANCE 2.5; service takes 2.5 mins
+RELEASE BARISTA; free barista for next customer
+TERMINATE 0; customer leaves
+
+GENERATE 480; timer transaction at 480 mins
+TERMINATE 1; stop simulation
+START 1; run for one 8 hour period
+
+FIG
+2. simulation
+-imitation of operation of reald world proces/system over period of time
+-involves genrating artifiical history of system and boserving it to draw inferences about 
+operating characteristics of real system
+
+3. properties of random number:
+uniformity: numbers must be eqaully probable and distributed everywhere in the specified interval
+independence: current value of random varaible has no relation to past values
+
+4. mathematical model:
+-uses symbolic notation and mathematical equation to represent system
+-system attributes are represented by varaible and activities are represented byu functiosn
+-eg: eqn of line f(x)=mx+c
+
+types:
+static mathematical model:
+-model doesnt involve time
+-gives relationship between system attributes when syustem is in equilibrium
+-eg:graphs used to model systems based on network
+
+dynamic mathematical model:
+-model is derived as function of time
+-follow changes over tiem that result from ssytem activities
+-eg: mecanical,electrical systems
+
+
+5. markov chain:
+-discrete time stochastic process that edescribes sequence of eevtns/states where probablity
+of moving to next state depends only on current state and not sequnce of previous 
+states (memorylessness markkov property)
+-system undergoes transitions between finite no. of states
+-movement between state is governed by transition probablities which remian constant
+-trnsion peoblait is probility of moving from one sate to next or remaining in same in one step
+	Pij = P (next state Sj at t=1 | initial state Si at t=0)
+where
+	Pij:probablity of initial and next state
+	t:time
+-TPM, used to predict movement of system from one state to another
+-rows are inital state and columns are next state
+
+use:
+-predict behwviour of custoemr in terms of brand loyalty and switching pattern
+-predict satte of mahcine used in manufacture of product
+-predict weather of future either raniy or not
+
+markov property:
+-process has no memory of past states, only present state
+-transiotni probabliites depend on oly present state,not preivous staes
+
+features: cdefm
+-finite no. of states: system has limited indetifiable set of possible states
+-discrete outcomes: otcome of each time step must be one of set of disrete states
+-exclusisvity: only one state is possible at any given time
+-markove property: outcome next trial despnds on present state and is independent of all preivosu
+-constant transisiton probab: prob of moving from one state to another is same from step to step
+
+6. poisson process:
+-describes no. of events that occur wuthun fized interval of time given knwo average rate of
+occurrence λ and assuming events happen indepedent of each other
+	P(X=k) = (e^-λ . λ^k) / k!
+where,
+	P(X=k): probablity of k events ocurring in interval
+	X: random variable follwoign poisson distribution, no. fo evens occur in interval
+	k: no. of events that occurred interval
+	λ: rate of occurece of events in interval per unit time
+
+types:
+stationary poisson process:
+-rate at which events occur is constant over time
+-average time bweteen is known but exact timing of events is random
+	P(X(t)=k) = (e^-λt . (λt)^k) / k!
+where,
+	X(t): no. fo evens occur in interval [0,t]
+	k: no. of events that occurred interval
+	λ: average rate of occurece of events in interval
+
+non stationary poisson process:
+-genrealization of stantard posson process where arrival rate λ(t) varies with time rather
+than remaning constant
+-used for real world scenarios where demand fluctuates suck as peak meal times at restaurant or
+higher phone call volumes during business hours
+
+7. inverse transform
+-generates random variates for exponential,uniform and triangluar distribution by inverting CDF
+
+acceptanc erejection: FIG
+-generates random variates for complex distributions
+-genrates sampel from simpler distribution and aceepts/rejects based on specific criteria to
+match target distribution's shape
+
+8. calibration of model
+-validation is overall process of ocmparing model and its behaviour to real system's
+- calibartion isiterative sub process of validation where model's behaviour is compared to
+ real system using tests and adjustmnets are made
+-tests can be subjectoive/objective
+-subjective test involve using expert knwoldege and human jdgment to evalute mdoel and outpout
+-objective test requires data on systems behaviour and correspoding data produced by model
+
+process: FIG
+-compare intial model to reaility
+-if discrepancies exist,revise model
+-compare revised model to reality again
+-reapaet until model is accurate engouh for its purpose
+
+9. kendalls notation:
+-standard wa to describe key characteirsi of queeing system
+-classify deiffretn types of queueing model based on nature of arrival process,seivece proces,
+no. of servers,system caaity and population size
+	A/B/c/N/K
+where,
+	A: inter arrival time distribution, M D G
+	B: service-time distribution
+	c: no. of parallel servers
+	N: system capcity
+	K: size of calling population/queue discipline
