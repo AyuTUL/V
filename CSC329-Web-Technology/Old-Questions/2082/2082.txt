@@ -36,15 +36,498 @@ where,
 	spread-radius: +ve increases size of shadow, -ve decreases
 	inset: changes shadow from outer to inner
 
-
+<!DOCTYPE html>
 <html>
 <head>
 	<title>CSS</title>
 	<style>
-		#id {
-			text-shadow: 3px 2px green
-			
-
+		#div1 {
+			text-shadow: 3px 2px green;
+			box-shadow: 10px 10px blue;
+		}
+	</style>	
 </head>
 <body>
 	<div id="div1">CSIT Exam</div>
+</body>
+</html>
+
+2. jQuery:
+-JS librarry that makes web pages qucker,easier, responsive and easy to handle rquest
+-allows developers to plug routine JS features into web page so they can spend mroe time
+focusing on complciated features unique to their site
+-add animated effects,amke XML requests,manipulate DOM,client side validation
+
+syntax:
+$(selector).methodOrFunction();
+
+jQuery selectors:
+-specify set of elemetns based o ncertain atrributes like ID,class or type of tag to apply
+jQuery methods/functions
+
+syntax:
+type of id - $("tag-name")
+class - $(".class-name")
+id - $("#id-name")
+attribute - $("[href]")
+attribute value - $("[href='index.html']")
+pseudo state - $("a:first-of-type") , :first-child, :last-child, :first-of-type, :last-of-type
+universal - $("*")
+
+jQuery effects:
+hide/show:
+-hide/show HTML elements using hode() and show() methods
+
+syntax:
+$(selector).hide(speed,callback);
+$(selector).show(speed,callback);
+where,
+	speed: slow,fast or in ms
+	callback: function to be executed after hide() / show() completes
+
+example:
+$("button").click(
+	function() {
+		$("p").hide(1000);
+	} 
+);
+
+fade:
+-fade element in and out of visibliity
+-fadeIn(), fadeOut(), fadeToggle(), fadeTo() mdethods
+
+syntax:
+$(selector).fadeIn(speed,callback);
+
+example:
+$("button").click(
+	function() {
+		$("p").fadeIn(1000);
+	} 
+);
+
+slide:
+-slide lements up and down
+-slideDown(), slideUp(), slideToggle() methods
+
+syntax:
+$(selector).slideDown(speed,callback);
+
+example:
+$("button").click(
+	function() {
+		$("p").slideDown(1000);
+	}
+);
+
+animate:
+-create custom animations
+
+syntax:
+$(selector).animate({parameter},speed,callback);
+where,
+	parameter: css properties to be animated
+
+example:
+$("button").click(
+	function() {
+		$("p").animate(
+			{
+				left: 250px;
+			}
+		);
+	}
+);
+
+stop:
+-stop animations/effects before it is finished
+-works for all jQuert fucntiosn
+
+syntax:
+$(selector).stop({parameter},stopAll,goToEnd);
+where,
+	stopAll: wheter animation queuees sohuld be cleared or not, default is false
+	goToEnd: wheter to compelte current animation immediately or not, deafult is false
+
+example:
+$("button").click(
+	function() {
+		$("p").stop();
+	}
+);
+
+callback:
+-optional parameter passed to jQuery effects 
+-executed after method is completely fuinished, preveting errors that occur if lines of code run 
+before effect is done
+
+syntax:
+$(selector).function(speed,callback);
+
+example:
+$("button").click(
+	function() {
+		$("p").hide("slow",
+				function() {
+					alert("Paragraph has been hidden.");
+				}
+			);
+	}
+);
+
+chaining:
+-run multiple jQuery commands one after another on same element
+-append next action to previous action
+
+example:
+$("button").click(
+	function() {
+		$("div")
+		.css("color","red")
+		.slideUp(2000)
+		.slideDown(2000);
+	}
+);
+
+3. XML eXtensible Markup Language
+-arkup language that defines set of ruels for encoding documetns in both human and machine
+readable format
+-designed to store and transport data in a structured, self-descriptive, and 
+platform-independent format
+-used for Vector Markup Language (VML) for graphics, SMIL 2.0 for reusable multimedia content,
+and configuration languages
+
+<?xml version="1.0" encoding="UTF-8"?>
+<library>
+  <book id="B101">
+    <title>Web Technologies</title>
+    <price>550</price>
+    <published_date>2024-04-10</published_date>
+  </book>
+</library>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="library">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="book">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="title" type="xs:string"/>
+              <xs:element name="price" type="xs:integer"/>
+              <xs:element name="published_date" type="xs:date"/>
+            </xs:sequence>
+            <xs:attribute name="id" type="xs:string" use="required"/>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
+
+4.
+-web clients are sofwatre used by suer to locate,request and display web pages
+-eg: web browsers like chrome,firefox,safari
+-web servers are sfowatre that hosts and delivers web pagse to clients based on HTTP requests
+-manages resrouces and performs high processing tasks
+-eg: Apache or IIS Internet Information Service
+
+5. audio tag
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Audio Tag</title>
+</head>
+<body>
+
+<audio src="Whiplash - aespa.m4a" controls autoplay preload="auto" loop>
+  Your browser does not support the audio element.
+</audio>
+
+</body>
+</html>
+
+6. keyboard events
+-even is action/occurrence that takes place withn web page/browser
+-triggered by usrr interaction/ssytem events like mouse clicks,page loading
+-used to initiate JS code for allowing dyanmic and interactive behaviour in web apps
+-keyboard event occurs when user interacts with keybaord
+
+onkeydown: triggers event when users presses down a key
+onkeypress: triggers even when user presses key which displays some character
+onkeyup: triggers event when user releases currently pressed key
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Keyboard Events</title>
+</head>
+<body>
+    <input type="text" onkeydown="console.log('Key is down')" 
+onkeypress="console.log('Character key pressed')">
+</body>
+</html>
+
+7. prompt and alert
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Prompt and Alert</title>
+    <script>
+        var name=prompt("Enter your name :");
+        alert("Hello " + name);
+    </script>
+</head>
+</html>
+
+8. position property
+-specifies type of positioning method used for element
+-set positioin values then position useing tblr propoerties
+
+static:
+-deafult positionaing behaviour of element according to documeent flow
+-ignores offset properties like tblr
+-not affected by z index property
+
+fixed:
+-position element relative to browser window/viewport regardless of scrolling
+-removed from normal docuemnt flow
+-desont affect positioning of other elemetns, gets treated as invisble
+-position is determined by offset properties tbrl in relation to viewport
+-can overlap other elemnts on page, highset z index will be displayed on top
+-used for sticky headers,sidebars,navigation menus
+
+sticky:
+-beahvse as relative within parent container until specified threshold is reached by scorlling
+after which becomes fixed within viewport until scrolling reaches another specified point
+
+relative:
+-positioned relative to normal position, remain in normal flow of document
+-other elemnts will not be adjusted to fit in gap left by relative elemnet
+-can be layered using z index property
+-when child is set to absolute with parent relative, child is positined relative to parent
+instead of viewport, used for relative positionnng hierarchy
+
+absolute:
+-positioned relative to nearest positioned ancestor
+-when child is set to absolute with parent relative, child is positined relative to parent
+instead of viewport, used for relative positionnng hierarchy
+-if no positioned ancestors, uses document body and moves along with page scrolling
+-removee from normal flow and can overlap elemetns
+
+float:
+-position elemnt aloing left/right side of containing elemnt allowing other lements to flow
+around it
+-elemtne is taken out of normal document flow
+-can be applied to block level elements
+
+	left:elemnts float to left of containing element, others will flow around to its right
+	right:elemnts float to right of containing element, others will flow around to its left
+	none: deafult value,reamins in normal flow of document, other elements wont wrap around
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Position Property</title>
+    <style>
+        #p1 {
+            position: relative;
+            left: 20px;
+            color: blue;
+        }
+        #p2 {
+            float: left;
+            width: 40%;
+            background: lightgrey;
+        }
+        #p3 {
+            position: absolute;
+            top: 100px;
+            right: 50px;
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+    <p id="p1">p1: Relative positioning (shifted 20px left).</p>
+    <p id="p2">p2: Floated left; content wraps around me.</p>
+    <p id="p3">p3: Absolute positioning (100px from top).</p>
+</body>
+</html>
+
+9. alert box
+-display message to user and force them to acknowledge it by pressing OK
+
+regexp:
+-object that describes sequence of characters used forf defining precise search apttern
+
+creation:
+uising regular expression litereal:
+const reg=/abc/;
+
+using RegExp() constructor function:
+const regularExp=new RegExp('abc');
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Regular Expression Object</title>
+    <script>
+        let text = "CSIT 2082 Examination";
+        const pattern = /\d/g;
+        let result = text.match(pattern);
+        document.write("Numbers found : " + result); 
+    </script>
+</head>
+</html>
+
+10. inheritane in php
+<?php
+class Player
+{
+    public $jersey;
+    function set_jersey($j)
+    {
+        $this->jersey = $j;
+    }
+    function display()
+    {
+        echo "Jersey: $this->jersey<br>";
+    }
+}
+class Striker extends Player
+{
+    public $skill;
+    function set_skill($s)
+    {
+        $this->skill = $s;
+    }
+    function display()
+    {
+        Player::display();
+        echo "Skill: $this->skill";
+    }
+}
+
+$myStriker = new Striker();
+$myStriker->set_jersey(10);
+$myStriker->set_skill("Heading");
+$myStriker->display();
+?>
+
+11. inest multiple records
+<?php
+$server = "localhost";
+$username = "root";
+$password = "";
+$database = "test";
+$connection = new mysqli($server, $username, $password, $database);
+if ($connection->connect_error)
+    die("Connection failed : " . $connection->connect_error);
+echo "Connection successful<br>";
+$sql1 = "INSERT INTO Students (name) VALUES ('Ram');";
+$sql2 = "INSERT INTO Students (name) VALUES ('Sita');";
+$sql3 = "INSERT INTO Students (name) VALUES ('Gita');";
+
+if ($connection->multi_query($sql1 . $sql2 . $sql3) === TRUE)
+    echo "Records inserted successfully";
+else
+    echo "Error inserting records : " . $connection->error;
+$connection->close();
+?>
+
+12. php form validation
+<html>
+
+<head>
+    <title>PHP Form Validation</title>
+    <style>
+        label {
+            display: inline-block;
+            width: 80px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Registration Form</h1>
+    <form name="Login" action="" method="POST">
+
+        <label>Name:</label>
+        <input type="text" name="nameField"><br>
+
+        <label>Country:</label>
+        <select name="countryField">
+            <option value="">--Select--</option>
+            <option value="Nepal">Nepal</option>
+            <option value="Korea">Korea</option>
+        </select><br>
+
+        <label>Gender:</label>
+        <input type="radio" name="genderField" value="Male"> Male
+        <input type="radio" name="genderField" value="Female"> Female<br>
+
+        <label>Password:</label>
+        <input type="password" name="passwordField"><br>
+
+        <input type="checkbox" name="checkboxField"> I agree to terms<br><br>
+
+        <input type="submit" name="submit" value="Validate">
+    </form>
+</body>
+
+</html>
+
+<?php
+if ($_SERVER['REQUEST_METHOD'] === "POST" && isset($_POST['submit'])) {
+    $name = $_POST['nameField'];
+    $password = $_POST['passwordField'];
+    $country = $_POST['countryField'];
+    $gender = $_POST['genderField'];
+    $agree = $_POST['checkboxField'];
+
+    $namePattern = "/^[A-Za-z0-9]{3,}$/";
+    $passwordPattern = "/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/";
+
+    $allowedCountries = ["Nepal", "Korea"];
+    $allowedGenders = ["Male", "Female"];
+
+    if (empty($name))
+        echo "Name can't be empty.";
+    elseif (!preg_match($namePattern, $name))
+        echo "Name must be 3-20 chars, letters/numbers/underscore only.";
+    elseif (empty($country))
+        echo "Country can't be empty.";
+    elseif (!in_array($country, $allowedCountries, true))
+        echo "Invalid country selected.";
+    elseif (empty($gender))
+        echo "Gender can't be empty.";
+    elseif (!in_array($gender, $allowedGenders, true))
+        echo "Invalid gender selected.";
+    elseif (empty($password))
+        echo "Password can't be empty.";
+    elseif (!preg_match($passwordPattern, $password))
+        echo "Password must be at least 6 chars and include letters and numbers.";
+    elseif (!$agree)
+        echo "You must agree to the terms.";
+    else
+        echo "Validation successful.";
+}
+?>
+
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $uname = $_POST['u_name'];
+    if (empty($uname)) {
+        echo "Error: Name is required.";
+    } elseif (strlen($uname) < 4) {
+        echo "Error: Name must be at least 4 characters.";
+    } else {
+        echo "Successfully Validated: Welcome " . $uname;
+    }
+}
+?>
+<form method="post" action="">
+  Username: <input type="text" name="u_name">
+  <input type="submit" value="Submit">
+</form>
