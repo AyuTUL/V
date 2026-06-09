@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>jQuery Callback and Chaining</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#myDiv")
+                .css("color", "red")
+                .slideUp(2000)
+                .slideDown(2000, function () {
+                    alert("The animation sequence is complete!");
+                });
+        });
+    </script>
+</head>
+
+<body>
+    <div id="myDiv">Hello, World!</div>
+</body>
+
+</html>

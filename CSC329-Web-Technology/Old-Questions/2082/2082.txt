@@ -1,0 +1,50 @@
+1. CSS:
+-stylesheet language used to describe the presentation and formatting of a docuemtn written in
+HTML or XML
+-allows developers to control layot,design and overall visual appearance of web page by
+seleecting elemnts and applying specific styles such as color,font and positioning
+
+syntax:
+selector { property-name:value;}
+where,
+	selector allows targeyting and styling specifc elements in HTML document
+
+inline css:
+-applying styles directly to individual HTML elemenets
+
+internal css:
+-defining styles within <style> tag in <head> section of HTML document
+
+external css:
+-definind styles in a separate CSS file and linking it to an HTML documnet using <link> tag
+<link rel="stylesheet" href="style.css">
+
+text-shadow:
+-add shadow effect around text
+
+syntax:
+text-shadow: x-offset y-offset blur-amount spread-radius color inset;
+
+box-shadow:
+-add shadow effects around an element's frame
+-can use multiple shadows using comma
+
+syntax:
+box-shadow: x-offset y-offset blur-amount spread-radius color inset;
+where,
+	blur-radius:blur
+	spread-radius: +ve increases size of shadow, -ve decreases
+	inset: changes shadow from outer to inner
+
+
+<html>
+<head>
+	<title>CSS</title>
+	<style>
+		#id {
+			text-shadow: 3px 2px green
+			
+
+</head>
+<body>
+	<div id="div1">CSIT Exam</div>

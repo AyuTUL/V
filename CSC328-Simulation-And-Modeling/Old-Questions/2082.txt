@@ -135,3 +135,38 @@ where,
 	c: no. of parallel servers
 	N: system capcity
 	K: size of calling population/queue discipline
+
+10. hybrid simulation
+-combines multiple simulation techniques to acheive more comprehensive/relaist respresentaion of
+system
+-integrates elemnts of discerete-event simulation DES, continuous simulation and agent-based
+simulation ABS
+-used when system being silumated is interconnection of continuous and discrete subsystem
+-require high spoeed cpnverters to transform analog signnals to digital and vice versa
+
+11. feeback system
+-input is coupled with toutput, output influneces subsequebt inputs
+
+types:
+negative: FIG
+-regulatory mechanism in which output of process opposes initial change that triggered it
+-when particaular event occurs, it leads to response that reducse intensity of that event,
+restoring system to its original state/equilibrium
+-eg:thermostat controlled heating system, blood sugar regulation
+
+positive:
+-regulatory mechanism in which output of process amplieifes intial change that triggered it
+-whe particular event occurs, it leads to response that increases intensity of that event,
+resulting in further stimulation of process
+-eg:microhpone and speaker loop,avalanche formation,population growth
+
+12. a. mid square:
+-take m digit seed number N0
+-get square of same number N0^2
+-square should be double digits of seed ie 2m else add zeroes at beginning
+-take m digits from middle as next random number and use as seed
+-repeat until same number chain occurs
+
+b. digital analog simulation
+-diigtal programming languages that use maco instructions(mimicking adders and integrators) to
+solve continuous modesl on digital computer, acting as analog computer emulator

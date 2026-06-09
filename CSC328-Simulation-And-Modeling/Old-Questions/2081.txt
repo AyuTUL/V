@@ -6,8 +6,31 @@ since inputs are random, outputs are also random variables
 -draw correct inference convercning the operating characteristics of real system
 -provide statistical basis fore testing different ideas and learning how a system behves
 under new conditions
--overcome the fact t hat simulkation results ar eoften auto correlated(not indepenedent),
+-account for the fact t hat simulkation results ar eoften auto correlated(not indepenedent),
 making simple averages potentially misleading
+
+estimation methods:
+-estimation is process where we obtain values of unkown population parameters with help of
+sample data
+
+types:
+point estimation: FIG
+-single value estimate of population paramenter
+-sample mean M is point estimate of population mean μ
+
+𝜽^=1/n summation t=1 to n yt
+
+-unbiased if expected value if 𝜽 ie E(𝜽^)=𝜽 and difference E(𝜽^)-𝜽 is called bias of 𝜽^
+
+interval estimation:
+-gives range of values where true population paramenter is expected to lie with certain level of
+certainity
+-based on CLT wihch assumes that for large enough sample, distribution of sample mean is
+approximately nmormal
+-measure to naalyze correctness of point estimation
+
+-consider model is norally distributed with mean𝑥bar, variance 𝜎^2 and sample size of n
+	𝑥bar ± 𝜎/√𝑛 𝑧𝛼/2
 
 monte carlo simulation:
 -computational technique that utlizies random sampling to model and analyze complex systems/process
@@ -18,7 +41,7 @@ mechanism:
 
 -assign random values: each uncertain varaible is assign random value based on specied range
 -run the model: model is executed using these sampled values to produce outcome
--iteration: process is repeated multiple times, with diferent random values assigned in each  run
+-iteration: process is repeated multiple times, with diferent random values assigned in each run
 -aggregate results: once simulation is comploete, various osutputs are collected and avrraged
 to arrive at final estimate
 
@@ -40,3 +63,156 @@ statistacal testsm techianlly predictable if initial seed value and algorithm ar
 
 -quasi random:low discrpancy sequqcen,deterministic seqqnce designed to fill space more uniformly
 that pseudo random numbers, minimizing gaps and clusters
+
+4. physical model:
+-scaledup/down version of object like enlarged atom or scaled down solar system
+-attributes are repersneted by physical measures and activities by physical laws
+
+types:
+staic physical model:
+-represetns system at particular point of time under one set of equilibrium conditions
+-measurements dont translate directly but use laws of similitude
+-eg: scaled down model of buidling before construction
+
+dynamic physical model:
+-change iwth time/function of time
+-rely on analogies between diferent types of system that share governing forces
+-eg: aircrfat model in wind tunnel where wind velocity changes over time
+
+5. steps in simulation study FIG
+Discovery: project foundation is laid
+-problem forumation:
+	clear statemnt of problem provided by policy makers
+	analsyst must ensure problem is thoroughly understood before procedding
+
+-setting up objectives and overall project plan:
+	objectives define questions simulations must answer and determine if simulation is 
+	appropriate methodology
+	project plan includes alternative systems to evaluate, cos testimates and timeslines
+	for each phase
+
+Construction: builing conceptualized and computerized version of system
+-model conceptualization:
+	abstracting essentail feature of system and selecting basic assumptions
+	start with simple model and build towrad complexity
+
+-data collection:
+	constant interplay between model construction adn data colelction
+	object data is gathered in early stages to feed into model
+
+-model transaltion:
+	model is programmed into computer recognizable form using simulation language like GPSS
+	or speical purpse software to handle required sdtorage and computation
+
+-verification:
+	ensures model is ubilt right
+	involves checking program for logical errors and ensuring input parameters are correctyl
+	represented
+
+-validation:
+	ensures right model is built
+	determines if model is accurate repserntation of real system
+	acheivse through calibartion, itertiav eproces fo comparing model behaviour to actual
+	system behaviour and corecting discrepancies
+
+Experimentation: validated model is used to genrate data through statistical experiments
+-experimental deisgn:
+	analyst decides which alternatise to simluate, length of simluation runs,duraion of
+	initilaization perid and no. of independent replications to be made
+
+-prodcuitn runs and analysis:
+	simluations are excuted tp estimate performance measure for edsigns being studied
+
+-more runs:
+	based on initila analysis, anlyyst determiens if aditional runs or differet expiremtnal
+	design are requied to acheived desired level of precision
+
+Applciation: docuemtnign findings and putting them into use
+-documentation and reporting:
+	program documetnation: help  other analysts understand and modify code in future
+	proces sdocumetanion: provide compplete history of project including final result
+	and recommende soltions
+
+-implementation:
+	more likely to be succesful if model user shave been involved thoughtout process and
+	understand model's outputs
+
+6. markov chain:
+-discrete time stochastic process where future behaviour of system depends only on curernt state
+and not sequnce of previous states
+-system undergoes transitions between finite no. of states
+-movement between state is governed by transition probablities which remian constant
+-trnsion peoblait is probility of moving from one sate to next in one step
+-TPM, rows are inital state and columns are next state
+
+markov property:
+-process has no memory of past states, only present state
+-transiotni probabliites depend on oly present state,not preivous staes
+
+features: cdefm
+-finite no. of states: system has limited indetifiable set of possible states
+-discrete outcomes: otcome of each time step must be one of set of disrete states
+-exclusisvity: only one state is possible at any given time
+-markove property: outcome next trial despnds on present state and is independent of all preivosu
+-constant transisiton probab: prob of moving from one state to another is same from step to step
+
+7. calibration of model
+-validation is overall process of ocmparing model and its behaviour to real system's
+- calibartion isiterative sub process of validation where model's behaviour is compared to
+ real system using tests and adjustmnets are made
+-tests can be subjectoive/objective
+-subjective test involve using expert knwoldege and human jdgment to evalute mdoel and outpout
+-objective test requires data on systems behaviour and correspoding data produced by model
+
+process: FIG
+-compare intial model to reaility
+-if discrepancies exist,revise model
+-compare revised model to reality again
+-reapaet until model is accurate engouh for its purpose
+
+8. model building FIG
+-observing real system and interaction among its various components and collecting data on its
+behjaviour
+-contreuction of conceptual model involing colection of assumption on compoents and strucutre
+of system and hypotheses oon values of model input parameters
+-translation of operational model into computer recognizable form
+
+verification:
+-ensures model is built right
+-trnsalte conceptukla model accurately into computer code
+-eg: using interactive run controller to debug logic as simullation progress
+
+validation:
+-ensure right model is built
+-computer model accuratel represents real system
+-eg: bank model validation involves comparing simluated average delay to historical reocrds
+from acutal bank
+
+10. kendalls notation:
+-standard wa to describe key characteirsi of queeing system
+-classify deiffretn types of queueing model based on nature of arrival process,seivece proces,
+no. of servers,system caaity and population size
+	A/B/c/N/K
+where,
+	A: inter arrival time distribution, M D G
+	B: service-time distribution
+	c: no. of parallel servers
+	N: system capcity
+	K: size of calling population/queue discipline
+
+11. analog computer:
+-process info usign continous variable physical quantites reprsented by naalog circuits
+-use components like integrators and addre sto solve continuous mathematical models
+-eG: automobile suspension system
+
+12. a. queuing disciiline:
+-rule to determine order in hich waiting custoemrs are served
+-FIFO LIFO SIRO priority
+
+12. b. random variate:
+-specific sample generated from known probablity distribution
+-eg: if X is random variable for dice roll then 4 is random variate
+-generated using inverse transform method
+
+
+

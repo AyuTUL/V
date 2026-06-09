@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<library>
+  <book id="B101">
+    <title>Web Technologies</title>
+    <price>550</price>
+    <published_date>2024-04-10</published_date>
+  </book>
+</library>
