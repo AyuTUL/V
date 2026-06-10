@@ -1,0 +1,72 @@
+www:
+-system of interlinked hypertext document called webpages in internet
+-webpage can coaitn text,iamge,pgraocs,aduio video, collection is called web site
+-uses HTTP for fetchign werb pages from interntet
+-HTTP defines rules to trnasmit requestn and ifo between web broswers and servers
+process of WWW:
+-user enters url of wep page in address bar of web browser
+-browser requests DNS for ip address correcponding to url
+-after receiving ip address, browser sends request to web page to web server using HTTP
+which specify way browser and server comuuimcates
+-server receives HTTP request and checs serach, if found reutrns to browser and close HTTP
+-browser receives and dispalys
+
+-web clients are sofwatre used by suer to locate,request and display web pages
+-eg: web browsers like chrome,firefox,safari
+-web servers are sfowatre that hosts and delivers web pagse to clients based on HTTP requests
+to multiple clinets simultaneously
+-manages resrouces and performs high processing tasks
+-eg: Apache or IIS Internet Information Service
+
+web 1.0:
+-static web,1st gen,earlyy 1190s until mid 2000s
+-one way communctraion model
+-static HTML web apges used by busines to provide info to users
+-lacked interactivity, no user genrated content,no dynamic web apps
+
+web 2.0:
+-social web,2nd gen,mid 2000s
+-2 way communctioan model between website owner and user
+-dunamic web apps like blogs,wiki socialm deia, user generated ocntnet
+-made web more accesible,interactive and collabortive,online advert,ecommerce
+
+web 3.0:
+-semantic web,3rd gen,still emerging
+-interlligent personalized experience by machine leraning and AI
+-capable of understand and processing info like human
+-sercure nad decentralized web using blcokchain
+
+url:
+-addressing scheme used by web browsers to lcoate web pages in www
+syntax:
+protocol domainname resourcename
+
+client server architecture
+-computing model that divides tasks between two distinct software types: client software 
+(running on the user's device for interaction/presentation) and server software (running on a
+remote computer to manage resources and perform high-power tasks)
+-web clients are sofwatre used by suer to locate,request and display web pages
+-eg: web browsers like chrome,firefox,safari
+-web servers are sfowatre that hosts and delivers web pagse to clients based on HTTP requests
+to multiple clinets simultaneously
+-manages resrouces and performs high processing tasks
+-eg: Apache or IIS Internet Information Service
+
+1-Tier:
+-interface and logic reside on the same system
+-database is directly accesible to user
+-used for development of local app where progammersd can direclty comomuncaite with database forr
+quick response
+
+2-Tier:
+-application at client side communicates directly with a database at server side
+-client side contains UI and application progarms
+-server side proves functions like query processing and transsction amangemen
+-clinet commumcaiton with dbms using applcaition to eastalbish conncetion with server side
+
+3-Tier:
+-client interacts with Server thourhg intermiedate layer, which communicates with the database
+-applcaition cleint interacts with applcaition server
+-end use has info about existsence of database beyond app server
+-database has no idea about user beyond app server
+-large sacle web app

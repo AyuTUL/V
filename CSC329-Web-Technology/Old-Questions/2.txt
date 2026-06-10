@@ -1,0 +1,74 @@
+html:
+-standard mark up language for creating w pages
+-describes structire of web page using elements which tells broswer how to display content
+
+element:
+-building blocks of html document
+syntax:
+<tag>content</tag>
+
+atrributes:
+-provide addionatl info about html element
+-placed inside starting tag of elent
+synatx:
+attribute="value"
+
+formatiing elements: b strong i em mark small del ins sub sup
+
+hypelink:
+-clickalbe element that takes user to another location in same document or another webpage
+-connect web pages images videos
+syntax:
+<a href="" target="_blank"></a>
+<a href="#section-1"></a>
+
+img (src al width height title class id)
+
+favicon:
+-small image displayed next to page title in browser tab
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+
+list: ul ol ld, dl dt dd
+
+quotation: abbr address bdo bolckquote cite q
+
+iframe:
+-embed another html document within current document
+-display content from anouter source withn own web page like maps,videos,widgets
+<ifram width height src title></iframe>
+
+meta:
+-inside head section
+-charcter encoding,viewport settings,keywords,descriptopns>
+<meta charset="UTF-8" name="keywords" content="">
+
+<audio src="" controls autoplay loop preload="auto"></audio
+
+html sectionining elements:
+header
+nav
+main
+section
+article
+aside
+footer
+
+html events:
+-event is action that takes place witthing web page/browser
+-triggered by user interaction like mouse lcick or system events like page loading
+-initae JS code for dynamic and interactive behaviour
+
+keyboard event: when user interacts with keyboard
+-onkeypress: when user preses key and displays some character
+-onkeydown: when user presses down a key
+-onkeyup: wehn user releases currently pressed key
+
+mouse event:
+-onclick: when mouse clicks on element
+-ondblclick
+-onmousedown: when mouse bubtton is pressen on elemnt
+-onmouseup
+-onmousemove
+-onmouseout
+-onmouseover: when mouse moves onto elment
+-onwheel

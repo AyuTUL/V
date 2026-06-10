@@ -66,7 +66,7 @@ jQuery selectors:
 jQuery methods/functions
 
 syntax:
-type of id - $("tag-name")
+type of tag - $("tag-name")
 class - $(".class-name")
 id - $("#id-name")
 attribute - $("[href]")
@@ -176,7 +176,7 @@ $("button").click(
 );
 
 chaining:
--run multiple jQuery commands one after another on same element
+-run multiple jQuery commands one after another on same element in single statment
 -append next action to previous action
 
 example:

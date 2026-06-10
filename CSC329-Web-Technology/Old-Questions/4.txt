@@ -1,5 +1,10 @@
 JS:
 -lightrweight scripting language embedded directly into HTML pages to add interactivity
+-dynmic texet into html page using vairables
+-react to evnets
+-read nadwrite html elements
+-data validation
+-create cookies
 
 function functionName (paramtetr....) {
 	code
@@ -11,7 +16,7 @@ let object = {
 	property: value,
 	funntionName:function() {}
 	}
-objectName.propertyName;
+objectName.functionName;
 
 let person = {
 	first: "cris",
@@ -27,7 +32,7 @@ function Student(name,address) {
 	this.name=name;
 	this.address=address;
 }
-let student1=Student('Bale','Wales');
+let student1=new Student('Bale','Wales');
 document.write(student1.name);
 
 class:
@@ -42,3 +47,22 @@ class Car {
 	}
 }
 const myCar = new Car("Ford",2014);
+
+regular expression:
+-objectthat describes sequence of characters for defining preices serach pattern
+
+regex literal:
+cosnt regex=/abc/;
+
+rgeexp constructor function:
+cost regex=new RegExp(/^as$/);
+
+HTML DOM:
+-created when web page is loaded
+-cosnbtructed as tree of objects
+
+cookie:
+-user ionformation stored in text file in computer
+
+document.cookie="user=Ram";
+var x=document.cookie;

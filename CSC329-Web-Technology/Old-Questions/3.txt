@@ -1,8 +1,8 @@
 CSS:
-css is stylesheet language used to describe the presentation and formatting of a docuemtn
-written in HTML or XML
-allows developers to control layot,design and overall visual appearance of web page by
-seleecting elemnts and applying specific styles such as color,font and positioning
+-stylesheet language used to describe the presentation and formatting of a docuemtn written in
+ HTML or XML
+-allows developers to control layot,design and overall visual appearance of web page by
+-seleecting elemnts and applying specific styles such as color,font and positioning
 
 syntax:
 selector { property-name:value;}
@@ -91,7 +91,7 @@ background-color:
 -named colors,hex,rgb,hsl
 
 background image:
-	.selector { background-image: url(image_url): }
+	.selector { background-image: url(image_url); }
 -background-repeat,-position,-size
 
 bordr:
@@ -133,3 +133,13 @@ absolute: positioned relative to nearest positioned ancestor
 
 box shadow:
 	box-shadow: xoffset yoffset blur radius color inset;
+
+text overflow:
+-handle overflow of text inside elemnet
+-snip,ellipsis
+
+word wrap:
+-long words are brokwen and wrapped into next line
+-break-word
+
+word-break,writin-mode
