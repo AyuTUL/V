@@ -190,7 +190,7 @@ $("button").click(
 );
 
 3. XML eXtensible Markup Language
--arkup language that defines set of ruels for encoding documetns in both human and machine
+-markup language that defines set of ruels for encoding documetns in both human and machine
 readable format
 -designed to store and transport data in a structured, self-descriptive, and 
 platform-independent format

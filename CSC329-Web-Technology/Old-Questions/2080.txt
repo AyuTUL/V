@@ -1,0 +1,346 @@
+1. js validation
+<html>
+<head>
+    <title>Form Validation</title>
+    <script>
+        function validateForm()
+        {
+            var name = document.userForm.nameField.value;
+            var country = document.userForm.countryField.value;
+            var gender = document.userForm.genderField;
+            var password = document.userForm.passwordField.value;
+       
+            const namePattern = /^.{4,}$/;
+
+            const passwordPattern = /^[A-Za-z].*#$/;
+
+            if(name == "" || !namePattern.test(name))
+            {
+                alert("Name is required, must contain letters and at least 4 characters");
+                return false;
+            }
+
+            if(country == "")
+            {
+                alert("Country can't be empty");
+                return false;
+            }
+
+            var genderSelected = false;
+            for(var i = 0; i < gender.length; i++)
+            {
+                if(gender[i].checked)
+                {
+                    genderSelected = true;
+                    break;
+                }
+            }
+            if(!genderSelected)
+            {
+                alert("Please select a gender");
+                return false;
+            }
+
+            if(password == "" || !passwordPattern.test(password))
+            {
+                alert("Password is required, must start with character and end with #");
+                return false;
+            }
+
+            alert("Validation successful");
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <form name="userForm" onsubmit="return validateForm()" method="post">
+    <fieldset>
+        <label>Name:</label>
+        <input type="text" name="nameField"><br>
+
+        <label>Password:</label>
+        <input type="password" name="passwordField"><br>
+
+        <label>Country:</label>
+        <select name="countryField">
+            <option value="">--Select--</option>
+            <option value="Nepal">Nepal</option>
+            <option value="Korea">Korea</option>
+        </select><br>
+
+        <label>Gender:</label>
+        <input type="radio" name="genderField" value="Male"> M
+        <input type="radio" name="genderField" value="Female"> F<br>
+
+        <input type="submit" value="Submit">
+	</fieldset>
+    </form>
+</body>
+</html>
+
+2. html vs xml
+html						xml
+-display and format web pages			-store and transport data
+-rpedefined tags				-user defined tags
+-presentation of data				-dercipton and storage of data
+-not case sensitive				-yes
+-some tags may be omitted			-must be properly closed
+-syntax is less strict				-very
+-whtie ignored withing element			-not
+-validate using js,php				-using dtd,xsd
+
+<?xml version="1.0" encoding="UTF-8"?>
+<person xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="person.xsd">
+<Person>
+  <Name>Ram</Name>
+  <Age>15</Age>
+  <PinCode>456</PinCode>
+</Person>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="Person">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Name">
+          <xs:simpleType>
+            <xs:restriction base="xs:string">
+              <xs:enumeration value="Ram"/>
+              <xs:enumeration value="Shyam"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:element name="Age">
+          <xs:simpleType>
+            <xs:restriction base="xs:integer">
+              <xs:minInclusive value="10"/>
+              <xs:maxInclusive value="20"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:element name="PinCode">
+          <xs:simpleType>
+            <xs:restriction base="xs:string">
+              <xs:pattern value="\d{3}"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
+
+3. php data insert and retrieve
+<?php
+// Database connection parameters (assumptions)
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "collegeDB";
+
+// 1. Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
+}
+
+// 2. INSERTING values
+$sql_insert = "INSERT INTO Students (name, email) VALUES ('Sita', 'sita@example.com')";
+if ($conn->query($sql_insert) === TRUE) {
+  echo "New record created successfully<br>";
+} else {
+  echo "Error: " . $conn->error;
+}
+
+// 3. SELECTING values
+$sql_select = "SELECT name, email FROM Students";
+$result = $conn->query($sql_select);
+
+if ($result->num_rows > 0) {
+  // Output data of each row
+  while($row = $result->fetch_assoc()) {
+    echo "Name: " . $row["name"]. " - Email: " . $row["email"]. "<br>";
+  }
+} else {
+  echo "0 results";
+}
+
+// 4. Close connection
+$conn->close();
+?>
+
+4. WWW FIG
+-system of interlinked hypertext documetn called webapges contained in Internet
+-weaptge can contain text,graphics,aniamtion,audio,video, collection is called webiste
+-uses HTTP for fetching files from internet
+
+process of WWW:
+-user enters url of wep page in address bar of web browser
+-browser requests DNS for ip address correcponding to url
+-after receiving ip address, browser sends request to web page to web server using HTTP
+which specify way browser and server comuuimcates
+-server receives HTTP request and checs serach, if found reutrns to browser and close HTTP
+-browser receives and dispalys
+
+-web clients are sofwatre used by suer to locate,request and display web pages
+-eg: web browsers like chrome,firefox,safari
+-web servers are sfowatre that hosts and delivers web pagse to clients based on HTTP requests
+to multiple clinets simultaneously
+-manages resrouces and performs high processing tasks
+-eg: Apache or IIS Internet Information Service
+
+5. keyboard events
+-even is action/occurrence that takes place withn web page/browser
+-triggered by usrr interaction/ssytem events like mouse clicks,page loading
+-used to initiate JS code for allowing dyanmic and interactive behaviour in web apps
+-keyboard event occurs when user interacts with keybaord
+
+onkeydown: triggers event when users presses down a key
+onkeypress: triggers even when user presses key which displays some character
+onkeyup: triggers event when user releases currently pressed key
+
+<input type="text" onkeypress="alert('Hello world')">
+
+6.
+getElementById(id): Returns the unique element that has an id attribute matching the specified
+ string
+getElementByTagName(name): Returns a collection (NodeList) of all elements in the document 
+with the specified tag name
+
+<p id="demo">This is a paragraph.</p>
+<div>This is a div.</div>
+
+<script>
+  document.getElementById("demo").innerHTML = "Content Updated!";
+  
+  let divs = document.getElementsByTagName("div");
+  divs.style.color = "red";
+</script>
+
+7. position property
+-specifies type of positioning method used for element
+-set positioin values then position useing tblr propoerties
+
+static:
+-deafult positionaing behaviour of element according to normal documeent flow
+-ignores offset properties like tblr
+-not affected by z index property
+
+fixed:
+-position element relative to browser window/viewport regardless of scrolling
+-removed from normal docuemnt flow
+-desont affect positioning of other elemetns, gets treated as invisble
+-position is determined by offset properties tbrl in relation to viewport
+-can overlap other elemnts on page, highset z index will be displayed on top
+-used for sticky headers,sidebars,navigation menus
+
+sticky:
+-beahvse as relative within parent container until specified threshold is reached by scorlling
+after which becomes fixed within viewport until scrolling reaches another specified point
+
+relative:
+-positioned relative to normal position, remain in normal flow of document
+-other elemnts will not be adjusted to fit in gap left by relative elemnet
+-can be layered using z index property
+-when child is set to absolute with parent relative, child is positined relative to parent
+instead of viewport, used for relative positionnng hierarchy
+
+absolute:
+-positioned relative to nearest positioned ancestor
+-when child is set to absolute with parent relative, child is positined relative to parent
+instead of viewport, used for relative positionnng hierarchy
+-if no positioned ancestors, uses document body and moves along with page scrolling
+-removee from normal flow and can overlap elemetns
+
+8. chaining:
+-run multiple jQuery commands one after another on same element in single statment
+-append next action to previous action
+
+example:
+$(document).ready(
+	function() {
+		$("button").click(
+			function() {
+				$("div")
+				.css("color","red")
+				.slideUp(2000)
+				.slideDown(2000);
+			}
+		);
+	|
+);
+
+9. XML eXtensible Markup Language
+-markup language that defines set of ruels for encoding documetns in both human and machine
+readable format
+-designed to store and transport data in a structured, self-descriptive, and 
+platform-independent format
+-used for Vector Markup Language (VML) for graphics, SMIL 2.0 for reusable multimedia content,
+and configuration languages
+-called extensible because it has no prdefined tages, user can define own tages and documetn
+structure based on their own needs
+
+10. XMLHttpRequest object
+-core of AJAX, used to exchange data with a server in the background without reloading the page
+
+function loadData() {
+  var xhr = new XMLHttpRequest(); // 1. Create object
+  xhr.open("GET", "data.txt", true); // 2. Initialize request
+  xhr.onreadystatechange = function() { // 3. Handle response
+    if (xhr.readyState == 4 && xhr.status == 200) {
+      document.getElementById("content").innerHTML = xhr.responseText;
+    }
+  };
+  xhr.send(); // 4. Send request
+}
+
+11. concat 2 strings
+<?php
+// Function to concatenate strings
+function concatenateStrings($a, $b) {
+    return $a . " " . $b;
+}
+
+$result="";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $str1 = $_POST["str1"];
+    $str2 = $_POST["str2"];
+    $result = concatenateStrings($str1, $str2);
+}
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>String Concatenation using Function</title>
+</head>
+<body>
+
+<form method="post">
+    Enter first string:
+    <input type="text" name="str1"><br><br>
+
+    Enter second string:
+    <input type="text" name="str2"><br><br>
+
+    <input type="submit" value="Concatenate">
+</form>
+
+<?php
+if ($result !== "") {
+    echo "Concatenated String: " . htmlspecialchars($result);
+}
+?>
+
+</body>
+</html>
+
+12. php session
+-stores information on the server to be used across multiple pages for a single user
+
+    Start: Must use session_start() at the very top of the PHP script.
+    Set: Store data using the $_SESSION superglobal (e.g., $_SESSION["user"] = "Ram";).
+    Access: Retrieve the value on any page by accessing $_SESSION["user"].
+    Destroy: End the session using session_destroy().

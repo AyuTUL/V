@@ -1,17 +1,19 @@
 1. eXtensible Markup Language
--self descrbiing, platform independent mrk up language that defines a set of rules for encoding
-documentins in a format that is both human and mahine readable for sotring and transporting data
-in a structured manner
+-markup language that defines set of ruels for encoding documetns in both human and machine
+readable format
+-designed to store and transport data in a structured, self-descriptive, and 
+platform-independent format
+-used for Vector Markup Language (VML) for graphics, SMIL 2.0 for reusable multimedia content,
+and configuration languages
 
--starting tag: <?xml version="1.0" encoding="UTF-8"?>
--must have root element
+-starting tag: <?xml version="1.0" encoding="UTF-8"?> called xml declaration
+-must have exactly one root element containing all other content
 -all tags must be paired
--al tags must be propoerly nested
--tag nanmes are case sensistive
--tag names cant contain spaces
--attribute values must appaer within quotes
--white space is presevred
--tag name restrictions: cant start with letters "xml",numer or punctuiaiont except _
+-all tags must be propoerly nested, closed in reverse order htey were ordered
+-tag nanmes are case sensistive, <book> and <Book> are different
+-attribute values must appaer within quotes <element attribute="value">
+-white space is presevred within elmenets unlike HTML tags
+-tag name restrictions: no spaces,cant start with letters "xml",numer or punctuiaiont except _
 -avoid html tags
 
 XML Schema Definition:
@@ -19,8 +21,8 @@ XML Schema Definition:
 -defines structre and content of XML docuemtn allowin validaion,data integrity,interoperability
 
 xml: library.xml
-<library xsi:schemalocation="library.xsd">
 <?xml version="1.0" encoding="UTF-8">
+<library xsi:schemaLocation="library.xsd">
 <library>
 	<book id="123">
 		<title>Web</title>
@@ -29,23 +31,25 @@ xml: library.xml
 </library>
 
 xsd: library.xsd
-<xs:schema xmlns:xs="https://"/>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
 	<xs:element name="library">
 		<xs:complexType>
-			<xs:element name="book">
-				<xs:complexType>
-					<xs:attribute name="id" type="xs:int" use="required"/>
-					<xs:sequence>
-						<xs:element name="title" type="xs:string"/>
-						<xs:element name="title" type="xs:string"/>
-					</xs:sequence>
-				</xs:complexType>
-			</xs:element>
+			<xs:sequence>
+				<xs:element name="book">
+					<xs:complexType>
+						 <xs:sequence>
+						    <xs:element name="title" type="xs:string"/>
+						    <xs:element name="title" type="xs:string"/>
+						 </xs:sequence>
+						<xs:attribute name="id" type="xs:int" use="required"/>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
 </xs:schema>
 
-2.
+2. js validation
 <html>
 <head>
     <title>Form Validation</title>
@@ -61,8 +65,8 @@ xsd: library.xsd
             // Name regex (only letters, min 3 chars)
             const namePattern = /^[A-Za-z]{3,}$/;
 
-            // Password regex (min 6 chars, at least 1 number, 1 letter)
-            const passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/;
+            // Password regex (min 6 chars, at least 1 number, 1 uppercase, 1 special
+            const passwordPattern = /^(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z\d]).{6,}$/;
 
             if(name == "")
             {
@@ -103,7 +107,7 @@ xsd: library.xsd
             }
             else if(!passwordPattern.test(password))
             {
-                alert("Password must be at least 6 characters and include letters and numbers");
+                alert("Password must be at least 6 characters and include uppercase, special characters and numbers");
                 return false;
             }
 
@@ -144,3 +148,196 @@ xsd: library.xsd
     </form>
 </body>
 </html>
+
+3. php form
+<?php
+// Database connection logic [13]
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "testDB";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+if ($conn->connect_error)
+    die("Connection failed : " . $conn->connect_error);
+echo "Connection successful<br>";
+
+function insertdb($conn, $name) {
+    $sql = "INSERT INTO users (username) VALUES ('$name')";
+    if ($conn->query($sql) === TRUE) {
+        echo "Record inserted successfully<br>";
+    }
+}
+
+// Method to display values [13]
+function display($conn) {
+    $sql = "SELECT username FROM users";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        while($row = $result->fetch_assoc()) {
+            echo "User: " . $row["username"] . "<br>";
+        }
+    }
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    insertdb($conn, $_POST['u_name']);
+}
+?>
+
+<form method="post" action="">
+    Username: <input type="text" name="u_name">
+    <input type="submit" value="Submit">
+</form>
+
+<h3>Stored Users:</h3>
+<?php display($conn); $conn->close(); ?>
+
+4. client server architecture
+-computing model that divides tasks between two distinct software types: client software 
+(running on the user's device for interaction/presentation) and server software (running on a
+remote computer to manage resources and perform high-power tasks)
+-web clients are sofwatre used by suer to locate,request and display web pages
+-eg: web browsers like chrome,firefox,safari
+-web servers are sfowatre that hosts and delivers web pagse to clients based on HTTP requests
+to multiple clinets simultaneously
+-manages resrouces and performs high processing tasks
+-eg: Apache or IIS Internet Information Service
+
+1-Tier:
+-interface and logic reside on the same system
+-database is directly accesible to user
+-used for development of local app where progammersd can direclty comomuncaite with database forr
+quick response
+
+2-Tier:
+-application at client side communicates directly with a database at server side
+-client side contains UI and application progarms
+-server side proves functions like query processing and transsction amangemen
+-clinet commumcaiton with dbms using applcaition to eastalbish conncetion with server side
+
+3-Tier:
+-client interacts with Server thourhg intermiedate layer, which communicates with the database
+-applcaition cleint interacts with applcaition server
+-end use has info about existsence of database beyond app server
+-database has no idea about user beyond app server
+-large sacle web app
+
+5.
+<table border="1">
+	<tr>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr style="height:200px;">
+		<td></td>
+		<td></td>
+		<td><a href="www.tu.edu.np>TU</a></td>
+	</tr>
+	<tr>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+</table>
+
+6. onload event 
+-triggered when a web page has completely finished loading all its content
+-used to initiate scripts immediately after the page is visible to the user
+
+<body onload="alert('Hello Nepal')">
+    <h1>Welcome to Nepal</h1>
+</body>
+
+7.
+inline css:
+-applying styles directly to individual HTML elemenets
+
+internal css:
+-defining styles within <style> tag in <head> section of HTML document
+
+external css:
+-definind styles in a separate CSS file and linking it to an HTML documnet using <link> tag
+<link rel="stylesheet" href="style.css">
+
+8. JS arrya
+-built in data structure to store multiple values in single varaible
+-can contain elements of any type
+
+const Fruit = ["apple","mango","grape"];
+document.write(Fruit);
+
+9. xslt eXtensible StyLesheet Language
+-style language for trnasofrimng XML documetns into different formats like HTML,plaintext
+-defiens how SML input document shouild be trnasformed
+
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="student.xsl"?>
+<class>
+	<student>
+		<name>Ronaldo</name>
+		<roll>7</roll</roll>
+	</student>
+</class>
+
+<xsl:stylesheet version="1.0" xmlns:xsl="https://www.w3.org/1999/XSL/Transform">
+<xsl:template matech="/class">
+	<html>
+	<body>
+		<h2>Student List</h2>
+		<table border="1">
+			<tr>
+				<th>Name</th>
+				<th>Roll</th>
+			</tr>
+			<xsl:for-each select="student">
+			<tr>
+				<td><xsl:value-of select="name"/></td>
+				<td><xsl:value-of select="roll"/></td>
+			</tr>
+			</xsl:for-each>
+		</table>
+	</body>
+	</html>
+</xsl:template>
+</xsl:stylesheet>
+
+10. php sum
+<form method="post" action="">
+	num 1: <input type="number" name="num1"><br>
+	num 2: <input type="number" name="num2">
+	<input type="submit" name="submit" value="Add">
+</form>
+
+<?php
+	if ($_SERVER["REQUEST_METHOD"] == "POST") {
+		$num1=$_POST['num1'];
+		$num2=$_POST['num2'];
+		function add($num1,$num2) {
+			return $num1+$num2;
+		}
+		echo "Result = ".add($num1,$num2);
+	}
+?>
+		
+11. JS cookie
+-variable stored on visitor's computer 
+-allows server to remeber user information across different page request
+-servres sends data to vistors brwoser in form of cookie
+-broswer may acceot cookie, if yes stored as plain text record in visotrs hard drive
+-whene visitor arrives at another page on same website, brwoser sends same cookie to server for retrival
+-once retirved, servers knwos what as stored eralier
+
+setcookie("user","Ram",time()+86400,"/");
+if(isset($_COOKIE["user"])) {
+	echo "Username = ".$_COOKIE["user"];
+}
+
+12. text-overflow
+-handles overflow of text inside pecific elemnt
+
+values:
+snip: crop contetn that onl fit inside elemnt and hide extra
+ellipsis:add few dots at end of elemnt if extra
+				
