@@ -1,6 +1,89 @@
 fourier transfrom:
--decomposes image into sinsusodial compent  of diferent ferqunices
--lowerfrequnices,smooth region
--high freuquince,edge
+-decomposes image into sinsusodial component  of diferent ferqunices
+-lower frequnices->smooth regions,background,gradual intensity changes
+-high freuquences->,edge,fine details,noise
 -magnitude spectrum shows strngth of freuqnceies
--phase spectru contrina structirel info of image
+-phase spectru contains structural info of image
+
+1D continuous fourier transfrom CTFT:
+-used for continuous time sognals like analogd signals
+-shows how signal is ocmposed of initifte sinusodial waves
+-used in communication systems
+
+1D dsicrete fourier trnasform DFT:
+-used for finite length digital signals
+-sed in FFT algorithms,audio processing and image procesiiing
+
+2D continuous fourier transform
+-used ofr conitnous images f(x,y)
+-foundation for optical systems and theroritcal image analysis
+
+2D dsicrete fourier trnasform DFT
+-used for digital images of size MxN
+-used for image enchancement,filtering,compression and restoration
+
+properties of fourier transform:
+-linearity: combining images/singals
+-translation/shift: explains why mangnitude spectrum reamins centered,affects only phase
+-scaling:scaling in spatial domain cause inverse scaling in frequency domain, small objects->
+	wide frequcny spread, large object-> naarow frequency spread
+-rotation:if image is rotated in spatial domain, its FT rotates by same angle, used in
+	paatern recogntion
+-convolution theorem: convolution in spatial domain<->multiplication in frequency domain
+	f(x,y)*h(x,y)<->F(u,v).H(u,v)
+	basis of frequency domain filtering
+-correlation: correlation in sptial domain corersponds to mulitplciation with complex conjugate
+	in frequncy domain, used ofr image processing,pattern mathcing,tempate matching
+	F{f(x)*g(x)}=F(u)G*(u)
+-energy conservation/Parseval's theorem: total enegery in sptial odmina equals to that in fre do
+
+high pass filters:
+-sharpening and edge enchancement, not smoothing
+-work br attenuating low frequency components and presserving/enchaning high frequenct compoents
+-smooth background are suppresed, edges and fine details are enchanced
+
+types:
+ideal HPF:
+-simplest
+-removes all low frequencies sharply
+
+butterworth HPF:
+-smooth trnasditon between low and high freuencies
+-ringing/Gibbs phenomenon is unwanted visual artifcat that appears as riopples,halos,
+oscialltions near sharp edges or high contrast bouindaires in mages
+-less ringing that IHPF
+
+gaussian HPF:
+-most msooth and natural sharpenign filter
+-no rining,best visaul quality, most prefeered in image enchancement
+
+low pass filters:
+-smoothineing emage
+-work by presenvign low frequncy componetns and supress high freqnecy componenes
+-image becomes blurred,nosie is educes and fine deatils edges are softened
+
+fast fourier transform:
+-efficent algorithm to ocmute dft and its inverse
+-convert signal/sequence from spatial domain into frequency domain with less computation
+-to analyze frequencey components like smooth areas and noise information
+-computation is reduced from O(N^2) to O(NlogN)
+
+hadamard transform:
+-linear,orthogonal transform that ocnverts signal from spatial domain into set of coefficients
+using only additon and subtrasction
+-hadamard matrix with elemtns +1 and -1
+-doesnt use sine or ccosine functions
+-used for image compression,patern recognion,DIP,noise reduction
+
+haar transform:
+-simplest wavelet trnasform that represents singal using average(aaproximation) and difference 
+(detail) omcponets at different scales to reprsent both spastial and frequeuncing info efficiently
+-used for data compression,noise reduction,feature extraction
+-uses steo functions as basis function instead of sine and cosine to split data into low and high
+
+discrete cosine transofrm DCT:
+-mathematical transform that ocnverts discrete signal from spatioal domain into freuqnct domoain
+using only ocsine functins
+-seprates image into lew and high frequncy compopnents
+-concentrates most of signal energ into fwe low frequny coeffcients making it useful for
+image and video extraction, compression, pattern recigntion,signal processing
