@@ -1,0 +1,118 @@
+digital image processing:
+-performing operations on image using computer to improve its quality or extract useful info
+-convert imanges into nuimerical form and apply algo to echance,restore,compress,analyze
+-eg: impriving brightness contrast,removing noise,face detection
+
+types: FIG
+low: noisy image is input and clear image is output
+middle: attributes are extracted from image as output
+high: attributes are input and ouput is understanding/recognizing
+
+image:
+-2d represntation of object/scene
+-made of small square elemnts caleld pixels contating intensity and color info f(x,y)
+
+phases of IP:
+image acquisition:
+-iamge is captured by sensors and converted into digital form
+-convert analog to digital signal
+-eg: taking phto of handwritten page using mobile camera
+
+image enchancement:
+-improve viusal quality of image to make it more useful for humans/machiens
+-adjust brightness,remove noise,sharpen edges
+-eg:increase brihtness of dark cctv image to seeface clearly
+
+image restoration:
+-resotre sdegrade nlurry/noisy image using mathematical models
+-delurring,removing unwatnted distortions,reconstrutre damaged images
+-eg: restoring blured photogrpahs from shaking camera
+
+color image processing:
+-deals with color modesl and manipulation of color images
+-rgb to gray,color enchancement, oclor level adjustments
+-eg: corercting color tonei nportrait photo
+
+wavelets and multiresolution processing:
+-represnets image at multipel sclaes (resolutions)
+-used for compression and featuer etraction,zooming
+-eg:jpeg2000 image compression
+
+comrpession:
+-reduce file size for storagfe/transmission
+-lossless PNG lossy JPEG, removing redudnat pixels
+-eg:comrpessing 5 MB to 1MB for faster upload
+
+morphological processing:
+-shape based processing applied to bninary images
+-dilation,erosion,opening,closing
+-eg: removing small black dots freom scanned signature
+
+segmentaion:
+-divides image into meangingful regions/objects
+-detect object boudaries,separate foreground  and background,region based segmetnation
+-eg: separating human face from background in photo
+
+represntaion and descritoin:
+-repsnting object using boundaries/regiosn and describing features
+-boudnary represtatino,feature extranction,shape analyssi
+-eg: extarcing shape and size of tumor from MRi scan
+
+object recognition:
+-idenityfy objects/patterns using extarced features
+-pattern recogntion,feature matching,machine learning
+-eg: face recognition system detecting person's face
+
+problems:
+noisy images:
+-contain unwanted random varaiotsn called noise due to sensors,transmission or environment
+-eg:low light photos have salt pepper noise
+
+image blur and distortion:
+-blurrind during image capture,camera motion,focus error
+-eg:out of foucs passport photo
+
+lomited resolution:
+-ifnite opxel, low resolution causes loss of details
+-eg: zooming into low res CCTV frame makes face unrecogniazalbe
+
+quantization erros:
+-when converting continuous images into digital, intensity vlues are rounded caausing loss of
+accuracy
+-eg: smooth sky becomes banded due to low gray levels
+
+sampling problems/alising:
+-improper sampling creates distortion/flase patterns
+-eg: strpoied shrt appears wavy or creates more patterns
+
+high cmoputational cost:
+-heavy computation and moemory for large images
+-eg: processing 4k iamge for objectrecogniation takes significant CPU/GPU time
+
+esbnsitivty to lighting and environemtn:
+-iamges vary greatly with illumaintion,angles,shadoes,background
+-eg: face reocgniton falis in poor lighting
+
+storage and transmission issues:
+-high res images ad videso required large sotrage and badnwith
+-eg:4k vides need compression reducing quality
+
+difficulty in segmetnation:
+-seprating object from backgrounfd is challenging
+-eg:seorating persion from complex backgrond
+
+loss of info duing comrpession:
+-JPEG lose data permanently
+-eg:JPEG artifacts in whatsapp images
+
+occlision and missing data:
+-objects may be partially hidden in image
+-eg: face covered iwth mask/hair makes recognitoin dififcult
+
+varialbity in object appeareance:
+-pbjects change shape,szie,orinetaino
+-eg:car looks diferent from front,side,ack
+
+difficulty in real time preocesing:
+-real time DIP for robtics,drones and mdeical imagin  must be fast and accurate
+-eg: drone cant avoid obstacles if pcroessing is slow

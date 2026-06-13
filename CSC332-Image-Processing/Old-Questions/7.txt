@@ -1,8 +1,88 @@
-1.
-perceotron is basic ANN containign a layer of neurons(nodes) connected to input layer
-each neutron performs weighted sum of its inputs, applies ativaion function and produces output
+chain code:
+-boundary representation technique that encodes outline of object as sequence of directinal
+movements in 4 or 8 directions
+-sensitive: proen to noise,rotation and scaling
+-invariance: acheived by normalizing starting point and rotaiton
+-used for shape repserntation,edge detection,simple boudanry analysis
 
-neural networks are applied in DIP for image classificaiton, edge detection and noise reduction
+signature:
+-1d repsretnation of 2d sape boundary
+-instead of analyzin entire boundary points of shape, conert shape into simple fiunction
+that resestns its strucutre
+-represents distance from center of object to its boudnary at different angles
+-ued for conversion 2d shape in 1d signal,shape comparison and obkect rocgnition
+
+steps:
+-find centrooid of object
+-meausre distance from centrooid to boundar for different angles
+-plot distance vs angle
+
+fourier descriptoipr:
+-describes shape of pbjectu sing fourier transofmr
+-boudary of object is treated as sequence of points and FT converts it into frequency components
+called fourier decritor
+
+pattern:
+-repsretnation of object using measurable features
+-handwritten digits,fingerprint image,speech signal,face image
+
+pattern recogniion:
+-idenity/classifying patters in data using algoithms/statistical techniques
+-detect regulariets in data nad assign them to spceific categories
+-eg: face recoginiotn in mobile phons,speech recognition,midecal image diagnosis
+
+steps: FIG
+1: data acquisiton
+-data/images are collected using sensors,cameras,scaners,microphones
+-eg:camera captures iamge of handwritten digit
+
+2: pre-processing
+-collected data is cleaned and improved to remove noise
+-noise removal,image enchancement,normalizatoin,filtering
+-eg:removing noise from handwritten digits
+
+3: segmentatioon
+-image is diviede into meaningnful regions/objects
+-eg:separating digit from background
+
+4: feature extraction
+-extract important characterirstcs of object
+-reduce data while keeping useful info
+-eg:shape,edges,texture,color,corners
+
+5: classificaiotn/recognition
+-extracted features are compared with known patterns sotred in database and clasifeid
+-eg:system decides whether digit is 3 5 8\
+
+neural networks:
+-computational model inpired by biological neurons, capable of learning ocmplex pattersn
+via layered architecthrue
+-automaitcally learns features, excels at complex tasks like image recogntiion
+-requires large datasets and computational resources
+
+struxutre:
+layers: input,hidden,output
+neurons: compute weighted sum + activation functions (eg:ReLu,sigmoid)
+training: adjusts weights using backpropagation and gradient descent
+
+eg:
+multilayer percepttron MLP
+-input:image pixels
+-hidden: learn hierarchical features
+-output: class probabliitles cat or dog
+
+general structure of pattern recognition system FIG:
+-sensor convert images/sounds or other physical input into signal data
+-segmetnation is part whioch enables segregating sensed object from bakcground noise
+-feature extractor measure object properites and selects those that are importatnt for classifica
+-classifier uses thes featuers to assign sensed object to category
+-post processor takes account of other considerations such as cost of error to determine
+appropriate actions
+
+perceptron:
+-perceotron is basic ANN containign a layer of neurons(nodes) connected to input layer
+-each neutron performs weighted sum of its inputs, applies ativaion function and produces output
+-applied in DIP for image classificaiton, edge detection and noise reduction
 
 steps:
 -image representation:
@@ -24,7 +104,7 @@ ReLu(Rectified Linear UNit) to produces ouput
 		output={1 if z>=0
 			0 if z<0
 -output:
-	output can represnt a clas label
+	output can represnt a clas label in iamge classication
 
 example: detect patterns like horizontal edges in 3x3 eimage
 

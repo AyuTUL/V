@@ -1,5 +1,6 @@
 morphological IP:
 -set of image processing techniques based on shape and structure of objects in image
+-uses small patter ncalled structuring slement SE
 
 erosion:
 -removes pixels from boundaries of objectse so tahta object bcomes smaller/thinner using
@@ -33,3 +34,46 @@ closing:
 -dilation is followed by erosion
 	A.B=(A+B)-B
 -fuse narrow breaks and elminate small holes
+
+region:
+-connected set of pixels within inamge that share similar propertoes like color,textuire
+that distinguhse region from surrdounings
+-used in segmentation to group pixels into meaningful objects
+
+boundary:
+-line that sperates one region from another
+-rersetns transition between differnt regiosn and characterized by significant changes in 
+pixel initesty,colro or texture
+-used for object detection,shape nalaysis,image segmentaion
+
+visual perception:
+-process by which humans interpret and organize visual information from environment
+-design algorithms that mimc human vision
+
+elements: SETBCC
+shape:
+-recognizing geometric structire of objects in image
+-described using contours,boundaries or skeletons
+-needed for object recognition and classificaiton
+
+edges and contours:
+-edges are sharp changes in intesity or colro that ddefine boudnaries of objects
+-contours are contionuos lines that outline shape of object
+-edge detection algo are needed for DIP
+
+texture:
+-arrangement of pixels in region that gives perceptin of surface properties like rough/smooth
+-used in segementaion,classifcaiotn,object recogntiion
+
+brightness:
+-perceived intensity of light
+-eanhance or reduce visiblity of certain featuers in image
+
+contrast:
+-difference in brightness or color between objects/regions in image
+-high contrasts makes objects stand out while low contrast blends them
+-contrst enhancement is used in DIP
+
+color:
+-based on wavelength of light reflected/emitted by objects
+-color spcees like RGB,HSV,CMYK represnt manipulate colors
