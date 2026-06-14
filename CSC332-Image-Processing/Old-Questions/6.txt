@@ -1,6 +1,6 @@
 image segmentation:
 -process of dividing image into difeernt meaningful regions
--pixels with simlar characteristics are grouped together
+-pixels with simlar characteristics like color,tecxte,intensity are grouped together
 
 example:
 -detecting tumors in medical iamges in medica imaging
@@ -16,13 +16,13 @@ discontiunity based:
 	operators: sobeel,prewitt,cvanny edge,roberts
 
 	-gradient filters:
-		emsures rate of change of intensity in image
+		emsures rate of change of intensity in image in horizontal and vertical direction
 		if intensity changes rapdily between neighbouring pixels, presence of edge
 		operators: sobel,prewitt,roberts
 		sobel Gy:
-			-1 0 -1
-			-2 0  2
-			-1 0  1
+			-1 0 1
+			-2 0 2
+			-1 0 1
 		example:
 		-object boundary deetction
 		-road lane detection
@@ -90,6 +90,7 @@ example:
 
 hough transform:
 -detect geomtric shoaes in image
+-used when shapes ar eincomplete,noisy or partially hidden
 -converts points from image space into parameter spce and find intersections that repersnt
 particaulr shape
 

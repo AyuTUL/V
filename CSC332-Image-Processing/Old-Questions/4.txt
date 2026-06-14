@@ -1,6 +1,7 @@
 image restoration:
 -retrival of uncorrupted,origial image from blurred,noisy image due to motion blur,noise casued
 by environmental effects or camera misfocus
+-done in both spatial and freuce ydomain
 
 FIG g(x,y) = f(x,y) * h(x,y) + n(x,y)
 
