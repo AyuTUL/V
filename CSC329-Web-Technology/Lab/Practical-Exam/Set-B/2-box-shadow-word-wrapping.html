@@ -1,0 +1,94 @@
+<!-- Q B.2: Write a HTML code for creating menu bar of e commerce website with each button produces different colored box shadow effect while button is clicked. This HTML page must consist 2 advertisement divisions and use word wrapping property. -->
+<html>
+
+<head>
+    <title>E-Commerce Menu Bar</title>
+    <style>
+        body {
+            font-family: Arial;
+            margin: 0
+        }
+
+        .menu,
+        .content {
+            display: flex;
+            flex-wrap: wrap
+        }
+
+        .menu {
+            gap: 8px;
+            justify-content: center;
+            padding: 10px;
+            background: #222
+        }
+
+        .menu button {
+            padding: 8px 12px;
+            border: 0;
+            cursor: pointer
+        }
+
+        .content {
+            gap: 10px;
+            padding: 10px
+        }
+
+        .ad {
+            flex: 1 1 200px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            word-wrap: break-word
+        }
+
+        .red {
+            box-shadow: 0 0 30px fuchsia;
+        }
+
+        .blue {
+            box-shadow: 0 0 30px turquoise;
+        }
+
+        .green {
+            box-shadow: 0 0 30px lavender;
+        }
+
+        .orange {
+            box-shadow: 0 0 30px goldenrod;
+        }
+    </style>
+    <script>
+        function changeShadow(button, colorClass) {
+            var buttons = document.getElementsByTagName("button");
+            for (var i = 0; i < buttons.length; i++) {
+                var item = buttons[i];
+                item.classList.remove("red", "blue", "green", "orange");
+            }
+            button.classList.add(colorClass);
+        }
+    </script>
+</head>
+
+<body>
+    <div class="menu">
+        <button onclick="changeShadow(this,'red')">Home</button>
+        <button onclick="changeShadow(this,'blue')">Products</button>
+        <button onclick="changeShadow(this,'green')">Offers</button>
+        <button onclick="changeShadow(this,'orange')">Contact</button>
+    </div>
+
+    <div class="content">
+        <div class="ad">
+            Advertisement 1: Erling Haaland fan collection now available with jerseys, signed posters, training kits,
+            boots, and match-day accessories for true supporters.
+            <img src="haaland.jpg" alt="Advertisement Image" style="width:100%; margin-top:10px;">
+        </div>
+
+        <div class="ad">
+            Advertisement 2: Son Heung-min premium collection now available with jerseys, signed posters, training kits,
+            boots, and match-day accessories for true supporters.
+            <img src="son.jpg" alt="Advertisement Image" style="width:100%; margin-top:10px;">
+        </div>
+    </div>
+</body>
+
+</html>

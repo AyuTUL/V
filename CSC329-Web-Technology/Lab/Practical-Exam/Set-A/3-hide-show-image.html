@@ -1,0 +1,29 @@
+<!-- Q A.3: Write a jQuery to show and hide the image of fifa world cup logo upon clicking hide and show button. -->
+<html>
+
+<head>
+	<title>Hide Show Image</title>
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+	<script>
+		$(function () {
+			$("#hide").click(function () {
+				$("#logo").hide();
+			});
+
+			$("#show").click(function () {
+				$("#logo").show();
+			});
+		});
+	</script>
+</head>
+
+<body>
+	<button id="hide">Hide</button>
+	<button id="show">Show</button>
+
+	<br><br>
+
+	<img id="logo" src="fifa-logo.jpg" alt="FIFA World Cup Logo" height="220">
+</body>
+
+</html>
