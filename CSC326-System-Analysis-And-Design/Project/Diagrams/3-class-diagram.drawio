@@ -1,0 +1,99 @@
+<mxfile host="app.diagrams.net">
+  <diagram id="fwf7l641FehYrn5C0HK6" name="Page-1">
+    <mxGraphModel dx="735" dy="1065" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="c_user" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="User" vertex="1">
+          <mxGeometry height="240" width="240" x="80" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="c_user_attr" parent="c_user" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontSize=11;" value="&lt;div&gt;- id : int&lt;/div&gt;&lt;div&gt;- username : String&lt;/div&gt;&lt;div&gt;- password : String&lt;/div&gt;&lt;div&gt;- role : String&lt;/div&gt;&lt;div&gt;- status : String&lt;/div&gt;" vertex="1">
+          <mxGeometry height="86" width="240" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="c_user_sep" parent="c_user" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" value="" vertex="1">
+          <mxGeometry height="8" width="240" y="112" as="geometry" />
+        </mxCell>
+        <mxCell id="c_user_meth" parent="c_user" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontSize=11;" value="&lt;div&gt;+ User(id, username, password, role, status)&lt;/div&gt;&lt;div&gt;+ User(username, password, role, status)&lt;/div&gt;&lt;div&gt;+ getId() : int&lt;/div&gt;&lt;div&gt;+ getUsername() : String&lt;/div&gt;&lt;div&gt;+ getRole() : String&lt;/div&gt;&lt;div&gt;+ getStatus() : String&lt;/div&gt;" vertex="1">
+          <mxGeometry height="120" width="240" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="c_food" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="Food" vertex="1">
+          <mxGeometry height="280" width="300" x="520" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="c_food_attr" parent="c_food" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontSize=11;" value="&lt;div&gt;- id : int&lt;/div&gt;&lt;div&gt;- userId : int&lt;/div&gt;&lt;div&gt;- name : String&lt;/div&gt;&lt;div&gt;- caloriesPer100g : double&lt;/div&gt;&lt;div&gt;- proteinPer100g : double&lt;/div&gt;&lt;div&gt;- carbsPer100g : double&lt;/div&gt;&lt;div&gt;- fatsPer100g : double&lt;/div&gt;&lt;div&gt;- fiberPer100g : double&lt;/div&gt;" vertex="1">
+          <mxGeometry height="124" width="300" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="c_food_sep" parent="c_food" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" value="" vertex="1">
+          <mxGeometry height="8" width="300" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="c_food_meth" parent="c_food" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontSize=11;" value="&lt;div&gt;+ Food()&lt;/div&gt;&lt;div&gt;+ Food(id, userId, name, caloriesPer100g, proteinPer100g, carbsPer100g, fatsPer100g, fiberPer100g)&lt;/div&gt;&lt;div&gt;+ getId() : int&lt;/div&gt;&lt;div&gt;+ getUserId() : int&lt;/div&gt;&lt;div&gt;+ getName() : String&lt;/div&gt;&lt;div&gt;+ toString() : String&lt;/div&gt;" vertex="1">
+          <mxGeometry height="122" width="300" y="158" as="geometry" />
+        </mxCell>
+        <mxCell id="c_foodlog" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="FoodLog" vertex="1">
+          <mxGeometry height="240" width="280" x="530" y="480" as="geometry" />
+        </mxCell>
+        <mxCell id="c_foodlog_attr" parent="c_foodlog" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontSize=11;" value="&lt;div&gt;- id : int&lt;/div&gt;&lt;div&gt;- userId : int&lt;/div&gt;&lt;div&gt;- foodId : int&lt;/div&gt;&lt;div&gt;- gramsConsumed : double&lt;/div&gt;&lt;div&gt;- date : Date&lt;/div&gt;" vertex="1">
+          <mxGeometry height="84" width="280" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="c_foodlog_sep" parent="c_foodlog" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" value="" vertex="1">
+          <mxGeometry height="8" width="280" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="c_foodlog_meth" parent="c_foodlog" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontSize=11;" value="&lt;div&gt;+ FoodLog(id, userId, foodId, gramsConsumed, date)&lt;/div&gt;&lt;div&gt;+ FoodLog(userId, foodId, gramsConsumed, date)&lt;/div&gt;&lt;div&gt;+ getId() : int&lt;/div&gt;&lt;div&gt;+ getUserId() : int&lt;/div&gt;&lt;div&gt;+ getFoodId() : int&lt;/div&gt;&lt;div&gt;+ getDate() : Date&lt;/div&gt;" vertex="1">
+          <mxGeometry height="122" width="280" y="118" as="geometry" />
+        </mxCell>
+        <mxCell id="c_note" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="Note" vertex="1">
+          <mxGeometry height="240" width="250" x="75" y="480" as="geometry" />
+        </mxCell>
+        <mxCell id="c_note_attr" parent="c_note" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontSize=11;" value="&lt;div&gt;- id : int&lt;/div&gt;&lt;div&gt;- userId : int&lt;/div&gt;&lt;div&gt;- adminId : int&lt;/div&gt;&lt;div&gt;- noteText : String&lt;/div&gt;&lt;div&gt;- createdAt : LocalDateTime&lt;/div&gt;" vertex="1">
+          <mxGeometry height="100" width="250" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="c_note_sep" parent="c_note" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" value="" vertex="1">
+          <mxGeometry height="8" width="250" y="126" as="geometry" />
+        </mxCell>
+        <mxCell id="c_note_meth" parent="c_note" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontSize=11;" value="&lt;div&gt;+ Note()&lt;/div&gt;&lt;div&gt;+ Note(id, userId, adminId, noteText, createdAt)&lt;/div&gt;&lt;div&gt;+ getId() : int&lt;/div&gt;&lt;div&gt;+ getUserId() : int&lt;/div&gt;&lt;div&gt;+ getAdminId() : int&lt;/div&gt;&lt;div&gt;+ getNoteText() : String&lt;/div&gt;" vertex="1">
+          <mxGeometry height="106" width="250" y="134" as="geometry" />
+        </mxCell>
+        <mxCell id="e_user_food" edge="1" parent="1" source="c_user_attr" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;endFill=0;exitX=1.003;exitY=0.457;exitDx=0;exitDy=0;exitPerimeter=0;entryX=-0.006;entryY=0.321;entryDx=0;entryDy=0;entryPerimeter=0;" target="c_food_attr" value="owns">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_user_foodlog" edge="1" parent="1" source="c_user_meth" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;endFill=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=-0.003;entryY=0.448;entryDx=0;entryDy=0;entryPerimeter=0;" target="c_foodlog_attr" value="creates">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="420" y="300" />
+              <mxPoint x="420" y="544" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_food_foodlog" edge="1" parent="1" source="c_food" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;endFill=0;" target="c_foodlog" value="used in">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_user_note_receiver" edge="1" parent="1" source="c_user" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;endFill=0;" target="c_note" value="receives / writes">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="m_user_food_1" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="1" vertex="1">
+          <mxGeometry height="20" width="40" x="310" y="160" as="geometry" />
+        </mxCell>
+        <mxCell id="m_user_food_many" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="0..*" vertex="1">
+          <mxGeometry height="20" width="50" x="470" y="190" as="geometry" />
+        </mxCell>
+        <mxCell id="m_food_log_1" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="1" vertex="1">
+          <mxGeometry height="20" width="40" x="665" y="400" as="geometry" />
+        </mxCell>
+        <mxCell id="m_food_log_many" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="0..*" vertex="1">
+          <mxGeometry height="20" width="50" x="630" y="460" as="geometry" />
+        </mxCell>
+        <mxCell id="m_user_note_1" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="1" vertex="1">
+          <mxGeometry height="20" width="40" x="170" y="360" as="geometry" />
+        </mxCell>
+        <mxCell id="m_user_note_many" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="0..*" vertex="1">
+          <mxGeometry height="20" width="50" x="200" y="460" as="geometry" />
+        </mxCell>
+        <mxCell id="InTqbWrHcKjApmUGVOLB-1" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="0..*" vertex="1">
+          <mxGeometry height="20" width="50" x="480" y="550" as="geometry" />
+        </mxCell>
+        <mxCell id="InTqbWrHcKjApmUGVOLB-4" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="1" vertex="1">
+          <mxGeometry height="20" width="40" x="320" y="280" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

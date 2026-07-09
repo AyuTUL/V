@@ -1,0 +1,137 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Use Case Diagram" id="ucd1">
+    <mxGraphModel dx="671" dy="972" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1450" pageHeight="950" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="actor_user" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" value="User" vertex="1">
+          <mxGeometry height="100" width="60" x="20" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="Vj8ZAAteMtfBz4uL9Fnq-13" edge="1" parent="1" source="actor_admin" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="50" y="330" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="actor_admin" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" value="Administrator" vertex="1">
+          <mxGeometry height="100" width="60" x="20" y="760" as="geometry" />
+        </mxCell>
+        <mxCell id="boundary" parent="1" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;fontStyle=1;fontSize=14;align=center;spacingTop=6;" value="Nutrition Tracker" vertex="1">
+          <mxGeometry height="880" width="440" x="120" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="u_login" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="Log In" vertex="1">
+          <mxGeometry height="60" width="90" x="300" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="u_dash" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="View Dashboard" vertex="1">
+          <mxGeometry height="60" width="120" x="150" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="u_logfood" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="Log Food" vertex="1">
+          <mxGeometry height="60" width="70" x="380" y="350" as="geometry" />
+        </mxCell>
+        <mxCell id="u_todayfood" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="View Today&#39;s Food" vertex="1">
+          <mxGeometry height="60" width="140" x="150" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="u_history" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="View Food History" vertex="1">
+          <mxGeometry height="60" width="130" x="340" y="270" as="geometry" />
+        </mxCell>
+        <mxCell id="u_notes" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="View Notes" vertex="1">
+          <mxGeometry height="60" width="80" x="170" y="460" as="geometry" />
+        </mxCell>
+        <mxCell id="u_logout" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="Log Out" vertex="1">
+          <mxGeometry height="60" width="80" x="300" y="480" as="geometry" />
+        </mxCell>
+        <mxCell id="u_search" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="Select Food" vertex="1">
+          <mxGeometry height="60" width="90" x="440" y="475" as="geometry" />
+        </mxCell>
+        <mxCell id="u_summary" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="View Nutrition Summary" vertex="1">
+          <mxGeometry height="60" width="160" x="380" y="140" as="geometry" />
+        </mxCell>
+        <mxCell id="Vj8ZAAteMtfBz4uL9Fnq-8" edge="1" parent="1" source="a_admindash" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;endFill=0;" target="actor_admin">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a_admindash" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="&lt;div&gt;View&lt;/div&gt;&lt;div&gt;Admin Dashboard&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="140" x="150" y="740" as="geometry" />
+        </mxCell>
+        <mxCell id="a_managefood" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="Add Food" vertex="1">
+          <mxGeometry height="60" width="80" x="230" y="350" as="geometry" />
+        </mxCell>
+        <mxCell id="a_manageuser" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="&lt;div&gt;Manage&lt;/div&gt;&lt;div&gt;User Accounts&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="130" x="150" y="840" as="geometry" />
+        </mxCell>
+        <mxCell id="Vj8ZAAteMtfBz4uL9Fnq-15" edge="1" parent="1" source="a_viewuser" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;endFill=0;dashed=1;" target="Vj8ZAAteMtfBz4uL9Fnq-14">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Vj8ZAAteMtfBz4uL9Fnq-16" connectable="0" parent="Vj8ZAAteMtfBz4uL9Fnq-15" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;&lt;b&gt;&amp;lt;&amp;lt;include&amp;gt;&amp;gt;&lt;/b&gt;&lt;/font&gt;" vertex="1">
+          <mxGeometry relative="1" x="-0.0315" y="-1" as="geometry">
+            <mxPoint y="-1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="a_viewuser" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="&lt;div&gt;View&lt;/div&gt;&lt;div&gt;User Details&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="100" x="180" y="650" as="geometry" />
+        </mxCell>
+        <mxCell id="a_createuser" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="Create User" vertex="1">
+          <mxGeometry height="60" width="90" x="420" y="640" as="geometry" />
+        </mxCell>
+        <mxCell id="a_changepass" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="&lt;div&gt;Change&amp;nbsp;&lt;/div&gt;&lt;div&gt;User Password&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="120" x="415" y="850" as="geometry" />
+        </mxCell>
+        <mxCell id="a_deleteuser" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="Delete User" vertex="1">
+          <mxGeometry height="60" width="100" x="400" y="760" as="geometry" />
+        </mxCell>
+        <mxCell id="a_addnote" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="Add Note" vertex="1">
+          <mxGeometry height="60" width="80" x="150" y="550" as="geometry" />
+        </mxCell>
+        <mxCell id="e_user_u_login" edge="1" parent="1" source="actor_user" style="endArrow=none;html=1;rounded=0;" target="u_login" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_user_u_dash" edge="1" parent="1" source="actor_user" style="endArrow=none;html=1;rounded=0;" target="u_dash" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_user_u_logfood" edge="1" parent="1" source="actor_user" style="endArrow=none;html=1;rounded=0;" target="u_logfood" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_user_u_todayfood" edge="1" parent="1" source="actor_user" style="endArrow=none;html=1;rounded=0;" target="u_todayfood" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_user_u_history" edge="1" parent="1" source="actor_user" style="endArrow=none;html=1;rounded=0;" target="u_history" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_user_u_notes" edge="1" parent="1" source="actor_user" style="endArrow=none;html=1;rounded=0;" target="u_notes" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_user_u_logout" edge="1" parent="1" source="actor_user" style="endArrow=none;html=1;rounded=0;" target="u_logout" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_admin_a_manageuser" edge="1" parent="1" source="actor_admin" style="endArrow=none;html=1;rounded=0;" target="a_manageuser" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_admin_a_viewuser" edge="1" parent="1" source="actor_admin" style="endArrow=none;html=1;rounded=0;" target="a_viewuser" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_inc1" edge="1" parent="1" source="u_logfood" style="endArrow=open;endFill=0;dashed=1;html=1;rounded=0;" target="u_search" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;&lt;b&gt;&amp;lt;&amp;lt;include&amp;gt;&amp;gt;&lt;/b&gt;&lt;/font&gt;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_inc3" edge="1" parent="1" source="u_todayfood" style="endArrow=open;endFill=0;dashed=1;html=1;rounded=0;" target="u_summary" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;&lt;b&gt;&amp;lt;&amp;lt;include&amp;gt;&amp;gt;&lt;/b&gt;&lt;/font&gt;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_inc7" edge="1" parent="1" source="a_manageuser" style="endArrow=open;endFill=0;dashed=1;html=1;rounded=0;" target="a_createuser" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;&lt;b&gt;&amp;lt;&amp;lt;include&amp;gt;&amp;gt;&lt;/b&gt;&lt;/font&gt;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_inc8" edge="1" parent="1" source="a_manageuser" style="endArrow=open;endFill=0;dashed=1;html=1;rounded=0;" target="a_changepass" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;&lt;b&gt;&amp;lt;&amp;lt;include&amp;gt;&amp;gt;&lt;/b&gt;&lt;/font&gt;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_inc9" edge="1" parent="1" source="a_manageuser" style="endArrow=open;endFill=0;dashed=1;html=1;rounded=0;" target="a_deleteuser" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;&lt;b&gt;&amp;lt;&amp;lt;include&amp;gt;&amp;gt;&lt;/b&gt;&lt;/font&gt;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_ext1" edge="1" parent="1" source="a_addnote" style="endArrow=open;endFill=0;dashed=1;html=1;rounded=0;" target="a_viewuser" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;&lt;b&gt;&amp;lt;&amp;lt;extend&amp;gt;&amp;gt;&lt;/b&gt;&lt;/font&gt;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Vj8ZAAteMtfBz4uL9Fnq-6" edge="1" parent="1" source="actor_user" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;endFill=0;" target="a_managefood">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Vj8ZAAteMtfBz4uL9Fnq-14" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="&lt;div&gt;View&lt;/div&gt;&lt;div&gt;All Users&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="80" x="360" y="580" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
